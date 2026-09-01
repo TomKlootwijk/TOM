@@ -749,12 +749,12 @@
     370
   ],
   "executed_ticks": 371,
-  "final_lineage": 4271581964,
+  "final_lineage": 629103799,
   "final_output": 943196672,
   "final_state": {
     "branch": 0,
     "cell": 370,
-    "lineage": 4271581964,
+    "lineage": 629103799,
     "orientation": 0,
     "output": 943196672,
     "phi": 0,
@@ -770,8 +770,8 @@
     "vtick": 0
   },
   "materialization_profile": "tomagi-emit-bytes-be-v1",
-  "program_sha256": "b3accb80d155f655e34800162d157c3fa1bd5e7f1a6ab146859973fb68ba9a8a",
+  "program_sha256": "37cb6a789d24ed9e18a81c87412ad3a7f428e8ad178721857762f5eb939ee5fb",
   "requested_ticks": 371,
-  "seed": 3717157166,
+  "seed": 3020876794,
   "tomagi_version": "1.0.0"
 }

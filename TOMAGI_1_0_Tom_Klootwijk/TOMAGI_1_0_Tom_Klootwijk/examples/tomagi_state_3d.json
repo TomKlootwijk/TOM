@@ -37,7 +37,7 @@
       ],
       "parameters": {
         "trace_path": "tomagi_state_orbit.trace.json",
-        "trace_sha256": "0f63d46cdee734e7785ff2ab78cd551d757e186272d2dcfe72ea6bbe0ac3f6d3",
+        "trace_sha256": "aa060ad1cdc25d7e95e2cdc36e1338ede0cced27f4791989b0cc287d01b9a14f",
         "program_path": "tomagi_state_orbit.tmg",
         "program_sha256": "349e51a5a402b3295d653ad08f00b55d465ffab7e943fb437d196af948487e3e",
         "source_path": "tomagi_state_orbit.json",
@@ -54,7 +54,7 @@
           "sha256:092f1cd576a0ee5faf7cd425aae162acad5bbda1c15aae191a6ff6913940c73d"
         ]
       },
-      "content_hash": "sha256:3b838b4fee8b4e3e3504ba86f4ef735c20da83ba4b331bb541d5b365d96f86b8"
+      "content_hash": "sha256:4b6c43250313f729157c08f53adf3bbdac1aaafa744ae98660a81a5517d0305a"
     },
     {
       "id": "orbit3d:emit-samples",
@@ -78,10 +78,10 @@
         "stride": 1,
         "selection_role": "one completed literal-chain sample per EMIT transition",
         "dependency_hashes": [
-          "sha256:3b838b4fee8b4e3e3504ba86f4ef735c20da83ba4b331bb541d5b365d96f86b8"
+          "sha256:4b6c43250313f729157c08f53adf3bbdac1aaafa744ae98660a81a5517d0305a"
         ]
       },
-      "content_hash": "sha256:afd8b7e85adbf6a62a70794250ae994aa141f6a1f07a65dc2463a17255cb0f5c"
+      "content_hash": "sha256:d4433d1de35c79f038aac2e98ff45e019cc593569f7f2f19cae5d70bc3f23fd1"
     },
     {
       "id": "orbit3d:rho-theta-phi-coordinates",
@@ -126,10 +126,10 @@
         ],
         "coordinate_contract": "integer affine projection declared in this definition",
         "dependency_hashes": [
-          "sha256:afd8b7e85adbf6a62a70794250ae994aa141f6a1f07a65dc2463a17255cb0f5c"
+          "sha256:d4433d1de35c79f038aac2e98ff45e019cc593569f7f2f19cae5d70bc3f23fd1"
         ]
       },
-      "content_hash": "sha256:6c2db9ee96413e29621d472cb3812087658a9af46cff2ef158514216f8e1ec5c"
+      "content_hash": "sha256:d1d32b7bb21cf81f70e44f0e9b1eee4fbaf8165cb2324eea1d65a1d5d65d0c15"
     },
     {
       "id": "orbit3d:vertex-record-format",
@@ -142,7 +142,7 @@
       ],
       "parameters": {
         "encoding": "utf-8",
-        "prefix": "# TOMAGI State64 orbit: rho theta phi\n# source_sha256 f456d0da681ae03ddb40cdc1c4566411b25a24e48d8ab279a9bc94d75a6f9cbd\n# program_sha256 349e51a5a402b3295d653ad08f00b55d465ffab7e943fb437d196af948487e3e\n# trace_sha256 0f63d46cdee734e7785ff2ab78cd551d757e186272d2dcfe72ea6bbe0ac3f6d3\n",
+        "prefix": "# TOMAGI State64 orbit: rho theta phi\n# source_sha256 f456d0da681ae03ddb40cdc1c4566411b25a24e48d8ab279a9bc94d75a6f9cbd\n# program_sha256 349e51a5a402b3295d653ad08f00b55d465ffab7e943fb437d196af948487e3e\n# trace_sha256 aa060ad1cdc25d7e95e2cdc36e1338ede0cced27f4791989b0cc287d01b9a14f\n",
         "record_template": "v {x} {y} {z}",
         "separator": "\n",
         "suffix": "\n",
@@ -154,10 +154,10 @@
           "phi"
         ],
         "dependency_hashes": [
-          "sha256:6c2db9ee96413e29621d472cb3812087658a9af46cff2ef158514216f8e1ec5c"
+          "sha256:d1d32b7bb21cf81f70e44f0e9b1eee4fbaf8165cb2324eea1d65a1d5d65d0c15"
         ]
       },
-      "content_hash": "sha256:bdfdc2361a4bfcdfba9c0be792faf0721dd832dee83144e65c753ce071326e04"
+      "content_hash": "sha256:4fc8e59b8732ed24e6a2af077528eb2b2c48f76dbf4419970ba8c50eeb22a3ab"
     },
     {
       "id": "orbit3d:ordered-line-topology",
@@ -177,10 +177,10 @@
         "index_start": 1,
         "topology": "open_ordered_line",
         "dependency_hashes": [
-          "sha256:6c2db9ee96413e29621d472cb3812087658a9af46cff2ef158514216f8e1ec5c"
+          "sha256:d1d32b7bb21cf81f70e44f0e9b1eee4fbaf8165cb2324eea1d65a1d5d65d0c15"
         ]
       },
-      "content_hash": "sha256:b54cb89d2ab52395605ffcc73a3e517e911354fa7870d5396d2c47c8d46dcc3b"
+      "content_hash": "sha256:ac97eb7d5a58da6bd0867e123c56011dfafd5ff1ea0e514824a23fb46f90eee4"
     },
     {
       "id": "orbit3d:obj-artifact",
@@ -205,11 +205,11 @@
         ],
         "topology": "open_ordered_line",
         "dependency_hashes": [
-          "sha256:bdfdc2361a4bfcdfba9c0be792faf0721dd832dee83144e65c753ce071326e04",
-          "sha256:b54cb89d2ab52395605ffcc73a3e517e911354fa7870d5396d2c47c8d46dcc3b"
+          "sha256:4fc8e59b8732ed24e6a2af077528eb2b2c48f76dbf4419970ba8c50eeb22a3ab",
+          "sha256:ac97eb7d5a58da6bd0867e123c56011dfafd5ff1ea0e514824a23fb46f90eee4"
         ]
       },
-      "content_hash": "sha256:4257a3cf5e7d8603fa8baa8655ff76cb993af6eeedd5f7c021d5db41f5162a20"
+      "content_hash": "sha256:e52578589731c7621a136ce606bb003e6a7e883edc59e3a4ca9c3c1889ec864d"
     }
   ]
 }

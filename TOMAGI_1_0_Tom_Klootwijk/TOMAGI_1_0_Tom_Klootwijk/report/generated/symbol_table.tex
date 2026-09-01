@@ -1,4 +1,6 @@
+\begingroup
 \small
+\setlength{\tabcolsep}{3pt}
 \begin{longtable}{@{}L{0.16\textwidth}L{0.39\textwidth}L{0.39\textwidth}@{}}
 \caption{TOMAGI 1.0 symbol contract}\label{tab:symbols}\\
 \toprule
@@ -18,30 +20,31 @@
 D & finite domain of definable LUT keys & set of 64-bit keys \\
 d & content-addressed definition node & typed record \\
 q\_n & TOMAGI state at tick n & State64 \\
-rho & log-radius coordinate & 20-bit periodic integer; decoded range profile [-20,0] \\
+rho & log-radius coordinate & 20-bit periodic integer;\allowbreak{} decoded range profile [-20,\allowbreak{}0] \\
 theta & polar angle & 18-bit periodic integer \\
 X & zero-based modular timeline tick & 14-bit periodic integer \\
-phi & lower-case phase/hoop/hinge coordinate & 12-bit periodic integer \\
-Phi & capital golden ratio & optional constant; never aliases runtime phi \\
+phi & lower-case phase/\allowbreak{}hoop/\allowbreak{}hinge coordinate & 12-bit periodic integer \\
+Phi & capital golden ratio & optional constant;\allowbreak{} never aliases runtime phi \\
 Delta q & first discrete difference & velocity \\
 Delta\textasciicircum{}2 q & second discrete difference & acceleration stored in a cell \\
 Delta\textasciicircum{}2 phi & change-of-change of lower-case phi & cell arg3 under KIN2 \\
-K=(K\_hi,K\_lo) & contiguous 64-bit log-polar key & two u32 words \\
+K=(K\_hi,\allowbreak{}K\_lo) & contiguous 64-bit log-polar key & two u32 words \\
 LUT\_Z & finite sorted table of SDF0 cells & Cell48[] \\
-Z\_D & literal SDF0 zero-field & 0 on D, bottom outside D \\
+Z\_D & literal SDF0 zero-field & 0 on D,\allowbreak{} bottom outside D \\
 P & one-bit parity reduction & popcount mod 2 \\
-j & deterministic parity/jitter bit & 0 or 1 \\
-sigma & signed jitter selector & 2j-1 in \{-1,+1\} \\
+j & deterministic parity/\allowbreak{}jitter bit & 0 or 1 \\
+sigma & signed jitter selector & 2j-1 in \{-1,\allowbreak{}+1\} \\
 T\_c & cone slant length & real-valued compile-time geometry parameter \\
 alpha & cone half-angle & compile-time or quantized angular width \\
-C & cone relation/support & signed relation \\
-S & sphere/shell relation/support & signed relation \\
+C & cone relation/\allowbreak{}support & signed relation \\
+S & sphere/\allowbreak{}shell relation/\allowbreak{}support & signed relation \\
 W\_K & Klein or half-turn wrap map & state transform \\
 b & branch bit & 0 or 1 \\
 i & compiled cell index & u32 \\
 ell & lineage checksum & u32 \\
 y & output token & u32 \\
-Pi & projection/tag operator & symbolic downstream output \\
-bottom & undefined/non-member & not a numeric SDF value \\
+Pi & projection/\allowbreak{}tag operator & symbolic downstream output \\
+bottom & undefined/\allowbreak{}non-member & not a numeric SDF value \\
 \end{longtable}
 \normalsize
+\endgroup

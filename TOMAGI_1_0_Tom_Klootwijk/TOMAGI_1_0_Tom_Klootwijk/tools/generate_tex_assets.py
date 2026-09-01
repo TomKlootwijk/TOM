@@ -16,17 +16,25 @@ def esc(x: object) -> str:
     }
     return ''.join(repl.get(ch,ch) for ch in s)
 
+def table_esc(x: object) -> str:
+    """Escape a cell while admitting line breaks in dense formal expressions."""
+    return (esc(x)
+            .replace(',', r',\allowbreak{}')
+            .replace('/', r'/\allowbreak{}')
+            .replace(';', r';\allowbreak{}'))
+
 def longtable(path, headers, rows, widths, caption, label, font='\\scriptsize'):
     spec='@{}' + ''.join(f'L{{{w}}}' for w in widths) + '@{}'
-    lines=[font, f'\\begin{{longtable}}{{{spec}}}',f'\\caption{{{esc(caption)}}}\\label{{{label}}}\\\\',
+    lines=['\\begingroup', font, r'\setlength{\tabcolsep}{3pt}',
+           f'\\begin{{longtable}}{{{spec}}}',f'\\caption{{{esc(caption)}}}\\label{{{label}}}\\\\',
            '\\toprule',' & '.join(r'\textbf{'+esc(h)+'}' for h in headers)+r' \\', '\\midrule','\\endfirsthead',
            f'\\multicolumn{{{len(headers)}}}{{l}}{{\\small\\itshape {esc(caption)} -- continued}}\\\\','\\toprule',
            ' & '.join(r'\textbf{'+esc(h)+'}' for h in headers)+r' \\', '\\midrule','\\endhead',
            '\\midrule',f'\\multicolumn{{{len(headers)}}}{{r}}{{\\small continued on next page}}\\\\','\\endfoot','\\bottomrule','\\endlastfoot']
     for row in rows:
-        lines.append(' & '.join(esc(v) for v in row)+r' \\')
-    lines += ['\\end{longtable}','\\normalsize','']
-    path.write_text('\n'.join(lines),encoding='utf-8')
+        lines.append(' & '.join(table_esc(v) for v in row)+r' \\')
+    lines += ['\\end{longtable}','\\normalsize','\\endgroup','']
+    path.write_bytes('\n'.join(lines).encode('utf-8'))
 
 ops=json.loads((ROOT/'spec/operator_catalog.json').read_text())['operators']
 longtable(OUT/'operator_catalog.tex',['ID','Operator','Signature','Literal definition'],
@@ -69,7 +77,7 @@ counts=Counter(r['source'].split(':',1)[0] for r in cross)
 lines=['\\begin{tabular}{@{}lr@{}}','\\toprule','\\textbf{Source} & \\textbf{Crosswalk rows}\\\\','\\midrule']
 for k in sorted(counts): lines.append(f'{esc(k)} & {counts[k]}\\\\')
 lines += ['\\midrule',f'\\textbf{{Total}} & \\textbf{{{len(cross)}}}\\\\','\\bottomrule','\\end{tabular}']
-(OUT/'crosswalk_summary.tex').write_text('\n'.join(lines),encoding='utf-8')
+(OUT/'crosswalk_summary.tex').write_bytes('\n'.join(lines).encode('utf-8'))
 
 # Put all 64 exact Morton rows on one readable page as two parallel 32-row blocks.
 sched=json.loads((ROOT/'spec/morton_schedule_64.json').read_text())['schedule']
@@ -85,6 +93,6 @@ lines=[r'\begin{table}[H]',r'\centering',
 for a,b in zip(left,right):
     lines.append(f"{a['output_bit']} & {esc(a['field'])} & {a['source_bit']} & {b['output_bit']} & {esc(b['field'])} & {b['source_bit']}" + r' \\')
 lines += [r'\bottomrule',r'\end{tabular}',r'\end{table}','']
-(OUT/'morton_schedule.tex').write_text('\n'.join(lines),encoding='utf-8')
+(OUT/'morton_schedule.tex').write_bytes('\n'.join(lines).encode('utf-8'))
 
 print({'operators':len(ops),'symbols':len(syms),'opcodes':len(opcodes),'crosswalk':len(cross)})

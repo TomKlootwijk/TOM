@@ -1,4 +1,6 @@
+\begingroup
 \small
+\setlength{\tabcolsep}{3pt}
 \begin{longtable}{@{}L{0.07\textwidth}L{0.07\textwidth}L{0.13\textwidth}L{0.09\textwidth}L{0.56\textwidth}@{}}
 \caption{State64 ABI}\label{tab:state64}\\
 \toprule
@@ -15,15 +17,15 @@
 \endfoot
 \bottomrule
 \endlastfoot
-0 & 0 & rho & i32 & log-radius coordinate; canonical key uses modulo 2\textasciicircum{}20 \\
-1 & 4 & theta & i32 & polar angle; modulo 2\textasciicircum{}18 \\
-2 & 8 & tick & i32 & zero-based timeline tick; modulo 2\textasciicircum{}14 \\
-3 & 12 & phi & i32 & lower-case phase/hinge angle; modulo 2\textasciicircum{}12 \\
+0 & 0 & rho & i32 & log-radius coordinate;\allowbreak{} canonical key uses modulo 2\textasciicircum{}20 \\
+1 & 4 & theta & i32 & polar angle;\allowbreak{} modulo 2\textasciicircum{}18 \\
+2 & 8 & tick & i32 & zero-based timeline tick;\allowbreak{} modulo 2\textasciicircum{}14 \\
+3 & 12 & phi & i32 & lower-case phase/\allowbreak{}hinge angle;\allowbreak{} modulo 2\textasciicircum{}12 \\
 4 & 16 & vrho & i32 & first difference of rho \\
 5 & 20 & vtheta & i32 & first difference of theta \\
 6 & 24 & vtick & i32 & first difference of tick \\
 7 & 28 & vphi & i32 & first difference of phi \\
-8 & 32 & orientation & u32 & orientation/chirality bit \\
+8 & 32 & orientation & u32 & orientation/\allowbreak{}chirality bit \\
 9 & 36 & sheet & u32 & sheet index \\
 10 & 40 & branch & u32 & current branch bit \\
 11 & 44 & cell & u32 & current cell index \\
@@ -33,3 +35,4 @@
 15 & 60 & status & u32 & status bit field \\
 \end{longtable}
 \normalsize
+\endgroup

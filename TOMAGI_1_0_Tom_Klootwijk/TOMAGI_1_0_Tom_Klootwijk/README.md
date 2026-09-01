@@ -12,19 +12,21 @@ The 1-bit parity/jitter result is a route and perturbation primitive. It is not 
 
 Functional notation executes from right to left. The shipped literal loop serializes that order as `SDF0 -> JIT1 -> KIN2 -> PHI -> KLEIN -> HINGE -> LSYS -> CONE -> PROJECT -> EMIT`; branch-indexed successors select a hinge route without skipping a stage.
 
-TOMAGI does not contain learned weights, sampling, embeddings, confidence scores, stochastic state, damping, ECC, restoration forces, safe mode, or a hidden frame loop. A task becomes a TOMAGI task by compiling its literals, relations, branches, topology maps and output tokens into a finite `Cell48` graph. The core executes that graph and produces `State64` records; TOMAGI's first-party native SVG projection backend consumes the `EMIT` records and serializes their declared projection tokens and state geometry. The SVG serializer is a backend of the engine, not a new core opcode or a replacement for the fixed-width ABI. In a compiled domain, this whole path is a deterministic substitute for learned inference.
+TOMAGI does not contain learned weights, sampling, embeddings, confidence scores, stochastic state, damping, ECC, restoration forces, safe mode, or a hidden frame loop. A task becomes a TOMAGI task by compiling its literals, relations, branches, topology maps and output tokens into a finite `Cell48` graph. The core executes that graph and produces `State64` records. Definition genomes may authenticate a trace, select records, project integer fields and format records; the compiler evaluates that pipeline and lowers the resulting bytes to ordinary `EMIT` cells. The generic host-side `materialize` command only replays those bytes. It contains no SVG, OBJ, CSV, shape or dimensional semantics. In a compiled domain, this whole path is a deterministic substitute for learned inference.
 
 The first-party artifact path is explicit and replayable:
 
 ```text
-source JSON -> compiled .tmg -> State64 trace/EMIT records -> SVG + manifest
+definition-driven orbit -> compiled .tmg -> authenticated State64 trace
+  -> authenticated_trace -> select_records -> project_fields -> format_records
+  -> compile-time EMIT-byte lowering -> generic byte replay -> SVG | OBJ | CSV
 ```
 
-## Delivered backends
+## Delivered implementations and host tools
 
 - dependency-free Python reference runtime and compiler;
 - portable C99 runtime and CLI;
-- first-party native SVG projection backend with a trace and render manifest;
+- authenticated definition-genome evaluation and format-agnostic byte materialization;
 - GLSL 4.50 compute shader;
 - WebGPU WGSL compute shader;
 - OpenCL C kernel;
@@ -42,22 +44,40 @@ PYTHONPATH=src/python python -m tomagi compile \
 PYTHONPATH=src/python python -m tomagi run \
   examples/polar_loop.tmg --trace
 
-# Render the perpetual 64-emission TOMAGI engine portrait
+# Compile and record the definition-driven 64-emission state orbit
 PYTHONPATH=src/python python -m tomagi compile \
-  examples/tomagi_engine_portrait.json examples/tomagi_engine_portrait.tmg
-PYTHONPATH=src/python python -m tomagi render \
-  examples/tomagi_engine_portrait.tmg examples/tomagi_engine_portrait.svg \
-  --trace-output examples/tomagi_engine_portrait.trace.json \
-  --manifest examples/tomagi_engine_portrait.manifest.json
+  examples/tomagi_state_orbit.json examples/tomagi_state_orbit.tmg
+PYTHONPATH=src/python python -m tomagi run \
+  examples/tomagi_state_orbit.tmg --ticks 640 --trace \
+  --output examples/tomagi_state_orbit.trace.json
+
+# Compile and byte-materialize the authenticated 2D SVG representation
+PYTHONPATH=src/python python -m tomagi compile \
+  examples/tomagi_state_2d.json examples/tomagi_state_2d.tmg
+PYTHONPATH=src/python python -m tomagi materialize \
+  examples/tomagi_state_2d.tmg examples/tomagi_state_2d.svg \
+  --manifest examples/tomagi_state_2d.manifest.json
 
 # Run the source-derived 19 -> active bits -> three pulses -> triangle example
 PYTHONPATH=src/python python -m tomagi nineteen
 
-# Run the C99 backend on the same binary program
+# Run the C99 evaluator on the same binary program
 ./build/tomagi-c examples/polar_loop.tmg
 ```
 
-The shipped validation compares the final 16-word state from Python and C byte-semantically. In the recorded build, glslang compiled the GLSL shader; WGSL received structural checks because no WGSL compiler was configured; OpenCL was not syntax-checked because Clang was unavailable. No physical GPU dispatch was performed.
+The current recorded validation ran 62 Python tests and authenticated all three state representations byte-for-byte. Python/C comparisons were not run on the Windows host because the available C evaluator is a Linux ELF executable. GLSL and WGSL received structural source checks; OpenCL was not syntax-checked because Clang was unavailable. No physical GPU dispatch was performed.
+
+## Definition-driven state representations
+
+`tomagi_state_orbit.json` contains ten cells with only `id`, `key` and `definition_ref`; the referenced `tomagi_cell_operation` definitions own every executable field. Its 640-transition replay completes 64 non-halting literal-chain cycles and 64 `EMIT` samples. It ends at entry cell 0 with `(rho,theta,tick,phi)=(680006,218400,3720,2388)`, lineage `1437167731` and output `ORBT`.
+
+The authenticated trace yields three concrete file representations:
+
+- 2D: a 1,774-byte SVG polyline with 64 unique points (`x`: 64 distinct, `y`: 63 distinct);
+- 3D: a 1,355-byte OBJ with 64 unique vertices and one ordered open line `1..64` (`x/y/z`: 64/64/60 distinct);
+- 4D: a 1,483-byte CSV with 64 unique `(rho,theta,tick,phi)` rows. It is a data representation, not a claim of direct four-dimensional visual rendering.
+
+Exact source, program, artifact and definition-root hashes and the complete reproduction commands are recorded in `examples/README.md`.
 
 ## Canonical key
 
@@ -76,13 +96,13 @@ The package also supplies the distinct, exact MSB round-robin Morton layout and 
 
 ## Package map
 
-- `report/TOMAGI_1_0_Tom_Klootwijk.pdf` - formal substrate specification.
+- `report/TOMAGI_1_0_Tom_Klootwijk.pdf` - formal engine specification and validation report.
 - `spec/TOMAGI_1_0_FORMAL_DEFINITION.md` - editable normative definition.
 - `spec/*.json`, `spec/*.csv` - schema, symbols, operators, opcodes, key and ABI layouts, precedence and 322-row source crosswalk.
 - `src/python/tomagi/` - Python oracle, compiler and CLI.
 - `src/c/` - C99 evaluator.
 - `src/gpu/` - GLSL, WGSL and OpenCL kernels.
-- `examples/` - perpetual engine portrait, literal polar loop, exact-19 rule and source-derived feature example.
+- `examples/` - definition-driven state orbit, authenticated 2D/3D/4D representations, literal polar loop, exact-19 rule and source-derived feature example.
 - `tests/` - executable conformance tests.
 - `sources/` - source hash register and retained 211-mechanism knowledge catalog.
 - `validation/` - machine-readable validation report and console logs.

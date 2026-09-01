@@ -1,4 +1,6 @@
+\begingroup
 \small
+\setlength{\tabcolsep}{3pt}
 \begin{longtable}{@{}L{0.08\textwidth}L{0.16\textwidth}L{0.69\textwidth}@{}}
 \caption{The sixteen portable Cell48 opcodes}\label{tab:opcodes}\\
 \toprule
@@ -17,19 +19,20 @@
 \endlastfoot
 0 & NOP & No state mutation beyond lineage and successor selection. \\
 1 & SET & Set one State64 field selected by flags[3:0] to arg0. \\
-2 & JIT1 & Derive a deterministic parity bit and add +/-arg0 to the selected field. \\
-3 & KIN2 & Apply integer second-order update v'=v+args; q'=q+v'. \\
-4 & PHI & Advance lower-case phi modulo 2\textasciicircum{}12 and expose wrap/half-circle branch. \\
+2 & JIT1 & Derive a deterministic parity bit and add +/\allowbreak{}-arg0 to the selected field. \\
+3 & KIN2 & Apply integer second-order update v'=v+args;\allowbreak{} q'=q+v'. \\
+4 & PHI & Advance lower-case phi modulo 2\textasciicircum{}12 and expose wrap/\allowbreak{}half-circle branch. \\
 5 & TIME & Advance zero-based modular tick modulo 2\textasciicircum{}14 and fold winding into lineage. \\
 6 & SDF0 & Return literal zero relation for the current defined LUT cell. \\
-7 & CONE & Evaluate a quantized log-polar cone/support relation. \\
-8 & SPHERE & Evaluate a quantized radial/phi shell relation. \\
+7 & CONE & Evaluate a quantized log-polar cone/\allowbreak{}support relation. \\
+8 & SPHERE & Evaluate a quantized radial/\allowbreak{}phi shell relation. \\
 9 & KLEIN & Apply reflective Klein or source half-turn radial wrap. \\
 10 & RADIX & Select one bit of the canonical 64-bit key. \\
-11 & HINGE & Apply map1 deltas and optional orientation/sheet flips when branch=1. \\
+11 & HINGE & Apply map1 deltas and optional orientation/\allowbreak{}sheet flips when branch=1. \\
 12 & LSYS & Apply chirality-signed lower-case-phi turn and dyadic velocity scaling. \\
 13 & PROJECT & Set a symbolic downstream output token without halting. \\
-14 & EMIT & Set output token and emitted status; flag bit 0 may terminate the program. \\
+14 & EMIT & Set output token and emitted status;\allowbreak{} flag bit 0 may terminate the program. \\
 15 & HALT & Terminate the current state execution. \\
 \end{longtable}
 \normalsize
+\endgroup

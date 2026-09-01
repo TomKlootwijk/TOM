@@ -15,6 +15,13 @@ def _state_dict(state):
     return {name: getattr(state, name) for name in state.__dataclass_fields__}
 
 
+def _write_json(path: str | Path, value, **dump_options) -> None:
+    """Write canonical UTF-8 JSON bytes with one LF terminator on every host."""
+
+    data = (json.dumps(value, **dump_options) + "\n").encode("utf-8")
+    Path(path).write_bytes(data)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="tomagi", description="TOMAGI 1.0 deterministic operator machine")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -56,7 +63,7 @@ def main(argv: list[str] | None = None) -> int:
         result = {"state": _state_dict(state), "trace": trace}
         text = json.dumps(result, indent=2, sort_keys=True)
         if args.output:
-            Path(args.output).write_text(text + "\n", encoding="utf-8")
+            _write_json(args.output, result, indent=2, sort_keys=True)
         print(text)
         return 0
     if args.command == "inspect":
@@ -80,14 +87,12 @@ def main(argv: list[str] | None = None) -> int:
                 "state": _state_dict(materialized.state),
                 "trace": materialized.trace,
             }
-            Path(args.trace_output).write_text(
-                json.dumps(trace_result, indent=2, sort_keys=True) + "\n",
-                encoding="utf-8",
+            _write_json(
+                args.trace_output, trace_result, indent=2, sort_keys=True
             )
         if args.manifest:
-            Path(args.manifest).write_text(
-                json.dumps(materialized.manifest, indent=2, sort_keys=True) + "\n",
-                encoding="utf-8",
+            _write_json(
+                args.manifest, materialized.manifest, indent=2, sort_keys=True
             )
         summary = {
             "output": str(output_path),
@@ -104,7 +109,7 @@ def main(argv: list[str] | None = None) -> int:
         data = {"output": result.output, "trace": result.trace}
         text = json.dumps(data, indent=2, ensure_ascii=False)
         if args.output:
-            Path(args.output).write_text(text + "\n", encoding="utf-8")
+            _write_json(args.output, data, indent=2, ensure_ascii=False)
         print(text)
         return 0
     return 2

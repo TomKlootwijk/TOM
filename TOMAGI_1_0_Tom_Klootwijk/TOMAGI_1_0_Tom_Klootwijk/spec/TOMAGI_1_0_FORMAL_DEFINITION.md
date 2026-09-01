@@ -1,4 +1,4 @@
-# TOMAGI 1.0 Formal Substrate Definition
+# TOMAGI 1.0 Formal Engine Definition
 
 **TOMAGI: Topological Operator Machine for Analytic Geometric Inference**  
 Version 1.0.0 - 1 September 2026
@@ -7,7 +7,7 @@ Requester attribution: **Tom Klootwijk; NL200678942; 10-07-1990**. Supplied by t
 
 ## 1. Decision
 
-TOMAGI is the deterministic state-and-operator engine. Its executable authority is a finite package of typed definitions, fixed-width LUT cells, an initial state and an explicitly ordered transition relation, not a trained model or an opaque rendered scene. The first-party engine also includes a native SVG projection backend that consumes emitted fixed-width states. That serializer exposes the core's results; it does not redefine them.
+TOMAGI is the deterministic state-and-operator engine. Its executable authority is a finite package of typed definitions, fixed-width LUT cells, an initial state and an explicitly ordered transition relation, not a trained model or an opaque rendered scene. Its generic host tooling can also evaluate content-addressed record/byte definitions and materialize literal bytes emitted by a compiled program. The host adds no artifact-format, geometry or dimensional semantics.
 
 The literal source chain is retained as the normative macro:
 
@@ -30,15 +30,18 @@ The key interpretation is literal:
 - the L-system transforms the routed state;
 - cone, sphere and overlap relations then convert state into branch bits;
 - projection and emission produce symbolic output while lineage preserves replay identity;
-- the native SVG backend consumes those `EMIT` `State64` records and writes a deterministic SVG plus manifest without adding an opcode or changing the core state.
+- `authenticated_trace`, `select_records`, `project_fields` and `format_records` can derive representation bytes from an authenticated `State64` replay;
+- the compiler lowers those bytes to ordinary `EMIT` cells, while the generic `materialize` host only replays their declared big-endian byte chunks.
 
 Thus the first-party engine path is:
 
 ```text
-source JSON -> compiled .tmg -> ordered State64 trace -> EMIT records -> SVG + manifest.
+definition-driven orbit -> compiled .tmg -> authenticated State64 trace
+  -> authenticated_trace -> select_records -> project_fields -> format_records
+  -> compiled EMIT-byte program -> generic byte replay -> SVG | OBJ | CSV.
 ```
 
-The fixed-width transition machine and the SVG serializer have different responsibilities, but both are TOMAGI. The serializer is a projection backend, not an external substitute for execution and not a claim of general rasterization or game-engine capability.
+Definition evaluation occurs at compile time. Materialization does not dynamically project fields or interpret a file type: it executes the lowered byte program and concatenates the bytes selected by `EMIT`. In particular, the shipped 4D result is a CSV table of four integer state fields, not a claim of direct four-dimensional visual rendering.
 
 TOMAGI 1.0 deliberately excludes the corrective layers introduced in some previous drafts: no jitter guard, ECC, damping, restoration force, confidence threshold, safe mode or kill-criteria operator is present in the execution core.
 
@@ -53,6 +56,7 @@ The supplied project corpus contributes the following directly usable pieces:
 5. The 19 dialogue contributes `19 = 10011`, active positions `{0,1,4}`, three declared Dutch segments `ne|gen|tien`, the chosen three-pulse triangle and the log-polar/Klein/Delta-Delta terminology.
 6. The chronological synthesis contributes the query-first interpretation: local cone/sphere supports, directly queryable relations, explicit transitions and lineage, with projection downstream.
 7. The supplied ZIP contributes the 211-entry normalized knowledge catalog and a GPU-native fixed-width implementation precedent.
+8. The exact 244-byte `sources/TOM_seed_genome_2026-09-01.txt` literal (SHA-256 `d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5`) contributes the root content of the executable definition DAGs.
 
 The machine-readable `source_crosswalk.json` contains 322 rows mapping every cataloged or direct document motif, including the literal TOM1 seed genome, to the condensed TOMAGI namespace.
 
@@ -87,6 +91,8 @@ hash = SHA256(canonical_JSON(d without hash)).
 ```
 
 Dependencies must resolve and admit a finite topological order. This is a language property: without it, the meaning of a composed literal definition would be ambiguous.
+
+A `tomagi_cell_operation` definition owns the complete executable cell fields: opcode, flags, four arguments, two successors, payload and auxiliary word. A source cell may therefore contain only `id`, `key` and `definition_ref`. The compiler resolves and verifies the definition and lowers those fields to `Cell48`; any duplicated executable field in the cell must match the referenced definition exactly. `tomagi_state_orbit.json` uses this definition-driven form for all ten runtime cells.
 
 ## 4. State64
 
@@ -328,7 +334,7 @@ The source's circle, side-view pyramid and sphere are retained as typed projecti
 - a circle token is the axial or radial-shell projection;
 - a sphere token is the spherical-support projection.
 
-`PROJECT` and `EMIT` are core operations: they make the selected symbolic projection and its replay state authoritative. TOMAGI's first-party native SVG backend consumes those emitted `State64` records and serializes the supported pyramid, circle and sphere vocabulary. SVG serialization is downstream of the transition algebra, but it is part of the delivered TOMAGI engine rather than an unspecified external renderer. Other consumers may still use the same emission records. This boundary preserves the 64-byte state and 48-byte cell ABI and does not imply general raster, scene or game rendering.
+`PROJECT` and `EMIT` are core operations: they make the selected symbolic projection and replay state authoritative. File representations are separate definition programs. The supplied 2D definition selects emitted states and maps `(theta,rho)` through declared integer affine coefficients before formatting an SVG polyline; the 3D definition similarly maps `(rho,theta,phi)` to OBJ vertices and declares one ordered open line. Neither mapping is built into an opcode or the materialization host, and neither implies a general raster, scene or game-rendering contract.
 
 ### 11.4 Overlap lens
 
@@ -382,7 +388,7 @@ The finite cell graph specifies how many such steps are taken for a particular q
 
 ## 14. Output, lineage and trace
 
-`PROJECT(payload)` sets a symbolic output token and continues. `EMIT(payload)` sets the token and the emitted status; its low flag bit may terminate the program. `HALT` terminates without changing the token. For native projection, each transition on which `EMIT` executes is an emission record. The SVG backend receives those `State64` records in trace order, maps supported tokens to declared vector primitives and writes both the SVG and a manifest that identifies the program and replay horizon. It does not feed floating-point drawing state back into `Step_P`.
+`PROJECT(payload)` sets a symbolic output token and continues. `EMIT(payload)` sets the token and the emitted status; its low flag bit may terminate the program. `HALT` terminates without changing the token. Each transition on which `EMIT` executes is an emission record; the trace retains the complete resulting `State64` fields.
 
 Every transition updates the replay lineage checksum:
 
@@ -395,11 +401,22 @@ lineage' = mix32(
 
 Lineage is a compact deterministic replay witness. It is not a cryptographic ownership claim. A trace records the ordered cell index, opcode, branch, key, relation residual, topology bits, output, lineage and status after every transition.
 
+The representation-definition pipeline is generic and compile-time:
+
+1. `authenticated_trace` reads only declared relative source, program and trace paths; verifies all three hashes and the declared source-definition anchors; proves `Compile(source) == program`; replays the declared horizon; and requires the replay trace and final state to equal the authenticated JSON.
+2. `select_records` applies declared integer predicates and slicing. The supplied representations select opcode `EMIT`, yielding 64 records.
+3. `project_fields` applies declared rational affine transforms with integer floor or truncation semantics. It has no named geometry or dimensional vocabulary.
+4. `format_records` applies safe UTF-8 prefix, record-template, separator and suffix definitions.
+5. The compiler evaluates the root byte definition and lowers the result into sequential `EMIT` cells. Each cell owns one to four literal big-endian bytes under `tomagi-emit-bytes-be-v1`.
+6. `materialize_program` executes that lowered program, selects the executed `EMIT` cells and concatenates their declared chunks. It does not read the authenticated trace or dynamically perform selection, field projection or formatting.
+
 The reference artifact workflow is therefore a single engine pipeline with a strict interface:
 
 ```text
-source JSON --compile--> .tmg --execute--> State64 trace
-            --select EMIT records--> native SVG projection + manifest.
+orbit definitions --compile/run--> authenticated State64 trace
+  --authenticated_trace/select_records/project_fields/format_records-->
+representation bytes --compile-time lowering--> EMIT-only .tmg
+  --generic materialize--> byte-identical SVG | OBJ | CSV + manifest.
 ```
 
 ## 15. Execution relation and determinism
@@ -422,7 +439,7 @@ Exec_A(P,q0,m) = Exec_B(P,q0,m)
 
 word for word, provided both implement the specified `u32`, `i32`, floor-division, truncating-division and periodic-normalization semantics.
 
-The supplied Python and C99 implementations are executable witnesses. The polar-loop example ends in the same state on both:
+The supplied Python and C99 implementations define this relation. The current Python polar-loop reference ends in the following state; the recorded Windows validation did not execute the available Linux C binary, so it does not claim a current cross-backend comparison:
 
 ```text
 rho=8, theta=39, X=1, phi=2117
@@ -433,14 +450,16 @@ lineage=1625236203
 residual=65497, status=0x0000000f.
 ```
 
-The perpetual engine portrait provides the cyclic witness. It executes 640 transitions as 64 ten-stage cycles, and every emission is preceded by exactly `SDF0`, `JIT1`, `KIN2`, `PHI`, `KLEIN`, `HINGE`, `LSYS`, `CONE` and `PROJECT`. It does not halt. The replay contains 30 `PYRA` emissions and 34 `CIRC` emissions and ends with:
+The definition-driven state orbit provides the cyclic witness. Its ten source cells retain only `id`, `key` and `definition_ref`; content-addressed `tomagi_cell_operation` definitions own all runtime fields and are transitively rooted in the exact TOM1 seed definition `sha256:092f1cd576a0ee5faf7cd425aae162acad5bbda1c15aae191a6ff6913940c73d`. It executes 640 transitions as 64 ten-stage cycles, with exactly 64 occurrences of every opcode in `SDF0`, `JIT1`, `KIN2`, `PHI`, `KLEIN`, `HINGE`, `LSYS`, `CONE`, `PROJECT`, `EMIT` order. It does not halt. All 64 emitted four-coordinate tuples are unique and the replay ends with:
 
 ```text
-rho=303996, theta=191626, X=94, phi=895
+rho=680006, theta=218400, X=3720, phi=2388
 orientation=0, sheet=0, branch=1, cell=0
-output=0x43495243 (CIRC)
-lineage=516999469, status=0x0000001a.
+output=0x4f524254 (ORBT)
+lineage=1437167731, status=0x0000001a.
 ```
+
+The authoritative orbit SHA-256 values are source `f456d0da681ae03ddb40cdc1c4566411b25a24e48d8ab279a9bc94d75a6f9cbd`, 608-byte program `349e51a5a402b3295d653ad08f00b55d465ffab7e943fb437d196af948487e3e`, and 252,941-byte/640-record LF trace `aa060ad1cdc25d7e95e2cdc36e1338ede0cced27f4791989b0cc287d01b9a14f`.
 
 ## 16. Deterministic substitution for AI
 
@@ -472,28 +491,55 @@ negentien -> ne|gen|tien -> pulse count 3
 
 The value remains 19 and the binary word remains 10011.
 
-## 17. Backend mapping
+## 17. Implementation mapping
 
 ### 17.1 Python oracle
 
-`src/python/tomagi` supplies canonical hashing, JSON compilation, binary serialization, the exact step function, a trace evaluator and the source-derived knowledge example. It has no runtime dependency outside the Python standard library.
+`src/python/tomagi` supplies canonical hashing, JSON compilation, binary serialization, the exact step function, trace evaluation, authenticated record-definition evaluation, byte lowering/materialization and the source-derived knowledge example. It has no runtime dependency outside the Python standard library.
 
 ### 17.2 C99 CPU
 
 `src/c/tomagi.c` loads `.tmg` bytes without structure-packing assumptions and implements the same operations with explicit little-endian reads and two's-complement conversion. `tomagi_cli.c` is a minimal host executable.
 
-### 17.3 Native SVG projection
+### 17.3 Generic definition evaluation and byte materialization
 
-The `tomagi render` command executes a `.tmg` program with the Python oracle, retains the ordered trace and selects the transitions whose executed opcode is `EMIT`. The first-party projector consumes those `State64` emission records, writes native SVG geometry for supported projection tokens and records the replay inputs and emissions in a manifest. A canonical engine-portrait invocation is:
+The compiler recognizes representation-agnostic definition kinds `authenticated_trace`, `select_records`, `project_fields` and `format_records`. Their evaluated root is a byte string that is lowered at compile time to an `EMIT`-only `.tmg`. The `tomagi materialize` command later executes that program and concatenates the emitted byte chunks. Its manifest records the program/artifact hashes, byte/chunk counts, executed/emission steps and final state; the host has no format-specific branch.
+
+The finalized representation evidence is:
+
+- 2D SVG — root `sha256:532ba6cfc7b0aa42becafa4d4468107a2d3f5185ba7613cbbd5f762d6d5d97ad`; source `4e9510a9ee659b4895e9521f39f5ed5f12a4c2ea8bbe3959dd5611fb72bb64fc`; 444-cell/21,440-byte program `f29dbc09bc85637584db4fec314d904dbecd672b78e51ae1d981c118439a8c95`; 1,774-byte artifact `fcaa3bd926529fe92f382f896cff042708111c10d652ac8c539386f5340f161c`. It contains 64 unique `(theta,rho)` points after the declared affine map (`x/y`: 64/63 distinct).
+- 3D OBJ — root `sha256:e52578589731c7621a136ce606bb003e6a7e883edc59e3a4ca9c3c1889ec864d`; source `09ae1f5061a15b4d6ad004acb5b8b4cf93faed03994c7b2eac98db5761ceb7c5`; 339-cell/16,400-byte program `793446ac860d1f7abf2984e9f98e894741ee8644bcd09efa2bdda91d183ad8d1`; 1,355-byte artifact `4b356aa10acbd751b19b333db68b87e1f3c6231a7264099efb07349e555e0511`. It contains 64 unique vertices and one ordered open line `1..64` (`x/y/z`: 64/64/60 distinct).
+- 4D CSV — root `sha256:faeb0eb44a2f43e38de571a23201ae6bfa1068623c959a8ef309fc2d75735a08`; source `ec129e19109db9481a7fe43f47931d4311426f8e287677511ae27b8352109b2c`; 371-cell/17,936-byte program `37cb6a789d24ed9e18a81c87412ad3a7f428e8ad178721857762f5eb939ee5fb`; 1,483-byte artifact `d1ac54e5aa0a575c021692a646e6b211acaab63ca8657740f723d06480f853df`. Its 64 rows preserve raw `(rho,theta,tick,phi)` fields; it is not a direct visual rendering of four-dimensional space.
+
+Only templates, framing, labels, style, separators and affine coefficients are authored in the representation definitions. Every numeric record comes from the authenticated orbit trace; no completed artifact, coordinate row, vertex list or topology-index list is stored as a literal.
+
+Canonical commands:
 
 ```bash
-PYTHONPATH=src/python python -m tomagi render \
-  examples/tomagi_engine_portrait.tmg examples/tomagi_engine_portrait.svg \
-  --trace-output examples/tomagi_engine_portrait.trace.json \
-  --manifest examples/tomagi_engine_portrait.manifest.json
-```
+PYTHONPATH=src/python python -m tomagi compile \
+  examples/tomagi_state_orbit.json examples/tomagi_state_orbit.tmg
+PYTHONPATH=src/python python -m tomagi run \
+  examples/tomagi_state_orbit.tmg --ticks 640 --trace \
+  --output examples/tomagi_state_orbit.trace.json
 
-The serializer may use ordinary host arithmetic for document layout, but that arithmetic is not part of `Step_P` and cannot alter the fixed-width trace. SVG is a deterministic first-party projection artifact, not the `.tmg` program and not a general raster or game-rendering contract.
+PYTHONPATH=src/python python -m tomagi compile \
+  examples/tomagi_state_2d.json examples/tomagi_state_2d.tmg
+PYTHONPATH=src/python python -m tomagi materialize \
+  examples/tomagi_state_2d.tmg examples/tomagi_state_2d.svg \
+  --manifest examples/tomagi_state_2d.manifest.json
+
+PYTHONPATH=src/python python -m tomagi compile \
+  examples/tomagi_state_3d.json examples/tomagi_state_3d.tmg
+PYTHONPATH=src/python python -m tomagi materialize \
+  examples/tomagi_state_3d.tmg examples/tomagi_state_3d.obj \
+  --manifest examples/tomagi_state_3d.manifest.json
+
+PYTHONPATH=src/python python -m tomagi compile \
+  examples/tomagi_state_4d.json examples/tomagi_state_4d.tmg
+PYTHONPATH=src/python python -m tomagi materialize \
+  examples/tomagi_state_4d.tmg examples/tomagi_state_4d.csv \
+  --manifest examples/tomagi_state_4d.manifest.json
+```
 
 ### 17.4 GPU
 
@@ -537,8 +583,8 @@ A TOMAGI 1.0 package conforms when:
 - the Python reference tests pass;
 - another backend matches the Python final state on the conformance program.
 
-The generated package reports 38 Python tests passing, exact Python/C equality over all 16 state words for both conformance programs, valid JSON examples under the supplied Draft 2020-12 schema, successful GLSL compilation with glslang and successful PDF render inspection. WGSL received structural source checks; OpenCL syntax checking and physical GPU dispatch were not run in the recorded environment and are not claimed by that report.
+The current recorded package validation ran 62 Python tests successfully and verified all authenticated 2D/3D/4D definition DAGs, recompilations, trace replays and artifact bytes. Six example JSON documents validate under the supplied Draft 2020-12 schema. Python/C comparisons were not run on the Windows host because the available C evaluator is a Linux ELF executable. GLSL and WGSL received structural source checks because no compiler was configured; OpenCL syntax checking was not run because Clang was unavailable. No physical GPU dispatch is claimed.
 
 ## 20. Final definition
 
-**TOMAGI 1.0 is the complete first-party engine: a finite, content-addressed, deterministic operator machine in which a 20/18/14/12 log-polar key selects a literal SDF-zero LUT cell; a parity-of-mixed-word one-bit operator produces signed jitter and a branch; integer second-order kinematics advances log-radius, angle, zero-based time and lower-case phi; reflective Klein or half-turn maps transport orientation and sheet; branch-indexed radix/hinge routing precedes L-system grammar and cone/sphere/overlap classification; projection and emission then return replayable `State64` answers with lineage. Branch-indexed successors serialize non-commutative composition. The same 64-byte state and 48-byte cell definitions execute on the supplied Python and C CPU runtimes and map directly to GLSL, WGSL and OpenCL GPU kernels; TOMAGI's native SVG backend consumes the resulting `EMIT` records to serialize supported vector projections and a replay manifest without changing that fixed-width core.**
+**TOMAGI 1.0 is a finite, content-addressed, deterministic operator machine in which a 20/18/14/12 log-polar key selects a literal SDF-zero LUT cell; a parity-of-mixed-word one-bit operator produces signed jitter and a branch; integer second-order kinematics advances log-radius, angle, zero-based time and lower-case phi; reflective Klein or half-turn maps transport orientation and sheet; branch-indexed radix/hinge routing precedes L-system grammar and cone/sphere/overlap classification; projection and emission then return replayable `State64` answers with lineage. Branch-indexed successors serialize non-commutative composition. The same 64-byte state and 48-byte cell definitions map to the supplied Python, C, GLSL, WGSL and OpenCL implementations. Generic content-addressed definitions can authenticate a trace, select and affinely map integer fields, format records and compile those bytes to `EMIT` cells; the host evaluates those definitions, while materialization only replays the compiled bytes and assigns no SVG, OBJ, CSV or dimensional meaning.**

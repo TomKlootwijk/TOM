@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import copy
 import csv
+import contextlib
+import io
 import json
 import tempfile
 import unittest
@@ -10,6 +12,7 @@ from hashlib import sha256
 from pathlib import Path
 
 from tomagi.canonical import attach_hash, verify_hash
+from tomagi.cli import main as cli_main
 from tomagi.compiler import compile_document
 from tomagi.core import FLAG_EMIT_HALT, Opcode, STATUS_HALT, run
 from tomagi.format import dumps
@@ -474,6 +477,35 @@ class StateRepresentationTests(unittest.TestCase):
                 ValueError, "authenticated program is not the compiled source document"
             ):
                 compile_document(document, base_dir=base)
+
+    def test_cli_trace_and_manifest_json_are_canonical_lf_utf8(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            run_trace = base / "orbit.trace.json"
+            artifact = base / "state.svg"
+            materialize_trace = base / "state.trace.json"
+            manifest = base / "state.manifest.json"
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(
+                    cli_main([
+                        "run", str(ORBIT_BINARY), "--ticks", "10", "--trace",
+                        "--output", str(run_trace),
+                    ]),
+                    0,
+                )
+                self.assertEqual(
+                    cli_main([
+                        "materialize", str(REPRESENTATIONS["2d"]["binary"]),
+                        str(artifact), "--trace-output", str(materialize_trace),
+                        "--manifest", str(manifest),
+                    ]),
+                    0,
+                )
+            for path in (run_trace, materialize_trace, manifest):
+                data = path.read_bytes()
+                self.assertNotIn(b"\r\n", data, path.name)
+                self.assertTrue(data.endswith(b"\n"), path.name)
+                json.loads(data)
 
     def test_host_evaluator_has_no_representation_specific_vocabulary(self):
         implementation = (ROOT / "src" / "python" / "tomagi" / "genome.py").read_text(

@@ -37,7 +37,7 @@
       ],
       "parameters": {
         "trace_path": "tomagi_state_orbit.trace.json",
-        "trace_sha256": "0f63d46cdee734e7785ff2ab78cd551d757e186272d2dcfe72ea6bbe0ac3f6d3",
+        "trace_sha256": "aa060ad1cdc25d7e95e2cdc36e1338ede0cced27f4791989b0cc287d01b9a14f",
         "program_path": "tomagi_state_orbit.tmg",
         "program_sha256": "349e51a5a402b3295d653ad08f00b55d465ffab7e943fb437d196af948487e3e",
         "source_path": "tomagi_state_orbit.json",
@@ -54,7 +54,7 @@
           "sha256:092f1cd576a0ee5faf7cd425aae162acad5bbda1c15aae191a6ff6913940c73d"
         ]
       },
-      "content_hash": "sha256:447f5fa3eaeb7e646720ab11f86e4c0b5206cf3f5f620dedd9e855918438d8ed"
+      "content_hash": "sha256:401a6213da224e707215b53368d51e27aa284842ec4a793390eca23aeea2ed7f"
     },
     {
       "id": "orbit2d:emit-samples",
@@ -78,10 +78,10 @@
         "stride": 1,
         "selection_role": "one completed literal-chain sample per EMIT transition",
         "dependency_hashes": [
-          "sha256:447f5fa3eaeb7e646720ab11f86e4c0b5206cf3f5f620dedd9e855918438d8ed"
+          "sha256:401a6213da224e707215b53368d51e27aa284842ec4a793390eca23aeea2ed7f"
         ]
       },
-      "content_hash": "sha256:98c5004f8883d1ff513b077eb9e7f507c3eb1bcfc2564093fa0d7342cdd51b2d"
+      "content_hash": "sha256:ca27cedf9053e4dd3de945b3615b1175b7d094d804da7293408cf00c76cc8233"
     },
     {
       "id": "orbit2d:theta-rho-canvas",
@@ -117,10 +117,10 @@
         ],
         "coordinate_contract": "integer affine projection declared in this definition",
         "dependency_hashes": [
-          "sha256:98c5004f8883d1ff513b077eb9e7f507c3eb1bcfc2564093fa0d7342cdd51b2d"
+          "sha256:ca27cedf9053e4dd3de945b3615b1175b7d094d804da7293408cf00c76cc8233"
         ]
       },
-      "content_hash": "sha256:992dba9f2a581375e14f097ee5c9b7be74e89ff429a0b1ca9343e900a6d2619c"
+      "content_hash": "sha256:02e081f45c2c151cf5b21a5b0d2ad7c2d391ef4653e298c699a6650357b1b27f"
     },
     {
       "id": "orbit2d:svg-record-format",
@@ -133,7 +133,7 @@
       ],
       "parameters": {
         "encoding": "utf-8",
-        "prefix": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 720\" role=\"img\">\n  <title>TOMAGI State64 orbit: theta/rho</title>\n  <desc>Ordered EMIT samples from the authenticated literal-chain trace; every polyline point is an affine projection of theta and rho.</desc>\n  <metadata>source_sha256=f456d0da681ae03ddb40cdc1c4566411b25a24e48d8ab279a9bc94d75a6f9cbd;program_sha256=349e51a5a402b3295d653ad08f00b55d465ffab7e943fb437d196af948487e3e;trace_sha256=0f63d46cdee734e7785ff2ab78cd551d757e186272d2dcfe72ea6bbe0ac3f6d3;fields=theta,rho</metadata>\n  <rect width=\"1200\" height=\"720\" fill=\"#071a26\"/>\n  <rect x=\"80\" y=\"70\" width=\"1040\" height=\"580\" fill=\"none\" stroke=\"#315d70\" stroke-width=\"2\"/>\n  <line x1=\"80\" y1=\"650\" x2=\"1120\" y2=\"650\" stroke=\"#8fc7ca\"/>\n  <line x1=\"80\" y1=\"70\" x2=\"80\" y2=\"650\" stroke=\"#8fc7ca\"/>\n  <text x=\"80\" y=\"42\" fill=\"#dff9f7\" font-family=\"monospace\" font-size=\"22\">Authenticated State64 projection: (theta, rho)</text>\n  <text x=\"1060\" y=\"690\" fill=\"#8fc7ca\" font-family=\"monospace\" font-size=\"16\">theta</text>\n  <text x=\"20\" y=\"90\" fill=\"#8fc7ca\" font-family=\"monospace\" font-size=\"16\">rho</text>\n  <polyline fill=\"none\" stroke=\"#d9a31a\" stroke-width=\"4\" stroke-linejoin=\"round\" points=\"",
+        "prefix": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 720\" role=\"img\">\n  <title>TOMAGI State64 orbit: theta/rho</title>\n  <desc>Ordered EMIT samples from the authenticated literal-chain trace; every polyline point is an affine projection of theta and rho.</desc>\n  <metadata>source_sha256=f456d0da681ae03ddb40cdc1c4566411b25a24e48d8ab279a9bc94d75a6f9cbd;program_sha256=349e51a5a402b3295d653ad08f00b55d465ffab7e943fb437d196af948487e3e;trace_sha256=aa060ad1cdc25d7e95e2cdc36e1338ede0cced27f4791989b0cc287d01b9a14f;fields=theta,rho</metadata>\n  <rect width=\"1200\" height=\"720\" fill=\"#071a26\"/>\n  <rect x=\"80\" y=\"70\" width=\"1040\" height=\"580\" fill=\"none\" stroke=\"#315d70\" stroke-width=\"2\"/>\n  <line x1=\"80\" y1=\"650\" x2=\"1120\" y2=\"650\" stroke=\"#8fc7ca\"/>\n  <line x1=\"80\" y1=\"70\" x2=\"80\" y2=\"650\" stroke=\"#8fc7ca\"/>\n  <text x=\"80\" y=\"42\" fill=\"#dff9f7\" font-family=\"monospace\" font-size=\"22\">Authenticated State64 projection: (theta, rho)</text>\n  <text x=\"1060\" y=\"690\" fill=\"#8fc7ca\" font-family=\"monospace\" font-size=\"16\">theta</text>\n  <text x=\"20\" y=\"90\" fill=\"#8fc7ca\" font-family=\"monospace\" font-size=\"16\">rho</text>\n  <polyline fill=\"none\" stroke=\"#d9a31a\" stroke-width=\"4\" stroke-linejoin=\"round\" points=\"",
         "record_template": "{x},{y}",
         "separator": " ",
         "suffix": "\"/>\n</svg>\n",
@@ -149,10 +149,10 @@
         "media_type": "image/svg+xml",
         "filename": "tomagi_state_2d.svg",
         "dependency_hashes": [
-          "sha256:992dba9f2a581375e14f097ee5c9b7be74e89ff429a0b1ca9343e900a6d2619c"
+          "sha256:02e081f45c2c151cf5b21a5b0d2ad7c2d391ef4653e298c699a6650357b1b27f"
         ]
       },
-      "content_hash": "sha256:c3b803145d9a314e05864ba7965c2b3568e0439837c48fb93309c3b8c3426c36"
+      "content_hash": "sha256:532ba6cfc7b0aa42becafa4d4468107a2d3f5185ba7613cbbd5f762d6d5d97ad"
     }
   ]
 }

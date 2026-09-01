@@ -305,7 +305,9 @@ def validation_main() -> int:
             add(f"Python/C equality: {stem}", "fail", f"C backend returned invalid JSON: {exc}")
             continue
         state_path = VAL / f"{stem}_c_state.json"
-        state_path.write_text(json.dumps(actual, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        state_path.write_bytes(
+            (json.dumps(actual, indent=2, sort_keys=True) + "\n").encode("utf-8")
+        )
         add(
             f"Python/C equality: {stem}",
             "pass" if actual == expected else "fail",
@@ -570,7 +572,7 @@ def validation_main() -> int:
     # Re-run tests for a machine-readable validation result.
     completed = run_unittests_capture()
     combined_output = completed.stdout + completed.stderr
-    (VAL / "tests_rerun.txt").write_text(combined_output, encoding="utf-8")
+    (VAL / "tests_rerun.txt").write_bytes(combined_output.encode("utf-8"))
     ran = next((line for line in combined_output.splitlines() if line.startswith("Ran ")), "")
     add(
         "Python conformance suite",
@@ -643,8 +645,8 @@ def validation_main() -> int:
             wgsl_mode=wgsl_mode,
         ),
     }
-    (VAL / "validation_report.json").write_text(
-        json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    (VAL / "validation_report.json").write_bytes(
+        (json.dumps(report, indent=2, sort_keys=True) + "\n").encode("utf-8")
     )
     markdown = [
         "# TOMAGI 1.0 validation report",
@@ -658,7 +660,7 @@ def validation_main() -> int:
     for check in checks:
         markdown += [f"## {check['name']}", f"**{check['status']}** - {check['detail']}", ""]
     markdown += ["## Scope", report["scope_note"], ""]
-    (VAL / "VALIDATION.md").write_text("\n".join(markdown), encoding="utf-8")
+    (VAL / "VALIDATION.md").write_bytes("\n".join(markdown).encode("utf-8"))
     print(json.dumps(report["summary"], indent=2))
     return 1 if report["summary"]["fail"] else 0
 

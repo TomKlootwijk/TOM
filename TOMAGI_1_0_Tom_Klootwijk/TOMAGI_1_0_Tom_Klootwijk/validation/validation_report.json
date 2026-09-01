@@ -21,59 +21,59 @@
       "sha256": "349e51a5a402b3295d653ad08f00b55d465ffab7e943fb437d196af948487e3e"
     },
     {
-      "bytes": 265123,
+      "bytes": 252941,
       "file": "examples/tomagi_state_orbit.trace.json",
-      "sha256": "0f63d46cdee734e7785ff2ab78cd551d757e186272d2dcfe72ea6bbe0ac3f6d3"
+      "sha256": "aa060ad1cdc25d7e95e2cdc36e1338ede0cced27f4791989b0cc287d01b9a14f"
     },
     {
       "bytes": 6956,
       "file": "examples/tomagi_state_2d.json",
-      "sha256": "0123188c612b60b892b5fc5f537eee6fd73aaed522ac31851813c7ae4ac6b6b1"
+      "sha256": "4e9510a9ee659b4895e9521f39f5ed5f12a4c2ea8bbe3959dd5611fb72bb64fc"
     },
     {
       "bytes": 21440,
       "file": "examples/tomagi_state_2d.tmg",
-      "sha256": "da75bee258b53d247b57d5889e220ff94641a0c834566d90f620cc558e14b246"
+      "sha256": "f29dbc09bc85637584db4fec314d904dbecd672b78e51ae1d981c118439a8c95"
     },
     {
       "bytes": 1774,
       "file": "examples/tomagi_state_2d.svg",
-      "sha256": "f9419ee90565be876b1c8792b4b4250031469536a37c9949b74fa06b88541c8f"
+      "sha256": "fcaa3bd926529fe92f382f896cff042708111c10d652ac8c539386f5340f161c"
     },
     {
-      "bytes": 8715,
+      "bytes": 7793,
       "file": "examples/tomagi_state_2d.manifest.json",
-      "sha256": "ccdcfad2b6edf655731050e908e89943f59845898316d91cb6d45f5c6dd5d041"
+      "sha256": "0c5e2f924bf9937ca29628ba62e41876f05e921c0878c69fcfd4b863a110c4bc"
     },
     {
       "bytes": 7622,
       "file": "examples/tomagi_state_3d.json",
-      "sha256": "cc46bcb4aae31035b7e8fc3c01fda2ff9118616b8bc9ffe9e1f08f803de40dcf"
+      "sha256": "09ae1f5061a15b4d6ad004acb5b8b4cf93faed03994c7b2eac98db5761ceb7c5"
     },
     {
       "bytes": 16400,
       "file": "examples/tomagi_state_3d.tmg",
-      "sha256": "29a29b3b1131874a72107c91841f7980cb6ed21ff2bed8db5a0c325d6c294f0b"
+      "sha256": "793446ac860d1f7abf2984e9f98e894741ee8644bcd09efa2bdda91d183ad8d1"
     },
     {
       "bytes": 1355,
       "file": "examples/tomagi_state_3d.obj",
-      "sha256": "ff5a0557a23d0809386c4d66e9685654ca038f61f21249ba3b627a060063dfee"
+      "sha256": "4b356aa10acbd751b19b333db68b87e1f3c6231a7264099efb07349e555e0511"
     },
     {
-      "bytes": 6822,
+      "bytes": 6111,
       "file": "examples/tomagi_state_3d.manifest.json",
-      "sha256": "e60b05024b124efd3e402ac1c53b9e85624a93933db92aac685a1e5446ef5a6e"
+      "sha256": "8ef29b32cc050051bf0e617139f818804b4f2d76ba836f8e407721440eda4a78"
     },
     {
       "bytes": 6064,
       "file": "examples/tomagi_state_4d.json",
-      "sha256": "2d29a299dfa467160ace73ecba5ddf40eeacf466166e23f5f50df2d6dbbb5053"
+      "sha256": "ec129e19109db9481a7fe43f47931d4311426f8e287677511ae27b8352109b2c"
     },
     {
       "bytes": 17936,
       "file": "examples/tomagi_state_4d.tmg",
-      "sha256": "b3accb80d155f655e34800162d157c3fa1bd5e7f1a6ab146859973fb68ba9a8a"
+      "sha256": "37cb6a789d24ed9e18a81c87412ad3a7f428e8ad178721857762f5eb939ee5fb"
     },
     {
       "bytes": 1483,
@@ -81,9 +81,9 @@
       "sha256": "d1ac54e5aa0a575c021692a646e6b211acaab63ca8657740f723d06480f853df"
     },
     {
-      "bytes": 7400,
+      "bytes": 6621,
       "file": "examples/tomagi_state_4d.manifest.json",
-      "sha256": "3a51a74b68751e3320e46d302126af337e6ebd83eb1d1ef0d56e7e47d51adfab"
+      "sha256": "373b6cbd72f6ebc9de5af8f23f0baf2447b30b7640be3c171e245e3cfabdfb3d"
     },
     {
       "bytes": 7689,
@@ -123,7 +123,7 @@
       "status": "not-run"
     },
     {
-      "detail": "The 640-step/64-EMIT source orbit and all authenticated definition DAGs compile and replay byte-identically; 2d=1774 bytes/f9419ee90565be876b1c8792b4b4250031469536a37c9949b74fa06b88541c8f; 3d=1355 bytes/ff5a0557a23d0809386c4d66e9685654ca038f61f21249ba3b627a060063dfee; 4d=1483 bytes/d1ac54e5aa0a575c021692a646e6b211acaab63ca8657740f723d06480f853df",
+      "detail": "The 640-step/64-EMIT source orbit and all authenticated definition DAGs compile and replay byte-identically; 2d=1774 bytes/fcaa3bd926529fe92f382f896cff042708111c10d652ac8c539386f5340f161c; 3d=1355 bytes/4b356aa10acbd751b19b333db68b87e1f3c6231a7264099efb07349e555e0511; 4d=1483 bytes/d1ac54e5aa0a575c021692a646e6b211acaab63ca8657740f723d06480f853df",
       "name": "Literal State64 2D/3D/4D representation replay",
       "status": "pass"
     },
@@ -158,7 +158,7 @@
       "status": "pass"
     },
     {
-      "detail": "Ran 61 tests in 0.632s; return code 0",
+      "detail": "Ran 62 tests in 0.624s; return code 0",
       "name": "Python conformance suite",
       "status": "pass"
     }

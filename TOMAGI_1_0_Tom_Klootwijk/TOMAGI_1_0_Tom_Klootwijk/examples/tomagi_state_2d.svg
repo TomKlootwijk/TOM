@@ -2,7 +2,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img">
   <title>TOMAGI State64 orbit: theta/rho</title>
   <desc>Ordered EMIT samples from the authenticated literal-chain trace; every polyline point is an affine projection of theta and rho.</desc>
-  <metadata>source_sha256=f456d0da681ae03ddb40cdc1c4566411b25a24e48d8ab279a9bc94d75a6f9cbd;program_sha256=349e51a5a402b3295d653ad08f00b55d465ffab7e943fb437d196af948487e3e;trace_sha256=0f63d46cdee734e7785ff2ab78cd551d757e186272d2dcfe72ea6bbe0ac3f6d3;fields=theta,rho</metadata>
+  <metadata>source_sha256=f456d0da681ae03ddb40cdc1c4566411b25a24e48d8ab279a9bc94d75a6f9cbd;program_sha256=349e51a5a402b3295d653ad08f00b55d465ffab7e943fb437d196af948487e3e;trace_sha256=aa060ad1cdc25d7e95e2cdc36e1338ede0cced27f4791989b0cc287d01b9a14f;fields=theta,rho</metadata>
   <rect width="1200" height="720" fill="#071a26"/>
   <rect x="80" y="70" width="1040" height="580" fill="none" stroke="#315d70" stroke-width="2"/>
   <line x1="80" y1="650" x2="1120" y2="650" stroke="#8fc7ca"/>

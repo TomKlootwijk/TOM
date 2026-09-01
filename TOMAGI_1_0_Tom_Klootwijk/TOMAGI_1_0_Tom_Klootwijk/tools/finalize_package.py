@@ -101,7 +101,9 @@ def write_manifest() -> None:
     }
     destination = ROOT / "validation/package_manifest.json"
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    destination.write_bytes(
+        (json.dumps(manifest, indent=2, sort_keys=True) + "\n").encode("utf-8")
+    )
 
 
 def write_checksums() -> None:
@@ -112,7 +114,7 @@ def write_checksums() -> None:
         key=lambda p: p.relative_to(ROOT).as_posix(),
     )
     lines = [f"{sha256_file(path)}  {path.relative_to(ROOT).as_posix()}" for path in files]
-    destination.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    destination.write_bytes(("\n".join(lines) + "\n").encode("utf-8"))
 
 
 def write_zip() -> None:
@@ -140,9 +142,11 @@ def main() -> None:
         "pdf": {"path": PDF_COPY.name, "bytes": PDF_COPY.stat().st_size, "sha256": sha256_file(PDF_COPY)},
         "zip": {"path": ZIP_PATH.name, "bytes": ZIP_PATH.stat().st_size, "sha256": sha256_file(ZIP_PATH)},
     }
-    DIGEST_PATH.write_text(
-        "\n".join(f"{item['sha256']}  {item['path']}" for item in digests.values()) + "\n",
-        encoding="utf-8",
+    DIGEST_PATH.write_bytes(
+        (
+            "\n".join(f"{item['sha256']}  {item['path']}" for item in digests.values())
+            + "\n"
+        ).encode("utf-8")
     )
     print(json.dumps(digests, indent=2, sort_keys=True))
 

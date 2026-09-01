@@ -187,8 +187,10 @@ def klein():
 
 
 def backends():
-    fig, ax = plt.subplots(figsize=(11.8,6.2))
-    ax.set_xlim(0,12); ax.set_ylim(0,7); ax.axis("off")
+    fig, ax = plt.subplots(figsize=(12.8,6.2))
+    # The last backend box ends at x=12.65; keep it inside the axes so the
+    # tight-bounding-box export cannot crop its right edge.
+    ax.set_xlim(0,13); ax.set_ylim(0,7); ax.axis("off")
     ax.text(.2,6.45,"One binary program, multiple deterministic backends",fontsize=20,fontweight="bold",color=NAVY)
     box(ax,(.35,3.0),(2.25,1.25),"literal JSON\n+ content hashes",fc="white",ec=GOLD,fs=11)
     arrow(ax,(2.62,3.62),(3.35,3.62),color=NAVY)

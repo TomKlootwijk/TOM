@@ -1,5 +1,5 @@
 {
-  "artifact_sha256": "f9419ee90565be876b1c8792b4b4250031469536a37c9949b74fa06b88541c8f",
+  "artifact_sha256": "fcaa3bd926529fe92f382f896cff042708111c10d652ac8c539386f5340f161c",
   "byte_count": 1774,
   "chunk_byte_counts": [
     4,
@@ -895,12 +895,12 @@
     443
   ],
   "executed_ticks": 444,
-  "final_lineage": 1316088221,
+  "final_lineage": 1390009811,
   "final_output": 1040842752,
   "final_state": {
     "branch": 0,
     "cell": 443,
-    "lineage": 1316088221,
+    "lineage": 1390009811,
     "orientation": 0,
     "output": 1040842752,
     "phi": 0,
@@ -916,8 +916,8 @@
     "vtick": 0
   },
   "materialization_profile": "tomagi-emit-bytes-be-v1",
-  "program_sha256": "da75bee258b53d247b57d5889e220ff94641a0c834566d90f620cc558e14b246",
+  "program_sha256": "f29dbc09bc85637584db4fec314d904dbecd672b78e51ae1d981c118439a8c95",
   "requested_ticks": 444,
-  "seed": 335788227,
+  "seed": 3483773779,
   "tomagi_version": "1.0.0"
 }
