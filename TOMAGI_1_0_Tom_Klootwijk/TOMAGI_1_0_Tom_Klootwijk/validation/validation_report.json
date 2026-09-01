@@ -1,0 +1,184 @@
+{
+  "artifacts": [
+    {
+      "bytes": 800,
+      "file": "examples/polar_loop.tmg",
+      "sha256": "e96925dadea22bbaeeea4308be168a49fa45adc0bc2fccc8e59d6523ddba29ce"
+    },
+    {
+      "bytes": 272,
+      "file": "examples/exact19_rule.tmg",
+      "sha256": "3b4aab91c3f4102e09a31638d55fc741ad61777c08ec3789b5b53f3585119c3a"
+    },
+    {
+      "bytes": 11625,
+      "file": "examples/tomagi_state_orbit.json",
+      "sha256": "f456d0da681ae03ddb40cdc1c4566411b25a24e48d8ab279a9bc94d75a6f9cbd"
+    },
+    {
+      "bytes": 608,
+      "file": "examples/tomagi_state_orbit.tmg",
+      "sha256": "349e51a5a402b3295d653ad08f00b55d465ffab7e943fb437d196af948487e3e"
+    },
+    {
+      "bytes": 265123,
+      "file": "examples/tomagi_state_orbit.trace.json",
+      "sha256": "0f63d46cdee734e7785ff2ab78cd551d757e186272d2dcfe72ea6bbe0ac3f6d3"
+    },
+    {
+      "bytes": 6956,
+      "file": "examples/tomagi_state_2d.json",
+      "sha256": "0123188c612b60b892b5fc5f537eee6fd73aaed522ac31851813c7ae4ac6b6b1"
+    },
+    {
+      "bytes": 21440,
+      "file": "examples/tomagi_state_2d.tmg",
+      "sha256": "da75bee258b53d247b57d5889e220ff94641a0c834566d90f620cc558e14b246"
+    },
+    {
+      "bytes": 1774,
+      "file": "examples/tomagi_state_2d.svg",
+      "sha256": "f9419ee90565be876b1c8792b4b4250031469536a37c9949b74fa06b88541c8f"
+    },
+    {
+      "bytes": 8715,
+      "file": "examples/tomagi_state_2d.manifest.json",
+      "sha256": "ccdcfad2b6edf655731050e908e89943f59845898316d91cb6d45f5c6dd5d041"
+    },
+    {
+      "bytes": 7622,
+      "file": "examples/tomagi_state_3d.json",
+      "sha256": "cc46bcb4aae31035b7e8fc3c01fda2ff9118616b8bc9ffe9e1f08f803de40dcf"
+    },
+    {
+      "bytes": 16400,
+      "file": "examples/tomagi_state_3d.tmg",
+      "sha256": "29a29b3b1131874a72107c91841f7980cb6ed21ff2bed8db5a0c325d6c294f0b"
+    },
+    {
+      "bytes": 1355,
+      "file": "examples/tomagi_state_3d.obj",
+      "sha256": "ff5a0557a23d0809386c4d66e9685654ca038f61f21249ba3b627a060063dfee"
+    },
+    {
+      "bytes": 6822,
+      "file": "examples/tomagi_state_3d.manifest.json",
+      "sha256": "e60b05024b124efd3e402ac1c53b9e85624a93933db92aac685a1e5446ef5a6e"
+    },
+    {
+      "bytes": 6064,
+      "file": "examples/tomagi_state_4d.json",
+      "sha256": "2d29a299dfa467160ace73ecba5ddf40eeacf466166e23f5f50df2d6dbbb5053"
+    },
+    {
+      "bytes": 17936,
+      "file": "examples/tomagi_state_4d.tmg",
+      "sha256": "b3accb80d155f655e34800162d157c3fa1bd5e7f1a6ab146859973fb68ba9a8a"
+    },
+    {
+      "bytes": 1483,
+      "file": "examples/tomagi_state_4d.csv",
+      "sha256": "d1ac54e5aa0a575c021692a646e6b211acaab63ca8657740f723d06480f853df"
+    },
+    {
+      "bytes": 7400,
+      "file": "examples/tomagi_state_4d.manifest.json",
+      "sha256": "3a51a74b68751e3320e46d302126af337e6ebd83eb1d1ef0d56e7e47d51adfab"
+    },
+    {
+      "bytes": 7689,
+      "file": "src/gpu/tomagi_step.comp",
+      "sha256": "b7d601cae9831d63b767f6d4b3b39a40fd083de7631de0f980c4a24e644506b1"
+    },
+    {
+      "bytes": 6889,
+      "file": "src/gpu/tomagi_step.wgsl",
+      "sha256": "0e10ed213b0c74e9cb5de42e3a410ae64df53eac21f9c3859306ab8176821b3e"
+    },
+    {
+      "bytes": 5429,
+      "file": "src/gpu/tomagi_step.cl",
+      "sha256": "d8532bb60f88caf785a1bf829852aacc45609569f7a3c8d552952aba78385b2c"
+    }
+  ],
+  "checks": [
+    {
+      "detail": "Draft 2020-12 validation: polar_loop.json, exact19_rule.json, tomagi_state_orbit.json, tomagi_state_2d.json, tomagi_state_3d.json, tomagi_state_4d.json",
+      "name": "JSON Schema examples",
+      "status": "pass"
+    },
+    {
+      "detail": "no compatible C executable for Windows (expected PE; tomagi-c=ELF)",
+      "name": "Python/C equality: polar_loop",
+      "status": "not-run"
+    },
+    {
+      "detail": "no compatible C executable for Windows (expected PE; tomagi-c=ELF)",
+      "name": "Python/C equality: exact19_rule",
+      "status": "not-run"
+    },
+    {
+      "detail": "no compatible C executable for Windows (expected PE; tomagi-c=ELF)",
+      "name": "Python/C equality: tomagi_state_orbit",
+      "status": "not-run"
+    },
+    {
+      "detail": "The 640-step/64-EMIT source orbit and all authenticated definition DAGs compile and replay byte-identically; 2d=1774 bytes/f9419ee90565be876b1c8792b4b4250031469536a37c9949b74fa06b88541c8f; 3d=1355 bytes/ff5a0557a23d0809386c4d66e9685654ca038f61f21249ba3b627a060063dfee; 4d=1483 bytes/d1ac54e5aa0a575c021692a646e6b211acaab63ca8657740f723d06480f853df",
+      "name": "Literal State64 2D/3D/4D representation replay",
+      "status": "pass"
+    },
+    {
+      "detail": "contiguous=0xe7b77000007800e3; Morton=0x88823bb88099128b",
+      "name": "64-bit key reference vectors",
+      "status": "pass"
+    },
+    {
+      "detail": "clang was not found on PATH",
+      "name": "OpenCL C syntax",
+      "status": "not-run"
+    },
+    {
+      "detail": "Balanced delimiters, shared ABI symbols and opcode dispatch present; glslang was not found on PATH.",
+      "name": "GLSL 4.50 source",
+      "status": "source-checked"
+    },
+    {
+      "detail": "Balanced delimiters, shared ABI symbols and opcode dispatch present; no WGSL compiler was configured.",
+      "name": "WGSL source",
+      "status": "source-checked"
+    },
+    {
+      "detail": "43 operators; 322 crosswalk rows; 8 source artifacts; source labels ['SRC-A', 'SRC-B', 'SRC-C', 'SRC-D', 'SRC-E', 'SRC-F', 'SRC-G', 'SRC-H']",
+      "name": "Operator/source condensation",
+      "status": "pass"
+    },
+    {
+      "detail": "header=128; state=64; cell=48; polar_loop bytes=800",
+      "name": "Binary ABI sizes",
+      "status": "pass"
+    },
+    {
+      "detail": "Ran 61 tests in 0.632s; return code 0",
+      "name": "Python conformance suite",
+      "status": "pass"
+    }
+  ],
+  "environment": {
+    "cc": null,
+    "clang": null,
+    "glslang": null,
+    "machine": "AMD64",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.11"
+  },
+  "generated": "2026-09-01",
+  "schema": "TOMAGI-VALIDATION-1.0",
+  "scope_note": "Python was executed. C execution was not run because no platform-compatible backend was available. OpenCL was not syntax-checked because Clang was unavailable. GLSL received structural source checks because glslang was unavailable. WGSL received structural source checks; no WGSL compiler was configured. No physical GPU dispatch was performed.",
+  "summary": {
+    "fail": 0,
+    "not_run": 4,
+    "pass": 6,
+    "source_checked": 2
+  },
+  "tomagi_version": "1.0.0"
+}

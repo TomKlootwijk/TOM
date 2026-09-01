@@ -1,0 +1,44 @@
+test_foreign_elf_is_not_selected_on_windows (test_build_validation.NativeBackendTests.test_foreign_elf_is_not_selected_on_windows) ... ok
+test_foreign_legacy_backend_is_hidden_and_restored (test_build_validation.NativeBackendTests.test_foreign_legacy_backend_is_hidden_and_restored) ... ok
+test_package_local_generation_is_deterministic_without_external_sources (test_build_validation.SpecAssetBuildTests.test_package_local_generation_is_deterministic_without_external_sources) ... ok
+test_portable_tee_returns_child_failure_status (test_build_validation.ValidationToolTests.test_portable_tee_returns_child_failure_status) ... tee-check
+ok
+test_scope_note_describes_actual_tool_modes (test_build_validation.ValidationToolTests.test_scope_note_describes_actual_tool_modes) ... ok
+test_validation_dependencies_are_declared (test_build_validation.ValidationToolTests.test_validation_dependencies_are_declared) ... ok
+test_c_loader_rejects_reserved_words_and_bad_opcode (test_runtime_conformance.CBackendConformanceTests.test_c_loader_rejects_reserved_words_and_bad_opcode) ... ok
+test_c_matches_python_for_i32_edge_matrix (test_runtime_conformance.CBackendConformanceTests.test_c_matches_python_for_i32_edge_matrix) ... ok
+test_c_trace_matches_normative_python_fields (test_runtime_conformance.CBackendConformanceTests.test_c_trace_matches_normative_python_fields) ... ok
+test_python_loader_rejects_each_nonzero_reserved_word (test_runtime_conformance.LoaderConformanceTests.test_python_loader_rejects_each_nonzero_reserved_word) ... ok
+test_python_loader_rejects_opcode_outside_0_through_15 (test_runtime_conformance.LoaderConformanceTests.test_python_loader_rejects_opcode_outside_0_through_15) ... ok
+test_extreme_operands_have_defined_wrapped_results (test_runtime_conformance.PythonArithmeticConformanceTests.test_extreme_operands_have_defined_wrapped_results) ... ok
+test_time_wraps_to_i32_before_floor_winding (test_runtime_conformance.PythonArithmeticConformanceTests.test_time_wraps_to_i32_before_floor_winding) ... ok
+test_canonical_hash_is_stable_and_semantic (test_tomagi.CanonicalTests.test_canonical_hash_is_stable_and_semantic) ... ok
+test_definition_hash_is_required (test_tomagi.CanonicalTests.test_definition_hash_is_required) ... ok
+test_definition_order_and_cycle_rejection (test_tomagi.CanonicalTests.test_definition_order_and_cycle_rejection) ... ok
+test_c_backend_matches_python_when_available (test_tomagi.EndToEndTests.test_c_backend_matches_python_when_available) ... ok
+test_catalog_and_crosswalk_cover_project_sources (test_tomagi.EndToEndTests.test_catalog_and_crosswalk_cover_project_sources) ... ok
+test_compiled_exact19_accept_and_reject (test_tomagi.EndToEndTests.test_compiled_exact19_accept_and_reject) ... ok
+test_nineteen_source_projection (test_tomagi.EndToEndTests.test_nineteen_source_projection) ... ok
+test_polar_loop_reference_result (test_tomagi.EndToEndTests.test_polar_loop_reference_result) ... ok
+test_binary_roundtrip (test_tomagi.FormatCompilerTests.test_binary_roundtrip) ... ok
+test_compile_rejects_bad_hash (test_tomagi.FormatCompilerTests.test_compile_rejects_bad_hash) ... ok
+test_example_schema (test_tomagi.FormatCompilerTests.test_example_schema) ... ok
+test_record_sizes (test_tomagi.FormatCompilerTests.test_record_sizes) ... ok
+test_contiguous_reference_key (test_tomagi.KeyTests.test_contiguous_reference_key) ... ok
+test_modular_roundtrip (test_tomagi.KeyTests.test_modular_roundtrip) ... ok
+test_morton_reference_key (test_tomagi.KeyTests.test_morton_reference_key) ... ok
+test_cone_relation (test_tomagi.PrimitiveOperatorTests.test_cone_relation) ... ok
+test_jit1_is_deterministic_and_bipolar (test_tomagi.PrimitiveOperatorTests.test_jit1_is_deterministic_and_bipolar) ... ok
+test_kin2_change_of_change (test_tomagi.PrimitiveOperatorTests.test_kin2_change_of_change) ... ok
+test_lsystem_chirality (test_tomagi.PrimitiveOperatorTests.test_lsystem_chirality) ... ok
+test_mix32_is_reproducible (test_tomagi.PrimitiveOperatorTests.test_mix32_is_reproducible) ... ok
+test_phi_half_branch (test_tomagi.PrimitiveOperatorTests.test_phi_half_branch) ... ok
+test_reflective_klein_wrap (test_tomagi.PrimitiveOperatorTests.test_reflective_klein_wrap) ... ok
+test_sdf0_is_zero_only_on_declared_domain (test_tomagi.PrimitiveOperatorTests.test_sdf0_is_zero_only_on_declared_domain) ... ok
+test_source_half_turn_is_distinct (test_tomagi.PrimitiveOperatorTests.test_source_half_turn_is_distinct) ... ok
+test_sphere_shell_relation (test_tomagi.PrimitiveOperatorTests.test_sphere_shell_relation) ... ok
+
+----------------------------------------------------------------------
+Ran 38 tests in 0.290s
+
+OK

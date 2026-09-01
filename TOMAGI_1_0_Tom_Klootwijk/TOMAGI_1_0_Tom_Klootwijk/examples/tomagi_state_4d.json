@@ -1,0 +1,178 @@
+{
+  "$schema": "../spec/tomagi.schema.json",
+  "tomagi_version": "1.0.0",
+  "title": "TOMAGI authenticated State64 4D representation",
+  "entry": "orbit4d:csv-record-format",
+  "definitions": [
+    {
+      "id": "literal:tom1-seed-genome",
+      "kind": "literal_utf8",
+      "domain": "literal_definition",
+      "codomain": "byte_string",
+      "evaluation_phase": 0,
+      "dependencies": [],
+      "parameters": {
+        "text": "TOM1[TopologicalOpenModular]|TomKlootwijk|1990-07-10|NL200678942|2026-09-01|LUTlogp^{Klein,SDF0@Def}(rho,theta,t->;phi,dt,d2,J,v,a,j1)>P1>L2_BST^b>ASweepCone(T,apex)>Pi[pyrSide,circle,sphere]>support>compatibility>guard>event>transition>lineage",
+        "role": "seed_genome_literal",
+        "source_byte_length": 244,
+        "source_sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"
+      },
+      "provenance": {
+        "source": "requester-supplied seed genome",
+        "received": "2026-09-01",
+        "literal_required": true,
+        "source_file": "sources/TOM_seed_genome_2026-09-01.txt",
+        "source_sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"
+      },
+      "content_hash": "sha256:092f1cd576a0ee5faf7cd425aae162acad5bbda1c15aae191a6ff6913940c73d"
+    },
+    {
+      "id": "orbit4d:authenticated-trace",
+      "kind": "authenticated_trace",
+      "domain": "authenticated_tomagi_files",
+      "codomain": "state64_trace",
+      "evaluation_phase": 1,
+      "dependencies": [
+        "literal:tom1-seed-genome"
+      ],
+      "parameters": {
+        "trace_path": "tomagi_state_orbit.trace.json",
+        "trace_sha256": "0f63d46cdee734e7785ff2ab78cd551d757e186272d2dcfe72ea6bbe0ac3f6d3",
+        "program_path": "tomagi_state_orbit.tmg",
+        "program_sha256": "349e51a5a402b3295d653ad08f00b55d465ffab7e943fb437d196af948487e3e",
+        "source_path": "tomagi_state_orbit.json",
+        "source_sha256": "f456d0da681ae03ddb40cdc1c4566411b25a24e48d8ab279a9bc94d75a6f9cbd",
+        "source_definition_hashes": [
+          "sha256:092f1cd576a0ee5faf7cd425aae162acad5bbda1c15aae191a6ff6913940c73d"
+        ],
+        "trace_key": "trace",
+        "state_key": "state",
+        "ticks": 640,
+        "path_semantics": "relative_to_definition_document",
+        "verification": "compile_source_equals_program_and_replay_equals_trace",
+        "dependency_hashes": [
+          "sha256:092f1cd576a0ee5faf7cd425aae162acad5bbda1c15aae191a6ff6913940c73d"
+        ]
+      },
+      "content_hash": "sha256:f640e1b4a555f98fe1c2beaee6ce64c5ae56881941fc41e2140b45906a6d62af"
+    },
+    {
+      "id": "orbit4d:emit-samples",
+      "kind": "select_records",
+      "domain": "state64_trace",
+      "codomain": "ordered_state64_records",
+      "evaluation_phase": 2,
+      "dependencies": [
+        "orbit4d:authenticated-trace"
+      ],
+      "parameters": {
+        "predicates": [
+          {
+            "field": "opcode",
+            "operator": "eq",
+            "value": 14
+          }
+        ],
+        "start": 0,
+        "stop": null,
+        "stride": 1,
+        "selection_role": "one completed literal-chain sample per EMIT transition",
+        "dependency_hashes": [
+          "sha256:f640e1b4a555f98fe1c2beaee6ce64c5ae56881941fc41e2140b45906a6d62af"
+        ]
+      },
+      "content_hash": "sha256:f41bbb6a67eb0f8757b1000edc3060b75e4301b4b11f8d5e8dda647f48266600"
+    },
+    {
+      "id": "orbit4d:raw-state-fields",
+      "kind": "project_fields",
+      "domain": "ordered_state64_records",
+      "codomain": "ordered_integer_4d_records",
+      "evaluation_phase": 3,
+      "dependencies": [
+        "orbit4d:emit-samples"
+      ],
+      "parameters": {
+        "dimensions": [
+          "rho",
+          "theta",
+          "tick",
+          "phi"
+        ],
+        "fields": [
+          {
+            "name": "rho",
+            "source": "rho",
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0,
+            "rounding": "floor"
+          },
+          {
+            "name": "theta",
+            "source": "theta",
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0,
+            "rounding": "floor"
+          },
+          {
+            "name": "tick",
+            "source": "tick",
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0,
+            "rounding": "floor"
+          },
+          {
+            "name": "phi",
+            "source": "phi",
+            "numerator": 1,
+            "denominator": 1,
+            "offset": 0,
+            "rounding": "floor"
+          }
+        ],
+        "coordinate_contract": "identity projection of four State64 fields",
+        "dependency_hashes": [
+          "sha256:f41bbb6a67eb0f8757b1000edc3060b75e4301b4b11f8d5e8dda647f48266600"
+        ]
+      },
+      "content_hash": "sha256:caeba4c239ecfb25c93ce993f8e814ed781cb3de2170a38f1da0d1e7cc2bdad8"
+    },
+    {
+      "id": "orbit4d:csv-record-format",
+      "kind": "format_records",
+      "domain": "ordered_integer_4d_records",
+      "codomain": "utf8_artifact_bytes",
+      "evaluation_phase": 4,
+      "dependencies": [
+        "orbit4d:raw-state-fields"
+      ],
+      "parameters": {
+        "encoding": "utf-8",
+        "prefix": "rho,theta,tick,phi\n",
+        "record_template": "{rho},{theta},{tick},{phi}",
+        "separator": "\n",
+        "suffix": "\n",
+        "index_start": 0,
+        "topology": "ordered_records",
+        "representation_fields": [
+          "rho",
+          "theta",
+          "tick",
+          "phi"
+        ],
+        "materialization_profile": "tomagi-emit-bytes-be-v1",
+        "projection_evaluation": "definition_compile_time",
+        "materialization_semantics": "deterministic_emit_byte_replay",
+        "media_type": "text/csv",
+        "filename": "tomagi_state_4d.csv",
+        "dependency_hashes": [
+          "sha256:caeba4c239ecfb25c93ce993f8e814ed781cb3de2170a38f1da0d1e7cc2bdad8"
+        ]
+      },
+      "content_hash": "sha256:2e518fdd2ef2791df5d8b4fd9d650734e94032fa475c8ab4db47027aa542302b"
+    }
+  ]
+}

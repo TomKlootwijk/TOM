@@ -1,0 +1,215 @@
+{
+  "$schema": "../spec/tomagi.schema.json",
+  "tomagi_version": "1.0.0",
+  "title": "TOMAGI authenticated State64 3D representation",
+  "entry": "orbit3d:obj-artifact",
+  "definitions": [
+    {
+      "id": "literal:tom1-seed-genome",
+      "kind": "literal_utf8",
+      "domain": "literal_definition",
+      "codomain": "byte_string",
+      "evaluation_phase": 0,
+      "dependencies": [],
+      "parameters": {
+        "text": "TOM1[TopologicalOpenModular]|TomKlootwijk|1990-07-10|NL200678942|2026-09-01|LUTlogp^{Klein,SDF0@Def}(rho,theta,t->;phi,dt,d2,J,v,a,j1)>P1>L2_BST^b>ASweepCone(T,apex)>Pi[pyrSide,circle,sphere]>support>compatibility>guard>event>transition>lineage",
+        "role": "seed_genome_literal",
+        "source_byte_length": 244,
+        "source_sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"
+      },
+      "provenance": {
+        "source": "requester-supplied seed genome",
+        "received": "2026-09-01",
+        "literal_required": true,
+        "source_file": "sources/TOM_seed_genome_2026-09-01.txt",
+        "source_sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"
+      },
+      "content_hash": "sha256:092f1cd576a0ee5faf7cd425aae162acad5bbda1c15aae191a6ff6913940c73d"
+    },
+    {
+      "id": "orbit3d:authenticated-trace",
+      "kind": "authenticated_trace",
+      "domain": "authenticated_tomagi_files",
+      "codomain": "state64_trace",
+      "evaluation_phase": 1,
+      "dependencies": [
+        "literal:tom1-seed-genome"
+      ],
+      "parameters": {
+        "trace_path": "tomagi_state_orbit.trace.json",
+        "trace_sha256": "0f63d46cdee734e7785ff2ab78cd551d757e186272d2dcfe72ea6bbe0ac3f6d3",
+        "program_path": "tomagi_state_orbit.tmg",
+        "program_sha256": "349e51a5a402b3295d653ad08f00b55d465ffab7e943fb437d196af948487e3e",
+        "source_path": "tomagi_state_orbit.json",
+        "source_sha256": "f456d0da681ae03ddb40cdc1c4566411b25a24e48d8ab279a9bc94d75a6f9cbd",
+        "source_definition_hashes": [
+          "sha256:092f1cd576a0ee5faf7cd425aae162acad5bbda1c15aae191a6ff6913940c73d"
+        ],
+        "trace_key": "trace",
+        "state_key": "state",
+        "ticks": 640,
+        "path_semantics": "relative_to_definition_document",
+        "verification": "compile_source_equals_program_and_replay_equals_trace",
+        "dependency_hashes": [
+          "sha256:092f1cd576a0ee5faf7cd425aae162acad5bbda1c15aae191a6ff6913940c73d"
+        ]
+      },
+      "content_hash": "sha256:3b838b4fee8b4e3e3504ba86f4ef735c20da83ba4b331bb541d5b365d96f86b8"
+    },
+    {
+      "id": "orbit3d:emit-samples",
+      "kind": "select_records",
+      "domain": "state64_trace",
+      "codomain": "ordered_state64_records",
+      "evaluation_phase": 2,
+      "dependencies": [
+        "orbit3d:authenticated-trace"
+      ],
+      "parameters": {
+        "predicates": [
+          {
+            "field": "opcode",
+            "operator": "eq",
+            "value": 14
+          }
+        ],
+        "start": 0,
+        "stop": null,
+        "stride": 1,
+        "selection_role": "one completed literal-chain sample per EMIT transition",
+        "dependency_hashes": [
+          "sha256:3b838b4fee8b4e3e3504ba86f4ef735c20da83ba4b331bb541d5b365d96f86b8"
+        ]
+      },
+      "content_hash": "sha256:afd8b7e85adbf6a62a70794250ae994aa141f6a1f07a65dc2463a17255cb0f5c"
+    },
+    {
+      "id": "orbit3d:rho-theta-phi-coordinates",
+      "kind": "project_fields",
+      "domain": "ordered_state64_records",
+      "codomain": "ordered_integer_3d_records",
+      "evaluation_phase": 3,
+      "dependencies": [
+        "orbit3d:emit-samples"
+      ],
+      "parameters": {
+        "dimensions": [
+          "rho",
+          "theta",
+          "phi"
+        ],
+        "fields": [
+          {
+            "name": "x",
+            "source": "rho",
+            "numerator": 1000,
+            "denominator": 1048576,
+            "offset": 0,
+            "rounding": "floor"
+          },
+          {
+            "name": "y",
+            "source": "theta",
+            "numerator": 1000,
+            "denominator": 262144,
+            "offset": 0,
+            "rounding": "floor"
+          },
+          {
+            "name": "z",
+            "source": "phi",
+            "numerator": 1000,
+            "denominator": 4096,
+            "offset": 0,
+            "rounding": "floor"
+          }
+        ],
+        "coordinate_contract": "integer affine projection declared in this definition",
+        "dependency_hashes": [
+          "sha256:afd8b7e85adbf6a62a70794250ae994aa141f6a1f07a65dc2463a17255cb0f5c"
+        ]
+      },
+      "content_hash": "sha256:6c2db9ee96413e29621d472cb3812087658a9af46cff2ef158514216f8e1ec5c"
+    },
+    {
+      "id": "orbit3d:vertex-record-format",
+      "kind": "format_records",
+      "domain": "ordered_integer_3d_records",
+      "codomain": "utf8_vertex_bytes",
+      "evaluation_phase": 4,
+      "dependencies": [
+        "orbit3d:rho-theta-phi-coordinates"
+      ],
+      "parameters": {
+        "encoding": "utf-8",
+        "prefix": "# TOMAGI State64 orbit: rho theta phi\n# source_sha256 f456d0da681ae03ddb40cdc1c4566411b25a24e48d8ab279a9bc94d75a6f9cbd\n# program_sha256 349e51a5a402b3295d653ad08f00b55d465ffab7e943fb437d196af948487e3e\n# trace_sha256 0f63d46cdee734e7785ff2ab78cd551d757e186272d2dcfe72ea6bbe0ac3f6d3\n",
+        "record_template": "v {x} {y} {z}",
+        "separator": "\n",
+        "suffix": "\n",
+        "index_start": 1,
+        "record_role": "ordered_vertex",
+        "representation_fields": [
+          "rho",
+          "theta",
+          "phi"
+        ],
+        "dependency_hashes": [
+          "sha256:6c2db9ee96413e29621d472cb3812087658a9af46cff2ef158514216f8e1ec5c"
+        ]
+      },
+      "content_hash": "sha256:bdfdc2361a4bfcdfba9c0be792faf0721dd832dee83144e65c753ce071326e04"
+    },
+    {
+      "id": "orbit3d:ordered-line-topology",
+      "kind": "format_records",
+      "domain": "ordered_integer_3d_records",
+      "codomain": "utf8_topology_bytes",
+      "evaluation_phase": 4,
+      "dependencies": [
+        "orbit3d:rho-theta-phi-coordinates"
+      ],
+      "parameters": {
+        "encoding": "utf-8",
+        "prefix": "l ",
+        "record_template": "{index}",
+        "separator": " ",
+        "suffix": "\n",
+        "index_start": 1,
+        "topology": "open_ordered_line",
+        "dependency_hashes": [
+          "sha256:6c2db9ee96413e29621d472cb3812087658a9af46cff2ef158514216f8e1ec5c"
+        ]
+      },
+      "content_hash": "sha256:b54cb89d2ab52395605ffcc73a3e517e911354fa7870d5396d2c47c8d46dcc3b"
+    },
+    {
+      "id": "orbit3d:obj-artifact",
+      "kind": "concat",
+      "domain": "ordered_utf8_parts",
+      "codomain": "artifact_bytes",
+      "evaluation_phase": 5,
+      "dependencies": [
+        "orbit3d:vertex-record-format",
+        "orbit3d:ordered-line-topology"
+      ],
+      "parameters": {
+        "materialization_profile": "tomagi-emit-bytes-be-v1",
+        "projection_evaluation": "definition_compile_time",
+        "materialization_semantics": "deterministic_emit_byte_replay",
+        "media_type": "model/obj",
+        "filename": "tomagi_state_3d.obj",
+        "dimensions": [
+          "rho",
+          "theta",
+          "phi"
+        ],
+        "topology": "open_ordered_line",
+        "dependency_hashes": [
+          "sha256:bdfdc2361a4bfcdfba9c0be792faf0721dd832dee83144e65c753ce071326e04",
+          "sha256:b54cb89d2ab52395605ffcc73a3e517e911354fa7870d5396d2c47c8d46dcc3b"
+        ]
+      },
+      "content_hash": "sha256:4257a3cf5e7d8603fa8baa8655ff76cb993af6eeedd5f7c021d5db41f5162a20"
+    }
+  ]
+}

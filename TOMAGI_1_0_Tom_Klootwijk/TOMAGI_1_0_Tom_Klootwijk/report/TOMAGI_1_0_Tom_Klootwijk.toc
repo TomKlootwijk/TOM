@@ -1,0 +1,56 @@
+\contentsline {section}{\numberline {1}Source basis and condensation rule}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Project sources}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Admission and condensation}{1}{subsection.1.2}%
+\contentsline {section}{\numberline {2}The TOMAGI program object}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Definitions, cells and state}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}State64}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Cell48}{2}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Log-polar coordinates and the exact 64-bit address}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Continuous source chart and compiled integer chart}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Contiguous key}{4}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Morton key}{5}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Literal SDF-zero as the memory substrate}{5}{section.4}%
+\contentsline {section}{\numberline {5}The one-bit parity/jitter operator}{6}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Exact bit derivation}{6}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}What parity does not do}{7}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Kinematic change-of-change inside the LUT}{7}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Integer second-order update}{7}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Continuous log-polar interpretation}{7}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Lower-case phi and the zero-based timeline}{7}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Symbol separation}{7}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Timeline update}{7}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Lower-case phi update}{8}{subsection.7.3}%
+\contentsline {section}{\numberline {8}Topological transport}{8}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Reflective Klein profile}{8}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Source half-turn profile}{8}{subsection.8.2}%
+\contentsline {section}{\numberline {9}Cone, circle, sphere and overlap relations}{9}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Finite cone source geometry}{9}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Packed cone relation}{9}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Sphere or shell relation}{9}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Projection semantics}{9}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.5}Overlap lens}{9}{subsection.9.5}%
+\contentsline {section}{\numberline {10}Radix routing, hinges and the L-system}{9}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Radix branch}{9}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Hinge}{10}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}L-system transform}{10}{subsection.10.3}%
+\contentsline {section}{\numberline {11}Transition, output and lineage}{10}{section.11}%
+\contentsline {section}{\numberline {12}Deterministic substitution for AI}{10}{section.12}%
+\contentsline {section}{\numberline {13}Portable instruction set and binary ABI}{11}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Sixteen opcodes}{11}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}Binary file}{12}{subsection.13.2}%
+\contentsline {section}{\numberline {14}CPU and GPU realizations}{13}{section.14}%
+\contentsline {subsection}{\numberline {14.1}Python oracle}{13}{subsection.14.1}%
+\contentsline {subsection}{\numberline {14.2}C99 evaluator}{13}{subsection.14.2}%
+\contentsline {subsection}{\numberline {14.3}GPU kernels}{13}{subsection.14.3}%
+\contentsline {section}{\numberline {15}Executable examples}{13}{section.15}%
+\contentsline {subsection}{\numberline {15.1}Literal polar loop}{14}{subsection.15.1}%
+\contentsline {subsection}{\numberline {15.2}The 19 feature pipeline}{14}{subsection.15.2}%
+\contentsline {subsection}{\numberline {15.3}Compiled exact-19 rule}{15}{subsection.15.3}%
+\contentsline {section}{\numberline {16}Validation and reproducibility}{15}{section.16}%
+\contentsline {section}{\numberline {17}Normative no-failsafe profile}{16}{section.17}%
+\contentsline {section}{\numberline {18}Final substrate definition}{16}{section.18}%
+\contentsline {section}{\numberline {A}Complete symbol contract}{17}{appendix.A}%
+\contentsline {section}{\numberline {B}Complete 43-operator catalog}{18}{appendix.B}%
+\contentsline {section}{\numberline {C}Exact Morton schedule}{20}{appendix.C}%
+\contentsline {section}{\numberline {D}Source register and crosswalk totals}{21}{appendix.D}%
+\contentsline {section}{\numberline {E}Package layout}{22}{appendix.E}%

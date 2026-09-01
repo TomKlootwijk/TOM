@@ -1,0 +1,436 @@
+{
+  "schema": "TOMAGI-OPERATOR-CATALOG-1.0",
+  "count": 43,
+  "operators": [
+    {
+      "ordinal": 1,
+      "id": "TOM.DEF",
+      "name": "definition node",
+      "signature": "record -> address",
+      "definition": "A typed in-substrate definition d=(id,kind,A,B,parameters,dependencies,phase,provenance,hash).",
+      "implementation": "canonical JSON + SHA-256",
+      "source_basis": "K36-01..06; SCLP literal integration",
+      "content_hash": "sha256:c49e87baf73b0912d3b12ed910a964e108055d6965da635a73bc7601a2f603b6"
+    },
+    {
+      "ordinal": 2,
+      "id": "TOM.REF",
+      "name": "reference resolution",
+      "signature": "definition graph -> ordered graph",
+      "definition": "Resolve every definition_ref and dependency ID; order dependencies before dependents.",
+      "implementation": "topological order",
+      "source_basis": "K36-03, K36-06",
+      "content_hash": "sha256:4c4c67a6b0f5141cc265953b7825eccd886131da1402909be0264c138a78cf36"
+    },
+    {
+      "ordinal": 3,
+      "id": "TOM.SEQ",
+      "name": "ordered composition",
+      "signature": "operators^n -> operator",
+      "definition": "Composition is serialized and non-commutative; execute the stored order without re-sorting.",
+      "implementation": "cell successor order",
+      "source_basis": "K36-23, K36-31",
+      "content_hash": "sha256:8f16132ea90b9a78dda381662becaf3ee3b8f87948b573946aaacc271286f049"
+    },
+    {
+      "ordinal": 4,
+      "id": "TOM.INDEX0",
+      "name": "zero-based position",
+      "signature": "offset -> ordinal",
+      "definition": "ordinal = offset + 1; the stored timeline coordinate remains the zero-based offset.",
+      "implementation": "integer add",
+      "source_basis": "Ben Burger 1D timeline",
+      "content_hash": "sha256:57b52673827f580e8a9c2b2a82da4f5bc86e92f09f0a0a124b8ee47b14afebe3"
+    },
+    {
+      "ordinal": 5,
+      "id": "TOM.LOGPOLAR",
+      "name": "log-polar chart",
+      "signature": "(x,y,r0) -> (rho,theta)",
+      "definition": "rho=ln(r/r0), theta=atan2(y,x); runtime consumes quantized rho/theta already compiled.",
+      "implementation": "host compiler; integer hot path",
+      "source_basis": "SCLP 5; M049,M111",
+      "content_hash": "sha256:b0bb079f7b5c9df6edb224b13b26110bbda76db1f51ac88cb0eb1ed889771b7f"
+    },
+    {
+      "ordinal": 6,
+      "id": "TOM.KEY.C",
+      "name": "contiguous 64-bit key",
+      "signature": "rho20 x theta18 x X14 x phi12 -> K",
+      "definition": "K=(rho<<44)|(theta<<26)|(X<<12)|phi.",
+      "implementation": "two u32 words",
+      "source_basis": "SCLP 12",
+      "content_hash": "sha256:43f9cf2aee57e0408e47b145bc550eb254c1d72ea7df8d1a9c62e30dfbc5ced2"
+    },
+    {
+      "ordinal": 7,
+      "id": "TOM.KEY.M",
+      "name": "Morton 64-bit key",
+      "signature": "rho20 x theta18 x X14 x phi12 -> KM",
+      "definition": "Interleave MSB round-robin: rho19,theta17,X13,phi11,... until all 64 bits are consumed.",
+      "implementation": "CPU/compiler codec",
+      "source_basis": "SCLP 12",
+      "content_hash": "sha256:18e365a3f08fb88efc9a833a4dd5fb6520ab51db0661ae2569c13063bca3937e"
+    },
+    {
+      "ordinal": 8,
+      "id": "TOM.FETCH",
+      "name": "LUT cell lookup",
+      "signature": "K -> Cell or undefined",
+      "definition": "Resolve a canonical key in the sorted cell table; compiled graph mode may use direct successor indices.",
+      "implementation": "binary search or direct index",
+      "source_basis": "1bit-PDF LUT; M111,M112",
+      "content_hash": "sha256:5055618fe63bcb6285654724bfcfd1408f79527c7529dbcd5dc91e705383ef70"
+    },
+    {
+      "ordinal": 9,
+      "id": "TOM.SDF0",
+      "name": "literal zero field",
+      "signature": "defined key -> 0",
+      "definition": "Z_D(K)=0 for every K in the finite domain D of definable cells; Z_D(K)=bottom otherwise.",
+      "implementation": "occupancy/definition bit",
+      "source_basis": "1bit-PDF pp.16-18; SCLP SDF-zero",
+      "content_hash": "sha256:4e40f9f854c144ff56927aef5976816e30fa6e83ed2368b6cef34220276c1d2c"
+    },
+    {
+      "ordinal": 10,
+      "id": "TOM.PARITY",
+      "name": "one-bit reduction",
+      "signature": "u32 -> bit",
+      "definition": "P(w)=popcount(w) mod 2.",
+      "implementation": "integer popcount",
+      "source_basis": "1bit parity; M025",
+      "content_hash": "sha256:98258eee5c06497062603b54464e30a6257562b691537f3892f7de965ab6e663"
+    },
+    {
+      "ordinal": 11,
+      "id": "TOM.JIT1",
+      "name": "one-bit jitter",
+      "signature": "seed x K x X -> {-a,+a}",
+      "definition": "j=P(mix32(seed xor K_hi xor rotl(K_lo,13) xor X xor aux)); sigma=2j-1; selected state field += sigma*a.",
+      "implementation": "opcode 2",
+      "source_basis": "SCLP deterministic jitter; 1bit-PDF",
+      "content_hash": "sha256:b355361e7b316e4050399118ecfab0576e4f5febd91acaa13b628b50cf0adec1"
+    },
+    {
+      "ordinal": 12,
+      "id": "TOM.DELTA1",
+      "name": "first discrete difference",
+      "signature": "q_n,q_(n-1) -> v_n",
+      "definition": "Delta q_n=q_n-q_(n-1).",
+      "implementation": "integer difference",
+      "source_basis": "kinematic calculus",
+      "content_hash": "sha256:51a730dd6574ff8f77198a38cd3b0de92ca02edbaf0dab4e2df94227e28828b2"
+    },
+    {
+      "ordinal": 13,
+      "id": "TOM.DELTA2",
+      "name": "second discrete difference",
+      "signature": "v_n,v_(n-1) -> a_n",
+      "definition": "Delta^2 q_n=v_n-v_(n-1); Delta^2 phi is the angular acceleration coordinate.",
+      "implementation": "cell args",
+      "source_basis": "delta-delta lower-case phi",
+      "content_hash": "sha256:3970d5f465d1edf9bb755135c4c903191685cddfbb5baa71ead9e570c0b03602"
+    },
+    {
+      "ordinal": 14,
+      "id": "TOM.KIN2",
+      "name": "second-order update",
+      "signature": "state x acceleration-cell -> state",
+      "definition": "v_(n+1)=v_n+a_cell; q_(n+1)=q_n+v_(n+1).",
+      "implementation": "opcode 3",
+      "source_basis": "kinematic calculus packed into LUT",
+      "content_hash": "sha256:df791329d5632d3bfe04b1b7193c797da8a12b345c1f7183e19f81215c891667"
+    },
+    {
+      "ordinal": 15,
+      "id": "TOM.PHI",
+      "name": "lower-case phi hinge",
+      "signature": "phi x delta -> phi",
+      "definition": "phi is periodic in Z/(2^12 Z); capital Phi is reserved for the golden ratio and is not the runtime phase.",
+      "implementation": "opcode 4",
+      "source_basis": "SCLP symbol contract; lower-case phi source",
+      "content_hash": "sha256:d013125f582ee5b3115032b2353d66157af0264d016b876682be3d92cc480a12"
+    },
+    {
+      "ordinal": 16,
+      "id": "TOM.TIME",
+      "name": "timeline phase",
+      "signature": "X x delta -> X,winding",
+      "definition": "X is a 14-bit modular tick; wraps contribute to lineage while the tick remains periodic.",
+      "implementation": "opcode 5",
+      "source_basis": "SCLP time/phase/winding; 0-index timeline",
+      "content_hash": "sha256:0467729725ce09c4db01aa720cc505d121881af5267600f1d61e1dd5e6c43920"
+    },
+    {
+      "ordinal": 17,
+      "id": "TOM.CONE",
+      "name": "analytic cone relation",
+      "signature": "packed chart x cone parameters -> signed relation",
+      "definition": "r=max(rho_min-rho,rho-rho_max,|cyclic(theta-theta0)|-alpha_q); inside iff r<=0.",
+      "implementation": "opcode 7",
+      "source_basis": "cone support, side-view pyramid",
+      "content_hash": "sha256:bb6f4be7e84cc51fb159988612d863be5b65cf19bcb6e94674e02fcf15846f20"
+    },
+    {
+      "ordinal": 18,
+      "id": "TOM.SWEEP",
+      "name": "swept cone family",
+      "signature": "cone x path -> relation",
+      "definition": "F_sweep(x)=inf_u d_C(x-s(u)); a compiled profile may tabulate the path as KIN2 cells.",
+      "implementation": "derived macro",
+      "source_basis": "SCLP sweep; analytic sweeping cone",
+      "content_hash": "sha256:ae0c61a87de3ffa01068e382c8eda9d4c7ff347e8a24d2e75d0ec80cc09335fa"
+    },
+    {
+      "ordinal": 19,
+      "id": "TOM.CIRCLE",
+      "name": "circle/radial shell",
+      "signature": "rho x center,width -> signed relation",
+      "definition": "A circle is a radial shell in the packed chart and an axial projection of a cone.",
+      "implementation": "SPHERE profile / projection tag",
+      "source_basis": "source circle",
+      "content_hash": "sha256:e92ca7a7f6ea8f2335a4c71e96f02023a0482914ccb51586c045d898dcf035aa"
+    },
+    {
+      "ordinal": 20,
+      "id": "TOM.SPHERE",
+      "name": "spherical support",
+      "signature": "rho,phi x center,width -> signed relation",
+      "definition": "Packed shell residual is max(|rho-rho0|-dr, |cyclic(phi-phi0)|-dphi); Euclidean helper is ||x-c||-R.",
+      "implementation": "opcode 8",
+      "source_basis": "SCLP sphere relation",
+      "content_hash": "sha256:35bd49dbab197f97e2648f7446a8a879b2bc8a631f7b1a9218e3cbdcbb00261b"
+    },
+    {
+      "ordinal": 21,
+      "id": "TOM.OVERLAP",
+      "name": "lens intersection",
+      "signature": "A,B -> A intersect B",
+      "definition": "Shared domain is exact conjunction/intersection; it may be used as a join key or connector locus.",
+      "implementation": "derived predicate",
+      "source_basis": "Ben Burger slight overlap; M041,M107",
+      "content_hash": "sha256:3383848e70f5a45dddcaa511cfdd8c1ea564e3a88762cc68b195f1a0b5dd7570"
+    },
+    {
+      "ordinal": 22,
+      "id": "TOM.KLEIN",
+      "name": "reflective Klein wrap",
+      "signature": "state -> state",
+      "definition": "On an odd radial wrap: rho'=rho mod N_rho, theta'=N_theta/2-theta, phi'=-phi, orientation'=orientation xor 1; optional sheet flip.",
+      "implementation": "opcode 9",
+      "source_basis": "SCLP reflective Klein profile",
+      "content_hash": "sha256:f8b2dd8668f46190a75d95f548273015d9a3274115df47f00c4145dd11c9bc65"
+    },
+    {
+      "ordinal": 23,
+      "id": "TOM.MOBIUS",
+      "name": "half-turn bundle",
+      "signature": "state -> state",
+      "definition": "On an odd wrap: theta'=theta+N_theta/2, phi'=-phi, orientation'=orientation xor 1.",
+      "implementation": "KLEIN flag profile",
+      "source_basis": "SCLP source half-turn; UGTS Mobius",
+      "content_hash": "sha256:dd3280b9050949c2842a0bce15d31a12fe4e9d450bf8de0a709c1185fa83835e"
+    },
+    {
+      "ordinal": 24,
+      "id": "TOM.RADIX",
+      "name": "radix branch",
+      "signature": "K x bit-index -> bit",
+      "definition": "Select one canonical key bit; repeated selections form a radix-trie path.",
+      "implementation": "opcode 10",
+      "source_basis": "SCLP prefix refinement; binary tree",
+      "content_hash": "sha256:502b1420b8574c07718a30f1af4c608a1c95452e45331a3115e53cf7677bff79"
+    },
+    {
+      "ordinal": 25,
+      "id": "TOM.HINGE",
+      "name": "typed hinge",
+      "signature": "branch x state x map -> state",
+      "definition": "H=(pivot/state,map0,map1,invariant); runtime map0 is identity and map1 is the cell's declared delta plus optional orientation/sheet flip.",
+      "implementation": "opcode 11",
+      "source_basis": "UGTS 3.6 hinge calculus",
+      "content_hash": "sha256:accf47711f85fb248d3bdfeb944f754b7d5769258e1d3e2444fa2d383ee8ad5f"
+    },
+    {
+      "ordinal": 26,
+      "id": "TOM.LSYS",
+      "name": "binary L-system step",
+      "signature": "branch x state -> state",
+      "definition": "Apply chirality-signed turn and dyadic velocity scaling, corresponding to F(T)->F(T/2)[+/-phi F(T/2)].",
+      "implementation": "opcode 12",
+      "source_basis": "SCLP bounded binary L-system",
+      "content_hash": "sha256:fcb23dd45354fabb5f3249420c7b466e1891296de20a5e549716d95fac27c55f"
+    },
+    {
+      "ordinal": 27,
+      "id": "TOM.BRANCH",
+      "name": "binary successor",
+      "signature": "bit x cell -> cell",
+      "definition": "i_(n+1)=next_i[bit].",
+      "implementation": "automatic successor selection",
+      "source_basis": "1bit/BST/L-system chain",
+      "content_hash": "sha256:ec66faf276c88a732cfd731f52e02aed62f6c20a66780248fbd6bc78c377a080"
+    },
+    {
+      "ordinal": 28,
+      "id": "TOM.TRANSITION",
+      "name": "state patch",
+      "signature": "state x cell -> state",
+      "definition": "Execute exactly one opcode, normalize periodic fields, select successor, and update lineage.",
+      "implementation": "CPU/GPU step",
+      "source_basis": "UGTS transition operator",
+      "content_hash": "sha256:7013a92ef0a0d09f263eee062b54f007d40254132cffabed5ca13180720b102b"
+    },
+    {
+      "ordinal": 29,
+      "id": "TOM.PROJECT",
+      "name": "symbolic projection",
+      "signature": "state x tag -> tag",
+      "definition": "Emit a side-view pyramid, circle, sphere, action, class, or other downstream token without making projection the substrate.",
+      "implementation": "opcode 13",
+      "source_basis": "projection operators Pi",
+      "content_hash": "sha256:23a4e0c946cebecc704614b32bdacb47a4124647734a70ddd31ec9926e56016c"
+    },
+    {
+      "ordinal": 30,
+      "id": "TOM.EMIT",
+      "name": "deterministic output",
+      "signature": "state x payload -> state",
+      "definition": "Set the output token and emitted bit; optional halt is a program semantic, not a safety mode.",
+      "implementation": "opcode 14",
+      "source_basis": "query output",
+      "content_hash": "sha256:6335e34338e5f198d867656d751620047ce3b8e82ac1cc292f4a46138f799611"
+    },
+    {
+      "ordinal": 31,
+      "id": "TOM.LINEAGE",
+      "name": "replay lineage",
+      "signature": "state x cell x key -> u32",
+      "definition": "ell'=mix32(ell xor payload xor aux xor K_hi xor rotl(K_lo,7) xor branch xor cell_index).",
+      "implementation": "automatic",
+      "source_basis": "UGTS lineage/persistence",
+      "content_hash": "sha256:58eeb372465badec1f877058c22e227e90fd07265d15df464caf6bbdc016e065"
+    },
+    {
+      "ordinal": 32,
+      "id": "TOM.TRACE",
+      "name": "explanation trace",
+      "signature": "execution -> records",
+      "definition": "Return ordered cell IDs/opcodes, branches, keys, residuals, outputs and lineage.",
+      "implementation": "Python/C CLI",
+      "source_basis": "K36 deterministic trace",
+      "content_hash": "sha256:4aab6d2e82c9638f3f8b79fa0b404be4a45312e6b77aad1bc0b650d6890ef362"
+    },
+    {
+      "ordinal": 33,
+      "id": "TOM.ACTIVE",
+      "name": "active-bit projection",
+      "signature": "integer -> set(bit positions)",
+      "definition": "A(n)={k | bit_k(n)=1}; the original numeric value is retained.",
+      "implementation": "knowledge helper",
+      "source_basis": "19/binary source; M006,M008",
+      "content_hash": "sha256:83ccaf2990c78a1d1594f9f9c27d5476294e4fe370735e8b1766d7e2751c3ea4"
+    },
+    {
+      "ordinal": 34,
+      "id": "TOM.POPCOUNT",
+      "name": "active-bit cardinality",
+      "signature": "bit set -> integer",
+      "definition": "Return the number of active positions in a finite binary word.",
+      "implementation": "knowledge helper / integer popcount",
+      "source_basis": "19/binary source; M006,M008",
+      "content_hash": "sha256:d2207fa1f9e39b7acf8f1fae8d42d16b45aad095b13aca61ac013c4799c12dc7"
+    },
+    {
+      "ordinal": 35,
+      "id": "TOM.EQ",
+      "name": "typed equality predicate",
+      "signature": "A x A -> bit",
+      "definition": "Return 1 exactly when two values of the same declared type are equal; the result is a branch bit, not an identity rewrite.",
+      "implementation": "knowledge helper / branch predicate",
+      "source_basis": "UGTS feature-count comparison",
+      "content_hash": "sha256:33998c5f584e12b738db01fcad50944db9270534d97e2ae77f399f260fdb30fe"
+    },
+    {
+      "ordinal": 36,
+      "id": "TOM.PASCAL2",
+      "name": "Pascal parity",
+      "signature": "n,k -> bit",
+      "definition": "C(n,k) mod 2 defines a deterministic triangular occupancy pattern.",
+      "implementation": "knowledge helper",
+      "source_basis": "Pascal/Sierpinski source",
+      "content_hash": "sha256:cc28267b16c87a54892cde20ae7848098ea67bc06a952daf55ccb05708e55c07"
+    },
+    {
+      "ordinal": 37,
+      "id": "TOM.PULSE",
+      "name": "pulse geometry",
+      "signature": "count -> point/segment/m-gon",
+      "definition": "m declared pulses map to one point, a segment, a triangle for m=3, or a regular m-gon.",
+      "implementation": "knowledge helper",
+      "source_basis": "UGTS 3.6 pulse geometry",
+      "content_hash": "sha256:c934ddc661b5d1d62fa02b5d415baab7d95715c17cc96970aa46df749f9ce970"
+    },
+    {
+      "ordinal": 38,
+      "id": "TOM.RULE",
+      "name": "compiled rule",
+      "signature": "facts x predicates -> cell graph",
+      "definition": "Translate exact predicates into RADIX/CONE/SPHERE/HINGE branches and EMIT leaves.",
+      "implementation": "compiler pattern",
+      "source_basis": "deterministic AI substitute",
+      "content_hash": "sha256:d0e334c2c9fca16f3eab189da026157b1303bb043bd4bbbc92410645bf797294"
+    },
+    {
+      "ordinal": 39,
+      "id": "TOM.QUERY",
+      "name": "deterministic inference",
+      "signature": "program x state x ticks -> output,trace",
+      "definition": "Run the finite operator graph for the requested number of ticks or until an EMIT/HALT cell.",
+      "implementation": "runtime entry point",
+      "source_basis": "query-first substrate",
+      "content_hash": "sha256:4efeed245d8c05af43774c73739cf7e8dfe8077384266b411c6f9e04de703e86"
+    },
+    {
+      "ordinal": 40,
+      "id": "TOM.ABI.STATE64",
+      "name": "hot state record",
+      "signature": "16 words -> state",
+      "definition": "64-byte state: four coordinates, four velocities, orientation/sheet/branch/cell, lineage/output/residual/status.",
+      "implementation": "C/WGSL/GLSL/OpenCL",
+      "source_basis": "GPU-native source ABI",
+      "content_hash": "sha256:03492372cff9c61a8c1c7b78250c98ec70b02852a4331a7abc99ef791624a9c0"
+    },
+    {
+      "ordinal": 41,
+      "id": "TOM.ABI.CELL48",
+      "name": "LUT cell record",
+      "signature": "12 words -> instruction cell",
+      "definition": "48-byte cell: key, opcode/flags, four signed args, two successors, payload, aux.",
+      "implementation": "C/WGSL/GLSL/OpenCL",
+      "source_basis": "SDF0 kinematic LUT realization",
+      "content_hash": "sha256:548537b483c06883bdc13cddbdadcb147dbe41ed1044ffa9eca69066b4598e84"
+    },
+    {
+      "ordinal": 42,
+      "id": "TOM.BACKEND.CPU",
+      "name": "portable CPU evaluator",
+      "signature": "TMG program -> state",
+      "definition": "Dependency-free Python oracle and C99 evaluator implement identical integer semantics.",
+      "implementation": "tested",
+      "source_basis": "GPU-native CPU oracle",
+      "content_hash": "sha256:aaf47a3d1c46b925cd867c6513925ec349c91e9955638a03b54daec8c998915c"
+    },
+    {
+      "ordinal": 43,
+      "id": "TOM.BACKEND.GPU",
+      "name": "portable GPU step",
+      "signature": "state[] x cell[] -> state[]",
+      "definition": "One invocation executes one TOMAGI transition using only 32-bit integer storage and bit operations.",
+      "implementation": "WGSL, GLSL 450, OpenCL C",
+      "source_basis": "GPU-native source package",
+      "content_hash": "sha256:c300c1535626dd8b4a18423130517704600b526747769b5700599461d4575808"
+    }
+  ]
+}

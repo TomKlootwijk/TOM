@@ -1,0 +1,415 @@
+{
+  "$schema": "../spec/tomagi.schema.json",
+  "tomagi_version": "1.0.0",
+  "title": "TOMAGI literal seeded state orbit",
+  "seed": "0xd1417a31",
+  "default_ticks": 640,
+  "entry": "orbit:sdf0",
+  "provenance": {
+    "seed_definition": "literal:tom1-seed-genome",
+    "seed_file": "sources/TOM_seed_genome_2026-09-01.txt",
+    "seed_file_sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+    "numeric_seed_derivation": "first 32 raw SHA-256 bits, big-endian"
+  },
+  "initial_state": {
+    "rho": 200000,
+    "theta": 20000,
+    "tick": 1000,
+    "phi": 500,
+    "vrho": 1000,
+    "vtheta": 500,
+    "vtick": 10,
+    "vphi": 5,
+    "orientation": 0,
+    "sheet": 0,
+    "branch": 0,
+    "lineage": "0x36772c0c"
+  },
+  "definitions": [
+    {
+      "id": "literal:tom1-seed-genome",
+      "kind": "literal_utf8",
+      "domain": "literal_definition",
+      "codomain": "byte_string",
+      "evaluation_phase": 0,
+      "dependencies": [],
+      "parameters": {
+        "text": "TOM1[TopologicalOpenModular]|TomKlootwijk|1990-07-10|NL200678942|2026-09-01|LUTlogp^{Klein,SDF0@Def}(rho,theta,t->;phi,dt,d2,J,v,a,j1)>P1>L2_BST^b>ASweepCone(T,apex)>Pi[pyrSide,circle,sphere]>support>compatibility>guard>event>transition>lineage",
+        "role": "seed_genome_literal",
+        "source_byte_length": 244,
+        "source_sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"
+      },
+      "provenance": {
+        "source": "requester-supplied seed genome",
+        "received": "2026-09-01",
+        "literal_required": true,
+        "source_file": "sources/TOM_seed_genome_2026-09-01.txt",
+        "source_sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"
+      },
+      "content_hash": "sha256:092f1cd576a0ee5faf7cd425aae162acad5bbda1c15aae191a6ff6913940c73d"
+    },
+    {
+      "id": "definition:orbit-sdf0",
+      "kind": "tomagi_cell_operation",
+      "domain": "seed_genome_literal",
+      "codomain": "cell48_operation",
+      "evaluation_phase": 1,
+      "dependencies": [
+        "literal:tom1-seed-genome"
+      ],
+      "parameters": {
+        "dependency_hashes": [
+          "sha256:092f1cd576a0ee5faf7cd425aae162acad5bbda1c15aae191a6ff6913940c73d"
+        ],
+        "opcode": "SDF0",
+        "flags": 0,
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "effect": "defined cell sets the zero residual and selects branch one",
+        "payload": "0x53444630",
+        "aux": 1,
+        "next": [
+          "orbit:jit1",
+          "orbit:jit1"
+        ]
+      },
+      "content_hash": "sha256:8b0f9bb5cd815caf3246c51873b40c0ced0659b0217425d1dc0c43b4053f2c1f"
+    },
+    {
+      "id": "definition:orbit-jit1",
+      "kind": "tomagi_cell_operation",
+      "domain": "seeded_state_key",
+      "codomain": "state",
+      "evaluation_phase": 2,
+      "dependencies": [
+        "definition:orbit-sdf0"
+      ],
+      "parameters": {
+        "dependency_hashes": [
+          "sha256:8b0f9bb5cd815caf3246c51873b40c0ced0659b0217425d1dc0c43b4053f2c1f"
+        ],
+        "opcode": "JIT1",
+        "flags": 0,
+        "args": [
+          3,
+          0,
+          0,
+          0
+        ],
+        "program_seed": "0xd1417a31",
+        "effect": "add signed one-bit jitter of magnitude three to rho",
+        "payload": "0x4a495431",
+        "aux": 2,
+        "next": [
+          "orbit:kin2",
+          "orbit:kin2"
+        ]
+      },
+      "content_hash": "sha256:f866b9c78ec2475a2b3a6edf248ea82d60dbca3f70b593ff015d80b01e387273"
+    },
+    {
+      "id": "definition:orbit-kin2",
+      "kind": "tomagi_cell_operation",
+      "domain": "state_cell",
+      "codomain": "state",
+      "evaluation_phase": 3,
+      "dependencies": [
+        "definition:orbit-jit1"
+      ],
+      "parameters": {
+        "dependency_hashes": [
+          "sha256:f866b9c78ec2475a2b3a6edf248ea82d60dbca3f70b593ff015d80b01e387273"
+        ],
+        "opcode": "KIN2",
+        "flags": 0,
+        "args": [
+          200,
+          80,
+          1,
+          1
+        ],
+        "effect": "advance all four position and velocity components with orbit-scale accelerations",
+        "payload": "0x4b494e32",
+        "aux": 3,
+        "next": [
+          "orbit:phi",
+          "orbit:phi"
+        ]
+      },
+      "content_hash": "sha256:fe72c1b9d4e2903a6d801efec7c2e7746062a95e3d8602ea2c30207fd2b75050"
+    },
+    {
+      "id": "definition:orbit-phi",
+      "kind": "tomagi_cell_operation",
+      "domain": "periodic_phase_state",
+      "codomain": "branch_state",
+      "evaluation_phase": 4,
+      "dependencies": [
+        "definition:orbit-kin2"
+      ],
+      "parameters": {
+        "dependency_hashes": [
+          "sha256:fe72c1b9d4e2903a6d801efec7c2e7746062a95e3d8602ea2c30207fd2b75050"
+        ],
+        "opcode": "PHI",
+        "flags": 48,
+        "args": [
+          29,
+          0,
+          0,
+          0
+        ],
+        "effect": "advance lower-case phi, select half-phase branch and flip orientation on odd wrap",
+        "payload": "0x50484920",
+        "aux": 4,
+        "next": [
+          "orbit:klein",
+          "orbit:klein"
+        ]
+      },
+      "content_hash": "sha256:ba56cb66942ae2b24cd1d978d90c551dfa0c5d52e3a12467ad1f6885fb883f63"
+    },
+    {
+      "id": "definition:orbit-klein",
+      "kind": "tomagi_cell_operation",
+      "domain": "log_polar_state",
+      "codomain": "log_polar_state",
+      "evaluation_phase": 5,
+      "dependencies": [
+        "definition:orbit-phi"
+      ],
+      "parameters": {
+        "dependency_hashes": [
+          "sha256:ba56cb66942ae2b24cd1d978d90c551dfa0c5d52e3a12467ad1f6885fb883f63"
+        ],
+        "opcode": "KLEIN",
+        "flags": 3,
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "effect": "normalize rho through the half-turn Klein seam and flip sheet on odd wrap",
+        "payload": "0x4b4c4549",
+        "aux": 5,
+        "next": [
+          "orbit:hinge",
+          "orbit:hinge"
+        ]
+      },
+      "content_hash": "sha256:684e8d3441dd13d68aa065b9b3bad1b9f272c812781ea7a28f1c8692a85b6109"
+    },
+    {
+      "id": "definition:orbit-hinge",
+      "kind": "tomagi_cell_operation",
+      "domain": "klein_branch_state",
+      "codomain": "state",
+      "evaluation_phase": 6,
+      "dependencies": [
+        "definition:orbit-klein"
+      ],
+      "parameters": {
+        "dependency_hashes": [
+          "sha256:684e8d3441dd13d68aa065b9b3bad1b9f272c812781ea7a28f1c8692a85b6109"
+        ],
+        "opcode": "HINGE",
+        "flags": 3,
+        "args": [
+          5,
+          7,
+          0,
+          11
+        ],
+        "effect": "apply the declared state delta and topology flips on the odd seam branch",
+        "payload": "0x48494e47",
+        "aux": 6,
+        "next": [
+          "orbit:lsys",
+          "orbit:lsys"
+        ]
+      },
+      "content_hash": "sha256:785d6b167cbff2ca2d1dbd7115c014d5ca92121c16e3b424c6dd1400017d9cb3"
+    },
+    {
+      "id": "definition:orbit-lsys",
+      "kind": "tomagi_cell_operation",
+      "domain": "branch_state",
+      "codomain": "state",
+      "evaluation_phase": 7,
+      "dependencies": [
+        "definition:orbit-hinge"
+      ],
+      "parameters": {
+        "dependency_hashes": [
+          "sha256:785d6b167cbff2ca2d1dbd7115c014d5ca92121c16e3b424c6dd1400017d9cb3"
+        ],
+        "opcode": "LSYS",
+        "flags": 0,
+        "args": [
+          37,
+          0,
+          0,
+          0
+        ],
+        "effect": "turn lower-case phi by branch and chirality while preserving accumulated velocity",
+        "payload": "0x4c535953",
+        "aux": 7,
+        "next": [
+          "orbit:cone",
+          "orbit:cone"
+        ]
+      },
+      "content_hash": "sha256:578a1b18d04146549a629559a70a2f1b2766e3668fba26c146e66bb7947f8e1b"
+    },
+    {
+      "id": "definition:orbit-cone",
+      "kind": "tomagi_cell_operation",
+      "domain": "packed_log_polar_chart",
+      "codomain": "classified_state",
+      "evaluation_phase": 8,
+      "dependencies": [
+        "definition:orbit-lsys"
+      ],
+      "parameters": {
+        "dependency_hashes": [
+          "sha256:578a1b18d04146549a629559a70a2f1b2766e3668fba26c146e66bb7947f8e1b"
+        ],
+        "opcode": "CONE",
+        "flags": 0,
+        "args": [
+          0,
+          1048575,
+          131072,
+          131071
+        ],
+        "effect": "evaluate the full radial and half-turn angular cone relation",
+        "payload": "0x434f4e45",
+        "aux": 8,
+        "next": [
+          "orbit:project",
+          "orbit:project"
+        ]
+      },
+      "content_hash": "sha256:b325663a6455b37763a6b387c882cc06655179468a2b11ad31744a197b0df1ee"
+    },
+    {
+      "id": "definition:orbit-project",
+      "kind": "tomagi_cell_operation",
+      "domain": "classified_state",
+      "codomain": "projection_token",
+      "evaluation_phase": 9,
+      "dependencies": [
+        "definition:orbit-cone"
+      ],
+      "parameters": {
+        "dependency_hashes": [
+          "sha256:b325663a6455b37763a6b387c882cc06655179468a2b11ad31744a197b0df1ee"
+        ],
+        "opcode": "PROJECT",
+        "flags": 0,
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "payload": "0x4f524254",
+        "effect": "project the classified state to the ORBT token",
+        "aux": 9,
+        "next": [
+          "orbit:emit",
+          "orbit:emit"
+        ]
+      },
+      "content_hash": "sha256:aa9ed6dbb43b20105e9ac7d9726ff59834bbf235b239b0316acf0dde7c35be21"
+    },
+    {
+      "id": "definition:orbit-emit",
+      "kind": "tomagi_cell_operation",
+      "domain": "projection_token",
+      "codomain": "emission_record",
+      "evaluation_phase": 10,
+      "dependencies": [
+        "definition:orbit-project"
+      ],
+      "parameters": {
+        "dependency_hashes": [
+          "sha256:aa9ed6dbb43b20105e9ac7d9726ff59834bbf235b239b0316acf0dde7c35be21"
+        ],
+        "opcode": "EMIT",
+        "flags": 0,
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "payload": "0x4f524254",
+        "next": [
+          "orbit:sdf0",
+          "orbit:sdf0"
+        ],
+        "effect": "emit without halt and close the ten-transition state orbit",
+        "aux": 10
+      },
+      "content_hash": "sha256:1f8c7fca09946453bd72a2a642dc04440232f2dafff45afed30104c74cbfcee2"
+    }
+  ],
+  "cells": [
+    {
+      "id": "orbit:sdf0",
+      "key": "0x0000000000000000",
+      "definition_ref": "definition:orbit-sdf0"
+    },
+    {
+      "id": "orbit:jit1",
+      "key": "0x0000000000000001",
+      "definition_ref": "definition:orbit-jit1"
+    },
+    {
+      "id": "orbit:kin2",
+      "key": "0x0000000000000002",
+      "definition_ref": "definition:orbit-kin2"
+    },
+    {
+      "id": "orbit:phi",
+      "key": "0x0000000000000003",
+      "definition_ref": "definition:orbit-phi"
+    },
+    {
+      "id": "orbit:klein",
+      "key": "0x0000000000000004",
+      "definition_ref": "definition:orbit-klein"
+    },
+    {
+      "id": "orbit:hinge",
+      "key": "0x0000000000000005",
+      "definition_ref": "definition:orbit-hinge"
+    },
+    {
+      "id": "orbit:lsys",
+      "key": "0x0000000000000006",
+      "definition_ref": "definition:orbit-lsys"
+    },
+    {
+      "id": "orbit:cone",
+      "key": "0x0000000000000007",
+      "definition_ref": "definition:orbit-cone"
+    },
+    {
+      "id": "orbit:project",
+      "key": "0x0000000000000008",
+      "definition_ref": "definition:orbit-project"
+    },
+    {
+      "id": "orbit:emit",
+      "key": "0x0000000000000009",
+      "definition_ref": "definition:orbit-emit"
+    }
+  ]
+}

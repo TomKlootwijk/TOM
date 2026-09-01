@@ -1,0 +1,17 @@
+word,byte_offset,name,type,meaning
+0,0,rho,i32,log-radius coordinate; canonical key uses modulo 2^20
+1,4,theta,i32,polar angle; modulo 2^18
+2,8,tick,i32,zero-based timeline tick; modulo 2^14
+3,12,phi,i32,lower-case phase/hinge angle; modulo 2^12
+4,16,vrho,i32,first difference of rho
+5,20,vtheta,i32,first difference of theta
+6,24,vtick,i32,first difference of tick
+7,28,vphi,i32,first difference of phi
+8,32,orientation,u32,orientation/chirality bit
+9,36,sheet,u32,sheet index
+10,40,branch,u32,current branch bit
+11,44,cell,u32,current cell index
+12,48,lineage,u32,deterministic replay checksum
+13,52,output,u32,symbolic output token
+14,56,residual,i32,last signed relation residual
+15,60,status,u32,status bit field

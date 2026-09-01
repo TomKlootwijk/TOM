@@ -1,0 +1,76 @@
+{
+  "output": {
+    "value": 19,
+    "binary": "10011",
+    "active_bit_positions": [
+      0,
+      1,
+      4
+    ],
+    "active_bit_count": 3,
+    "profile_segments": [
+      "ne",
+      "gen",
+      "tien"
+    ],
+    "pulse_count": 3,
+    "equal_feature_counts": true,
+    "projection": {
+      "kind": "triangle",
+      "points": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          -0.4999999999999998,
+          0.8660254037844387
+        ],
+        [
+          -0.5000000000000004,
+          -0.8660254037844384
+        ]
+      ]
+    }
+  },
+  "trace": [
+    {
+      "operator": "TOM.ACTIVE",
+      "input": 19,
+      "output": [
+        0,
+        1,
+        4
+      ]
+    },
+    {
+      "operator": "TOM.POPCOUNT",
+      "input": [
+        0,
+        1,
+        4
+      ],
+      "output": 3
+    },
+    {
+      "operator": "TOM.PULSE",
+      "input": [
+        "ne",
+        "gen",
+        "tien"
+      ],
+      "output": 3
+    },
+    {
+      "operator": "TOM.EQ",
+      "left": 3,
+      "right": 3,
+      "output": true
+    },
+    {
+      "operator": "TOM.PROJECT",
+      "input": 3,
+      "output": "triangle"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+\begin{table}[H]
+\centering
+\caption{Exact 64-row MSB round-robin Morton schedule}\label{tab:morton}
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{0.88}
+\begin{tabular}{@{}rrr@{\hspace{1.2cm}}rrr@{}}
+\toprule
+\multicolumn{3}{c}{Output bits 63--32} & \multicolumn{3}{c}{Output bits 31--0} \\
+\cmidrule(r){1-3}\cmidrule(l){4-6}
+\textbf{Out} & \textbf{Field} & \textbf{Src} & \textbf{Out} & \textbf{Field} & \textbf{Src} \\
+\midrule
+63 & rho & 19 & 31 & rho & 11 \\
+62 & theta & 17 & 30 & theta & 9 \\
+61 & tick & 13 & 29 & tick & 5 \\
+60 & phi & 11 & 28 & phi & 3 \\
+59 & rho & 18 & 27 & rho & 10 \\
+58 & theta & 16 & 26 & theta & 8 \\
+57 & tick & 12 & 25 & tick & 4 \\
+56 & phi & 10 & 24 & phi & 2 \\
+55 & rho & 17 & 23 & rho & 9 \\
+54 & theta & 15 & 22 & theta & 7 \\
+53 & tick & 11 & 21 & tick & 3 \\
+52 & phi & 9 & 20 & phi & 1 \\
+51 & rho & 16 & 19 & rho & 8 \\
+50 & theta & 14 & 18 & theta & 6 \\
+49 & tick & 10 & 17 & tick & 2 \\
+48 & phi & 8 & 16 & phi & 0 \\
+47 & rho & 15 & 15 & rho & 7 \\
+46 & theta & 13 & 14 & theta & 5 \\
+45 & tick & 9 & 13 & tick & 1 \\
+44 & phi & 7 & 12 & rho & 6 \\
+43 & rho & 14 & 11 & theta & 4 \\
+42 & theta & 12 & 10 & tick & 0 \\
+41 & tick & 8 & 9 & rho & 5 \\
+40 & phi & 6 & 8 & theta & 3 \\
+39 & rho & 13 & 7 & rho & 4 \\
+38 & theta & 11 & 6 & theta & 2 \\
+37 & tick & 7 & 5 & rho & 3 \\
+36 & phi & 5 & 4 & theta & 1 \\
+35 & rho & 12 & 3 & rho & 2 \\
+34 & theta & 10 & 2 & theta & 0 \\
+33 & tick & 6 & 1 & rho & 1 \\
+32 & phi & 4 & 0 & rho & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}

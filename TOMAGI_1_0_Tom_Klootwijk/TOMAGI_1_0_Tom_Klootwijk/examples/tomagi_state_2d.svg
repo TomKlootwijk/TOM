@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img">
+  <title>TOMAGI State64 orbit: theta/rho</title>
+  <desc>Ordered EMIT samples from the authenticated literal-chain trace; every polyline point is an affine projection of theta and rho.</desc>
+  <metadata>source_sha256=f456d0da681ae03ddb40cdc1c4566411b25a24e48d8ab279a9bc94d75a6f9cbd;program_sha256=349e51a5a402b3295d653ad08f00b55d465ffab7e943fb437d196af948487e3e;trace_sha256=0f63d46cdee734e7785ff2ab78cd551d757e186272d2dcfe72ea6bbe0ac3f6d3;fields=theta,rho</metadata>
+  <rect width="1200" height="720" fill="#071a26"/>
+  <rect x="80" y="70" width="1040" height="580" fill="none" stroke="#315d70" stroke-width="2"/>
+  <line x1="80" y1="650" x2="1120" y2="650" stroke="#8fc7ca"/>
+  <line x1="80" y1="70" x2="80" y2="650" stroke="#8fc7ca"/>
+  <text x="80" y="42" fill="#dff9f7" font-family="monospace" font-size="22">Authenticated State64 projection: (theta, rho)</text>
+  <text x="1060" y="690" fill="#8fc7ca" font-family="monospace" font-size="16">theta</text>
+  <text x="20" y="90" fill="#8fc7ca" font-family="monospace" font-size="16">rho</text>
+  <polyline fill="none" stroke="#d9a31a" stroke-width="4" stroke-linejoin="round" points="161,538 164,537 167,537 170,536 174,534 177,533 182,532 186,530 191,529 196,527 202,525 207,524 214,522 220,520 227,517 234,515 241,513 249,510 257,507 265,505 274,502 283,499 292,496 302,492 312,489 322,486 332,482 343,478 354,475 366,471 378,467 390,463 402,459 415,454 428,450 442,445 455,441 469,436 484,431 498,426 513,421 529,416 544,410 560,405 577,399 593,394 610,388 627,382 645,376 663,370 681,364 699,358 718,351 737,345 757,338 776,331 797,324 817,318 838,310 859,303 880,296 902,289 924,281 946,273"/>
+</svg>

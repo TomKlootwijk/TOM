@@ -1,0 +1,323 @@
+source,source_id,source_name,source_status,tomagi_mapping,role
+SRC-G:knowledge_catalog_1.1,M001,Radix digit threshold,RETAIN,TOM.RADIX;TOM.KEY.C;TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M002,Positional power weighting,RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M003,Literal binary glyph parse,RETAIN,TOM.DEF;TOM.REF;TOM.RADIX;TOM.KEY.C,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M004,Left-shift pulse placement,RETAIN,TOM.RADIX;TOM.KEY.C;TOM.PULSE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M005,Zero-based offset/ordinal distinction,RETAIN,TOM.INDEX0,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M006,Active-bit filtering,RETAIN,TOM.RADIX;TOM.KEY.C;TOM.ACTIVE;TOM.LINEAGE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M007,Zero as inactive/silence metadata,TRANSLATE,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M008,Binary 19 decomposition,RETAIN,TOM.RADIX;TOM.KEY.C;TOM.ACTIVE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M009,Phonetic-to-active-count map,BOUNDED,TOM.RADIX;TOM.KEY.C;TOM.PULSE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M010,Pascal parity recurrence,RETAIN,TOM.PASCAL2;TOM.PARITY,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M011,Sierpiński generation,RETAIN,TOM.RADIX;TOM.KEY.C;TOM.PASCAL2;TOM.PARITY,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M012,"Combination count C(5,3)",RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M013,Power-of-two scale boundary,RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M014,Standard percent semantics boundary,RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M015,Percent loop decomposition,TRANSLATE,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M016,Slash/phi removal operator,TRANSLATE,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M017,Open-loop terminal suppression,BOUNDED,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M018,100100 concatenation,RETAIN,TOM.PULSE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M019,Two-pulse timeline,TRANSLATE,TOM.PULSE;TOM.TIME;TOM.PHI;TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M020,Pulse superposition by OR,RETAIN,TOM.PULSE;TOM.OVERLAP,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M021,Explicit-width complement,TRANSLATE,TOM.BRANCH,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M022,Fractional scale correction,CORRECTED,TOM.RADIX;TOM.KEY.C,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M023,Packed fixed-width record,TRANSLATE,TOM.DEF;TOM.REF;TOM.RADIX;TOM.KEY.C,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M024,Fixed-point financial boundary,RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M025,One-bit parity narrow role,RETAIN,TOM.PARITY;TOM.HINGE;TOM.BRANCH,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M026,One-bit support mask,RETAIN,TOM.PARITY,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M027,Deterministic jitter seed,TRANSLATE,TOM.JIT1;TOM.LINEAGE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M028,D-to-R cut and unroll,RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M029,B-to-R lower-loop unfurl,RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M030,Phi loop-plus-stem decomposition,RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M031,Stem as cutting/rotation axis,RETAIN,TOM.KIN2,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M032,Side-view pyramid as delta triangle,TRANSLATE,TOM.KIN2,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M033,Delta-T changing axis,TRANSLATE,TOM.KIN2;TOM.TIME;TOM.PHI,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M034,Loop-to-line release,RETAIN,TOM.KIN2,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M035,Localized parity hinge,RETAIN,TOM.PARITY;TOM.HINGE;TOM.KIN2,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M036,Global hinge everywhere,TRANSLATE,TOM.HINGE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M037,Split zero-centered oval,RETAIN,TOM.KIN2,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M038,Antisymmetric torsional wave,TRANSLATE,TOM.HINGE;TOM.KIN2,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M039,2π unrolled into two π arches,RETAIN,TOM.KIN2,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M040,1:1 arch balance,BOUNDED,TOM.KIN2,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M041,Lens intersection region,RETAIN,TOM.OVERLAP;TOM.TIME;TOM.PHI,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M042,Constructive interference interpretation,TRANSLATE,TOM.OVERLAP,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M043,Tolerance/phase-slip buffer,TRANSLATE,TOM.OVERLAP;TOM.TIME;TOM.PHI,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M044,Mutual-information domain,CORRECTED,TOM.OVERLAP,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M045,Scaled 5–12–13 triangle,RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M046,Leg ratio 2.4,RETAIN,TOM.KIN2,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M047,Torque-cone angle,RETAIN,TOM.CONE;TOM.KIN2,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M048,Logarithmic spiral step law,TRANSLATE,TOM.KIN2;TOM.TIME;TOM.PHI,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M049,Base-2 log-radius,RETAIN,TOM.LOGPOLAR,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M050,Local spherical chart,RETAIN,TOM.LOGPOLAR;TOM.SPHERE;TOM.QUERY,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M051,Cone support,RETAIN,TOM.CONE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M052,Nested shell support,RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M053,Four-chamber hourglass,TRANSLATE,TOM.BRANCH,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M054,Pinch event locus,RETAIN,TOM.BRANCH;TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M055,Invariant eigen-axis,TRANSLATE,TOM.BRANCH;TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M056,Swept phase arc,TRANSLATE,TOM.TIME;TOM.PHI;TOM.BRANCH,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M057,Trident 3-to-1 convergence,TRANSLATE,TOM.BRANCH;TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M058,Pythagorean-cup trigger,RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M059,Greedy reset cycle,TRANSLATE,TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M060,Inward G/shelf transform,OPTIONAL,TOM.LSYS,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M061,Lemniscate crossing,TRANSLATE,TOM.HINGE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M062,Escher-style shrink to crossing,CORRECTED,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M063,Cone SDF,RETAIN,TOM.CONE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M064,Sphere SDF,RETAIN,TOM.SPHERE;TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M065,Möbius orientation reversal,TRANSLATE,TOM.MOBIUS;TOM.HINGE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M066,Klein gluing map,TRANSLATE,TOM.KLEIN;TOM.HINGE;TOM.BRANCH,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M067,"Same coordinate, different sheet",RETAIN,TOM.HINGE;TOM.TIME;TOM.PHI,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M068,Non-orientable orientation bit,RETAIN,TOM.HINGE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M069,Projected self-intersection,CORRECTED,TOM.OVERLAP;TOM.HINGE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M070,Double vacuum as incompatibility,RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M071,Phase-separated co-location,RETAIN,TOM.TIME;TOM.PHI,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M072,Four-way routing partition,TRANSLATE,TOM.BRANCH;TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M073,Portal/gluing transition,RETAIN,TOM.HINGE;TOM.TRANSITION;TOM.LINEAGE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M074,Branch transition,RETAIN,TOM.BRANCH;TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M075,Lineage-based identity,RETAIN,TOM.TRANSITION;TOM.LINEAGE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M076,Split/merge lineage,RETAIN,TOM.LINEAGE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M077,Toroidal/poloidal chart labels,TRANSLATE,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M078,Re-entry map,TRANSLATE,TOM.HINGE;TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M079,Parity-controlled open/closed boundary,RETAIN,TOM.PARITY;TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M080,Sphere eversion analogy,DEMOTE,TOM.SPHERE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M081,Physical Klein self-assembly,REJECT,TOM.PARITY;TOM.KLEIN,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M082,Topology-powered energy recycling,REJECT,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M083,Finite grammar,RETAIN,TOM.DEF;TOM.REF;TOM.LSYS,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M084,L-system production,TRANSLATE,TOM.LSYS,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M085,Projective-phase state manifold,RETAIN,TOM.TIME;TOM.PHI,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M086,Typed state tuple,RETAIN,TOM.DEF;TOM.REF,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M087,Relation surface,RETAIN,TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M088,Support predicate,RETAIN,TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M089,Compatibility predicate,RETAIN,TOM.HINGE;TOM.TIME;TOM.PHI;TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M090,Earliest valid event,RETAIN,TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M091,Transition operator,RETAIN,TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M092,External novelty log,RETAIN,TOM.LINEAGE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M093,state_at(t),RETAIN,TOM.TIME;TOM.PHI;TOM.LINEAGE;TOM.QUERY,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M094,next_event,RETAIN,TOM.BRANCH;TOM.TRANSITION;TOM.QUERY,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M095,events_in_cone,RETAIN,TOM.CONE;TOM.TRANSITION;TOM.QUERY,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M096,reachable relation query,RETAIN,TOM.LSYS;TOM.QUERY,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M097,identity reconstruction,RETAIN,TOM.LINEAGE;TOM.QUERY,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M098,Support rejection,RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M099,Compatibility rejection,RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M100,Finite guard band,RETAIN,TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M101,Confidence threshold,RETAIN,TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M102,Hysteresis/debounce,RETAIN,TOM.TIME;TOM.PHI;TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M103,Certified/bracketed root solve,RETAIN,TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M104,Tangency and degeneracy handling,RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M105,SDF zero as event boundary,RETAIN,TOM.SDF0;TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M106,CSG union,RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M107,CSG intersection,RETAIN,TOM.OVERLAP,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M108,CSG subtraction,RETAIN,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M109,SDF gradient orientation,RETAIN,TOM.HINGE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M110,Parity-conditioned field blend,TRANSLATE,TOM.PARITY,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M111,Log-polar LUT,RETAIN,TOM.LOGPOLAR,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M112,BST-to-flat-table translation,CORRECTED,TOM.RULE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M113,Horizon-independent closed expression,BOUNDED,TOM.QUERY,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M114,Novelty-proportional retention,BOUNDED,TOM.LSYS;TOM.TRANSITION;TOM.LINEAGE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M115,Seed+grammar+log rebuild,RETAIN,TOM.LSYS;TOM.TRANSITION;TOM.LINEAGE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M116,"Query-first, no mandatory frame loop",RETAIN,TOM.TIME;TOM.PHI;TOM.TRANSITION;TOM.QUERY,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M117,Optional projection,RETAIN,TOM.QUERY;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M118,Bounded Compatibility Event,RETAIN,TOM.TRANSITION,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M119,Event lineage record,RETAIN,TOM.TIME;TOM.PHI;TOM.BRANCH;TOM.TRANSITION;TOM.LINEAGE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M120,Schema-bound one-bit semantics,RETAIN,TOM.DEF;TOM.REF;TOM.PARITY,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M121,Deterministic rollback/replay,TRANSLATE,TOM.TRANSITION;TOM.LINEAGE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M122,Algebraic closure,RETAIN,TOM.QUERY;TOM.TRACE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M123,Event/branch explosion,RETAIN,TOM.BRANCH;TOM.TRANSITION;TOM.TRACE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M124,Query authority and policy,RETAIN,TOM.QUERY,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M125,GLSL-to-SPIR-V compilation,RETAIN,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M126,Direct Vulkan compute runtime,RETAIN,TOM.TIME;TOM.PHI;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M127,Descriptor ABI,RETAIN,TOM.TRANSITION;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M128,256-thread workgroup,RETAIN,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M129,G64 authoritative state record,RETAIN,TOM.TIME;TOM.PHI;TOM.TRANSITION;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M130,E32 full event record,RETAIN,TOM.TRANSITION;TOM.LINEAGE;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M131,G32 packed state record,RETAIN,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M132,E16 packed event record,RETAIN,TOM.TRANSITION;TOM.LINEAGE;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M133,Evaluate mode,RETAIN,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M134,Evaluate+commit mode,RETAIN,TOM.TRANSITION;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M135,Device timestamp measurement,RETAIN,TOM.TIME;TOM.PHI;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M136,Pipeline cache artifact,RETAIN,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M137,SPIR-V module manifest,RETAIN,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M138,Lineage hash,RETAIN,TOM.LINEAGE;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M139,Dense output path,RETAIN,TOM.TRANSITION;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M140,Verified-event compaction,RETAIN,TOM.RADIX;TOM.KEY.C;TOM.TRANSITION;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M141,Structure-of-arrays option,OPTIONAL,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M142,Memory coalescing contract,RETAIN,TOM.LINEAGE;TOM.QUERY;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M143,FP16 error contract,RETAIN,TOM.TRANSITION;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M144,Cold versus cache-seeded compilation,RETAIN,TOM.TIME;TOM.PHI;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M145,CPU reference oracle,RETAIN,TOM.BACKEND.GPU;TOM.BACKEND.CPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M146,Deterministic benchmark corpus,RETAIN,TOM.TRANSITION;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M147,No Unity/Godot target layer,RETAIN,TOM.DEF;TOM.REF;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M148,Cartesian-to-log-polar mapping,RETAIN,TOM.LOGPOLAR;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M149,One-bit sector activation,RETAIN,TOM.PARITY;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M150,Phasor coverage accumulation,CORRECTED,TOM.TIME;TOM.PHI;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M151,Subpixel gradient alignment,TRANSLATE,TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M152,Pulse-density modulation,RETAIN,TOM.PULSE;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M153,Anisotropic delta-sigma,TRANSLATE,TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M154,Chromatic log-radius offset,RETAIN,TOM.LOGPOLAR;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M155,Wavelength-dependent phase,TRANSLATE,TOM.TIME;TOM.PHI;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M156,Seeded stochastic blend,RETAIN,TOM.JIT1;TOM.LINEAGE;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M157,Log-polar blue-noise screening,TRANSLATE,TOM.LOGPOLAR;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M158,SDF edge lock,TRANSLATE,TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M159,Dot-gain compensation,RETAIN,TOM.RADIX;TOM.KEY.C;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M160,CMYK angular separation,RETAIN,TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M161,Liquid overclad,RETAIN,TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M162,Liquid-core guide,OPTIONAL,TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M163,Input liquid lens,RETAIN,TOM.OVERLAP;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M164,Solid photonic substrate,RETAIN,TOM.BRANCH;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M165,2×2 interferometric kernel,RETAIN,TOM.TIME;TOM.PHI;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M166,Balanced detection,RETAIN,TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M167,Spherical-to-mode overlap,RETAIN,TOM.SPHERE;TOM.OVERLAP;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M168,Coupled-mode evolution,RETAIN,TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M169,Young–Laplace curvature,RETAIN,TOM.OVERLAP;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M170,Maxwell field boundary,RETAIN,TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M171,Actuation modes,RETAIN,TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M172,Measured B.C.E. guard,RETAIN,TOM.TRANSITION;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M173,Calibration and drift state,RETAIN,TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M174,Events per joule,RETAIN,TOM.TRANSITION;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M175,Optical insertion loss,RETAIN,TOM.TRANSITION;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M176,Packaging failure controls,RETAIN,TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M177,Digital commit sidecar,RETAIN,TOM.TRANSITION;TOM.LINEAGE;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M178,Fixed-function support engine,TRANSLATE,TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M179,Compatibility mask engine,TRANSLATE,TOM.TRANSITION;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M180,Event FIFO and lineage commit,TRANSLATE,TOM.TRANSITION;TOM.LINEAGE;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M181,Fluidic threshold/reset endpoint,BOUNDED,TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M182,Explicit topology transfer map,RETAIN,TOM.HINGE;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M183,Failure/kill criteria,RETAIN,TOM.TRANSITION;TOM.PROJECT,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M184,100% does not ordinarily equal 36,CORRECTED,TOM.TRACE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M185,100101 versus 100100 inconsistency,CORRECTED,TOM.TRACE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M186,Information entropy is not automatically heat,REJECT,TOM.TRACE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M187,Absolute single vacuum claim,CORRECTED,TOM.TRACE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M188,Zero-cost chromatic correction,REJECT,TOM.PROJECT;TOM.TRACE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M189,Perfect alias elimination,REJECT,TOM.TRACE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M190,Universal O(1),BOUNDED,TOM.BRANCH;TOM.TRANSITION;TOM.TRACE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M191,Zero memory/latency/heat,REJECT,TOM.TRACE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M192,Perfect determinism/exact chaos,REJECT,TOM.LINEAGE;TOM.TRACE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M193,One bit as complete state,REJECT,TOM.BRANCH;TOM.LINEAGE;TOM.TRACE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M194,No broad phase ever,CORRECTED,TOM.TIME;TOM.PHI;TOM.TRACE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M195,General AI/world replacement,REJECT,TOM.TRANSITION;TOM.TRACE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M196,Biological one-bit equivalence,DEMOTE,TOM.PARITY;TOM.TRACE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M197,Physical-GPU benchmark boundary,RETAIN,TOM.TRACE,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M198,Native device-clock L2 boundary,RETAIN,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M199,Native CUDA L2 cycle control,RETAIN,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M200,Native CUDA L2 concurrency curve,RETAIN,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M201,Native CUDA texture-path capacity control,RETAIN,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M202,Dense 6-bit CUDA log-LUT packing,RETAIN,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M203,Native CUDA sparse-stride effective residency,RETAIN,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M204,Packed-LUT neighborhood occupancy curve,RETAIN,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M205,Sparse-LUT residency decomposition,RETAIN,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M206,Sparse-LUT page-spaced address reach,RETAIN,TOM.TRANSITION;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M207,Sparse-LUT exact-stride alias control,RETAIN,TOM.TRANSITION;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M208,VMM-isolated virtual address reach,RETAIN,TOM.TRANSITION;TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M209,Content-sensitive CUDA VMM compression,RETAIN,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M210,Constant-pattern CUDA VMM compression,RETAIN,TOM.BACKEND.GPU,condensed source mechanism
+SRC-G:knowledge_catalog_1.1,M211,Zero-sentinel texture validation guard,RETAIN,TOM.TIME;TOM.PHI;TOM.TRANSITION;TOM.BACKEND.GPU,condensed source mechanism
+SRC-B:SCLP-3.6.2,sclp362.profile.packed-swept-cone-v1,packed SCLP profile,source catalog,TOM.QUERY;TOM.CONE;TOM.LOGPOLAR,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.type.symbol-separation-v1,overloaded-symbol separation,source catalog,TOM.PHI;TOM.TIME,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.type.lowercase-phi-circle-v1,lower-case phi as S1 coordinate,source catalog,TOM.PHI,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.type.delta-family-v1,typed delta family,source catalog,TOM.DELTA1;TOM.DELTA2,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.type.evidence-boundary-v1,source/normalization boundary,source catalog,TOM.TRACE,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.geometry.cone-slant-angle-v1,cone from slant length and half-angle,source catalog,TOM.CONE,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.geometry.finite-cone-sdf-v1,exact finite-cone signed distance,source catalog,TOM.CONE,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.geometry.cone-relation-class-v1,three-state cone relation,source catalog,TOM.CONE,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.geometry.sphere-sdf-v1,sphere relation,source catalog,TOM.SPHERE,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.geometry.paired-sphere-support-v1,two-sphere support pair,source catalog,TOM.SPHERE;TOM.OVERLAP,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.sweep.translation-family-v1,rigid translational cone family,source catalog,TOM.SWEEP,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.sweep.lipschitz-interval-v1,certified sweep interval,source catalog,TOM.SWEEP,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.sweep.zero-tangent-projector-v1,zero-surface tangent projection,source catalog,TOM.SDF0;TOM.PROJECT,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.logpolar.chart-v1,log-polar chart,source catalog,TOM.LOGPOLAR,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.logpolar.core-v1,explicit origin core,source catalog,TOM.LOGPOLAR,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.logpolar.metric-v1,conformal metric tensor,source catalog,TOM.LOGPOLAR,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.logpolar.exact-radial-step-v1,exact local radial increment,source catalog,TOM.LOGPOLAR,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.logpolar.jacobian-v1,log-polar Jacobian,source catalog,TOM.LOGPOLAR;TOM.KIN2,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.logpolar.velocity-v1,velocity transform,source catalog,TOM.DELTA1;TOM.KIN2,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.logpolar.acceleration-v1,change-of-change transform,source catalog,TOM.DELTA2;TOM.KIN2,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.logpolar.gradient-v1,gradient covector transform,source catalog,TOM.LOGPOLAR,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.jitter.deterministic-bit-v1,deterministic one-bit jitter,source catalog,TOM.JIT1,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.jitter.interval-guard-v1,jitter interval certificate,source catalog,TOM.JIT1,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.time.phase-clock-v1,linear-time phase clock,source catalog,TOM.TIME,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.time.winding-lineage-v1,winding lineage,source catalog,TOM.TIME;TOM.LINEAGE,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.topology.source-half-turn-v0,source half-turn bundle twist,source catalog,TOM.MOBIUS,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.topology.klein-reflection-v1,reflective Klein radial gluing,source catalog,TOM.KLEIN,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.topology.tangent-chirality-v1,tangent chirality map,source catalog,TOM.KLEIN;TOM.HINGE,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.topology.wrap-event-v1,topological wrap event,source catalog,TOM.KLEIN;TOM.TRANSITION,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.hinge.state-v1,hinge state,source catalog,TOM.PHI;TOM.HINGE,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.hinge.torque-model-v1,optional torque model,source catalog,TOM.KIN2,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.constraint.row-release-v1,missing-shackle row deletion,source catalog,TOM.HINGE,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.constraint.nullity-gain-v1,freedom-gain certificate,source catalog,TOM.HINGE,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.branch.binary-guard-v1,binary guard branch,source catalog,TOM.BRANCH,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.branch.no-chaos-inference-v1,deterministic binary branch,source catalog,TOM.BRANCH;TOM.TRACE,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.grammar.bounded-binary-lsystem-v1,bounded binary parametric L-system,source catalog,TOM.LSYS,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.grammar.chirality-automorphism-v1,chirality turn automorphism,source catalog,TOM.LSYS;TOM.HINGE,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.packing.quantize-20-18-14-12-v1,20/18/14/12 quantizer,source catalog,TOM.KEY.C,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.packing.contiguous-key-v1,contiguous field key,source catalog,TOM.KEY.C,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.packing.morton-key-v1,MSB round-robin Morton key,source catalog,TOM.KEY.M,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.packing.layout-separation-v1,key-layout separation,source catalog,TOM.KEY.C;TOM.KEY.M,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.index.prefix-refinement-v1,radix prefix refinement,source catalog,TOM.RADIX,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.index.radix-trie-v1,radix-2 trie,source catalog,TOM.RADIX,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.index.one-bit-payload-v1,one-bit payload,source catalog,TOM.PARITY;TOM.BRANCH,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.index.sparse-presence-accounting-v1,sparse presence accounting,source catalog,TOM.FETCH,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.metrics.cacheline-eight-keys-v1,eight raw keys per cache line,source catalog,TOM.BACKEND.GPU,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.metrics.nominal-width-audit-v1,nominal width audit,source catalog,TOM.TRACE,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.metrics.finite-capacity-v1,finite 2^64 key capacity,source catalog,TOM.KEY.C,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.query.direct-lookup-bound-v1,direct lookup,source catalog,TOM.FETCH;TOM.QUERY,condensed source operator
+SRC-B:SCLP-3.6.2,sclp362.query.ugts-handoff-v1,UGTS handoff,source catalog,TOM.TRANSITION;TOM.LINEAGE,condensed source operator
+SRC-C:UGTS-3.6,K36-01,Literal definition node,source catalog,TOM.DEF,condensed source operator
+SRC-C:UGTS-3.6,K36-02,Content-addressed definition,source catalog,TOM.DEF,condensed source operator
+SRC-C:UGTS-3.6,K36-03,Explicit dependency edge,source catalog,TOM.REF,condensed source operator
+SRC-C:UGTS-3.6,K36-04,Versioned namespace,source catalog,TOM.DEF,condensed source operator
+SRC-C:UGTS-3.6,K36-05,Definition-instance separation,source catalog,TOM.DEF,condensed source operator
+SRC-C:UGTS-3.6,K36-06,Acyclic resolution rule,source catalog,TOM.REF,condensed source operator
+SRC-C:UGTS-3.6,K36-07,Typed implicit-field sign,source catalog,TOM.SDF0,condensed source operator
+SRC-C:UGTS-3.6,K36-08,Exact-SDF capability flag,source catalog,TOM.SDF0,condensed source operator
+SRC-C:UGTS-3.6,K36-09,Parametric curve and sweep,source catalog,TOM.SWEEP,condensed source operator
+SRC-C:UGTS-3.6,K36-10,Pulse polygon embedding,source catalog,TOM.PULSE,condensed source operator
+SRC-C:UGTS-3.6,K36-11,Radix shell chart,source catalog,TOM.RADIX;TOM.LOGPOLAR,condensed source operator
+SRC-C:UGTS-3.6,K36-12,Log-polar core chart,source catalog,TOM.LOGPOLAR,condensed source operator
+SRC-C:UGTS-3.6,K36-13,Explicit quotient/gluing map,source catalog,TOM.KLEIN;TOM.MOBIUS,condensed source operator
+SRC-C:UGTS-3.6,K36-14,Sheet-aware co-location,source catalog,TOM.HINGE,condensed source operator
+SRC-C:UGTS-3.6,K36-15,Orientation transport,source catalog,TOM.HINGE;TOM.KLEIN,condensed source operator
+SRC-C:UGTS-3.6,K36-16,Port and branch routing,source catalog,TOM.BRANCH,condensed source operator
+SRC-C:UGTS-3.6,K36-17,Split-merge lineage,source catalog,TOM.LINEAGE,condensed source operator
+SRC-C:UGTS-3.6,K36-18,Guarded topology change,source catalog,TOM.TRANSITION,condensed source operator
+SRC-C:UGTS-3.6,K36-19,Generic hinge tuple,source catalog,TOM.HINGE,condensed source operator
+SRC-C:UGTS-3.6,K36-20,Continuous planar hinge,source catalog,TOM.HINGE,condensed source operator
+SRC-C:UGTS-3.6,K36-21,Discrete parity hinge,source catalog,TOM.PARITY;TOM.HINGE,condensed source operator
+SRC-C:UGTS-3.6,K36-22,Connector hinge,source catalog,TOM.HINGE;TOM.OVERLAP,condensed source operator
+SRC-C:UGTS-3.6,K36-23,Non-commutative hinge chain,source catalog,TOM.SEQ;TOM.HINGE,condensed source operator
+SRC-C:UGTS-3.6,K36-24,Invariant subspace contract,source catalog,TOM.HINGE,condensed source operator
+SRC-C:UGTS-3.6,K36-25,Bounded Dutch number profile,source catalog,TOM.RULE,condensed source operator
+SRC-C:UGTS-3.6,K36-26,Syllable-pulse operator,source catalog,TOM.PULSE,condensed source operator
+SRC-C:UGTS-3.6,K36-27,Teen suffix hinge,source catalog,TOM.HINGE,condensed source operator
+SRC-C:UGTS-3.6,K36-28,En connector hinge,source catalog,TOM.HINGE,condensed source operator
+SRC-C:UGTS-3.6,K36-29,Spoken-place permutation,source catalog,TOM.HINGE,condensed source operator
+SRC-C:UGTS-3.6,K36-30,Feature-count comparison,source catalog,TOM.ACTIVE;TOM.PULSE;TOM.RULE,condensed source operator
+SRC-C:UGTS-3.6,K36-31,Phase-ordered evaluator,source catalog,TOM.SEQ;TOM.QUERY,condensed source operator
+SRC-C:UGTS-3.6,K36-32,Support-compatibility-guard discipline,source catalog,TOM.CONE;TOM.QUERY,condensed source operator
+SRC-C:UGTS-3.6,K36-33,Deterministic trace,source catalog,TOM.TRACE,condensed source operator
+SRC-C:UGTS-3.6,K36-34,Evidence disposition,source catalog,TOM.TRACE,condensed source operator
+SRC-C:UGTS-3.6,K36-35,Unknown-reference and cycle rejection,source catalog,TOM.REF,condensed source operator
+SRC-C:UGTS-3.6,K36-36,Package verification contract,source catalog,TOM.TRACE,condensed source operator
+SRC-A:literal-chain,A01,SDF0 packed inside the log-polar LUT,direct document motif,TOM.SDF0;TOM.FETCH;TOM.KEY.C,explicit document crosswalk
+SRC-A:literal-chain,A02,one-bit parity as the first branch-producing operator,direct document motif,TOM.PARITY;TOM.JIT1;TOM.BRANCH,explicit document crosswalk
+SRC-A:literal-chain,A03,kinematic calculus stored in the LUT,direct document motif,TOM.DELTA1;TOM.DELTA2;TOM.KIN2,explicit document crosswalk
+SRC-A:literal-chain,A04,analytic cone sweep followed by pyramid/circle/sphere projection,direct document motif,TOM.CONE;TOM.SWEEP;TOM.PROJECT,explicit document crosswalk
+SRC-A:literal-chain,A05,binary L-system routing after parity and before projection,direct document motif,TOM.LSYS;TOM.BRANCH;TOM.PROJECT,explicit document crosswalk
+SRC-A:literal-chain,A06,strict operator precedence of the chained prompt,direct document motif,TOM.SEQ;TOM.QUERY,explicit document crosswalk
+SRC-D:ben-burger,D01,zero-based offset versus one-based ordinal,direct document motif,TOM.INDEX0,explicit document crosswalk
+SRC-D:ben-burger,D02,split lower-case phi / double-D fold around a straight hinge,direct document motif,TOM.PHI;TOM.HINGE,explicit document crosswalk
+SRC-D:ben-burger,D03,slight overlap interpreted as shared lens domain,direct document motif,TOM.OVERLAP,explicit document crosswalk
+SRC-D:ben-burger,D04,one-dimensional timeline as an address sequence,direct document motif,TOM.TIME;TOM.INDEX0,explicit document crosswalk
+SRC-E:19-dialogue,E01,radix digit thresholds at powers of the base,direct document motif,TOM.RADIX,explicit document crosswalk
+SRC-E:19-dialogue,E02,"19 equals binary 10011 with active positions 0,1,4",direct document motif,TOM.ACTIVE,explicit document crosswalk
+SRC-E:19-dialogue,E03,three declared Dutch segments map to three pulses,direct document motif,TOM.PULSE,explicit document crosswalk
+SRC-E:19-dialogue,E04,three pulses projected as a triangle while numeric identity remains 19,direct document motif,TOM.PULSE;TOM.PROJECT,explicit document crosswalk
+SRC-E:19-dialogue,E05,log-encoded polar LUT with one-bit jitter and kinematic change-of-change,direct document motif,TOM.LOGPOLAR;TOM.JIT1;TOM.KIN2,explicit document crosswalk
+SRC-E:19-dialogue,E06,Klein non-orientable wrap as chirality transport,direct document motif,TOM.KLEIN;TOM.HINGE,explicit document crosswalk
+SRC-F:chronological-synthesis,F01,finite grammar generates a directly queryable relation state,direct document motif,TOM.DEF;TOM.LSYS;TOM.QUERY,explicit document crosswalk
+SRC-F:chronological-synthesis,F02,local spherical or radial-angular supports organize relevance,direct document motif,TOM.SPHERE;TOM.CONE;TOM.LOGPOLAR,explicit document crosswalk
+SRC-F:chronological-synthesis,F03,compatibility and relation crossing select the next transition,direct document motif,TOM.RULE;TOM.TRANSITION,explicit document crosswalk
+SRC-F:chronological-synthesis,F04,identity persists by lineage rather than instantaneous coordinates,direct document motif,TOM.LINEAGE,explicit document crosswalk
+SRC-F:chronological-synthesis,F05,projection is downstream and non-authoritative,direct document motif,TOM.PROJECT,explicit document crosswalk
+SRC-F:chronological-synthesis,F06,state-at-time and next-event are primary query forms,direct document motif,TOM.QUERY;TOM.TRACE,explicit document crosswalk
+SRC-H:seed-genome,H01,TOM1 seed literal is the root provenance value,direct document motif,TOM.DEF;TOM.LINEAGE,explicit document crosswalk
+SRC-H:seed-genome,H02,arbitrary literal definitions are packed as a content-addressed dependency graph,direct document motif,TOM.DEF;TOM.REF;TOM.SEQ,explicit document crosswalk
+SRC-H:seed-genome,H03,formal definition output lowers to deterministic emitted bytes,direct document motif,TOM.DEF;TOM.EMIT;TOM.TRACE,explicit document crosswalk

@@ -1,0 +1,29 @@
+symbol,meaning,type
+D,finite domain of definable LUT keys,set of 64-bit keys
+d,content-addressed definition node,typed record
+q_n,TOMAGI state at tick n,State64
+rho,log-radius coordinate,"20-bit periodic integer; decoded range profile [-20,0]"
+theta,polar angle,18-bit periodic integer
+X,zero-based modular timeline tick,14-bit periodic integer
+phi,lower-case phase/hoop/hinge coordinate,12-bit periodic integer
+Phi,capital golden ratio,optional constant; never aliases runtime phi
+Delta q,first discrete difference,velocity
+Delta^2 q,second discrete difference,acceleration stored in a cell
+Delta^2 phi,change-of-change of lower-case phi,cell arg3 under KIN2
+"K=(K_hi,K_lo)",contiguous 64-bit log-polar key,two u32 words
+LUT_Z,finite sorted table of SDF0 cells,Cell48[]
+Z_D,literal SDF0 zero-field,"0 on D, bottom outside D"
+P,one-bit parity reduction,popcount mod 2
+j,deterministic parity/jitter bit,0 or 1
+sigma,signed jitter selector,"2j-1 in {-1,+1}"
+T_c,cone slant length,real-valued compile-time geometry parameter
+alpha,cone half-angle,compile-time or quantized angular width
+C,cone relation/support,signed relation
+S,sphere/shell relation/support,signed relation
+W_K,Klein or half-turn wrap map,state transform
+b,branch bit,0 or 1
+i,compiled cell index,u32
+ell,lineage checksum,u32
+y,output token,u32
+Pi,projection/tag operator,symbolic downstream output
+bottom,undefined/non-member,not a numeric SDF value

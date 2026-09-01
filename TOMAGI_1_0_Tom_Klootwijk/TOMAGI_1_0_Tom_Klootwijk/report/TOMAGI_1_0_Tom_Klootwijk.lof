@@ -1,0 +1,9 @@
+\contentsline {figure}{\numberline {1}{\ignorespaces A compiled domain replaces learned prediction with explicit deterministic execution.\relax }}{2}{figure.caption.1}%
+\contentsline {figure}{\numberline {2}{\ignorespaces The shared 64-byte state and 48-byte cell ABI.\relax }}{3}{figure.caption.2}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Log-radius steps are additive in $\rho $ and multiplicative in real radius. The origin remains an explicit core.\relax }}{4}{figure.caption.3}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Canonical contiguous key and the distinct exact Morton key.\relax }}{5}{figure.caption.4}%
+\contentsline {figure}{\numberline {5}{\ignorespaces The finite LUT domain is the zero-level set. Each defined cell additionally carries an opcode and two branch successors.\relax }}{6}{figure.caption.5}%
+\contentsline {figure}{\numberline {6}{\ignorespaces The reflective radial gluing and the separately selectable source half-turn.\relax }}{8}{figure.caption.6}%
+\contentsline {figure}{\numberline {7}{\ignorespaces The binary substrate is independent of CPU or GPU implementation.\relax }}{11}{figure.caption.7}%
+\contentsline {figure}{\numberline {8}{\ignorespaces The exact reference trace and final state.\relax }}{14}{figure.caption.8}%
+\contentsline {figure}{\numberline {9}{\ignorespaces The number, binary feature set, language profile and geometry remain typed, separate objects.\relax }}{15}{figure.caption.9}%

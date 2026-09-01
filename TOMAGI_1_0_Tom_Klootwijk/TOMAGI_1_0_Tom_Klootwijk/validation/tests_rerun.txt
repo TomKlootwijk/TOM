@@ -1,0 +1,76 @@
+tee-check
+{
+  "artifact_sha256": "f0015ea8374b5cca80600aaedf4594e4f7c3e0370d9d0a39f0ec57fb0383f5e0",
+  "bytes": 10,
+  "emissions": 4,
+  "executed_ticks": 5,
+  "final_lineage": 1010550329,
+  "output": "C:\\Users\\Tom\\AppData\\Local\\Temp\\tmp0n3z9mma\\artifact.bin"
+}
+test_foreign_elf_is_not_selected_on_windows (test_build_validation.NativeBackendTests.test_foreign_elf_is_not_selected_on_windows) ... ok
+test_foreign_legacy_backend_is_hidden_and_restored (test_build_validation.NativeBackendTests.test_foreign_legacy_backend_is_hidden_and_restored) ... ok
+test_package_local_generation_is_deterministic_without_external_sources (test_build_validation.SpecAssetBuildTests.test_package_local_generation_is_deterministic_without_external_sources) ... ok
+test_portable_tee_returns_child_failure_status (test_build_validation.ValidationToolTests.test_portable_tee_returns_child_failure_status) ... ok
+test_scope_note_describes_actual_tool_modes (test_build_validation.ValidationToolTests.test_scope_note_describes_actual_tool_modes) ... ok
+test_validation_dependencies_are_declared (test_build_validation.ValidationToolTests.test_validation_dependencies_are_declared) ... ok
+test_arbitrary_binary_bytes_round_trip_through_emit_cells (test_native_projection.LiteralMaterializationTests.test_arbitrary_binary_bytes_round_trip_through_emit_cells) ... ok
+test_host_contains_no_artifact_or_shape_semantics (test_native_projection.LiteralMaterializationTests.test_host_contains_no_artifact_or_shape_semantics) ... ok
+test_manifest_is_deterministic_and_format_agnostic (test_native_projection.LiteralMaterializationTests.test_manifest_is_deterministic_and_format_agnostic) ... ok
+test_materialize_cli_writes_exact_bytes_trace_and_manifest (test_native_projection.LiteralMaterializationTests.test_materialize_cli_writes_exact_bytes_trace_and_manifest) ... ok
+test_packing_profile_is_explicit_and_preserves_halt (test_native_projection.LiteralMaterializationTests.test_packing_profile_is_explicit_and_preserves_halt) ... ok
+test_payload_order_is_big_endian_and_length_delimited (test_native_projection.LiteralMaterializationTests.test_payload_order_is_big_endian_and_length_delimited) ... ok
+test_program_without_emit_is_rejected (test_native_projection.LiteralMaterializationTests.test_program_without_emit_is_rejected) ... ok
+setUpClass (test_runtime_conformance.CBackendConformanceTests) ... skipped 'C backend has not been built'
+test_python_loader_rejects_each_nonzero_reserved_word (test_runtime_conformance.LoaderConformanceTests.test_python_loader_rejects_each_nonzero_reserved_word) ... ok
+test_python_loader_rejects_opcode_outside_0_through_15 (test_runtime_conformance.LoaderConformanceTests.test_python_loader_rejects_opcode_outside_0_through_15) ... ok
+test_extreme_operands_have_defined_wrapped_results (test_runtime_conformance.PythonArithmeticConformanceTests.test_extreme_operands_have_defined_wrapped_results) ... ok
+test_time_wraps_to_i32_before_floor_winding (test_runtime_conformance.PythonArithmeticConformanceTests.test_time_wraps_to_i32_before_floor_winding) ... ok
+test_raw_cell_documents_remain_backward_compatible (test_state_representations.DefinitionGenomeAlgebraTests.test_raw_cell_documents_remain_backward_compatible) ... ok
+test_utf8_hex_concat_and_repeat_have_exact_total_semantics (test_state_representations.DefinitionGenomeAlgebraTests.test_utf8_hex_concat_and_repeat_have_exact_total_semantics) ... ok
+test_declared_dependency_hashes_are_enforced (test_state_representations.StateOrbitTests.test_declared_dependency_hashes_are_enforced) ... ok
+test_definition_driven_cells_compile_byte_identically (test_state_representations.StateOrbitTests.test_definition_driven_cells_compile_byte_identically) ... ok
+test_definition_fields_are_causal_and_duplicate_fields_must_match (test_state_representations.StateOrbitTests.test_definition_fields_are_causal_and_duplicate_fields_must_match) ... ok
+test_emit_samples_span_each_state_dimension (test_state_representations.StateOrbitTests.test_emit_samples_span_each_state_dimension) ... ok
+test_every_cycle_executes_the_complete_non_halting_literal_chain (test_state_representations.StateOrbitTests.test_every_cycle_executes_the_complete_non_halting_literal_chain) ... ok
+test_seed_is_exact_and_transitively_authenticates_the_orbit (test_state_representations.StateOrbitTests.test_seed_is_exact_and_transitively_authenticates_the_orbit) ... ok
+test_all_documents_match_schema (test_state_representations.StateRepresentationTests.test_all_documents_match_schema) ... ok
+test_authenticated_paths_and_hashes_name_the_exact_orbit_chain (test_state_representations.StateRepresentationTests.test_authenticated_paths_and_hashes_name_the_exact_orbit_chain) ... ok
+test_authenticated_source_must_compile_to_the_authenticated_program (test_state_representations.StateRepresentationTests.test_authenticated_source_must_compile_to_the_authenticated_program) ... ok
+test_csv_rows_are_the_four_unmodified_state64_fields (test_state_representations.StateRepresentationTests.test_csv_rows_are_the_four_unmodified_state64_fields) ... ok
+test_each_root_is_transitively_anchored_to_the_exact_seed (test_state_representations.StateRepresentationTests.test_each_root_is_transitively_anchored_to_the_exact_seed) ... ok
+test_every_projected_number_is_declared_affine_state64_data (test_state_representations.StateRepresentationTests.test_every_projected_number_is_declared_affine_state64_data) ... ok
+test_host_evaluator_has_no_representation_specific_vocabulary (test_state_representations.StateRepresentationTests.test_host_evaluator_has_no_representation_specific_vocabulary) ... ok
+test_json_to_tmg_and_emit_bytes_are_byte_deterministic (test_state_representations.StateRepresentationTests.test_json_to_tmg_and_emit_bytes_are_byte_deterministic) ... ok
+test_no_pre_authored_numeric_artifact_is_stored_in_the_genomes (test_state_representations.StateRepresentationTests.test_no_pre_authored_numeric_artifact_is_stored_in_the_genomes) ... ok
+test_obj_vertices_and_topology_are_the_declared_rho_theta_phi_projection (test_state_representations.StateRepresentationTests.test_obj_vertices_and_topology_are_the_declared_rho_theta_phi_projection) ... ok
+test_svg_points_are_the_declared_theta_rho_projection (test_state_representations.StateRepresentationTests.test_svg_points_are_the_declared_theta_rho_projection) ... ok
+test_canonical_hash_is_stable_and_semantic (test_tomagi.CanonicalTests.test_canonical_hash_is_stable_and_semantic) ... ok
+test_definition_hash_is_required (test_tomagi.CanonicalTests.test_definition_hash_is_required) ... ok
+test_definition_order_and_cycle_rejection (test_tomagi.CanonicalTests.test_definition_order_and_cycle_rejection) ... ok
+test_c_backend_matches_python_when_available (test_tomagi.EndToEndTests.test_c_backend_matches_python_when_available) ... skipped 'C backend or compiled example not built'
+test_catalog_and_crosswalk_cover_project_sources (test_tomagi.EndToEndTests.test_catalog_and_crosswalk_cover_project_sources) ... ok
+test_compiled_exact19_accept_and_reject (test_tomagi.EndToEndTests.test_compiled_exact19_accept_and_reject) ... ok
+test_nineteen_source_projection (test_tomagi.EndToEndTests.test_nineteen_source_projection) ... ok
+test_polar_loop_reference_result (test_tomagi.EndToEndTests.test_polar_loop_reference_result) ... ok
+test_binary_roundtrip (test_tomagi.FormatCompilerTests.test_binary_roundtrip) ... ok
+test_compile_rejects_bad_hash (test_tomagi.FormatCompilerTests.test_compile_rejects_bad_hash) ... ok
+test_example_schema (test_tomagi.FormatCompilerTests.test_example_schema) ... ok
+test_record_sizes (test_tomagi.FormatCompilerTests.test_record_sizes) ... ok
+test_contiguous_reference_key (test_tomagi.KeyTests.test_contiguous_reference_key) ... ok
+test_modular_roundtrip (test_tomagi.KeyTests.test_modular_roundtrip) ... ok
+test_morton_reference_key (test_tomagi.KeyTests.test_morton_reference_key) ... ok
+test_cone_relation (test_tomagi.PrimitiveOperatorTests.test_cone_relation) ... ok
+test_jit1_is_deterministic_and_bipolar (test_tomagi.PrimitiveOperatorTests.test_jit1_is_deterministic_and_bipolar) ... ok
+test_kin2_change_of_change (test_tomagi.PrimitiveOperatorTests.test_kin2_change_of_change) ... ok
+test_lsystem_chirality (test_tomagi.PrimitiveOperatorTests.test_lsystem_chirality) ... ok
+test_mix32_is_reproducible (test_tomagi.PrimitiveOperatorTests.test_mix32_is_reproducible) ... ok
+test_phi_half_branch (test_tomagi.PrimitiveOperatorTests.test_phi_half_branch) ... ok
+test_reflective_klein_wrap (test_tomagi.PrimitiveOperatorTests.test_reflective_klein_wrap) ... ok
+test_sdf0_is_zero_only_on_declared_domain (test_tomagi.PrimitiveOperatorTests.test_sdf0_is_zero_only_on_declared_domain) ... ok
+test_source_half_turn_is_distinct (test_tomagi.PrimitiveOperatorTests.test_source_half_turn_is_distinct) ... ok
+test_sphere_shell_relation (test_tomagi.PrimitiveOperatorTests.test_sphere_shell_relation) ... ok
+
+----------------------------------------------------------------------
+Ran 61 tests in 0.632s
+
+OK (skipped=2)

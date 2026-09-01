@@ -1,0 +1,13 @@
+word,byte_offset,name,type,meaning
+0,0,key_hi,u32,canonical key bits 63..32
+1,4,key_lo,u32,canonical key bits 31..0
+2,8,opcode,u32,opcode 0..15
+3,12,flags,u32,generic and opcode-specific flags
+4,16,arg0,i32,operator argument 0
+5,20,arg1,i32,operator argument 1
+6,24,arg2,i32,operator argument 2
+7,28,arg3,i32,operator argument 3
+8,32,next0,u32,successor for branch 0
+9,36,next1,u32,successor for branch 1
+10,40,payload,u32,literal/output/provenance token
+11,44,aux,u32,literal/hash salt/operator auxiliary

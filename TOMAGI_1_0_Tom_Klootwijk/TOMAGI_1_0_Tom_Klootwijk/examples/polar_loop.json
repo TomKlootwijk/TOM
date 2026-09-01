@@ -1,0 +1,527 @@
+{
+  "$schema": "../spec/tomagi.schema.json",
+  "tomagi_version": "1.0.0",
+  "title": "TOMAGI literal SDF0 log-polar kinematic loop",
+  "seed": 19900710,
+  "default_ticks": 10,
+  "entry": "cell:sdf0",
+  "initial_state": {
+    "rho": 1048568,
+    "theta": 131072,
+    "tick": 0,
+    "phi": 2000,
+    "vrho": 16,
+    "vtheta": 0,
+    "vtick": 0,
+    "vphi": 0,
+    "orientation": 0,
+    "sheet": 0,
+    "branch": 0,
+    "lineage": "0x12345678"
+  },
+  "definitions": [
+    {
+      "id": "op:sdf0-v1",
+      "kind": "zero_field",
+      "domain": "defined_cell",
+      "codomain": "zero_relation",
+      "evaluation_phase": 0,
+      "dependencies": [],
+      "parameters": {
+        "value": 0
+      },
+      "provenance": {
+        "source": "1bit-PDF pp.16-18; SCLP 3.6.2"
+      },
+      "content_hash": "sha256:e913ab7ec1ead0448ce75599bc0b244deb33d05d1fa3e1a41654e9e019ef9631"
+    },
+    {
+      "id": "op:jitter1-v1",
+      "kind": "one_bit_jitter",
+      "domain": "key_tick_seed",
+      "codomain": "signed_unit_branch",
+      "evaluation_phase": 1,
+      "dependencies": [
+        "op:sdf0-v1"
+      ],
+      "parameters": {
+        "hash": "mix32",
+        "parity": "popcount mod 2"
+      },
+      "provenance": {
+        "source": "1bit-PDF; SCLP jitter bit"
+      },
+      "content_hash": "sha256:df249c06cd5f5b44cb0141b56791c7e79e65deb9c0bd66a9b6e53f21f52aaaba"
+    },
+    {
+      "id": "op:kin2-v1",
+      "kind": "discrete_kinematics",
+      "domain": "state_cell",
+      "codomain": "state",
+      "evaluation_phase": 2,
+      "dependencies": [
+        "op:jitter1-v1"
+      ],
+      "parameters": {
+        "update": "v'=v+a; q'=q+v'"
+      },
+      "provenance": {
+        "source": "kinematic calculus packed into LUT"
+      },
+      "content_hash": "sha256:0429b35940b05c6148da77c0280c142e3f24b277ea3217be79154a520815706d"
+    },
+    {
+      "id": "op:phi-v1",
+      "kind": "lower_case_phi_phase",
+      "domain": "periodic_phase_state",
+      "codomain": "branch_state",
+      "evaluation_phase": 3,
+      "dependencies": [
+        "op:kin2-v1"
+      ],
+      "parameters": {
+        "update": "phi'=(phi+delta) mod 2^12",
+        "branch": "upper/lower half-circle"
+      },
+      "provenance": {
+        "source": "lower-case phi periodic hinge contract"
+      },
+      "content_hash": "sha256:2d3079b1fe7a3c80b743ba9c8f22f9471807586baf7a860c93bd5b56ffdf9bd2"
+    },
+    {
+      "id": "op:klein-v1",
+      "kind": "reflective_klein_wrap",
+      "domain": "log_polar_state",
+      "codomain": "log_polar_state",
+      "evaluation_phase": 4,
+      "dependencies": [
+        "op:phi-v1"
+      ],
+      "parameters": {
+        "theta": "half_turn-theta",
+        "phi": "-phi",
+        "orientation": "xor1"
+      },
+      "provenance": {
+        "source": "SCLP 3.6.2 reflective Klein profile"
+      },
+      "content_hash": "sha256:a720d5a7efd5821981fae0e49f2535a12e8a4c86870e8ef584ffe9825f420b49"
+    },
+    {
+      "id": "op:hinge-v1",
+      "kind": "parity_hinge",
+      "domain": "branch_state",
+      "codomain": "state",
+      "evaluation_phase": 5,
+      "dependencies": [
+        "op:klein-v1"
+      ],
+      "parameters": {
+        "map0": "identity",
+        "map1": "declared delta"
+      },
+      "provenance": {
+        "source": "UGTS 3.6 hinge calculus"
+      },
+      "content_hash": "sha256:7fbdf6ae9553be01b25706bb06b2605d370263c7c8cc7463883657882ad98495"
+    },
+    {
+      "id": "op:lsys-v1",
+      "kind": "binary_lsystem",
+      "domain": "branch_state",
+      "codomain": "state",
+      "evaluation_phase": 6,
+      "dependencies": [
+        "op:hinge-v1"
+      ],
+      "parameters": {
+        "turn": "signed lower-case phi phase",
+        "scale": "dyadic"
+      },
+      "provenance": {
+        "source": "SCLP 3.6.2 bounded binary L-system"
+      },
+      "content_hash": "sha256:c1492ba5b994a016cc0bd36fc54c328c503cecc3a7ad60c20afa38d27e5a6114"
+    },
+    {
+      "id": "op:cone-v1",
+      "kind": "log_polar_cone_relation",
+      "domain": "packed_chart",
+      "codomain": "signed_integer_relation",
+      "evaluation_phase": 7,
+      "dependencies": [
+        "op:lsys-v1"
+      ],
+      "parameters": {
+        "relation": "max(radial_interval, angular_interval)"
+      },
+      "provenance": {
+        "source": "analytic sweeping cone / cone support"
+      },
+      "content_hash": "sha256:1d0138fa588acf92a145602654e665f337d2768ce077705dee6ef61150ed9973"
+    },
+    {
+      "id": "op:project-v1",
+      "kind": "symbolic_projection",
+      "domain": "classified_state",
+      "codomain": "projection_token",
+      "evaluation_phase": 8,
+      "dependencies": [
+        "op:cone-v1"
+      ],
+      "parameters": {
+        "projection": "branch-selected pyramid or circle token"
+      },
+      "provenance": {
+        "source": "Pi projection downstream of analytic cone"
+      },
+      "content_hash": "sha256:5a01717f2b9e367f2f448ae30900bb55e60b51f2cad962c2eb31ca3e774b0376"
+    },
+    {
+      "id": "op:emit-v1",
+      "kind": "symbol_emit",
+      "domain": "projected_state",
+      "codomain": "token",
+      "evaluation_phase": 9,
+      "dependencies": [
+        "op:project-v1"
+      ],
+      "parameters": {},
+      "provenance": {
+        "source": "query emission after projection"
+      },
+      "content_hash": "sha256:49ed03315e214ed96876b6dfb2406872759e3ad7bcc0327859b5fe5476f4fc5e"
+    }
+  ],
+  "cells": [
+    {
+      "id": "cell:sdf0",
+      "key": {
+        "rho": 0,
+        "theta": 0,
+        "tick": 0,
+        "phi": 0
+      },
+      "definition_ref": "op:sdf0-v1",
+      "op": "SDF0",
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "next": [
+        "cell:jitter",
+        "cell:jitter"
+      ],
+      "payload": "0x5a45524f",
+      "aux": 1
+    },
+    {
+      "id": "cell:jitter",
+      "key": {
+        "rho": 1,
+        "theta": 0,
+        "tick": 0,
+        "phi": 0
+      },
+      "definition_ref": "op:jitter1-v1",
+      "op": "JIT1",
+      "flags": 7,
+      "args": [
+        3,
+        0,
+        0,
+        0
+      ],
+      "next": [
+        "cell:kin-minus",
+        "cell:kin-plus"
+      ],
+      "payload": "0x4a495431",
+      "aux": "0x9e3779b9"
+    },
+    {
+      "id": "cell:kin-minus",
+      "key": {
+        "rho": 2,
+        "theta": 0,
+        "tick": 0,
+        "phi": 0
+      },
+      "definition_ref": "op:kin2-v1",
+      "op": "KIN2",
+      "args": [
+        0,
+        -7,
+        1,
+        -2
+      ],
+      "next": [
+        "cell:phi",
+        "cell:phi"
+      ],
+      "payload": "0x4b494e2d",
+      "aux": 2
+    },
+    {
+      "id": "cell:kin-plus",
+      "key": {
+        "rho": 3,
+        "theta": 0,
+        "tick": 0,
+        "phi": 0
+      },
+      "definition_ref": "op:kin2-v1",
+      "op": "KIN2",
+      "args": [
+        0,
+        7,
+        1,
+        2
+      ],
+      "next": [
+        "cell:phi",
+        "cell:phi"
+      ],
+      "payload": "0x4b494e2b",
+      "aux": 3
+    },
+    {
+      "id": "cell:phi",
+      "key": {
+        "rho": 4,
+        "theta": 0,
+        "tick": 0,
+        "phi": 0
+      },
+      "definition_ref": "op:phi-v1",
+      "op": "PHI",
+      "flags": 32,
+      "args": [
+        64,
+        0,
+        0,
+        0
+      ],
+      "next": [
+        "cell:klein",
+        "cell:klein"
+      ],
+      "payload": "0x50484920",
+      "aux": 4
+    },
+    {
+      "id": "cell:klein",
+      "key": {
+        "rho": 5,
+        "theta": 0,
+        "tick": 0,
+        "phi": 0
+      },
+      "definition_ref": "op:klein-v1",
+      "op": "KLEIN",
+      "flags": 2,
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "next": [
+        "cell:hinge-even",
+        "cell:hinge-odd"
+      ],
+      "payload": "0x4b4c4549",
+      "aux": 5
+    },
+    {
+      "id": "cell:hinge-even",
+      "key": {
+        "rho": 6,
+        "theta": 0,
+        "tick": 0,
+        "phi": 0
+      },
+      "definition_ref": "op:hinge-v1",
+      "op": "HINGE",
+      "flags": 1,
+      "args": [
+        0,
+        32,
+        0,
+        16
+      ],
+      "next": [
+        "cell:lsys",
+        "cell:lsys"
+      ],
+      "payload": "0x484e4730",
+      "aux": 6
+    },
+    {
+      "id": "cell:hinge-odd",
+      "key": {
+        "rho": 7,
+        "theta": 0,
+        "tick": 0,
+        "phi": 0
+      },
+      "definition_ref": "op:hinge-v1",
+      "op": "HINGE",
+      "flags": 1,
+      "args": [
+        0,
+        32,
+        0,
+        16
+      ],
+      "next": [
+        "cell:lsys",
+        "cell:lsys"
+      ],
+      "payload": "0x484e4731",
+      "aux": 7
+    },
+    {
+      "id": "cell:lsys",
+      "key": {
+        "rho": 8,
+        "theta": 0,
+        "tick": 0,
+        "phi": 0
+      },
+      "definition_ref": "op:lsys-v1",
+      "op": "LSYS",
+      "args": [
+        64,
+        1,
+        0,
+        0
+      ],
+      "next": [
+        "cell:cone",
+        "cell:cone"
+      ],
+      "payload": "0x4c535953",
+      "aux": 8
+    },
+    {
+      "id": "cell:cone",
+      "key": {
+        "rho": 9,
+        "theta": 0,
+        "tick": 0,
+        "phi": 0
+      },
+      "definition_ref": "op:cone-v1",
+      "op": "CONE",
+      "args": [
+        0,
+        1048575,
+        131072,
+        65536
+      ],
+      "next": [
+        "cell:project-pyramid",
+        "cell:project-circle"
+      ],
+      "payload": "0x434f4e45",
+      "aux": 9
+    },
+    {
+      "id": "cell:project-pyramid",
+      "key": {
+        "rho": 10,
+        "theta": 0,
+        "tick": 0,
+        "phi": 0
+      },
+      "definition_ref": "op:project-v1",
+      "op": "PROJECT",
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "next": [
+        "cell:emit-pyramid",
+        "cell:emit-pyramid"
+      ],
+      "payload": "0x50595241",
+      "aux": 10
+    },
+    {
+      "id": "cell:project-circle",
+      "key": {
+        "rho": 11,
+        "theta": 0,
+        "tick": 0,
+        "phi": 0
+      },
+      "definition_ref": "op:project-v1",
+      "op": "PROJECT",
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "next": [
+        "cell:emit-circle",
+        "cell:emit-circle"
+      ],
+      "payload": "0x43495243",
+      "aux": 11
+    },
+    {
+      "id": "cell:emit-pyramid",
+      "key": {
+        "rho": 12,
+        "theta": 0,
+        "tick": 0,
+        "phi": 0
+      },
+      "definition_ref": "op:emit-v1",
+      "op": "EMIT",
+      "flags": 1,
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "next": [
+        "cell:emit-pyramid",
+        "cell:emit-pyramid"
+      ],
+      "payload": "0x50595241",
+      "aux": 12
+    },
+    {
+      "id": "cell:emit-circle",
+      "key": {
+        "rho": 13,
+        "theta": 0,
+        "tick": 0,
+        "phi": 0
+      },
+      "definition_ref": "op:emit-v1",
+      "op": "EMIT",
+      "flags": 1,
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "next": [
+        "cell:emit-circle",
+        "cell:emit-circle"
+      ],
+      "payload": "0x43495243",
+      "aux": 13
+    }
+  ]
+}

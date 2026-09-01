@@ -1,0 +1,115 @@
+{
+  "schema": "TOMAGI-PRECEDENCE-1.0",
+  "functional_macro": "Pi(Cone(LSYS(Branch(Klein(phi(KIN2(JIT1(LUT[SDF0](K)))))))))",
+  "right_to_left_execution": [
+    "TOM.SDF0",
+    "TOM.JIT1",
+    "TOM.KIN2",
+    "TOM.PHI",
+    "TOM.KLEIN",
+    "TOM.BRANCH",
+    "TOM.LSYS",
+    "TOM.CONE",
+    "TOM.PROJECT"
+  ],
+  "literal_cell_execution": [
+    "TOM.SDF0",
+    "TOM.JIT1",
+    "TOM.KIN2",
+    "TOM.PHI",
+    "TOM.KLEIN",
+    "TOM.HINGE",
+    "TOM.LSYS",
+    "TOM.CONE",
+    "TOM.PROJECT",
+    "TOM.EMIT"
+  ],
+  "serialized_order": [
+    {
+      "phase": 0,
+      "name": "resolve",
+      "operators": [
+        "TOM.DEF",
+        "TOM.REF",
+        "TOM.SEQ"
+      ]
+    },
+    {
+      "phase": 1,
+      "name": "encode-and-fetch",
+      "operators": [
+        "TOM.INDEX0",
+        "TOM.LOGPOLAR",
+        "TOM.KEY.C",
+        "TOM.FETCH"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "literal-core",
+      "operators": [
+        "TOM.SDF0",
+        "TOM.PARITY",
+        "TOM.JIT1"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "kinematic-change-of-change",
+      "operators": [
+        "TOM.DELTA1",
+        "TOM.DELTA2",
+        "TOM.KIN2",
+        "TOM.PHI",
+        "TOM.TIME"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "topology",
+      "operators": [
+        "TOM.KLEIN",
+        "TOM.MOBIUS"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "branch-routing-and-hinges",
+      "operators": [
+        "TOM.RADIX",
+        "TOM.BRANCH",
+        "TOM.HINGE",
+        "TOM.TRANSITION"
+      ]
+    },
+    {
+      "phase": 6,
+      "name": "grammar",
+      "operators": [
+        "TOM.LSYS"
+      ]
+    },
+    {
+      "phase": 7,
+      "name": "relations",
+      "operators": [
+        "TOM.CONE",
+        "TOM.SWEEP",
+        "TOM.CIRCLE",
+        "TOM.SPHERE",
+        "TOM.OVERLAP"
+      ]
+    },
+    {
+      "phase": 8,
+      "name": "output-and-replay",
+      "operators": [
+        "TOM.PROJECT",
+        "TOM.EMIT",
+        "TOM.LINEAGE",
+        "TOM.TRACE"
+      ]
+    }
+  ],
+  "rule": "Functional notation composes right-to-left. Binary cell files execute one stored cell left-to-right per tick. Branch is realized by next0/next1 hinge routing, Pi by PROJECT, and EMIT terminates the serialized example. The stored sequence is authoritative."
+}

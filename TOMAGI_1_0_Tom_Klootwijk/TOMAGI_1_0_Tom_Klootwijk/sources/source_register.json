@@ -1,0 +1,61 @@
+{
+  "schema": "TOMAGI-SOURCE-REGISTER-1.0",
+  "sources": [
+    {
+      "id": "SRC-A",
+      "title": "1bit parity / lower-case phi / log-polar LUT / cone / Klein / L-system dialogue",
+      "file": "1bit-parity-bit-lower-case-phi-jitter-log-encoded-polar-LUT-analytic-sweeping-cone-T-a-side-view-of-the-pyramid-a-circle-a-sphere-the-apex-binary-.pdf",
+      "sha256": "ede0fd37504b07fae208d1d7c32ff281b4bdc85661d2ae0b5adb5a9cf9833368",
+      "role": "Literal SDF0-in-LUT chain and precedence."
+    },
+    {
+      "id": "SRC-B",
+      "title": "UGTS-KC 3.6.2 SCLP",
+      "file": "UGTS_KC_3_6_2_SCLP_Tom_Klootwijk.pdf",
+      "sha256": "6987490a0a7b7ed76b0091057a2e69ab831fee786434a0b4219782923f5ea580",
+      "role": "Cone, log-polar kinematics, jitter, phi, Klein wrap, L-system, 64-bit keys."
+    },
+    {
+      "id": "SRC-C",
+      "title": "UGTS-KC 3.6 literal referential substrate",
+      "file": "UGTS_KC_3_6_Tom_Klootwijk.pdf",
+      "sha256": "e21433cd8378368dafe4ae278d3c9c364725e45ae7fd75b743328bd2d6003a46",
+      "role": "Definition records, hinges, operation order, active-bit and pulse examples."
+    },
+    {
+      "id": "SRC-D",
+      "title": "21 Ben Burgers Strikes Back",
+      "file": "21BenBurgersStrikesBackTelNetNiet.pdf",
+      "sha256": "1ab4f04669ded1aa2308c28ce634e487fa4c26ba0a82bfe436e606388ef0f6dd",
+      "role": "Zero-based timeline, split-phi fold, overlap lens and connector interpretation."
+    },
+    {
+      "id": "SRC-E",
+      "title": "19 / binary threshold / Dutch phonetic dialogue",
+      "file": "waarom heeft 19 drie lettergrepen en in binaire waarom het kantelpunt tussen 1 en 2 cijfers geometrisch.pdf",
+      "sha256": "6e6150026e728a6857b9119d9474813329d5dacefb11f7a4da86ff9be7db58de",
+      "role": "Active bits, pulse triangle, log-polar and Klein motifs."
+    },
+    {
+      "id": "SRC-F",
+      "title": "Chronological Synthesis of the Spherical Substrate Line",
+      "file": "Chronological Synthesis of the Spherical Substrate Line.pdf",
+      "sha256": "9bacfe071a64951fb412798a036e08f9d445b83087acb001b660e64d6036e052",
+      "role": "Query-first relation, transition and lineage synthesis."
+    },
+    {
+      "id": "SRC-G",
+      "title": "UGTS spatial distill and GSP4 package",
+      "file": "ugts_spatial_distill_v0.1.0 (2).zip",
+      "sha256": "e2149593ef18c3b52c565276d920eef3e2059a5a713243d1c90526b0e6501313",
+      "role": "211-mechanism catalog, CPU oracle, GPU ABI/shader sources and deterministic event authority."
+    },
+    {
+      "id": "SRC-H",
+      "title": "TOMAGI literal seed genome",
+      "file": "TOM_seed_genome_2026-09-01.txt",
+      "sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+      "role": "Authoritative TOM1 seed literal and root provenance for executable content-addressed definition genomes."
+    }
+  ]
+}

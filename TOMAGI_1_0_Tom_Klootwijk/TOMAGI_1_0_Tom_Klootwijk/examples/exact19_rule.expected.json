@@ -1,0 +1,60 @@
+{
+  "state": {
+    "branch": 1,
+    "cell": 2,
+    "lineage": 4102348696,
+    "orientation": 0,
+    "output": 19,
+    "phi": 0,
+    "residual": 0,
+    "rho": 19,
+    "sheet": 0,
+    "status": 25,
+    "theta": 0,
+    "tick": 0,
+    "vphi": 0,
+    "vrho": 0,
+    "vtheta": 0,
+    "vtick": 0
+  },
+  "trace": [
+    {
+      "branch": 1,
+      "cell_after": 2,
+      "cell_before": 0,
+      "key_hi": 77824,
+      "key_lo": 0,
+      "lineage": 291744817,
+      "opcode": 7,
+      "orientation": 0,
+      "output": 0,
+      "phi": 0,
+      "residual": 0,
+      "rho": 19,
+      "sheet": 0,
+      "status": 16,
+      "step": 0,
+      "theta": 0,
+      "tick": 0
+    },
+    {
+      "branch": 1,
+      "cell_after": 2,
+      "cell_before": 2,
+      "key_hi": 77824,
+      "key_lo": 0,
+      "lineage": 4102348696,
+      "opcode": 14,
+      "orientation": 0,
+      "output": 19,
+      "phi": 0,
+      "residual": 0,
+      "rho": 19,
+      "sheet": 0,
+      "status": 25,
+      "step": 1,
+      "theta": 0,
+      "tick": 0
+    }
+  ]
+}
