@@ -1,0 +1,17 @@
+metric,value
+query_count,5000
+seed,20260831
+exact_hit_count,2502
+endpoint_discrete_missed_hit_count,2500
+ca_false_negatives,0
+ca_false_positives,0
+ca_inconclusive,0
+exact_seconds,0.07791383200037671
+ca_seconds,0.36241271200015035
+exact_queries_per_second,64173.457672776574
+ca_queries_per_second,13796.425551424712
+ca_mean_iterations,7.332
+ca_max_iterations,43
+ca_max_toi_upper_error,1.7885707470632894e-08
+ca_mean_toi_upper_error,3.3615497023321673e-10
+environment,CPython reference; timings are machine-specific and are not product claims

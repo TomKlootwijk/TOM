@@ -1,0 +1,14 @@
+{
+  "bodies": [
+    {
+      "id": "target",
+      "shape": {"kind": "sphere", "radius": 1.0},
+      "motion": {"kind": "static", "origin": [0.0, 0.0, 0.0]}
+    },
+    {
+      "id": "bullet",
+      "shape": {"kind": "sphere", "radius": 1.0},
+      "motion": {"kind": "linear", "origin": [-10.0, 0.0, 0.0], "velocity": [20.0, 0.0, 0.0]}
+    }
+  ]
+}

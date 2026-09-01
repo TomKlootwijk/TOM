@@ -1,0 +1,58 @@
+{
+  "benchmark": {
+    "ca_false_negatives": 0,
+    "ca_false_positives": 0,
+    "ca_inconclusive": 0,
+    "ca_max_iterations": 43,
+    "ca_max_toi_upper_error": 1.7885707470632894e-08,
+    "ca_mean_iterations": 7.332,
+    "ca_mean_toi_upper_error": 3.3615497023321673e-10,
+    "ca_queries_per_second": 13796.425551424712,
+    "ca_seconds": 0.36241271200015035,
+    "endpoint_discrete_missed_hit_count": 2500,
+    "environment": "CPython reference; timings are machine-specific and are not product claims",
+    "exact_hit_count": 2502,
+    "exact_queries_per_second": 64173.457672776574,
+    "exact_seconds": 0.07791383200037671,
+    "query_count": 5000,
+    "seed": 20260831
+  },
+  "cpp17_tests": {
+    "command": "ctest --test-dir build/cpp --output-on-failure",
+    "failed": 0,
+    "log": "04_verification/cpp_test_run.txt",
+    "passed": 1
+  },
+  "declared_conformance": "G3 deterministic CPU reference for bundled primitive profile only",
+  "environment": {
+    "cmake": "cmake version 3.31.6",
+    "cxx": "c++ (Debian 14.2.0-19) 14.2.0",
+    "generated_utc": "2026-09-01T11:22:51.573413+00:00",
+    "machine": "x86_64",
+    "pdflatex": "pdfTeX 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian)",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+    "processor": "",
+    "pytest": "pytest 9.0.2",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]"
+  },
+  "generated_utc": "2026-09-01T11:22:52.249920+00:00",
+  "limitations": [
+    "No public exact TOI corpus integrated in this release.",
+    "No production convex, triangle-mesh, deformable, self-collision, or simultaneous-contact backend.",
+    "No verified GPU backend or CPU/GPU equivalence claim.",
+    "No application, optical, quantum, chemical, biological, medical, fabrication, or cosmological validation."
+  ],
+  "python_tests": {
+    "command": "pytest -q -p no:cacheprovider",
+    "failed": 0,
+    "log": "04_verification/python_test_run.txt",
+    "passed": 22
+  },
+  "reference_vectors": 4,
+  "release": "0.4.0",
+  "report": {
+    "pages": 70,
+    "path": "NHDF_CCD_Cradle_to_Grave_v0.4.pdf",
+    "sha256": "d5f383a5470cdc8ebfa39e21f35a6f0ddbfb48a750f20370f8ffeec88cfee6fb"
+  }
+}

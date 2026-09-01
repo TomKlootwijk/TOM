@@ -1,0 +1,47 @@
+PDF: /mnt/data/nhdf_ccd_v0_4/11_report/NHDF_CCD_Cradle_to_Grave_v0.4.pdf
+Pages: 70
+Encrypted: False
+Page sizes (pt, rounded):
+  - 595 x 842 (70 page(s))
+Metadata:
+  /Author: Tom Klootwijk
+  /CreationDate: D:20260901112027Z
+  /Creator: LaTeX with hyperref
+  /Keywords: NHDF, CCD, continuous collision detection, signed distance field, conservative advancement, validation, lifecycle
+  /ModDate: D:20260901112027Z
+  /PTEX.Fullbanner: This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) kpathsea version 6.4.0/dev
+  /Producer: pdfTeX-1.40.26
+  /Subject: Continuous collision detection centered formalization and separated domain adapters
+  /Title: NHDF-CCD Version 0.4: Cradle-to-Grave Validation Dossier
+  /Trapped: /False
+Outline items: 142
+Form fields: 0
+Attachments: 0
+Annotations: 220
+
+Fonts (pdffonts, first 25 lines):
+name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+SGCTCW+LMRoman12-Bold                Type 1            Custom           yes yes yes    616  0
+XGWYCO+LMRoman12-Regular             Type 1            Custom           yes yes yes    617  0
+CXSFZW+LMRoman10-Regular             Type 1            Custom           yes yes yes    618  0
+ULKGUL+LMRoman10-Bold                Type 1            Custom           yes yes yes    619  0
+YDGQPN+LMMathItalic10-Regular        Type 1            Custom           yes yes yes    634  0
+AJIGLD+LMMathSymbols10-Regular       Type 1            Custom           yes yes yes    635  0
+CXSFZW+LMRoman10-Regular             Type 1            Custom           yes yes yes    636  0
+GGMXHN+LMMathItalic8-Regular         Type 1            Custom           yes yes yes    637  0
+UDLSER+LMMono10-Regular              Type 1            Custom           yes yes yes    638  0
+KXMYPM+LMMathExtension10-Regular     Type 1            Custom           yes yes yes    900  0
+CXSFZW+LMRoman10-Regular             Type 1            Custom           yes yes yes    922  0
+ARWFNR+LMMathItalic7-Regular         Type 1            Custom           yes yes yes    942  0
+XZHVEA+LMRoman7-Regular              Type 1            Custom           yes yes yes    949  0
+ZQQCRW+LMMathSymbols7-Regular        Type 1            Custom           yes yes yes    955  0
+ULKGUL+LMRoman10-Bold                Type 1            Custom           yes yes yes    960  0
+EMREUK+LMRoman8-Regular              Type 1            Custom           yes yes yes    963  0
+GERDME+MSBM10                        Type 1            Builtin          yes yes yes    983  0
+HUFBEO+LMRoman6-Regular              Type 1            Custom           yes yes yes    995  0
+CZMTLR+LMMono9-Regular               Type 1            Custom           yes yes yes    996  0
+RRBBRA+LMMonoLt10-Bold               Type 1            Custom           yes yes yes    998  0
+DZYYUV+LMMono10-Italic               Type 1            Custom           yes yes yes   1209  0
+AEPIQV+LMMathItalic5-Regular         Type 1            Custom           yes yes yes   1325  0
+WPRHVC+LMRoman10-Italic              Type 1            Custom           yes yes yes   1489  0

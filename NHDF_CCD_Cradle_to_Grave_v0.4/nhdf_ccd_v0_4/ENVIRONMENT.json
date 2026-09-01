@@ -1,0 +1,11 @@
+{
+  "cmake": "cmake version 3.31.6",
+  "cxx": "c++ (Debian 14.2.0-19) 14.2.0",
+  "generated_utc": "2026-09-01T11:22:51.573413+00:00",
+  "machine": "x86_64",
+  "pdflatex": "pdfTeX 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian)",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "processor": "",
+  "pytest": "pytest 9.0.2",
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]"
+}

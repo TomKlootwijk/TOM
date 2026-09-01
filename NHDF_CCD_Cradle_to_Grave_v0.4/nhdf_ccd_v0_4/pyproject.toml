@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nhdf-ccd-reference"
+version = "0.4.0"
+description = "Semantics-first reference implementation for the NHDF-centered continuous collision detection roadmap"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Tom Klootwijk"}]
+license = {text = "Research reference package; see NOTICE.md"}
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Mathematics",
+  "Topic :: Games/Entertainment :: Simulation",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+report = ["matplotlib>=3.7"]
+
+[project.scripts]
+nhdf-ccd-demo = "nhdf_ccd.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "03_reference_implementation/python/src"}
+
+[tool.setuptools.packages.find]
+where = ["03_reference_implementation/python/src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["03_reference_implementation/python/src"]
+testpaths = ["04_verification/tests"]
+addopts = "-ra"

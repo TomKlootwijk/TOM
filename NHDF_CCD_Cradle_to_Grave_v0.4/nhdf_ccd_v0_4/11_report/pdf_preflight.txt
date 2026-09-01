@@ -1,0 +1,6 @@
+PDF: /mnt/data/nhdf_ccd_v0_4/11_report/NHDF_CCD_Cradle_to_Grave_v0.4.pdf
+Pages: 70
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False

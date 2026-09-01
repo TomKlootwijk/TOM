@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/nhdf-ccd/certificate.schema.json",
+  "title": "NHDF-CCD collision certificate",
+  "type": "object",
+  "required": [
+    "status",
+    "pair",
+    "backend",
+    "iterations",
+    "reason",
+    "trace_digest"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "HIT",
+        "NO_HIT",
+        "INITIAL_OVERLAP",
+        "INCONCLUSIVE",
+        "UNSUPPORTED",
+        "INVALID_INPUT",
+        "CAPACITY_EXCEEDED"
+      ]
+    },
+    "pair": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "backend": {
+      "type": "string"
+    },
+    "toi_lower": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "toi_upper": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "iterations": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "reason": {
+      "type": "string"
+    },
+    "trace_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

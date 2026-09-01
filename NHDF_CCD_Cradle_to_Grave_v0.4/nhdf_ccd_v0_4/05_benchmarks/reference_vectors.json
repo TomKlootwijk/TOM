@@ -1,0 +1,150 @@
+[
+  {
+    "certificate": {
+      "backend": "exact_sphere_sphere_linear",
+      "iterations": 1,
+      "metadata": {},
+      "pair": [
+        "target",
+        "bullet"
+      ],
+      "reason": "earliest quadratic root",
+      "sample": {
+        "distance": 0.0,
+        "normal": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "t": 0.4,
+        "witness_a": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "witness_b": [
+          -1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "status": "HIT",
+      "toi_lower": 0.4,
+      "toi_upper": 0.4,
+      "trace": [],
+      "trace_digest": "47ebf002889668d63c468eba8f71d0d38ad3e5420b030f3e023a758f6d7c969f"
+    },
+    "name": "sphere_sphere_tunneling"
+  },
+  {
+    "certificate": {
+      "backend": "exact_sphere_plane_linear",
+      "iterations": 1,
+      "metadata": {},
+      "pair": [
+        "sphere",
+        "plane"
+      ],
+      "reason": "linear signed-distance root",
+      "sample": {
+        "distance": 0.0,
+        "normal": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "t": 0.09,
+        "witness_a": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "witness_b": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "status": "HIT",
+      "toi_lower": 0.09,
+      "toi_upper": 0.09,
+      "trace": [],
+      "trace_digest": "749b17278b21095e35e57dde63c9546822baa890126de2da822007f49bc3e5a0"
+    },
+    "name": "sphere_plane_fast"
+  },
+  {
+    "certificate": {
+      "backend": "exact_swept_aabb_linear",
+      "iterations": 1,
+      "metadata": {},
+      "pair": [
+        "box_a",
+        "box_b"
+      ],
+      "reason": "slab entry time",
+      "sample": {
+        "distance": 0.0,
+        "normal": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "t": 0.3,
+        "witness_a": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "witness_b": [
+          -2.0,
+          0.0,
+          0.0
+        ]
+      },
+      "status": "HIT",
+      "toi_lower": 0.3,
+      "toi_upper": 0.3,
+      "trace": [],
+      "trace_digest": "6548aed4792d39679a04534d8d7e3436cd0fc553ac465c86f30dd741ea6c2801"
+    },
+    "name": "aabb_crossing"
+  },
+  {
+    "certificate": {
+      "backend": "exact_sphere_sphere_linear",
+      "iterations": 0,
+      "metadata": {},
+      "pair": [
+        "a",
+        "b"
+      ],
+      "reason": "quadratic has no real roots",
+      "sample": {
+        "distance": 8.0,
+        "normal": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "t": 0.0,
+        "witness_a": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "witness_b": [
+          9.0,
+          0.0,
+          0.0
+        ]
+      },
+      "status": "NO_HIT",
+      "toi_lower": null,
+      "toi_upper": null,
+      "trace": [],
+      "trace_digest": "63f6af7ba194dd9e3a709bedb96d2e29c92e00dde6769dc13ffbf650a5e2eff8"
+    },
+    "name": "sphere_sphere_no_hit"
+  }
+]

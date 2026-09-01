@@ -1,0 +1,11 @@
+NHDF-CCD v0.4 - Licensing Notice
+
+Copyright (c) 2026 Tom Klootwijk.
+
+No public software license is granted by this archive. The materials are supplied for
+review, validation, reproduction of the bundled experiments, and further licensing
+or publication decisions by the attributed author. Third-party papers, names, tools,
+and standards cited in the report remain subject to their own terms.
+
+Before redistribution or production use, replace this notice with an explicit license
+chosen by the rights holder and complete a dependency and intellectual-property review.

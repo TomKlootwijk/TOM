@@ -1,0 +1,64 @@
+{
+  "version": "0.4.0",
+  "states": [
+    "INGEST",
+    "BROAD_PHASE",
+    "NARROW_PHASE",
+    "REFINE",
+    "CERTIFY",
+    "EMIT",
+    "SAFE_STOP"
+  ],
+  "transitions": [
+    {
+      "from": "INGEST",
+      "to": "BROAD_PHASE",
+      "guard": "inputs_valid"
+    },
+    {
+      "from": "INGEST",
+      "to": "SAFE_STOP",
+      "guard": "invalid_input"
+    },
+    {
+      "from": "BROAD_PHASE",
+      "to": "NARROW_PHASE",
+      "guard": "candidate_capacity_ok"
+    },
+    {
+      "from": "BROAD_PHASE",
+      "to": "SAFE_STOP",
+      "guard": "capacity_exceeded"
+    },
+    {
+      "from": "NARROW_PHASE",
+      "to": "CERTIFY",
+      "guard": "exact_or_certified_result"
+    },
+    {
+      "from": "NARROW_PHASE",
+      "to": "REFINE",
+      "guard": "iterative_backend_required"
+    },
+    {
+      "from": "NARROW_PHASE",
+      "to": "SAFE_STOP",
+      "guard": "unsupported_or_invalid"
+    },
+    {
+      "from": "REFINE",
+      "to": "CERTIFY",
+      "guard": "hit_or_no_hit_certified"
+    },
+    {
+      "from": "REFINE",
+      "to": "SAFE_STOP",
+      "guard": "budget_exhausted_or_contract_failure"
+    },
+    {
+      "from": "CERTIFY",
+      "to": "EMIT",
+      "guard": "certificate_complete"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+\small\begin{longtable}{@{}L{0.08\textwidth}L{0.23\textwidth}L{0.10\textwidth}L{0.10\textwidth}L{0.385\textwidth}@{}}
+\caption{Risk register summary.}\label{tab:risk-register}\\
+\toprule ID & Risk & Severity & Likelihood & Primary mitigation \\ \midrule
+\endfirsthead
+\toprule ID & Risk & Severity & Likelihood & Primary mitigation \\ \midrule
+\endhead
+R-001 & False-negative broad phase & Critical & Medium & Use conservative swept bounds; exact dataset; never use learned/parity pruning without verification \\
+R-002 & Distance oracle overestimates true separation & Critical & Medium & Require true/conservatively biased distance and calibrated Lipschitz/error bounds \\
+R-003 & Closure-speed bound too low & Critical & Medium & Derive per motion/shape; test acceleration/rotation; fail invalid bounds \\
+R-004 & Floating-point degeneracy & High & High & Inclusion/exact predicates; scale normalization; adversarial corpus; multiple precision modes \\
+R-005 & Iteration or queue exhaustion & High & Medium & Explicit INCONCLUSIVE/CAPACITY\_EXCEEDED; step reduction or robust backend \\
+R-006 & Contact response conflated with detection & High & Medium & Separate APIs and certificates; response solver owns impulses/friction \\
+R-007 & Parity/golden topology treated as proof & High & High & Keep outside safety authority; mandatory ablations \\
+R-008 & GPU fast-math changes signs & Critical & Medium & Predicate-specific compile modes; CPU replay; disable backend on divergence \\
+R-009 & Approximate/neural SDF lacks error envelope & Critical & High & Do not certify; add conservative error bound or mesh/exact fallback \\
+R-010 & Medical or public-safety overclaim & Critical & Medium & Simulation-only labels, governance, clinical/regulatory evidence gates \\
+R-011 & Personal identifiers used as keys & High & Medium & Omit from runtime; use standard cryptography and release hashes \\
+R-012 & Domain adapter erases constitutive laws & High & High & Typed adapter contract with units/invariants/baselines \\
+\bottomrule
+\end{longtable}

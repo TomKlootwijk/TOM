@@ -1,0 +1,111 @@
+release: 0.4.0
+principle: No stage may erase uncertainty, unsupported geometry, numerical failure,
+  or bounded-resource failure.
+gates:
+- id: G0
+  name: Provenance and claim boundary
+  inputs:
+  - S1-S4
+  outputs:
+  - source register
+  - claim dispositions
+  - privacy policy
+  pass: Every claim is source-derived, externally supported, or explicitly labeled
+    hypothesis.
+- id: G1
+  name: Requirements and hazard model
+  inputs:
+  - use case
+  - shapes
+  - motions
+  - tolerances
+  outputs:
+  - requirements
+  - acceptance criteria
+  - hazards
+  pass: Supported profile and caller policy are unambiguous.
+- id: G2
+  name: Mathematical contract
+  inputs:
+  - requirements
+  outputs:
+  - typed state
+  - separation oracle
+  - speed/inclusion bounds
+  - certificate semantics
+  pass: No heuristic has safety authority; every no-hit statement has a proof obligation.
+- id: G3
+  name: CPU reference
+  inputs:
+  - formal contract
+  outputs:
+  - deterministic implementation
+  - schemas
+  - reference vectors
+  pass: Unit/property tests pass and failures are preserved.
+- id: G4
+  name: Robust verification
+  inputs:
+  - CPU reference
+  - exact datasets
+  outputs:
+  - differential results
+  - adversarial corpus
+  - coverage
+  pass: Zero false negatives in declared profile; TOI bounds within tolerance.
+- id: G5
+  name: Accelerated backend
+  inputs:
+  - verified CPU semantics
+  outputs:
+  - C++/GPU implementation
+  - equivalence report
+  pass: CPU/GPU outcomes and failure states agree; performance is measured.
+- id: G6
+  name: Application integration
+  inputs:
+  - verified CCD backend
+  - response solver
+  outputs:
+  - engine adapter
+  - rollback/safe-stop policy
+  - HIL tests
+  pass: End-to-end tunneling and failure-recovery tests pass.
+- id: G7
+  name: Deployment and operations
+  inputs:
+  - integrated system
+  outputs:
+  - runbook
+  - telemetry
+  - incident process
+  pass: Monitoring detects divergence, overflow, invalid bounds, and unsupported inputs.
+- id: G8
+  name: Domain adapters
+  inputs:
+  - core evidence
+  - domain laws
+  outputs:
+  - adapter contract
+  - domain-specific validation
+  pass: The adapter preserves units/invariants and beats or complements a baseline.
+- id: G9
+  name: Maintenance and change control
+  inputs:
+  - defects
+  - new hardware
+  - new geometry
+  outputs:
+  - versioned changes
+  - regression evidence
+  - rollback
+  pass: Every correctness-affecting change is revalidated.
+- id: G10
+  name: Retirement
+  inputs:
+  - supersession or failure
+  outputs:
+  - migration
+  - archive
+  - data deletion
+  pass: No caller silently falls back to unsafe discrete checks.

@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/nhdf-ccd/scene.schema.json",
+  "title": "NHDF-CCD scene",
+  "type": "object",
+  "required": [
+    "bodies"
+  ],
+  "properties": {
+    "bodies": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "#/$defs/body"
+      }
+    }
+  },
+  "$defs": {
+    "vec3": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "body": {
+      "type": "object",
+      "required": [
+        "id",
+        "shape",
+        "motion"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "shape": {
+          "oneOf": [
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "radius"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "sphere"
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "half_extents"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "aabb"
+                },
+                "half_extents": {
+                  "$ref": "#/$defs/vec3"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "normal"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "plane"
+                },
+                "normal": {
+                  "$ref": "#/$defs/vec3"
+                },
+                "offset": {
+                  "type": "number"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "point"
+                }
+              }
+            }
+          ]
+        },
+        "motion": {
+          "oneOf": [
+            {
+              "type": "object",
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "static"
+                },
+                "origin": {
+                  "$ref": "#/$defs/vec3"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "velocity"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "linear"
+                },
+                "origin": {
+                  "$ref": "#/$defs/vec3"
+                },
+                "velocity": {
+                  "$ref": "#/$defs/vec3"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "velocity",
+                "acceleration"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "quadratic"
+                },
+                "origin": {
+                  "$ref": "#/$defs/vec3"
+                },
+                "velocity": {
+                  "$ref": "#/$defs/vec3"
+                },
+                "acceleration": {
+                  "$ref": "#/$defs/vec3"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

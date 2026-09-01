@@ -1,0 +1,13 @@
+id,risk,severity,likelihood,mitigation,status
+R-001,False-negative broad phase,Critical,Medium,Use conservative swept bounds; exact dataset; never use learned/parity pruning without verification,Open
+R-002,Distance oracle overestimates true separation,Critical,Medium,Require true/conservatively biased distance and calibrated Lipschitz/error bounds,Open
+R-003,Closure-speed bound too low,Critical,Medium,Derive per motion/shape; test acceleration/rotation; fail invalid bounds,Open
+R-004,Floating-point degeneracy,High,High,Inclusion/exact predicates; scale normalization; adversarial corpus; multiple precision modes,Open
+R-005,Iteration or queue exhaustion,High,Medium,Explicit INCONCLUSIVE/CAPACITY_EXCEEDED; step reduction or robust backend,Mitigated in scaffold
+R-006,Contact response conflated with detection,High,Medium,Separate APIs and certificates; response solver owns impulses/friction,Mitigated
+R-007,Parity/golden topology treated as proof,High,High,Keep outside safety authority; mandatory ablations,Mitigated by spec
+R-008,GPU fast-math changes signs,Critical,Medium,Predicate-specific compile modes; CPU replay; disable backend on divergence,Open
+R-009,Approximate/neural SDF lacks error envelope,Critical,High,Do not certify; add conservative error bound or mesh/exact fallback,Open
+R-010,Medical or public-safety overclaim,Critical,Medium,"Simulation-only labels, governance, clinical/regulatory evidence gates",Mitigated by separation
+R-011,Personal identifiers used as keys,High,Medium,Omit from runtime; use standard cryptography and release hashes,Mitigated
+R-012,Domain adapter erases constitutive laws,High,High,Typed adapter contract with units/invariants/baselines,Mitigated by design
