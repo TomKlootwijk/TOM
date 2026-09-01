@@ -1,0 +1,15 @@
+{
+  "artifact_bytes": 20372,
+  "artifact_sha256": "81e05da7c42328bb749139078baa1d6aa79bf0d39476a11f7891b68e1550daa3",
+  "compile_manifest_sha256": "71462caeecc5287e4e7c0791c05d72e2f8c0ba242b40de8db17fc39cabf544bb",
+  "emitted_record_status": "pass",
+  "python_c_artifact_equal": true,
+  "python_c_emits_equal": true,
+  "python_c_state_equal": true,
+  "python_c_trace_equal": true,
+  "schema": "TOM-GENESIS-CERTIFICATE-PROOF-1.0",
+  "source_definition_count": 6,
+  "source_sha256": "b8d314b58257ef49b4c3e75de799e8b3009a9239b68c85d5ad0c3de7d0afc45f",
+  "tmg_bytes": 244592,
+  "tmg_sha256": "8fed1bcf679524d7e2e0359b5c9bb3c72480f752d9a1113dc88c21781f424413"
+}

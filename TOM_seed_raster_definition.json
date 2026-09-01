@@ -1,0 +1,239 @@
+{
+  "$schema": "../spec/tom_seeded_program.schema.json",
+  "tomagi_version": "1.0.0",
+  "compilation_profile": "TOM-Seeded-Compilation-Profile-1.0",
+  "title": "TOM Genesis canonical 32 x 61 seed raster",
+  "seed_genome": {
+    "file": "../TOM_seed_genome_2026-09-01.txt",
+    "bytes": 244,
+    "sha256": "sha256:d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"
+  },
+  "token_registry": {
+    "file": "../spec/seeded/token_registry_1_0.json",
+    "content_hash": "sha256:b14140cf9800e186701557ed982d692931966ea957e5790c1e6b4989e854c609"
+  },
+  "root_definition": "program:root",
+  "limits": {
+    "max_definitions": 32,
+    "max_dependencies_per_definition": 16,
+    "max_literal_bytes": 1024,
+    "max_output_bytes": 1024,
+    "max_cells": 128,
+    "max_operation_steps": 4096,
+    "max_ticks": 128,
+    "max_repeat": 128,
+    "max_recursion_depth": 0
+  },
+  "definitions": [
+    {
+      "id": "seed:genome",
+      "kind": "canonical_seed",
+      "domain": "unit",
+      "codomain": "bytes",
+      "phase": 0,
+      "ordinal": 0,
+      "dependencies": [],
+      "inputs": [],
+      "operation": "seed.bytes",
+      "parameters": {},
+      "limits": {
+        "bytes": 244
+      },
+      "provenance": {
+        "file": "TOM_seed_genome_2026-09-01.txt",
+        "role": "authoritative root and literal raster payload"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "canonical seed bytes",
+        "codomain": "hash discrepancy",
+        "semantics": "zero when byte length, exact grammar, and SHA-256 verify",
+        "lowering": "compile:seed-integrity"
+      },
+      "content_hash": "sha256:fba40d4d2522c9e2f8860c6cc9f94a4cceb1b1eb6d44b2e904b28a29a91c8d5e"
+    },
+    {
+      "id": "state:initial",
+      "kind": "state64_literal",
+      "domain": "unit",
+      "codomain": "state",
+      "phase": 3,
+      "ordinal": 1,
+      "dependencies": [
+        "seed:genome"
+      ],
+      "inputs": [],
+      "operation": "tomagi.state64",
+      "parameters": {
+        "fields": {
+          "lineage": "0x544f4d31"
+        }
+      },
+      "limits": {
+        "words": 16
+      },
+      "provenance": {
+        "role": "authoritative initial State64 constructor",
+        "migration": "initial state moved from program parameters into an executable definition"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "State64 words",
+        "codomain": "state-word discrepancy",
+        "semantics": "zero when all sixteen fixed-width initial state words equal the declared literal state",
+        "lowering": "compile:state64-integrity"
+      },
+      "content_hash": "sha256:19b3526a5dd420d59e23ba75bc8b7d33e27a68509eb4a2a42e47f736d14c5217"
+    },
+    {
+      "id": "artifact:pbm-header",
+      "kind": "literal_artifact_header",
+      "domain": "unit",
+      "codomain": "bytes",
+      "phase": 3,
+      "ordinal": 0,
+      "dependencies": [],
+      "inputs": [],
+      "operation": "literal.utf8",
+      "parameters": {
+        "text": "P4\n32 61\n"
+      },
+      "limits": {
+        "bytes": 9
+      },
+      "provenance": {
+        "format": "Netpbm binary PBM P4",
+        "semantics": "32 columns by 61 rows"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "literal header bytes",
+        "codomain": "byte discrepancy",
+        "semantics": "zero when the nine UTF-8/ASCII bytes equal P4\\n32 61\\n",
+        "lowering": "compile:literal-integrity"
+      },
+      "content_hash": "sha256:a3b2380e585e817f7355ddf83b13178b74e017516398e5df9c524d4a96923f69"
+    },
+    {
+      "id": "artifact:tom-seed-raster",
+      "kind": "generic_byte_artifact",
+      "domain": [
+        "PBM header bytes",
+        "canonical seed bytes"
+      ],
+      "codomain": "bytes",
+      "phase": 4,
+      "ordinal": 0,
+      "dependencies": [
+        "seed:genome",
+        "artifact:pbm-header"
+      ],
+      "inputs": [
+        "artifact:pbm-header",
+        "seed:genome"
+      ],
+      "operation": "bytes.concat",
+      "parameters": {},
+      "limits": {
+        "bytes": 253
+      },
+      "provenance": {
+        "artifact": "TOM Seed Raster",
+        "raster_relation": "32 * 61 bits = 1,952 bits = 244 seed bytes"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "concatenated artifact bytes",
+        "codomain": "byte join discrepancy",
+        "semantics": "zero when the output is exactly the declared header followed by all 244 canonical seed bytes",
+        "lowering": "compile:byte-join-integrity"
+      },
+      "content_hash": "sha256:d4ed41fdcb7b97866c604ee5470300dd78de6626809187dd549664959ae214cd"
+    },
+    {
+      "id": "program:emit-seed-raster",
+      "kind": "ordered_byte_emission",
+      "domain": "bytes",
+      "codomain": "cells",
+      "phase": 8,
+      "ordinal": 0,
+      "dependencies": [
+        "artifact:tom-seed-raster"
+      ],
+      "inputs": [
+        "artifact:tom-seed-raster"
+      ],
+      "operation": "tomagi.emit_bytes",
+      "parameters": {
+        "key_start": "0x0000000000000000",
+        "cell_id_prefix": "cell:seed-raster",
+        "halt": true
+      },
+      "limits": {
+        "bytes_per_cell": [
+          1,
+          4
+        ]
+      },
+      "provenance": {
+        "packing": "little-endian payload, one to four bytes per EMIT",
+        "ordering": "execution order"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "ordered emission plan",
+        "codomain": "unemitted-byte count",
+        "semantics": "zero when every source byte is assigned once to an ordered EMIT cell",
+        "lowering": "compile:emission-completeness"
+      },
+      "content_hash": "sha256:70b4dd28acce5c12623cf07318fa2f9bdd63d5c108d1ac64c041c93b1b76e630"
+    },
+    {
+      "id": "program:root",
+      "kind": "seeded_tomagi_program",
+      "domain": [
+        "canonical seed bytes",
+        "initial State64",
+        "executable cell definitions"
+      ],
+      "codomain": "program",
+      "phase": 9,
+      "ordinal": 0,
+      "dependencies": [
+        "seed:genome",
+        "state:initial",
+        "program:emit-seed-raster"
+      ],
+      "inputs": [
+        "seed:genome",
+        "state:initial",
+        "program:emit-seed-raster"
+      ],
+      "operation": "tomagi.program",
+      "parameters": {
+        "seed_input": "seed:genome",
+        "entry": "cell:seed-raster:000000",
+        "runtime_seed": 19900710,
+        "default_ticks": 64,
+        "program_flags": 0,
+        "bind_genome_hash_to_flags": true,
+        "state_input": "state:initial"
+      },
+      "limits": {
+        "cells": 64
+      },
+      "provenance": {
+        "profile": "TOM Seeded Compilation Profile 1.0 over TOMAGI ABI 1.0",
+        "target_sha256": "7025712c6da89ed41f2f0ac3dc62c81a043e4ae2bb3da505b0227b8bd255a859"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "compiled definition graph",
+        "codomain": "program discrepancy",
+        "semantics": "zero when the 64 derived Cell48 records serialize to the manifest-declared .tmg bytes",
+        "lowering": "compile:program-integrity"
+      },
+      "content_hash": "sha256:06f4041dcc216b122017d66375d9e207f821af465e5d274f742ed4ef57c940f1"
+    }
+  ]
+}

@@ -1,0 +1,2049 @@
+{
+  "definition_order": [
+    "seed:genome",
+    "literal:int-minus-one",
+    "literal:int-one",
+    "literal:int-f0",
+    "literal:int-0f",
+    "literal:int-eight",
+    "literal:string",
+    "literal:array",
+    "literal:record",
+    "literal:false-bytes",
+    "literal:true-bytes",
+    "state:initial",
+    "transform:u32-minus-one",
+    "transform:u32-wrap-add",
+    "transform:u32-xor",
+    "transform:popcount",
+    "transform:seed-prefix",
+    "transform:string-repeat",
+    "transform:string-slice",
+    "transform:string-bytes",
+    "transform:indexed-map",
+    "transform:indexed-map-bytes",
+    "transform:record-bytes",
+    "transform:i32-minus-one",
+    "transform:u32-or",
+    "transform:u32-shl",
+    "transform:u32-shr",
+    "transform:u32-rotl",
+    "transform:parity",
+    "support:popcount-eight",
+    "support:or-equals-xor",
+    "support:shift-equals-rotl",
+    "support:shift-back-one",
+    "support:parity-zero",
+    "compatibility:wrapped-zero",
+    "compatibility:signed-le-zero",
+    "guard:primary",
+    "guard:or",
+    "guard:shift",
+    "guard:shift-back",
+    "guard:parity",
+    "guard:signed",
+    "event:guard-bit",
+    "transition:selected-bytes",
+    "transition:artifact-bytes",
+    "transition:entry-cell",
+    "transition:emit",
+    "transition:graph",
+    "program:root"
+  ],
+  "definitions": [
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:4f1f3b7cffaba33e72cd64e15ffee29e9cbdfd274fbb2bcabd4e604bb3db12a1",
+      "dependencies": [],
+      "domain": "unit",
+      "id": "seed:genome",
+      "inputs": [],
+      "kind": "canonical_seed",
+      "operation": "seed.bytes",
+      "ordinal": 0,
+      "output": {
+        "bytes": 244,
+        "sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+        "type": "bytes"
+      },
+      "phase": 0,
+      "zero_relation": {
+        "codomain": "hash discrepancy",
+        "domain": "canonical seed bytes",
+        "interface": "SDF0@Def",
+        "lowering": "compile:seed-integrity",
+        "semantics": "zero when exact seed bytes, grammar, length, and SHA-256 verify"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:ab38871aeb83215e756f9578d01e391a4b93b82a3f7677a5e1276f7f19a6ab7b",
+      "dependencies": [],
+      "domain": "unit",
+      "id": "literal:int-minus-one",
+      "inputs": [],
+      "kind": "integer_literal",
+      "operation": "literal.int",
+      "ordinal": 0,
+      "output": {
+        "sha256": "1bad6b8cf97131fceab8543e81f7757195fbb1d36b376ee994ad1cf17699c464",
+        "type": "int",
+        "value": -1
+      },
+      "phase": 1,
+      "zero_relation": {
+        "codomain": "integer discrepancy",
+        "domain": "integer literal",
+        "interface": "SDF0@Def",
+        "lowering": "compile:literal-integrity",
+        "semantics": "zero on exact literal equality"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:c0abfba0723d6d75402d95c1aeeaa0c393711347d11e525a76146c6c42237bc0",
+      "dependencies": [],
+      "domain": "unit",
+      "id": "literal:int-one",
+      "inputs": [],
+      "kind": "integer_literal",
+      "operation": "literal.int",
+      "ordinal": 1,
+      "output": {
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "type": "int",
+        "value": 1
+      },
+      "phase": 1,
+      "zero_relation": {
+        "codomain": "integer discrepancy",
+        "domain": "integer literal",
+        "interface": "SDF0@Def",
+        "lowering": "compile:literal-integrity",
+        "semantics": "zero on exact literal equality"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:736a417742da0bbb9055586b8ee44bedbc875026e851e8d47bf88a5f77e12a51",
+      "dependencies": [],
+      "domain": "unit",
+      "id": "literal:int-f0",
+      "inputs": [],
+      "kind": "integer_literal",
+      "operation": "literal.int",
+      "ordinal": 2,
+      "output": {
+        "sha256": "6af1f692e9496c6d0b668316eccb93276ae6b6774fa728aac31ff40a38318760",
+        "type": "int",
+        "value": 240
+      },
+      "phase": 1,
+      "zero_relation": {
+        "codomain": "integer discrepancy",
+        "domain": "integer literal",
+        "interface": "SDF0@Def",
+        "lowering": "compile:literal-integrity",
+        "semantics": "zero on exact literal equality"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:cc45c4177babebdc5984ea863dbe16a70cd8a7492852974cfdc00f6f16eeab99",
+      "dependencies": [],
+      "domain": "unit",
+      "id": "literal:int-0f",
+      "inputs": [],
+      "kind": "integer_literal",
+      "operation": "literal.int",
+      "ordinal": 3,
+      "output": {
+        "sha256": "e629fa6598d732768f7c726b4b621285f9c3b85303900aa912017db7617d8bdb",
+        "type": "int",
+        "value": 15
+      },
+      "phase": 1,
+      "zero_relation": {
+        "codomain": "integer discrepancy",
+        "domain": "integer literal",
+        "interface": "SDF0@Def",
+        "lowering": "compile:literal-integrity",
+        "semantics": "zero on exact literal equality"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:af17409d02e8d43cce3aca001e69a6e10a6f366bbee89ffed49923634baebe0f",
+      "dependencies": [],
+      "domain": "unit",
+      "id": "literal:int-eight",
+      "inputs": [],
+      "kind": "integer_literal",
+      "operation": "literal.int",
+      "ordinal": 4,
+      "output": {
+        "sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3",
+        "type": "int",
+        "value": 8
+      },
+      "phase": 1,
+      "zero_relation": {
+        "codomain": "integer discrepancy",
+        "domain": "integer literal",
+        "interface": "SDF0@Def",
+        "lowering": "compile:literal-integrity",
+        "semantics": "zero on exact literal equality"
+      }
+    },
+    {
+      "codomain": "string",
+      "content_hash": "sha256:e7bf0a80e87359031fb724e5352d2cb2037e97cd900110c3d9c0cd620a188aac",
+      "dependencies": [],
+      "domain": "unit",
+      "id": "literal:string",
+      "inputs": [],
+      "kind": "string_literal",
+      "operation": "literal.string",
+      "ordinal": 5,
+      "output": {
+        "characters": 3,
+        "sha256": "c8435b00e294b7b0ad44311d8d816b8eb1f52ce6abecf1008d4ee715f3c4f1e2",
+        "type": "string",
+        "utf8_bytes": 3
+      },
+      "phase": 1,
+      "zero_relation": {
+        "codomain": "string discrepancy",
+        "domain": "string literal",
+        "interface": "SDF0@Def",
+        "lowering": "compile:literal-integrity",
+        "semantics": "zero on exact string equality"
+      }
+    },
+    {
+      "codomain": "array",
+      "content_hash": "sha256:c0c1e7e57669601242090c2f9d65a490050f1c293b3384b0409ebab87036ddc9",
+      "dependencies": [],
+      "domain": "unit",
+      "id": "literal:array",
+      "inputs": [],
+      "kind": "array_literal",
+      "operation": "literal.array",
+      "ordinal": 6,
+      "output": {
+        "canonical_bytes": 10,
+        "items": 3,
+        "sha256": "7784d2c72a24031b6f93509c2163a212b3d7388f1ac7513692bd69e742e8b976",
+        "type": "array"
+      },
+      "phase": 1,
+      "zero_relation": {
+        "codomain": "array discrepancy",
+        "domain": "array literal",
+        "interface": "SDF0@Def",
+        "lowering": "compile:literal-integrity",
+        "semantics": "zero on exact array equality"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:4839052845194186bbb30d944a81330ad62f02d86da2a1a8b66f992d47f1968d",
+      "dependencies": [],
+      "domain": "unit",
+      "id": "literal:record",
+      "inputs": [],
+      "kind": "record_literal",
+      "operation": "literal.record",
+      "ordinal": 7,
+      "output": {
+        "canonical_bytes": 28,
+        "fields": 2,
+        "sha256": "bb8a6d33be8a313c5460783c4a5c4f384e5875e4c731ca1ed0036e3e11f0d426",
+        "type": "record"
+      },
+      "phase": 1,
+      "zero_relation": {
+        "codomain": "record discrepancy",
+        "domain": "record literal",
+        "interface": "SDF0@Def",
+        "lowering": "compile:literal-integrity",
+        "semantics": "zero on exact record equality"
+      }
+    },
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:9d2eb524a17a511de3d1d10f8ff93712b479606b4998f64f56bca75f6d553922",
+      "dependencies": [],
+      "domain": "unit",
+      "id": "literal:false-bytes",
+      "inputs": [],
+      "kind": "byte_literal",
+      "operation": "literal.hex",
+      "ordinal": 8,
+      "output": {
+        "bytes": 4,
+        "sha256": "64896a897bdd81597b2e4e0fc70873fbdc8ef1b89ae5194fbabf1a69631423ec",
+        "type": "bytes"
+      },
+      "phase": 1,
+      "zero_relation": {
+        "codomain": "byte discrepancy",
+        "domain": "literal bytes",
+        "interface": "SDF0@Def",
+        "lowering": "compile:literal-integrity",
+        "semantics": "zero on exact byte equality"
+      }
+    },
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:a28cae3cd6ccbc54d6b5e0db5331a70f25631dec183de5800bc12cd97bb71cd3",
+      "dependencies": [],
+      "domain": "unit",
+      "id": "literal:true-bytes",
+      "inputs": [],
+      "kind": "byte_literal",
+      "operation": "literal.utf8",
+      "ordinal": 9,
+      "output": {
+        "bytes": 4,
+        "sha256": "a5c6eccf6125e3bc96ebfad55bec057162ba1c2df5b4ef5c48875faaec827b00",
+        "type": "bytes"
+      },
+      "phase": 1,
+      "zero_relation": {
+        "codomain": "byte discrepancy",
+        "domain": "literal bytes",
+        "interface": "SDF0@Def",
+        "lowering": "compile:literal-integrity",
+        "semantics": "zero on exact byte equality"
+      }
+    },
+    {
+      "codomain": "state",
+      "content_hash": "sha256:fb8987a48d5b64292a55753b3c34712afae918fc9274147516577304ce05da08",
+      "dependencies": [
+        "seed:genome"
+      ],
+      "domain": "unit",
+      "id": "state:initial",
+      "inputs": [],
+      "kind": "state64_literal",
+      "operation": "tomagi.state64",
+      "ordinal": 0,
+      "output": {
+        "sha256": "75dc9f0a08b788cf15af68fd52ac0b856dd38414466e615b08166194db55d8b9",
+        "type": "state",
+        "words": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1093730305,
+          0,
+          0,
+          0
+        ]
+      },
+      "phase": 3,
+      "zero_relation": {
+        "codomain": "state-word discrepancy",
+        "domain": "State64 words",
+        "interface": "SDF0@Def",
+        "lowering": "compile:state64-integrity",
+        "semantics": "zero when all sixteen fixed-width words equal the declared state"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:3a252e3c1608606bc704ec0a50c605abaa985a3cec02e8ad8482c965ba230742",
+      "dependencies": [
+        "literal:int-minus-one"
+      ],
+      "domain": "int",
+      "id": "transform:u32-minus-one",
+      "inputs": [
+        "literal:int-minus-one"
+      ],
+      "kind": "fixed_width_integer",
+      "operation": "u32.normalize",
+      "ordinal": 0,
+      "output": {
+        "sha256": "f807212b6748a8300fc3702322caa515edf0a6ed9bbc86e94c451e351b080c60",
+        "type": "int",
+        "value": 4294967295
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "integer discrepancy",
+        "domain": "integer operation",
+        "interface": "SDF0@Def",
+        "lowering": "compile:integer-integrity",
+        "semantics": "zero when modulo-2^32 normalization is exact"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:4adbcfb1a7c5ac1fed15b1844f978c186f30030a6929ac8cbab1b4f793455f41",
+      "dependencies": [
+        "transform:u32-minus-one",
+        "literal:int-one"
+      ],
+      "domain": [
+        "int",
+        "int"
+      ],
+      "id": "transform:u32-wrap-add",
+      "inputs": [
+        "transform:u32-minus-one",
+        "literal:int-one"
+      ],
+      "kind": "fixed_width_integer",
+      "operation": "u32.add",
+      "ordinal": 1,
+      "output": {
+        "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "type": "int",
+        "value": 0
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "integer discrepancy",
+        "domain": "integer operation",
+        "interface": "SDF0@Def",
+        "lowering": "compile:integer-integrity",
+        "semantics": "zero when wrapped addition is exact"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:90a37d6c768372a48e09ed14ea981853a06f0acdb90e2ba6e4d63450ef7406f5",
+      "dependencies": [
+        "literal:int-f0",
+        "literal:int-0f"
+      ],
+      "domain": [
+        "int",
+        "int"
+      ],
+      "id": "transform:u32-xor",
+      "inputs": [
+        "literal:int-f0",
+        "literal:int-0f"
+      ],
+      "kind": "fixed_width_bit_operation",
+      "operation": "u32.xor",
+      "ordinal": 2,
+      "output": {
+        "sha256": "9556b82499cc0aaf86aee7f0d253e17c61b7ef73d48a295f37d98f08b04ffa7f",
+        "type": "int",
+        "value": 255
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "integer discrepancy",
+        "domain": "bit operation",
+        "interface": "SDF0@Def",
+        "lowering": "compile:bit-integrity",
+        "semantics": "zero when XOR output is exact"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:e6be52109b84a3af0820edeb6db499381be3e2926e1d7be043a047e2ce776d73",
+      "dependencies": [
+        "transform:u32-xor"
+      ],
+      "domain": "int",
+      "id": "transform:popcount",
+      "inputs": [
+        "transform:u32-xor"
+      ],
+      "kind": "fixed_width_bit_operation",
+      "operation": "u32.popcount",
+      "ordinal": 3,
+      "output": {
+        "sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3",
+        "type": "int",
+        "value": 8
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "integer discrepancy",
+        "domain": "bit operation",
+        "interface": "SDF0@Def",
+        "lowering": "compile:bit-integrity",
+        "semantics": "zero when popcount output is exact"
+      }
+    },
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:568787c01211f4b01341aa888178f914f792b5cd19c9bf145ea90232e03f05c3",
+      "dependencies": [
+        "seed:genome"
+      ],
+      "domain": "bytes",
+      "id": "transform:seed-prefix",
+      "inputs": [
+        "seed:genome"
+      ],
+      "kind": "bounded_sequence_slice",
+      "operation": "sequence.slice",
+      "ordinal": 4,
+      "output": {
+        "bytes": 4,
+        "sha256": "8a6f975cda9d8db872f4dd219d369fdb2906f41a21ba277255542ef63cb70b1c",
+        "type": "bytes"
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "slice discrepancy",
+        "domain": "bounded sequence",
+        "interface": "SDF0@Def",
+        "lowering": "compile:sequence-integrity",
+        "semantics": "zero when exact declared slice is produced"
+      }
+    },
+    {
+      "codomain": "string",
+      "content_hash": "sha256:0c50adaa729cbf17c58f8ecf88c29ffc1709a0b453bd043c0774644807c644bf",
+      "dependencies": [
+        "literal:string"
+      ],
+      "domain": "string",
+      "id": "transform:string-repeat",
+      "inputs": [
+        "literal:string"
+      ],
+      "kind": "bounded_sequence_repeat",
+      "operation": "sequence.repeat",
+      "ordinal": 5,
+      "output": {
+        "characters": 6,
+        "sha256": "06bc1c53cf106f0bd2a4dbc0a796970b6bee9bdc27769b1191af14f4fe158ae9",
+        "type": "string",
+        "utf8_bytes": 6
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "repeat discrepancy",
+        "domain": "bounded sequence",
+        "interface": "SDF0@Def",
+        "lowering": "compile:sequence-integrity",
+        "semantics": "zero when exact bounded repetition is produced"
+      }
+    },
+    {
+      "codomain": "string",
+      "content_hash": "sha256:df6ab607f721f938dead6e7bd4bc6909669559c159670c15f7031920bcc61322",
+      "dependencies": [
+        "transform:string-repeat"
+      ],
+      "domain": "string",
+      "id": "transform:string-slice",
+      "inputs": [
+        "transform:string-repeat"
+      ],
+      "kind": "bounded_sequence_slice",
+      "operation": "sequence.slice",
+      "ordinal": 6,
+      "output": {
+        "characters": 3,
+        "sha256": "c8435b00e294b7b0ad44311d8d816b8eb1f52ce6abecf1008d4ee715f3c4f1e2",
+        "type": "string",
+        "utf8_bytes": 3
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "slice discrepancy",
+        "domain": "bounded sequence",
+        "interface": "SDF0@Def",
+        "lowering": "compile:sequence-integrity",
+        "semantics": "zero when exact declared slice is produced"
+      }
+    },
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:3212af51c4dcb46a019f833de3748940cf2c60917c2eb17d1db37a6cc0f49b3e",
+      "dependencies": [
+        "transform:string-slice"
+      ],
+      "domain": "string",
+      "id": "transform:string-bytes",
+      "inputs": [
+        "transform:string-slice"
+      ],
+      "kind": "utf8_encoding",
+      "operation": "string.utf8",
+      "ordinal": 7,
+      "output": {
+        "bytes": 3,
+        "sha256": "c8435b00e294b7b0ad44311d8d816b8eb1f52ce6abecf1008d4ee715f3c4f1e2",
+        "type": "bytes"
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "byte discrepancy",
+        "domain": "string encoding",
+        "interface": "SDF0@Def",
+        "lowering": "compile:utf8-integrity",
+        "semantics": "zero when UTF-8 bytes are exact"
+      }
+    },
+    {
+      "codomain": "array",
+      "content_hash": "sha256:4318f7af98f2aa4274e7b2647d588d889ff267709e635d72d18022842879a870",
+      "dependencies": [
+        "literal:array"
+      ],
+      "domain": "array",
+      "id": "transform:indexed-map",
+      "inputs": [
+        "literal:array"
+      ],
+      "kind": "bounded_indexed_map",
+      "operation": "sequence.indexed_map",
+      "ordinal": 8,
+      "output": {
+        "canonical_bytes": 22,
+        "items": 3,
+        "sha256": "edf14a9a62726604e420c2dec22cd77ad358b8cb2b6cf36dbbc7be145776dc4c",
+        "type": "array"
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "map discrepancy",
+        "domain": "bounded sequence",
+        "interface": "SDF0@Def",
+        "lowering": "compile:sequence-integrity",
+        "semantics": "zero when every index/value pair is produced in order"
+      }
+    },
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:e1fb935545a81848300e43d85eed3514019459d936e9773e598fbf25cc16ee17",
+      "dependencies": [
+        "transform:indexed-map"
+      ],
+      "domain": "array",
+      "id": "transform:indexed-map-bytes",
+      "inputs": [
+        "transform:indexed-map"
+      ],
+      "kind": "canonical_json_encoding",
+      "operation": "json.canonical_bytes",
+      "ordinal": 9,
+      "output": {
+        "bytes": 22,
+        "sha256": "edf14a9a62726604e420c2dec22cd77ad358b8cb2b6cf36dbbc7be145776dc4c",
+        "type": "bytes"
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "encoding discrepancy",
+        "domain": "canonical JSON bytes",
+        "interface": "SDF0@Def",
+        "lowering": "compile:canonical-json-integrity",
+        "semantics": "zero when canonical UTF-8 JSON encoding is exact"
+      }
+    },
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:dda8c5879b2ab285e907dd583a00e3e77081563526eda30003ab08de23c94af5",
+      "dependencies": [
+        "literal:record"
+      ],
+      "domain": "record",
+      "id": "transform:record-bytes",
+      "inputs": [
+        "literal:record"
+      ],
+      "kind": "canonical_json_encoding",
+      "operation": "json.canonical_bytes",
+      "ordinal": 10,
+      "output": {
+        "bytes": 28,
+        "sha256": "bb8a6d33be8a313c5460783c4a5c4f384e5875e4c731ca1ed0036e3e11f0d426",
+        "type": "bytes"
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "encoding discrepancy",
+        "domain": "canonical JSON bytes",
+        "interface": "SDF0@Def",
+        "lowering": "compile:canonical-json-integrity",
+        "semantics": "zero when canonical UTF-8 JSON encoding is exact"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:e41e8800f679bf4801d2a8cc967d4b4bb63d642c1096d0ef7a1642f1e2aa2105",
+      "dependencies": [
+        "transform:u32-minus-one"
+      ],
+      "domain": "int",
+      "id": "transform:i32-minus-one",
+      "inputs": [
+        "transform:u32-minus-one"
+      ],
+      "kind": "fixed_width_integer",
+      "operation": "i32.normalize",
+      "ordinal": 11,
+      "output": {
+        "sha256": "1bad6b8cf97131fceab8543e81f7757195fbb1d36b376ee994ad1cf17699c464",
+        "type": "int",
+        "value": -1
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "integer discrepancy",
+        "domain": "integer operation",
+        "interface": "SDF0@Def",
+        "lowering": "compile:integer-integrity",
+        "semantics": "zero when two-complement signed normalization is exact"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:6f3752ff59bec9c26fb3c37958b8ef5caf8379f8499388f2fe64d655114dc219",
+      "dependencies": [
+        "literal:int-f0",
+        "literal:int-0f"
+      ],
+      "domain": [
+        "int",
+        "int"
+      ],
+      "id": "transform:u32-or",
+      "inputs": [
+        "literal:int-f0",
+        "literal:int-0f"
+      ],
+      "kind": "fixed_width_bit_operation",
+      "operation": "u32.or",
+      "ordinal": 12,
+      "output": {
+        "sha256": "9556b82499cc0aaf86aee7f0d253e17c61b7ef73d48a295f37d98f08b04ffa7f",
+        "type": "int",
+        "value": 255
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "integer discrepancy",
+        "domain": "bit operation",
+        "interface": "SDF0@Def",
+        "lowering": "compile:bit-integrity",
+        "semantics": "zero when OR output is exact"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:271a2fadf3b5df1d2eb72b3bc398dbd8463043257d11240cb6ab64223780efb2",
+      "dependencies": [
+        "literal:int-one",
+        "literal:int-eight"
+      ],
+      "domain": [
+        "int",
+        "int"
+      ],
+      "id": "transform:u32-shl",
+      "inputs": [
+        "literal:int-one",
+        "literal:int-eight"
+      ],
+      "kind": "fixed_width_bit_operation",
+      "operation": "u32.shl",
+      "ordinal": 13,
+      "output": {
+        "sha256": "51e8ea280b44e16934d4d611901f3d3afc41789840acdff81942c2f65009cd52",
+        "type": "int",
+        "value": 256
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "integer discrepancy",
+        "domain": "bit operation",
+        "interface": "SDF0@Def",
+        "lowering": "compile:bit-integrity",
+        "semantics": "zero when masked left shift is exact"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:c44613c93057df2452ad3a99e523893da7497e59fb481289ff691369ad34a479",
+      "dependencies": [
+        "transform:u32-shl",
+        "literal:int-eight"
+      ],
+      "domain": [
+        "int",
+        "int"
+      ],
+      "id": "transform:u32-shr",
+      "inputs": [
+        "transform:u32-shl",
+        "literal:int-eight"
+      ],
+      "kind": "fixed_width_bit_operation",
+      "operation": "u32.shr",
+      "ordinal": 14,
+      "output": {
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "type": "int",
+        "value": 1
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "integer discrepancy",
+        "domain": "bit operation",
+        "interface": "SDF0@Def",
+        "lowering": "compile:bit-integrity",
+        "semantics": "zero when masked logical right shift is exact"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:399d41d66a5e8bcd49f6b6a99fe561d5ccd83c090bdf2a0a01ff587e465bfc22",
+      "dependencies": [
+        "literal:int-one",
+        "literal:int-eight"
+      ],
+      "domain": [
+        "int",
+        "int"
+      ],
+      "id": "transform:u32-rotl",
+      "inputs": [
+        "literal:int-one",
+        "literal:int-eight"
+      ],
+      "kind": "fixed_width_bit_operation",
+      "operation": "u32.rotl",
+      "ordinal": 15,
+      "output": {
+        "sha256": "51e8ea280b44e16934d4d611901f3d3afc41789840acdff81942c2f65009cd52",
+        "type": "int",
+        "value": 256
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "integer discrepancy",
+        "domain": "bit operation",
+        "interface": "SDF0@Def",
+        "lowering": "compile:bit-integrity",
+        "semantics": "zero when rotate-left output is exact"
+      }
+    },
+    {
+      "codomain": "bit",
+      "content_hash": "sha256:09d5066e763f2633645b3837a53cf5818540b60d7c805bdeaf3805d70373f871",
+      "dependencies": [
+        "transform:u32-xor"
+      ],
+      "domain": "int",
+      "id": "transform:parity",
+      "inputs": [
+        "transform:u32-xor"
+      ],
+      "kind": "fixed_width_bit_operation",
+      "operation": "bit.parity",
+      "ordinal": 16,
+      "output": {
+        "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "type": "bit",
+        "value": 0
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "bit discrepancy",
+        "domain": "bit operation",
+        "interface": "SDF0@Def",
+        "lowering": "compile:bit-integrity",
+        "semantics": "zero when parity output is exact"
+      }
+    },
+    {
+      "codomain": "bit",
+      "content_hash": "sha256:77ff88d61fe8363d9c6be25f22a94e39eff62f52782dd9c6a605e28a5a6c51f6",
+      "dependencies": [
+        "transform:popcount",
+        "literal:int-eight"
+      ],
+      "domain": [
+        "int",
+        "int"
+      ],
+      "id": "support:popcount-eight",
+      "inputs": [
+        "transform:popcount",
+        "literal:int-eight"
+      ],
+      "kind": "support_predicate",
+      "operation": "predicate.eq",
+      "ordinal": 0,
+      "output": {
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "type": "bit",
+        "value": 1
+      },
+      "phase": 5,
+      "zero_relation": {
+        "codomain": "predicate discrepancy",
+        "domain": "support predicate",
+        "interface": "SDF0@Def",
+        "lowering": "compile:predicate-integrity",
+        "semantics": "zero when popcount support equals the declared reference"
+      }
+    },
+    {
+      "codomain": "bit",
+      "content_hash": "sha256:5ee75d47989229e733d5b5bcea16c30d0285124d78b9c0b1b6b41fe7269b7a86",
+      "dependencies": [
+        "transform:u32-or",
+        "transform:u32-xor"
+      ],
+      "domain": [
+        "int",
+        "int"
+      ],
+      "id": "support:or-equals-xor",
+      "inputs": [
+        "transform:u32-or",
+        "transform:u32-xor"
+      ],
+      "kind": "support_predicate",
+      "operation": "predicate.eq",
+      "ordinal": 1,
+      "output": {
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "type": "bit",
+        "value": 1
+      },
+      "phase": 5,
+      "zero_relation": {
+        "codomain": "predicate discrepancy",
+        "domain": "support predicate",
+        "interface": "SDF0@Def",
+        "lowering": "compile:predicate-integrity",
+        "semantics": "zero when OR and XOR agree for the declared disjoint masks"
+      }
+    },
+    {
+      "codomain": "bit",
+      "content_hash": "sha256:0ccfe7a6084fa548637ef0f04073caa998ebe08709817f437baa7570584b7b25",
+      "dependencies": [
+        "transform:u32-shl",
+        "transform:u32-rotl"
+      ],
+      "domain": [
+        "int",
+        "int"
+      ],
+      "id": "support:shift-equals-rotl",
+      "inputs": [
+        "transform:u32-shl",
+        "transform:u32-rotl"
+      ],
+      "kind": "support_predicate",
+      "operation": "predicate.eq",
+      "ordinal": 2,
+      "output": {
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "type": "bit",
+        "value": 1
+      },
+      "phase": 5,
+      "zero_relation": {
+        "codomain": "predicate discrepancy",
+        "domain": "support predicate",
+        "interface": "SDF0@Def",
+        "lowering": "compile:predicate-integrity",
+        "semantics": "zero when the declared shift and rotation outputs agree"
+      }
+    },
+    {
+      "codomain": "bit",
+      "content_hash": "sha256:28382e298a4af32db58c7afef5134b42630d584be8f90034ec3e84472d3bf6bb",
+      "dependencies": [
+        "transform:u32-shr",
+        "literal:int-one"
+      ],
+      "domain": [
+        "int",
+        "int"
+      ],
+      "id": "support:shift-back-one",
+      "inputs": [
+        "transform:u32-shr",
+        "literal:int-one"
+      ],
+      "kind": "support_predicate",
+      "operation": "predicate.eq",
+      "ordinal": 3,
+      "output": {
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "type": "bit",
+        "value": 1
+      },
+      "phase": 5,
+      "zero_relation": {
+        "codomain": "predicate discrepancy",
+        "domain": "support predicate",
+        "interface": "SDF0@Def",
+        "lowering": "compile:predicate-integrity",
+        "semantics": "zero when logical right shift recovers the declared value"
+      }
+    },
+    {
+      "codomain": "bit",
+      "content_hash": "sha256:635b733838d78fd4ea2c3a0b1dbf028583c9a9a66d9ca217d0390928d5922dda",
+      "dependencies": [
+        "transform:parity"
+      ],
+      "domain": "bit",
+      "id": "support:parity-zero",
+      "inputs": [
+        "transform:parity"
+      ],
+      "kind": "support_predicate",
+      "operation": "predicate.zero",
+      "ordinal": 4,
+      "output": {
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "type": "bit",
+        "value": 1
+      },
+      "phase": 5,
+      "zero_relation": {
+        "codomain": "predicate discrepancy",
+        "domain": "support predicate",
+        "interface": "SDF0@Def",
+        "lowering": "compile:predicate-integrity",
+        "semantics": "zero when the declared parity bit is zero"
+      }
+    },
+    {
+      "codomain": "bit",
+      "content_hash": "sha256:ed2ac106257a4e5b5d648a3ca5c8cdf273a96068ac4b35a667fec6e79bcdf922",
+      "dependencies": [
+        "transform:u32-wrap-add"
+      ],
+      "domain": "int",
+      "id": "compatibility:wrapped-zero",
+      "inputs": [
+        "transform:u32-wrap-add"
+      ],
+      "kind": "compatibility_predicate",
+      "operation": "predicate.zero",
+      "ordinal": 0,
+      "output": {
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "type": "bit",
+        "value": 1
+      },
+      "phase": 6,
+      "zero_relation": {
+        "codomain": "predicate discrepancy",
+        "domain": "compatibility predicate",
+        "interface": "SDF0@Def",
+        "lowering": "compile:predicate-integrity",
+        "semantics": "zero when the wrapped sum is compatible with zero"
+      }
+    },
+    {
+      "codomain": "bit",
+      "content_hash": "sha256:a8dfad831fdd69dbd69da9b1d6092ee5c8ae95897b3d8059786fe13b45742da1",
+      "dependencies": [
+        "transform:i32-minus-one",
+        "transform:u32-wrap-add"
+      ],
+      "domain": [
+        "int",
+        "int"
+      ],
+      "id": "compatibility:signed-le-zero",
+      "inputs": [
+        "transform:i32-minus-one",
+        "transform:u32-wrap-add"
+      ],
+      "kind": "compatibility_predicate",
+      "operation": "predicate.le",
+      "ordinal": 1,
+      "output": {
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "type": "bit",
+        "value": 1
+      },
+      "phase": 6,
+      "zero_relation": {
+        "codomain": "predicate discrepancy",
+        "domain": "compatibility predicate",
+        "interface": "SDF0@Def",
+        "lowering": "compile:predicate-integrity",
+        "semantics": "zero when signed minus one is less than or equal to wrapped zero"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:229634e7cf1e46b017cf0f1f66692e206495cef346c0dbfd49d314ff02d81cd2",
+      "dependencies": [
+        "support:popcount-eight",
+        "compatibility:wrapped-zero"
+      ],
+      "domain": [
+        "bit",
+        "bit"
+      ],
+      "id": "guard:primary",
+      "inputs": [
+        "support:popcount-eight",
+        "compatibility:wrapped-zero"
+      ],
+      "kind": "guard_predicate",
+      "operation": "u32.and",
+      "ordinal": 0,
+      "output": {
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "type": "int",
+        "value": 1
+      },
+      "phase": 7,
+      "zero_relation": {
+        "codomain": "predicate discrepancy",
+        "domain": "guard predicate",
+        "interface": "SDF0@Def",
+        "lowering": "compile:predicate-integrity",
+        "semantics": "zero when the declared support and compatibility guard evaluates exactly"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:32250d02f8dbb60a5258c0820fcb0cbc777a62734a575715298e52525a0a047f",
+      "dependencies": [
+        "guard:primary",
+        "support:or-equals-xor"
+      ],
+      "domain": [
+        "bit",
+        "bit"
+      ],
+      "id": "guard:or",
+      "inputs": [
+        "guard:primary",
+        "support:or-equals-xor"
+      ],
+      "kind": "guard_predicate",
+      "operation": "u32.and",
+      "ordinal": 1,
+      "output": {
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "type": "int",
+        "value": 1
+      },
+      "phase": 7,
+      "zero_relation": {
+        "codomain": "predicate discrepancy",
+        "domain": "guard predicate",
+        "interface": "SDF0@Def",
+        "lowering": "compile:predicate-integrity",
+        "semantics": "zero when the accumulated declared guard terms evaluate exactly"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:54ddd7d0f947f6ec16c6ca2fa6e7b54f96927a4b2b65e1699b070709166ab94a",
+      "dependencies": [
+        "guard:or",
+        "support:shift-equals-rotl"
+      ],
+      "domain": [
+        "bit",
+        "bit"
+      ],
+      "id": "guard:shift",
+      "inputs": [
+        "guard:or",
+        "support:shift-equals-rotl"
+      ],
+      "kind": "guard_predicate",
+      "operation": "u32.and",
+      "ordinal": 2,
+      "output": {
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "type": "int",
+        "value": 1
+      },
+      "phase": 7,
+      "zero_relation": {
+        "codomain": "predicate discrepancy",
+        "domain": "guard predicate",
+        "interface": "SDF0@Def",
+        "lowering": "compile:predicate-integrity",
+        "semantics": "zero when the accumulated declared guard terms evaluate exactly"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:68a3df5185fe031839b0411d875a56f5bcfb3c470a710a599e7ae7a8b0968cc8",
+      "dependencies": [
+        "guard:shift",
+        "support:shift-back-one"
+      ],
+      "domain": [
+        "bit",
+        "bit"
+      ],
+      "id": "guard:shift-back",
+      "inputs": [
+        "guard:shift",
+        "support:shift-back-one"
+      ],
+      "kind": "guard_predicate",
+      "operation": "u32.and",
+      "ordinal": 3,
+      "output": {
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "type": "int",
+        "value": 1
+      },
+      "phase": 7,
+      "zero_relation": {
+        "codomain": "predicate discrepancy",
+        "domain": "guard predicate",
+        "interface": "SDF0@Def",
+        "lowering": "compile:predicate-integrity",
+        "semantics": "zero when the accumulated declared guard terms evaluate exactly"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:f31a8a5c9ddd0dcfcd0b88f243f897e54257ab697382ee98b06c538b1a28128b",
+      "dependencies": [
+        "guard:shift-back",
+        "support:parity-zero"
+      ],
+      "domain": [
+        "bit",
+        "bit"
+      ],
+      "id": "guard:parity",
+      "inputs": [
+        "guard:shift-back",
+        "support:parity-zero"
+      ],
+      "kind": "guard_predicate",
+      "operation": "u32.and",
+      "ordinal": 4,
+      "output": {
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "type": "int",
+        "value": 1
+      },
+      "phase": 7,
+      "zero_relation": {
+        "codomain": "predicate discrepancy",
+        "domain": "guard predicate",
+        "interface": "SDF0@Def",
+        "lowering": "compile:predicate-integrity",
+        "semantics": "zero when the accumulated declared guard terms evaluate exactly"
+      }
+    },
+    {
+      "codomain": "int",
+      "content_hash": "sha256:43ebe4d0db7840f00da49ec1f78dcc92fbf93d50d2e2c48ea37136d73b74fc14",
+      "dependencies": [
+        "guard:parity",
+        "compatibility:signed-le-zero"
+      ],
+      "domain": [
+        "bit",
+        "bit"
+      ],
+      "id": "guard:signed",
+      "inputs": [
+        "guard:parity",
+        "compatibility:signed-le-zero"
+      ],
+      "kind": "guard_predicate",
+      "operation": "u32.and",
+      "ordinal": 5,
+      "output": {
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "type": "int",
+        "value": 1
+      },
+      "phase": 7,
+      "zero_relation": {
+        "codomain": "predicate discrepancy",
+        "domain": "guard predicate",
+        "interface": "SDF0@Def",
+        "lowering": "compile:predicate-integrity",
+        "semantics": "zero when the accumulated declared guard terms evaluate exactly"
+      }
+    },
+    {
+      "codomain": "bit",
+      "content_hash": "sha256:2022d77596d334b0d8280e916e983b5ec7d7ae98f6b3a39ee1ca31fcb9240f27",
+      "dependencies": [
+        "guard:signed",
+        "literal:int-one"
+      ],
+      "domain": [
+        "int",
+        "int"
+      ],
+      "id": "event:guard-bit",
+      "inputs": [
+        "guard:signed",
+        "literal:int-one"
+      ],
+      "kind": "verified_event_selector",
+      "operation": "predicate.eq",
+      "ordinal": 6,
+      "output": {
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "type": "bit",
+        "value": 1
+      },
+      "phase": 7,
+      "zero_relation": {
+        "codomain": "event discrepancy",
+        "domain": "event selector",
+        "interface": "SDF0@Def",
+        "lowering": "compile:event-integrity",
+        "semantics": "zero when the guard produces the declared event bit"
+      }
+    },
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:9324b681d4f1936309a00040a98798a02e6e2abaea9fe404b01009e814ae1caf",
+      "dependencies": [
+        "event:guard-bit",
+        "literal:false-bytes",
+        "literal:true-bytes"
+      ],
+      "domain": [
+        "bit",
+        "bytes",
+        "bytes"
+      ],
+      "id": "transition:selected-bytes",
+      "inputs": [
+        "event:guard-bit",
+        "literal:false-bytes",
+        "literal:true-bytes"
+      ],
+      "kind": "binary_selection",
+      "operation": "select.binary",
+      "ordinal": 0,
+      "output": {
+        "bytes": 4,
+        "sha256": "a5c6eccf6125e3bc96ebfad55bec057162ba1c2df5b4ef5c48875faaec827b00",
+        "type": "bytes"
+      },
+      "phase": 8,
+      "zero_relation": {
+        "codomain": "route discrepancy",
+        "domain": "binary selection",
+        "interface": "SDF0@Def",
+        "lowering": "compile:selection-integrity",
+        "semantics": "zero when the event bit selects the declared byte route"
+      }
+    },
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:8f31b0d6d84e4cabc6c9175c5c1dfe233173abe2e40482de242eba25e2fcd35d",
+      "dependencies": [
+        "transform:seed-prefix",
+        "transform:string-bytes",
+        "transform:record-bytes",
+        "transform:indexed-map-bytes",
+        "transition:selected-bytes"
+      ],
+      "domain": "byte sequences",
+      "id": "transition:artifact-bytes",
+      "inputs": [
+        "transform:seed-prefix",
+        "transform:string-bytes",
+        "transform:record-bytes",
+        "transform:indexed-map-bytes",
+        "transition:selected-bytes"
+      ],
+      "kind": "generic_byte_artifact",
+      "operation": "sequence.concat",
+      "ordinal": 1,
+      "output": {
+        "bytes": 61,
+        "sha256": "320809fa0fcde2f252e691265cf72f9f11de729bfe070e7376799130ff1251f4",
+        "type": "bytes"
+      },
+      "phase": 8,
+      "zero_relation": {
+        "codomain": "byte join discrepancy",
+        "domain": "concatenated artifact bytes",
+        "interface": "SDF0@Def",
+        "lowering": "compile:byte-join-integrity",
+        "semantics": "zero when all declared byte sequences are joined once in input order"
+      }
+    },
+    {
+      "codomain": "cell",
+      "content_hash": "sha256:12ee4a891d6e7d0b149dae8ea7dae0601666f1ccb33566bb608022147c9d75fd",
+      "dependencies": [
+        "transition:artifact-bytes"
+      ],
+      "domain": "unit",
+      "id": "transition:entry-cell",
+      "inputs": [],
+      "kind": "cell48_constructor",
+      "operation": "tomagi.cell",
+      "ordinal": 2,
+      "output": {
+        "cell_count": 1,
+        "sha256": "207faa492ef8dc18abe160d7baae5842ea224eb48fa27b55f01c2c417279a074",
+        "type": "cell"
+      },
+      "phase": 8,
+      "zero_relation": {
+        "codomain": "cell discrepancy",
+        "domain": "defined Cell48",
+        "interface": "SDF0@Def",
+        "lowering": "compile:cell48-integrity",
+        "semantics": "zero when the fixed-width Cell48 fields equal the declaration"
+      }
+    },
+    {
+      "codomain": "cells",
+      "content_hash": "sha256:6e060c63ca5de7f053658714c5612cd975421c26eee4f0ef1630249b536e5ace",
+      "dependencies": [
+        "transition:artifact-bytes"
+      ],
+      "domain": "bytes",
+      "id": "transition:emit",
+      "inputs": [
+        "transition:artifact-bytes"
+      ],
+      "kind": "ordered_byte_emission",
+      "operation": "tomagi.emit_bytes",
+      "ordinal": 3,
+      "output": {
+        "cell_count": 16,
+        "sha256": "3ddbaa51f7c847a507a57a7af28acca5639839d81877616ac13273713ea575b4",
+        "type": "cells"
+      },
+      "phase": 8,
+      "zero_relation": {
+        "codomain": "unemitted-byte count",
+        "domain": "ordered emission plan",
+        "interface": "SDF0@Def",
+        "lowering": "compile:emission-completeness",
+        "semantics": "zero when every artifact byte is assigned once to an EMIT record"
+      }
+    },
+    {
+      "codomain": "cells",
+      "content_hash": "sha256:234c0ffbc1e7ef8cf04d87225d5d9b02bd29ba6f55b35964d5bceb8cd659503a",
+      "dependencies": [
+        "transition:entry-cell",
+        "transition:emit"
+      ],
+      "domain": [
+        "cell",
+        "cells"
+      ],
+      "id": "transition:graph",
+      "inputs": [
+        "transition:entry-cell",
+        "transition:emit"
+      ],
+      "kind": "bounded_cell_graph",
+      "operation": "tomagi.graph.sequence",
+      "ordinal": 4,
+      "output": {
+        "cell_count": 17,
+        "sha256": "a7d18ba3098c7a5dd43483b4ec772970a23f9ebef4eba3675e8928542c5e73f3",
+        "type": "cells"
+      },
+      "phase": 8,
+      "zero_relation": {
+        "codomain": "graph discrepancy",
+        "domain": "cell graph",
+        "interface": "SDF0@Def",
+        "lowering": "compile:graph-integrity",
+        "semantics": "zero when all declared cells are present exactly once before key sorting"
+      }
+    },
+    {
+      "codomain": "program",
+      "content_hash": "sha256:59e286a0725a6bea8a8802d67f1bf760da045ea0553e1eb5f47ababed7a992c8",
+      "dependencies": [
+        "seed:genome",
+        "state:initial",
+        "transition:graph"
+      ],
+      "domain": [
+        "canonical seed bytes",
+        "State64",
+        "bounded Cell48 graph"
+      ],
+      "id": "program:root",
+      "inputs": [
+        "seed:genome",
+        "state:initial",
+        "transition:graph"
+      ],
+      "kind": "seeded_tomagi_program",
+      "operation": "tomagi.program",
+      "ordinal": 0,
+      "output": {
+        "bytes": 944,
+        "sha256": "4461a4653c7964b188eb6835527d461a5bfda3544406d437af45d61d5939f600",
+        "type": "program"
+      },
+      "phase": 9,
+      "zero_relation": {
+        "codomain": "program discrepancy",
+        "domain": "compiled definition graph",
+        "interface": "SDF0@Def",
+        "lowering": "compile:program-integrity",
+        "semantics": "zero when the evaluated graph lowers and serializes exactly to the manifest program hash"
+      }
+    }
+  ],
+  "determinism": {
+    "binary_format": "TOMAGI ABI 1.0 little-endian header 128 + Cell48 records",
+    "canonical_json": "UTF-8; sorted object keys; compact separators; no Unicode escaping",
+    "cell_order": "ascending unsigned canonical 64-bit key",
+    "definition_schedule": "strict unique (phase, ordinal), dependencies before dependents"
+  },
+  "limits": {
+    "max_cells": 512,
+    "max_definitions": 128,
+    "max_dependencies_per_definition": 32,
+    "max_literal_bytes": 4096,
+    "max_operation_steps": 16384,
+    "max_output_bytes": 4096,
+    "max_recursion_depth": 0,
+    "max_repeat": 32,
+    "max_sequence_items": 4096,
+    "max_ticks": 512
+  },
+  "lowering": {
+    "cell_count": 17,
+    "cells": [
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 0,
+        "cell_id": "cell:algebra-entry",
+        "definition_id": "transition:entry-cell",
+        "flags": 0,
+        "index": 0,
+        "key": "0x0000000000000000",
+        "next0": 1,
+        "next1": 1,
+        "next_ids": [
+          "cell:algebra:000000",
+          "cell:algebra:000000"
+        ],
+        "opcode": "NOP",
+        "payload": 1093730304
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 0,
+        "byte_count": 4,
+        "bytes_hex": "544f4d31",
+        "cell_id": "cell:algebra:000000",
+        "definition_id": "transition:emit",
+        "flags": 1792,
+        "index": 1,
+        "key": "0x0000000000000001",
+        "next0": 2,
+        "next1": 2,
+        "next_ids": [
+          "cell:algebra:000001",
+          "cell:algebra:000001"
+        ],
+        "opcode": "EMIT",
+        "payload": 827150164,
+        "source_offset": 0
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 4,
+        "byte_count": 4,
+        "bytes_hex": "544f4d7b",
+        "cell_id": "cell:algebra:000001",
+        "definition_id": "transition:emit",
+        "flags": 1792,
+        "index": 2,
+        "key": "0x0000000000000002",
+        "next0": 3,
+        "next1": 3,
+        "next_ids": [
+          "cell:algebra:000002",
+          "cell:algebra:000002"
+        ],
+        "opcode": "EMIT",
+        "payload": 2068664148,
+        "source_offset": 4
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 8,
+        "byte_count": 4,
+        "bytes_hex": "2270726f",
+        "cell_id": "cell:algebra:000002",
+        "definition_id": "transition:emit",
+        "flags": 1792,
+        "index": 3,
+        "key": "0x0000000000000003",
+        "next0": 4,
+        "next1": 4,
+        "next_ids": [
+          "cell:algebra:000003",
+          "cell:algebra:000003"
+        ],
+        "opcode": "EMIT",
+        "payload": 1869770786,
+        "source_offset": 8
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 12,
+        "byte_count": 4,
+        "bytes_hex": "66696c65",
+        "cell_id": "cell:algebra:000003",
+        "definition_id": "transition:emit",
+        "flags": 1792,
+        "index": 4,
+        "key": "0x0000000000000004",
+        "next0": 5,
+        "next1": 5,
+        "next_ids": [
+          "cell:algebra:000004",
+          "cell:algebra:000004"
+        ],
+        "opcode": "EMIT",
+        "payload": 1701603686,
+        "source_offset": 12
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 16,
+        "byte_count": 4,
+        "bytes_hex": "223a2241",
+        "cell_id": "cell:algebra:000004",
+        "definition_id": "transition:emit",
+        "flags": 1792,
+        "index": 5,
+        "key": "0x0000000000000005",
+        "next0": 6,
+        "next1": 6,
+        "next_ids": [
+          "cell:algebra:000005",
+          "cell:algebra:000005"
+        ],
+        "opcode": "EMIT",
+        "payload": 1092762146,
+        "source_offset": 16
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 20,
+        "byte_count": 4,
+        "bytes_hex": "31222c22",
+        "cell_id": "cell:algebra:000005",
+        "definition_id": "transition:emit",
+        "flags": 1792,
+        "index": 6,
+        "key": "0x0000000000000006",
+        "next0": 7,
+        "next1": 7,
+        "next_ids": [
+          "cell:algebra:000006",
+          "cell:algebra:000006"
+        ],
+        "opcode": "EMIT",
+        "payload": 573317681,
+        "source_offset": 20
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 24,
+        "byte_count": 4,
+        "bytes_hex": "76657273",
+        "cell_id": "cell:algebra:000006",
+        "definition_id": "transition:emit",
+        "flags": 1792,
+        "index": 7,
+        "key": "0x0000000000000007",
+        "next0": 8,
+        "next1": 8,
+        "next_ids": [
+          "cell:algebra:000007",
+          "cell:algebra:000007"
+        ],
+        "opcode": "EMIT",
+        "payload": 1936876918,
+        "source_offset": 24
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 28,
+        "byte_count": 4,
+        "bytes_hex": "696f6e22",
+        "cell_id": "cell:algebra:000007",
+        "definition_id": "transition:emit",
+        "flags": 1792,
+        "index": 8,
+        "key": "0x0000000000000008",
+        "next0": 9,
+        "next1": 9,
+        "next_ids": [
+          "cell:algebra:000008",
+          "cell:algebra:000008"
+        ],
+        "opcode": "EMIT",
+        "payload": 577662825,
+        "source_offset": 28
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 32,
+        "byte_count": 4,
+        "bytes_hex": "3a317d5b",
+        "cell_id": "cell:algebra:000008",
+        "definition_id": "transition:emit",
+        "flags": 1792,
+        "index": 9,
+        "key": "0x0000000000000009",
+        "next0": 10,
+        "next1": 10,
+        "next_ids": [
+          "cell:algebra:000009",
+          "cell:algebra:000009"
+        ],
+        "opcode": "EMIT",
+        "payload": 1534931258,
+        "source_offset": 32
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 36,
+        "byte_count": 4,
+        "bytes_hex": "5b302c31",
+        "cell_id": "cell:algebra:000009",
+        "definition_id": "transition:emit",
+        "flags": 1792,
+        "index": 10,
+        "key": "0x000000000000000a",
+        "next0": 11,
+        "next1": 11,
+        "next_ids": [
+          "cell:algebra:000010",
+          "cell:algebra:000010"
+        ],
+        "opcode": "EMIT",
+        "payload": 824979547,
+        "source_offset": 36
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 40,
+        "byte_count": 4,
+        "bytes_hex": "305d2c5b",
+        "cell_id": "cell:algebra:000010",
+        "definition_id": "transition:emit",
+        "flags": 1792,
+        "index": 11,
+        "key": "0x000000000000000b",
+        "next0": 12,
+        "next1": 12,
+        "next_ids": [
+          "cell:algebra:000011",
+          "cell:algebra:000011"
+        ],
+        "opcode": "EMIT",
+        "payload": 1529634096,
+        "source_offset": 40
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 44,
+        "byte_count": 4,
+        "bytes_hex": "312c3230",
+        "cell_id": "cell:algebra:000011",
+        "definition_id": "transition:emit",
+        "flags": 1792,
+        "index": 12,
+        "key": "0x000000000000000c",
+        "next0": 13,
+        "next1": 13,
+        "next_ids": [
+          "cell:algebra:000012",
+          "cell:algebra:000012"
+        ],
+        "opcode": "EMIT",
+        "payload": 808594481,
+        "source_offset": 44
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 48,
+        "byte_count": 4,
+        "bytes_hex": "5d2c5b32",
+        "cell_id": "cell:algebra:000012",
+        "definition_id": "transition:emit",
+        "flags": 1792,
+        "index": 13,
+        "key": "0x000000000000000d",
+        "next0": 14,
+        "next1": 14,
+        "next_ids": [
+          "cell:algebra:000013",
+          "cell:algebra:000013"
+        ],
+        "opcode": "EMIT",
+        "payload": 844835933,
+        "source_offset": 48
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 52,
+        "byte_count": 4,
+        "bytes_hex": "2c33305d",
+        "cell_id": "cell:algebra:000013",
+        "definition_id": "transition:emit",
+        "flags": 1792,
+        "index": 14,
+        "key": "0x000000000000000e",
+        "next0": 15,
+        "next1": 15,
+        "next_ids": [
+          "cell:algebra:000014",
+          "cell:algebra:000014"
+        ],
+        "opcode": "EMIT",
+        "payload": 1563439916,
+        "source_offset": 52
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 56,
+        "byte_count": 4,
+        "bytes_hex": "5d0a4f4b",
+        "cell_id": "cell:algebra:000014",
+        "definition_id": "transition:emit",
+        "flags": 1792,
+        "index": 15,
+        "key": "0x000000000000000f",
+        "next0": 16,
+        "next1": 16,
+        "next_ids": [
+          "cell:algebra:000015",
+          "cell:algebra:000015"
+        ],
+        "opcode": "EMIT",
+        "payload": 1263471197,
+        "source_offset": 56
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 60,
+        "byte_count": 1,
+        "bytes_hex": "0a",
+        "cell_id": "cell:algebra:000015",
+        "definition_id": "transition:emit",
+        "flags": 257,
+        "index": 16,
+        "key": "0x0000000000000010",
+        "next0": 16,
+        "next1": 16,
+        "next_ids": [
+          "cell:algebra:000015",
+          "cell:algebra:000015"
+        ],
+        "opcode": "EMIT",
+        "payload": 10,
+        "source_offset": 60
+      }
+    ],
+    "entry_id": "cell:algebra-entry",
+    "entry_index": 0
+  },
+  "profile_id": "TOM-Seeded-Compilation-Profile-1.0",
+  "program": {
+    "bytes": 944,
+    "default_ticks": 64,
+    "genome_flag_tag": 830095825,
+    "initial_state_words": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1093730305,
+      0,
+      0,
+      0
+    ],
+    "program_flags": 830095825,
+    "runtime_seed": 0,
+    "sha256": "4461a4653c7964b188eb6835527d461a5bfda3544406d437af45d61d5939f600"
+  },
+  "schema": "TOM-SEEDED-COMPILATION-MANIFEST-1.0",
+  "seed": {
+    "attribution": "TomKlootwijk",
+    "birth_date": "1990-07-10",
+    "byte_length": 244,
+    "declared_file": "../TOM_seed_genome_2026-09-01.txt",
+    "generated_date": "2026-09-01",
+    "identifier": "NL200678942",
+    "pipeline": "LUTlogp^{Klein,SDF0@Def}(rho,theta,t->;phi,dt,d2,J,v,a,j1)>P1>L2_BST^b>ASweepCone(T,apex)>Pi[pyrSide,circle,sphere]>support>compatibility>guard>event>transition>lineage",
+    "sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+    "substrate_name": "TopologicalOpenModular",
+    "tokens": [
+      "LUTlogp",
+      "Klein",
+      "SDF0@Def",
+      "rho",
+      "theta",
+      "t->",
+      "phi",
+      "dt",
+      "d2",
+      "J",
+      "v",
+      "a",
+      "j1",
+      "P1",
+      "L2_BST^b",
+      "ASweepCone",
+      "T",
+      "apex",
+      "Pi",
+      "pyrSide",
+      "circle",
+      "sphere",
+      "support",
+      "compatibility",
+      "guard",
+      "event",
+      "transition",
+      "lineage"
+    ],
+    "version_token": "TOM1"
+  },
+  "source_document": {
+    "canonical_bytes": 31679,
+    "sha256": "9b621e08d995c8819ef7dc7a82204fe79db8001b3d582dd5023b15070cfb0028"
+  },
+  "token_registry": {
+    "content_hash": "sha256:b14140cf9800e186701557ed982d692931966ea957e5790c1e6b4989e854c609",
+    "declared_file": "../spec/seeded/token_registry_1_0.json",
+    "profile_id": "TOM-Seeded-Compilation-Profile-1.0",
+    "resolved_token_count": 28
+  },
+  "tomagi_abi": "1.0.0"
+}
