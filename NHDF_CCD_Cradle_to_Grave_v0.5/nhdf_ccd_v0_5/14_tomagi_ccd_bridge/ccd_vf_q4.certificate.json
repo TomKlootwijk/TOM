@@ -1,0 +1,1 @@
+{"certificate_schema":"TOM-NHDF-CCD-FIXTURE-1.0","feature_pair":"vertex-face","fixed_point_scale":4,"fixture":"vf-q4-linear-probe","method":"TOMAGI KIN2/CONE/SPHERE/RADIX","scope":"single exact zero-thickness q4 query","status":"HIT","thickness":0,"toi":{"denominator":4,"numerator":3},"triangle_q4":[[0,0,0],[4,0,0],[0,4,0]],"vertex_end_q4":[1,1,-1],"vertex_start_q4":[1,1,3]}

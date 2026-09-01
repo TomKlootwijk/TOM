@@ -13,6 +13,7 @@ The preserved v0.4 tree contains the primitive/reference foundation and original
 - `12_v0_5_upgrade/gpu/` — non-conformant CUDA coefficient-stage skeleton.
 - `12_v0_5_upgrade/validation/` — tests, raw records, figures, environment, logs, and PDF checks.
 - `12_v0_5_upgrade/corpus/vendor/` — two third-party Sample-Queries files plus upstream README and MIT license.
+- `14_tomagi_ccd_bridge/` — seed-bound q4 vertex-face definition graph, compiled `.tmg`, ordered EMIT replay, materialized certificate, and deterministic proof.
 
 ## Scientific boundary
 
@@ -26,3 +27,11 @@ cd 12_v0_5_upgrade
 ```
 
 See `12_v0_5_upgrade/validation/RELEASE_VALIDATION_LOG.md`, `RELEASE_NOTES_v0.5.md`, and the PDF dossier for interpretation.
+
+The bounded TOMAGI bridge can be replayed independently of the incomplete
+corpus/report runner:
+
+```powershell
+cd 14_tomagi_ccd_bridge
+python -B build_and_validate.py
+```

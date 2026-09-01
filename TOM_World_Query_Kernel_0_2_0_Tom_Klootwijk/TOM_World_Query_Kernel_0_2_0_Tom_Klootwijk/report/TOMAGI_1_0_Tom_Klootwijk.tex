@@ -1,0 +1,729 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[a4paper,margin=22mm,headheight=16pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs,longtable,array,tabularx,multirow}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{seqsplit}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={TOMAGI 1.0 - Topological Operator Machine for Analytic Geometric Inference},
+  pdfauthor={Tom Klootwijk - requester-supplied attribution},
+  pdfsubject={Deterministic SDF-zero log-polar LUT operator substrate for CPU and GPU execution},
+  pdfkeywords={TOMAGI, deterministic inference, log-polar LUT, SDF-zero, one-bit jitter, kinematics, Klein topology, CPU, GPU}
+}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\definecolor{TomNavy}{HTML}{0B2D3D}
+\definecolor{TomTeal}{HTML}{149C9A}
+\definecolor{TomGold}{HTML}{D9A31A}
+\definecolor{TomPurple}{HTML}{7356A8}
+\definecolor{TomRed}{HTML}{C8584F}
+\definecolor{TomGreen}{HTML}{3E8F6A}
+\definecolor{TomLight}{HTML}{F3F7F8}
+\definecolor{TomGray}{HTML}{56646B}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlist{nosep,leftmargin=1.4em}
+\setlength{\emergencystretch}{3em}
+\sloppy
+
+\titleformat{\section}{\Large\bfseries\color{TomNavy}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{TomTeal}}{\thesubsection}{0.65em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{TomPurple}}{\thesubsubsection}{0.6em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textbf{TOMAGI 1.0}}
+\fancyhead[R]{\small Deterministic log-polar operator substrate}
+\fancyfoot[L]{\scriptsize Tom Klootwijk - requester-supplied attribution}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\captionsetup{font=small,labelfont=bf,labelsep=period}
+\graphicspath{{figures/}}
+
+\lstdefinestyle{tomcode}{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{TomLight},
+  frame=single,
+  rulecolor=\color{TomTeal},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  xleftmargin=0.5em,
+  xrightmargin=0.5em
+}
+\lstset{style=tomcode}
+
+\newtcolorbox{decisionbox}[1][]{
+  enhanced,breakable,colback=TomLight,colframe=TomTeal,
+  coltitle=white,colbacktitle=TomTeal,title=FORMAL DECISION,
+  fonttitle=\bfseries,boxrule=0.9pt,arc=2mm,#1}
+\newtcolorbox{literalbox}[1][]{
+  enhanced,breakable,colback=white,colframe=TomPurple,
+  coltitle=white,colbacktitle=TomPurple,title=LITERAL CORE,
+  fonttitle=\bfseries,boxrule=0.9pt,arc=2mm,#1}
+\newtcolorbox{nofailsafebox}[1][]{
+  enhanced,breakable,colback=white,colframe=TomRed,
+  coltitle=white,colbacktitle=TomRed,title=NORMATIVE NO-FAILSAFE PROFILE,
+  fonttitle=\bfseries,boxrule=0.9pt,arc=2mm,#1}
+\newtcolorbox{definitionbox}[1][]{
+  enhanced,breakable,colback=white,colframe=TomNavy,
+  coltitle=white,colbacktitle=TomNavy,title=FORMAL DEFINITION,
+  fonttitle=\bfseries,boxrule=0.9pt,arc=2mm,#1}
+\newtcolorbox{evidencebox}[1][]{
+  enhanced,breakable,colback=white,colframe=TomGold,
+  coltitle=TomNavy,colbacktitle=TomGold,title=EVIDENCE SCOPE,
+  fonttitle=\bfseries,boxrule=0.9pt,arc=2mm,#1}
+
+\newcommand{\source}[1]{\textsf{[SRC-#1]}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\uword}{\mathbb{Z}/2^{32}\mathbb{Z}}
+
+\begin{document}
+\hypersetup{pageanchor=false}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{-18mm}
+\noindent\colorbox{TomNavy}{\parbox[c][88mm][c]{\dimexpr\textwidth-2\fboxsep\relax}{
+  \color{white}\vspace{5mm}
+  {\Huge\bfseries TOMAGI}\par\vspace{5mm}
+  {\LARGE Topological Operator Machine for}\par
+  {\LARGE Analytic Geometric Inference}\par\vspace{7mm}
+  {\large Literal SDF-zero log-polar LUT, one-bit parity/jitter, kinematic change-of-change, topology, branching and deterministic query execution}\par
+}}
+
+\vspace{18mm}
+{\Large\bfseries Version 1.0.0}\par
+{\large Formal substrate definition and portable reference implementation}\par
+\vspace{14mm}
+
+\begin{tabularx}{\textwidth}{@{}L{0.27\textwidth}Y@{}}
+\textbf{Requester attribution} & Tom Klootwijk; NL200678942; 10-07-1990. Supplied by the requester and not independently verified.\\[1.0ex]
+\textbf{Generated} & 1 September 2026.\\[1.0ex]
+\textbf{Technical scope} & 43 condensed operators; 16 portable opcodes; 64-byte state; 48-byte cell; exact 64-bit key codecs; content-addressed JSON definitions; Python and C99 runtimes; GLSL, WGSL and OpenCL kernels; examples, tests, source crosswalk and reproducible validation.\\[1.0ex]
+\textbf{Core decision} & SDF-zero is literal inside the LUT. The one-bit value is a deterministic perturbation and branch. No error-correction, guard interval, damping, restoration force, confidence threshold or safe mode is injected into the runtime.\\
+\end{tabularx}
+
+\vfill
+\begin{center}
+\includegraphics[width=0.94\textwidth]{01_core_pipeline.png}
+\end{center}
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+\pagenumbering{roman}
+\section*{Abstract}
+The supplied project corpus repeatedly combines a one-bit parity/jitter signal, a log-encoded polar look-up table, lower-case $\phi$, second-order kinematics, an analytic cone and its circle/pyramid/sphere projections, a binary branch structure, an L-system, signed-distance-zero language and a Klein-bottle-style topology. Later source documents add content-addressed definitions, explicit operation order, a 20/18/14/12 key, portable GPU records, zero-based timeline semantics, overlap lenses, active-bit/pulse geometry and a query-first state/transition/lineage interpretation.
+
+This report condenses those pieces into one executable definition: \textbf{TOMAGI}, the \emph{Topological Operator Machine for Analytic Geometric Inference}. The authoritative state is a 64-byte integer record. The authoritative instruction/data object is a 48-byte LUT cell. A canonical 64-bit log-polar key selects a defined cell; defined cells are literally the SDF-zero set. A deterministic parity-of-mixed-word bit applies a bipolar perturbation and selects one of two successors. The same state then passes through integer change-of-change kinematics, lower-case-$\phi$ and timeline updates, reflective Klein or half-turn transport, cone/sphere relations, hinges, radix tests and a chirality-aware L-system step. Emission returns a symbolic output and a deterministic replay lineage.
+
+The package executes the same binary program on a dependency-free Python oracle and a portable C99 evaluator. It also supplies integer-equivalent GLSL, WGSL and OpenCL kernels. The implemented claim is exact and finite: when a knowledge or control domain is compiled into literal definitions, relations, branches and output tokens, TOMAGI replaces learned prediction with deterministic operator execution.
+
+\begin{decisionbox}
+TOMAGI is not an image format, neural network, probabilistic model or vendor-specific accelerator. It is a content-addressed, fixed-width state machine whose memory cell is simultaneously a definition, an operator and a zero-level relation. Projection is optional downstream output.
+\end{decisionbox}
+
+\tableofcontents
+\listoffigures
+\clearpage
+\pagenumbering{arabic}
+
+\section{Source basis and condensation rule}
+
+\subsection{Project sources}
+Seven supplied artifacts were treated as one project corpus. Their full SHA-256 values and roles are in \cref{tab:sources} and in \code{sources/source\_register.json}.
+
+\begin{itemize}
+\item \source{A} contributes the literal reordered chain in which SDF-zero is moved inside the LUT, parity is evaluated before the kinematic and structural transforms, the binary L-system routes the state, and cone/projection operators produce the output (especially pp. 16--18).
+\item \source{B} contributes the typed symbol contract, finite cone and sphere relations, log-polar chart and exact continuous kinematics, deterministic one-bit source, reflective Klein map, radix refinement and exact 20/18/14/12 key layouts (pp. 2--15).
+\item \source{C} contributes content-addressed definition nodes, dependency ordering, non-commutative hinge composition, phase-ordered evaluation, deterministic traces, active-bit filtering and pulse geometry (pp. 3--15).
+\item \source{D} contributes the zero-based offset/ordinal distinction, the one-dimensional timeline as an address sequence, the split lower-case-$\phi$/double-D fold and the overlap lens as a shared domain (pp. 1--4 and 15--19).
+\item \source{E} contributes radix thresholds, $19=10011$, active positions $\{0,1,4\}$, the declared Dutch segmentation \code{ne|gen|tien}, a chosen three-pulse triangle and the later log-polar/Klein/$\Delta\Delta\phi$ vocabulary (pp. 1--12 and 28--38).
+\item \source{F} contributes the mature query-first reading: a finite grammar, local spherical or radial-angular supports, directly queryable relations, explicit transitions and lineage, with projection downstream (pp. 5--12).
+\item \source{G} contributes a 211-entry normalized knowledge catalog and prior fixed-width CPU/GPU ABI material.
+\end{itemize}
+
+\subsection{Admission and condensation}
+A source motif enters TOMAGI when it can be represented as at least one of the following: a typed coordinate, exact integer transform, finite relation, deterministic bit, topology map, branch rule, content-addressed definition, fixed-width ABI field, query operator or symbolic output. The 319-row crosswalk preserves the source identity of every admitted mechanism while mapping many source terms to a much smaller 43-operator namespace.
+
+\begin{evidencebox}
+The source documents include both exact mechanisms and expansive interpretations. TOMAGI does not silently assert the expansive physical conclusions. It preserves the mechanically executable content and states new engineering decisions explicitly. This evidence discipline is separate from a runtime fail-safe: it does not alter a branch, reject a state or trigger a corrective mode.
+\end{evidencebox}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{10_deterministic_inference.png}
+\caption{A compiled domain replaces learned prediction with explicit deterministic execution.}
+\label{fig:det-inference}
+\end{figure}
+
+\section{The TOMAGI program object}
+
+\subsection{Definitions, cells and state}
+A TOMAGI program is
+\begin{equation}
+P=(\mathcal{D},C,i_0,s,m_0,q_0,F),
+\end{equation}
+where $\mathcal{D}$ is a content-addressed definition registry; $C=(c_0,\ldots,c_{N-1})$ is a strictly key-sorted cell table; $i_0$ is the entry index; $s$ is a deterministic seed; $m_0$ is the default transition horizon; $q_0$ is the initial state; and $F$ is the program profile word.
+
+A literal definition node is
+\begin{equation}
+d=(id,kind,A,B,\vartheta,Dep,phase,prov,h),
+\qquad
+h=\operatorname{SHA256}(\operatorname{canonicalJSON}(d\setminus\{h\})).
+\end{equation}
+Every dependency ID must resolve and the finite definition graph must admit a topological order. This establishes one meaning for the literal program before execution.
+
+\subsection{State64}
+The mutable state contains sixteen 32-bit words:
+\begin{equation}
+q_n=(\rho,\theta,X,\phi,\dot\rho,\dot\theta,\dot X,\dot\phi,o,s_h,b,i,\ell,y,r,\eta).
+\end{equation}
+Here $o$ is orientation, $s_h$ is sheet, $b$ is the branch bit, $i$ is the cell index, $\ell$ is lineage, $y$ is output, $r$ is the last relation residual and $\eta$ is the status word. The dot notation names stored first differences; it does not imply that the integer runtime is integrating an untyped physical force.
+
+\subsection{Cell48}
+Each immutable cell is
+\begin{equation}
+c_i=(K_{hi},K_{lo},op,flags,a_0,a_1,a_2,a_3,next_0,next_1,payload,aux).
+\end{equation}
+The cell is both LUT data and executable operator. The two successor indices make the one-bit branch explicit. No pointer size, heap object or vendor-specific instruction appears in the format.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{03_abi_layout.png}
+\caption{The shared 64-byte state and 48-byte cell ABI.}
+\label{fig:abi}
+\end{figure}
+
+\section{Log-polar coordinates and the exact 64-bit address}
+
+\subsection{Continuous source chart and compiled integer chart}
+The source chart is
+\begin{equation}
+\rho=\ln(r/r_0),\qquad \theta=\operatorname{atan2}(y,x),\qquad r=r_0e^\rho.
+\end{equation}
+Its planar metric and Jacobian are
+\begin{equation}
+ds^2=r^2(d\rho^2+d\theta^2),
+\qquad
+J=r\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}.
+\end{equation}
+A compiler quantizes the declared chart into integer coordinates. The hot TOMAGI transition never calls $\log$, $\exp$, $\sin$ or $\cos$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\textwidth]{04_logpolar_chart.png}
+\caption{Log-radius steps are additive in $\rho$ and multiplicative in real radius. The origin remains an explicit core.}
+\label{fig:logpolar}
+\end{figure}
+
+\subsection{Contiguous key}
+The canonical field widths are
+\begin{center}
+\begin{tabular}{@{}lrrl@{}}
+\toprule
+Field & Bits & States & Contiguous range\\
+\midrule
+$q_\rho$ & 20 & $2^{20}$ & 63:44\\
+$q_\theta$ & 18 & $2^{18}$ & 43:26\\
+$q_X$ & 14 & $2^{14}$ & 25:12\\
+$q_\phi$ & 12 & $2^{12}$ & 11:0\\
+\bottomrule
+\end{tabular}
+\end{center}
+The key is
+\begin{equation}
+K=(q_\rho\ll44)\;|\;(q_\theta\ll26)\;|\;(q_X\ll12)\;|\;q_\phi.
+\end{equation}
+The total finite address space contains exactly $2^{64}$ combinations.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{02_key_layout.png}
+\caption{Canonical contiguous key and the distinct exact Morton key.}
+\label{fig:key}
+\end{figure}
+
+\subsection{Morton key}
+The companion layout interleaves source bits in MSB round-robin order. It is an alternative exact codec, not an alias of the contiguous layout. For the reference tuple $(949111,0,1920,227)$:
+\begin{align}
+K_C&=\mathtt{0xe7b77000007800e3},\\
+K_M&=\mathtt{0x88823bb88099128b}.
+\end{align}
+Both decode to the original tuple. The complete 64-row schedule is included as JSON, CSV and \cref{tab:morton}.
+
+\section{Literal SDF-zero as the memory substrate}
+
+\begin{literalbox}
+Let $D_K$ be the finite set of keys carried by the compiled LUT. TOMAGI defines
+\begin{equation}
+Z_D(K)=
+\begin{cases}
+0,&K\in D_K,\\
+\bot,&K\notin D_K.
+\end{cases}
+\end{equation}
+Every definable cell is therefore literally on the zero level. An address outside the domain is undefined, not a positive or negative distance sample.
+\end{literalbox}
+
+This definition resolves the source request to treat SDF-zero as a general operator inside the LUT rather than as an external apex-only boundary. Data storage and geometric/topological definition coincide at the cell. The 
+\code{SDF0} opcode sets residual zero, marks the zero status and emits branch one. It does not contract the state toward a surface.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.94\textwidth]{05_sdf0_lut.png}
+\caption{The finite LUT domain is the zero-level set. Each defined cell additionally carries an opcode and two branch successors.}
+\label{fig:sdf0}
+\end{figure}
+
+The complement value $\bot$ is essential. Assigning numerical distance zero to every 64-bit word would erase the distinction between a program cell and a non-address. TOMAGI instead gives the source phrase ``SDF 0 on all definable points or bits'' its literal finite meaning.
+
+\section{The one-bit parity/jitter operator}
+
+\subsection{Exact bit derivation}
+Given program seed $s$, key words $(K_h,K_l)$, timeline tick $X$ and cell salt $a$, define
+\begin{align}
+h_n&=\operatorname{mix32}(s\oplus K_h\oplus\operatorname{rotl}_{32}(K_l,13)\oplus X\oplus a),\\
+j_n&=\operatorname{popcount}(h_n)\bmod2,\\
+\sigma_n&=2j_n-1\in\{-1,+1\}.
+\end{align}
+The specified mixer is
+\begin{lstlisting}
+x ^= x >> 16;
+x *= 0x7feb352d;
+x ^= x >> 15;
+x *= 0x846ca68b;
+x ^= x >> 16;
+\end{lstlisting}
+with all operations in $\uword$.
+
+For a selected state field $z$ and cell amplitude $A$,
+\begin{equation}
+z' = z + \sigma_n A,\qquad b'=j_n.
+\end{equation}
+Thus one bit performs two literal roles: bipolar local jitter and branch selection. Because every input to the bit is declared, repeated execution is reproducible.
+
+\subsection{What parity does not do}
+Parity is not interpreted as a health flag. Even and odd states are both ordinary program states. There is no hidden statement that odd means failure, no Hamming-code upgrade and no automatic return-to-boundary force. A program may route an odd branch to any cell its author declared.
+
+\section{Kinematic change-of-change inside the LUT}
+
+\subsection{Integer second-order update}
+Collect the four coordinates and first differences as
+\begin{equation}
+p_n=(\rho_n,\theta_n,X_n,\phi_n),\qquad v_n=(\dot\rho_n,\dot\theta_n,\dot X_n,\dot\phi_n).
+\end{equation}
+A \code{KIN2} cell stores
+\begin{equation}
+a_i=(a_0,a_1,a_2,a_3).
+\end{equation}
+The transition is
+\begin{align}
+v_{n+1}&=\operatorname{wrap}_{32}(v_n+a_i),\\
+p_{n+1}&=\operatorname{wrap}_{32}(p_n+v_{n+1}).
+\end{align}
+This ordering is explicit and shared by all backends. The fourth acceleration component $a_3$ is the literal runtime $\Delta^2\phi$ operator requested in the source sequence.
+
+\subsection{Continuous log-polar interpretation}
+When a real-valued geometric source is compiled, SCLP supplies
+\begin{align}
+v&=r(\dot\rho e_r+\dot\theta e_\theta),\\
+a&=r\left[(\ddot\rho+\dot\rho^2-\dot\theta^2)e_r+(\ddot\theta+2\dot\rho\dot\theta)e_\theta\right].
+\end{align}
+TOMAGI treats these as host-side parameterization equations. The compiled cell contains the integer change-of-change used during execution.
+
+\section{Lower-case phi and the zero-based timeline}
+
+\subsection{Symbol separation}
+The source corpus overloads $T$, time, torque and $\phi/\Phi$. TOMAGI imposes one contract:
+\begin{itemize}
+\item $T_c$ denotes cone slant length in a geometric definition;
+\item $X$ denotes the zero-based modular timeline tick;
+\item lower-case $\phi\in\mathbb{Z}/2^{12}\mathbb{Z}$ denotes phase/hoop/hinge state;
+\item capital $\Phi=(1+\sqrt5)/2$ is optional compile-time metadata and never the runtime phase.
+\end{itemize}
+
+\subsection{Timeline update}
+For increment $d_X$,
+\begin{equation}
+raw=X+d_X,
+\quad
+w=\left\lfloor\frac{raw}{2^{14}}\right\rfloor,
+\quad
+X'=raw-w2^{14},
+\quad
+b'=w\bmod2.
+\end{equation}
+The human ordinal is $X+1$. This is the exact interpretation of the source observation that offset 35 is the 36th position: the address remains zero based.
+
+\subsection{Phi update}
+The \code{PHI} opcode applies the analogous modulo-$2^{12}$ update. It may expose wrap parity or the half-circle bit as branch state. An odd wrap may flip orientation when the cell requests it. This makes lower-case $\phi$ an actual stateful hinge rather than a decorative symbol.
+
+\section{Topological transport}
+
+\subsection{Reflective Klein profile}
+Let
+\begin{equation}
+w=\left\lfloor\frac{\rho}{2^{20}}\right\rfloor,
+\qquad
+\rho'=\rho-w2^{20}.
+\end{equation}
+When $w$ is odd, the reflective profile applies
+\begin{align}
+\theta'&=2^{17}-\theta\pmod{2^{18}},\\
+\phi'&=-\phi\pmod{2^{12}},\\
+o'&=o\oplus1,\\
+s_h'&=s_h\oplus f_s,\\
+b'&=1.
+\end{align}
+The angular reflection reverses orientation. On an even wrap, the corresponding fields remain unchanged and $b'=0$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.90\textwidth]{06_klein_wrap.png}
+\caption{The reflective radial gluing and the separately selectable source half-turn.}
+\label{fig:klein}
+\end{figure}
+
+\subsection{Source half-turn profile}
+The literal source formula is preserved under a flag:
+\begin{equation}
+\theta'=\theta+2^{17}\pmod{2^{18}},\qquad \phi'=-\phi,\qquad o'=o\oplus1.
+\end{equation}
+It is a twisted state bundle but not silently called the reflective base quotient. Keeping both maps makes source fidelity and topology precise at once.
+
+\section{Cone, circle, sphere and overlap relations}
+
+\subsection{Finite cone source geometry}
+A right circular cone is compiled from slant length $T_c>0$ and half-angle $0<\alpha<\pi/2$:
+\begin{equation}
+h=T_c\cos\alpha,\qquad R=T_c\sin\alpha.
+\end{equation}
+The exact Euclidean primitive can be evaluated by distance to its filled meridian triangle. TOMAGI's portable cell uses a quantized log-polar support relation instead of carrying floating-point primitive evaluation in every backend.
+
+\subsection{Packed cone relation}
+Let $\bar\rho$ and $\bar\theta$ be normalized state coordinates and $\delta_N$ the shortest cyclic difference. A \code{CONE} cell evaluates
+\begin{equation}
+r_C=\max\{\rho_{min}-\bar\rho,\;\bar\rho-\rho_{max},\;|\delta_{2^{18}}(\bar\theta,\theta_0)|-|\alpha_q|\}.
+\end{equation}
+It sets $b=1$ precisely when $r_C\le0$.
+
+\subsection{Sphere or shell relation}
+A \code{SPHERE} cell evaluates
+\begin{equation}
+r_S=\max\{|\bar\rho-\rho_0|-|d_\rho|,\;|\delta_{2^{12}}(\bar\phi,\phi_0)|-|d_\phi|\}.
+\end{equation}
+A negative $d_\phi$ disables the phase component and yields a pure radial shell.
+
+\subsection{Projection semantics}
+The side-view pyramid, circle and sphere are symbolic projection tokens. A cone viewed through the triangular profile may emit \code{PYRA}; its axial radial profile may emit \code{CIRC}; a spherical support may emit a sphere token. The state and relation remain authoritative whether or not any pixels are later drawn.
+
+\subsection{Overlap lens}
+The source's slight overlap is the exact shared domain
+\begin{equation}
+L=A\cap B.
+\end{equation}
+It can be compiled as conjunction, join eligibility or a connector hinge. TOMAGI does not assign an unstated physical energy meaning to the lens.
+
+\section{Radix routing, hinges and the L-system}
+
+\subsection{Radix branch}
+\code{RADIX(k)} selects bit $k$ from the canonical key. Repeated tests create a radix-2 trie over the packed state. The operation refines an address prefix; it does not divide the decoded coordinates by two.
+
+\subsection{Hinge}
+The compiled hinge is
+\begin{equation}
+H=(state,M_0,M_1,invariant\ metadata).
+\end{equation}
+$M_0$ is identity. If $b=1$, $M_1$ adds the cell's four arguments to $(\rho,\theta,X,\phi)$ and optionally flips orientation and sheet. Hinges compose in stored order and are not assumed to commute.
+
+This interface covers geometric rotation after quantization, parity-selected routing, a zero-magnitude connector such as Dutch \emph{en}, and the split-$\phi$/double-D fold when the definition explicitly declares those semantics.
+
+\subsection{L-system transform}
+For turn quantum $\tau$ and dyadic shift $d$,
+\begin{align}
+\chi&=(-1)^o,\\
+s_b&=2b-1,\\
+\phi'&=\phi+\chi s_b\tau\pmod{2^{12}},\\
+v'&=\operatorname{trunc}_0(v/2^d).
+\end{align}
+This is the one-step executable condensation of
+\begin{equation}
+F(T)\Rightarrow F(T/2)[\,\pm\phi\,F(T/2)\,].
+\end{equation}
+The finite program graph, not a hidden recursion manager, determines the actual sequence of steps.
+
+\section{Transition, output and lineage}
+
+After an opcode, periodic fields are normalized and lineage is updated:
+\begin{equation}
+\ell'=\operatorname{mix32}(\ell\oplus payload\oplus aux\oplus K_h\oplus\operatorname{rotl}_{32}(K_l,7)\oplus b\oplus i).
+\end{equation}
+The next cell is
+\begin{equation}
+i'=\begin{cases}next_0,&b=0,\\next_1,&b=1.\end{cases}
+\end{equation}
+A flagged cell may instead re-key the normalized state and binary-search the sorted LUT. A miss is observable in status and falls through to the declared successor; no replacement state is invented.
+
+\code{PROJECT} writes a token and continues. \code{EMIT} writes a token and marks an output; its low flag bit may terminate. \code{HALT} terminates without changing the current token. A trace records the exact operator order and every resulting state field.
+
+\section{Deterministic substitution for AI}
+
+\begin{definitionbox}
+A task is TOMAGI-compilable when its input has a finite typed encoding; its facts and transformations can be expressed as finite definitions, relations or branch rules; and its answer has a finite output representation. Its deterministic inference function is
+\begin{equation}
+answer=\operatorname{Exec}(\operatorname{Compile}(D,R),\operatorname{Encode}(x),m).output.
+\end{equation}
+\end{definitionbox}
+
+There are no learned weights, embeddings, sampling temperatures, confidence scores or hidden random state in this execution. The one-bit sequence is a pure function of explicit inputs. This makes TOMAGI suitable for compiled classification, finite-state planning, procedural generation, relation queries, spatial routing, signal-state transforms and symbolic rule systems.
+
+The distinction from a learned model is exact. A learned model may statistically generalize beyond its training examples. TOMAGI evaluates what has been made literal. New knowledge enters by adding or compiling definitions and cells, not by changing opaque weights.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{07_backend_equivalence.png}
+\caption{The binary substrate is independent of CPU or GPU implementation.}
+\label{fig:backend}
+\end{figure}
+
+\section{Portable instruction set and binary ABI}
+
+\subsection{Sixteen opcodes}
+The 16 hot opcodes are shown in \cref{tab:opcodes}. Meta-level operators such as definition hashing, compilation, overlap conjunction and trace explanation remain in the 43-entry catalog but do not consume opcode numbers.
+
+\input{generated/opcode_table.tex}
+
+\subsection{Binary file}
+A \code{.tmg} program begins with a 128-byte little-endian header:
+\begin{center}
+\begin{tabular}{@{}rrl@{}}
+\toprule
+Byte & Size & Field\\
+\midrule
+0 & 8 & ASCII \code{TOMAGI1\textbackslash0}\\
+8 & 4 & version \code{0x00010000}\\
+12 & 4 & program flags\\
+16 & 4 & cell count\\
+20 & 4 & entry index\\
+24 & 4 & seed\\
+28 & 4 & default ticks\\
+32 & 4 & cell size, 48\\
+36 & 4 & state size, 64\\
+40 & 24 & reserved zero words\\
+64 & 64 & initial State64\\
+\bottomrule
+\end{tabular}
+\end{center}
+The sorted cell table starts at byte 128. Total size is $128+48N$ bytes.
+
+\input{generated/state_layout.tex}
+\input{generated/cell_layout.tex}
+
+\section{CPU and GPU realizations}
+
+\subsection{Python oracle}
+The dependency-free Python package supplies canonical JSON, definition hash verification, topological dependency ordering, the two key codecs, binary serialization, the exact step function and a JSON trace CLI. It is the readable reference semantics.
+
+\subsection{C99 evaluator}
+The C implementation reads little-endian bytes explicitly and does not rely on compiler structure packing. It defines floor division, two's-complement conversion, modular addition and cyclic differences directly. The same \code{.tmg} file is therefore portable across ordinary CPU architectures.
+
+\subsection{GPU kernels}
+The GLSL 4.50, WGSL and OpenCL C kernels use the same three logical inputs:
+\begin{enumerate}
+\item read-write \code{State64[]} array;
+\item read-only sorted \code{Cell48[]} array;
+\item parameters $($state count, cell count, seed, reserved$)$.
+\end{enumerate}
+One invocation executes one transition for one independent state. Repeated dispatches advance the query horizon. The kernels require ordinary 32-bit integer storage, shifts, addition, comparison and bit count. They make no vendor, tensor-core, ray-tracing-core or floating-point performance assumption.
+
+\begin{evidencebox}
+This package executed Python and C99 and verified exact equality. The OpenCL source was accepted by Clang's OpenCL 1.2 parser. The build environment did not contain a GLSL/WGSL validator or an accessible physical GPU dispatch runtime, so those two sources are supplied against the shared ABI but are not claimed as device-executed in this validation run.
+\end{evidencebox}
+
+\section{Executable examples}
+
+\subsection{Literal polar loop}
+The primary example executes
+\begin{equation}
+\mathrm{SDF0}\rightarrow\mathrm{JIT1}\rightarrow\mathrm{KIN2}\rightarrow\mathrm{KLEIN}\rightarrow\mathrm{HINGE}\rightarrow\mathrm{LSYS}\rightarrow\mathrm{CONE}\rightarrow\mathrm{EMIT}.
+\end{equation}
+Starting near the radial wrap, the kinematic step crosses the $2^{20}$ boundary. The reflective Klein cell returns $\rho$ to 8, flips orientation and sheet, and routes to the hinge. The final cone relation emits \code{0x50595241}, the ASCII token \code{PYRA}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{09_polar_loop_trace.png}
+\caption{The exact reference trace and final state.}
+\label{fig:trace}
+\end{figure}
+
+\subsection{The 19 feature pipeline}
+The source-derived example keeps three representations distinct:
+\begin{align}
+19&=10011_2, & A_2(19)&=\{0,1,4\}, & |A_2(19)|&=3,\\
+\Sigma_{nl}(19)&=(\text{ne},\text{gen},\text{tien}), & |\Sigma_{nl}(19)|&=3.
+\end{align}
+The equality of the two counts produces a metadata bit. Three declared pulses are projected to a triangle. The decimal value remains 19 and the binary word remains 10011.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{08_nineteen_pipeline.png}
+\caption{The number, binary feature set, language profile and geometry remain typed, separate objects.}
+\label{fig:19}
+\end{figure}
+
+\subsection{Compiled exact-19 rule}
+The \code{exact19\_rule.json} example encodes its input in $\rho$ and uses a zero-width cone relation with full angular support:
+\begin{equation}
+r=\max(19-\rho,\rho-19,|\delta(\theta,0)|-2^{17}).
+\end{equation}
+It emits token 19 for $\rho=19$ and token 0 for $\rho=18$. This small program illustrates the intended AI-substitution mechanism: an explicit relation is compiled to a branch and finite output, with a complete trace.
+
+\section{Validation and reproducibility}
+
+The package's \code{make validate} workflow regenerates specifications and examples, builds the C99 evaluator, executes the Python tests, compares Python and C states, syntax-checks OpenCL when Clang is available, regenerates figures and writes a machine-readable validation report.
+
+\begin{center}
+\begin{tabular}{@{}L{0.48\textwidth}L{0.42\textwidth}@{}}
+\toprule
+Check & Result\\
+\midrule
+Python conformance suite & 24 tests passed\\
+Python/C polar-loop state & exact match, all 16 fields\\
+Python/C exact-19 state & exact match, all 16 fields\\
+Contiguous reference key & \code{0xe7b77000007800e3}\\
+Morton reference key & \code{0x88823bb88099128b}\\
+JSON examples & valid under Draft 2020-12 schema\\
+OpenCL C kernel & Clang syntax check passed\\
+GLSL and WGSL & structural source checks passed; no external compiler/device in environment\\
+Source condensation & 43 operators, 319 crosswalk rows, 7 source artifacts\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The canonical reproduction commands are:
+\begin{lstlisting}[language=bash]
+make validate
+make report
+
+PYTHONPATH=src/python python -m tomagi compile \
+  examples/polar_loop.json examples/polar_loop.tmg
+PYTHONPATH=src/python python -m tomagi run \
+  examples/polar_loop.tmg --trace
+./build/tomagi-c examples/polar_loop.tmg
+\end{lstlisting}
+
+\section{Normative no-failsafe profile}
+
+\begin{nofailsafebox}
+TOMAGI 1.0 does not include the following earlier-draft layers in its transition algebra:
+\begin{center}
+\begin{tabularx}{0.94\textwidth}{@{}YY@{}}
+\textbullet\ jitter interval/event-margin guard & \textbullet\ Hamming or ECC correction\\
+\textbullet\ boundary restoration/contraction force & \textbullet\ damping or emergency retreat\\
+\textbullet\ confidence threshold & \textbullet\ safe mode or watchdog route\\
+\textbullet\ dynamic allocation safety ring & \textbullet\ claims-ledger kill criterion\\
+\end{tabularx}
+\end{center}
+Parity is an ordinary branch. SDF0 returns zero at every defined cell. No hidden policy changes those results.
+\end{nofailsafebox}
+
+A finite file still has a grammar: record sizes, version, unique keys, resolvable references and in-range successors define whether bytes can be parsed as a TOMAGI program. These are syntax and identity rules, not a runtime correction mechanism.
+
+\section{Final substrate definition}
+
+\begin{definitionbox}
+\textbf{TOMAGI 1.0 is a finite, content-addressed, deterministic operator machine in which a 20/18/14/12 log-polar key selects a literal SDF-zero LUT cell; a parity-of-mixed-word one-bit operator produces signed jitter and a branch; integer second-order kinematics advances log-radius, angle, zero-based time and lower-case phi; reflective Klein or half-turn maps transport orientation and sheet; cone, sphere, overlap, radix, hinge and L-system operators transform or classify the state; branch-indexed successors serialize non-commutative composition; and emission plus lineage returns a replayable symbolic answer. The same 64-byte state and 48-byte cell definitions execute on the supplied Python and C CPU runtimes and map directly to GLSL, WGSL and OpenCL GPU kernels.}
+\end{definitionbox}
+
+For compiled domains, this is the deterministic substitute for AI: definitions replace weights, relation cells replace opaque activations, the one-bit route replaces stochastic sampling, and the trace exposes every transition that produced the answer.
+
+\clearpage
+\appendix
+\section{Complete symbol contract}
+\input{generated/symbol_table.tex}
+
+\clearpage
+\section{Complete 43-operator catalog}
+The catalog includes both the 16 hot opcodes and meta/compiler operators. The machine-readable JSON and CSV add source basis and canonical content hashes.
+\input{generated/operator_catalog.tex}
+
+\clearpage
+\section{Exact Morton schedule}
+\input{generated/morton_schedule.tex}
+
+\clearpage
+\section{Source register and crosswalk totals}
+\input{generated/source_register.tex}
+
+\subsection*{Crosswalk row count by source}
+\begin{center}
+\input{generated/crosswalk_summary.tex}
+\end{center}
+The complete 319-row table is supplied in \code{spec/source\_crosswalk.json} and \code{spec/source\_crosswalk.csv} rather than expanded across the report.
+
+\clearpage
+\section{Package layout}
+\begin{lstlisting}
+TOMAGI_1_0_Tom_Klootwijk/
+  README.md
+  CHANGELOG.md
+  NOTICE.md
+  VERSION
+  Makefile
+  pyproject.toml
+  report/
+    TOMAGI_1_0_Tom_Klootwijk.pdf
+    TOMAGI_1_0_Tom_Klootwijk.tex
+    figures/*.png
+    generated/*.tex
+  spec/
+    TOMAGI_1_0_FORMAL_DEFINITION.md
+    tomagi.schema.json
+    operator_catalog.{json,csv}
+    symbol_table.{json,csv}
+    opcode_table.{json,csv}
+    state64_layout.{json,csv}
+    cell48_layout.{json,csv}
+    status_flags.{json,csv}
+    key_layout.json
+    morton_schedule_64.{json,csv}
+    precedence.json
+    source_crosswalk.{json,csv}
+    BINARY_FORMAT.md
+    GPU_ABI.md
+    NO_FAILSAFE_CORE.md
+  src/python/tomagi/*.py
+  src/c/tomagi.{h,c}
+  src/c/tomagi_cli.c
+  src/gpu/tomagi_step.{comp,wgsl,cl}
+  examples/*.json
+  examples/*.tmg
+  tests/test_tomagi.py
+  validation/*
+  sources/*
+  checksums/SHA256SUMS.txt
+\end{lstlisting}
+
+\end{document}

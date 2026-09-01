@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tom.invalid/schema/tom-state-at-certificate-0.2.json",
+  "title": "TOM exact discrete state-at certificate 0.2",
+  "type": "object",
+  "required": ["schema", "commit", "instance_id", "instance_hash", "requested_tick", "executed_steps", "state", "status", "content_hash"],
+  "properties": {
+    "schema": {"const": "TOM-STATE-AT-CERTIFICATE-0.2"},
+    "commit": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "instance_id": {"type": "string", "minLength": 1},
+    "instance_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "requested_tick": {"type": "integer", "minimum": 0},
+    "executed_steps": {"type": "integer", "minimum": 0},
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rho", "theta", "tick", "phi", "vrho", "vtheta", "vtick", "vphi", "orientation", "sheet", "branch", "cell", "lineage", "output", "residual", "status"],
+      "properties": {
+        "rho": {"type": "integer"}, "theta": {"type": "integer"}, "tick": {"type": "integer"}, "phi": {"type": "integer"},
+        "vrho": {"type": "integer"}, "vtheta": {"type": "integer"}, "vtick": {"type": "integer"}, "vphi": {"type": "integer"},
+        "orientation": {"type": "integer", "minimum": 0}, "sheet": {"type": "integer", "minimum": 0}, "branch": {"type": "integer", "minimum": 0}, "cell": {"type": "integer", "minimum": 0},
+        "lineage": {"type": "integer", "minimum": 0}, "output": {"type": "integer", "minimum": 0}, "residual": {"type": "integer"}, "status": {"type": "integer", "minimum": 0}
+      }
+    },
+    "trace": {"type": "array"},
+    "status": {"const": "exact_discrete_replay"},
+    "content_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  }
+}

@@ -1,0 +1,390 @@
+{
+  "schema": "TOMAGI-MORTON-SCHEDULE-1.0",
+  "count": 64,
+  "schedule": [
+    {
+      "ordinal": 0,
+      "output_bit": 63,
+      "field": "rho",
+      "source_bit": 19
+    },
+    {
+      "ordinal": 1,
+      "output_bit": 62,
+      "field": "theta",
+      "source_bit": 17
+    },
+    {
+      "ordinal": 2,
+      "output_bit": 61,
+      "field": "tick",
+      "source_bit": 13
+    },
+    {
+      "ordinal": 3,
+      "output_bit": 60,
+      "field": "phi",
+      "source_bit": 11
+    },
+    {
+      "ordinal": 4,
+      "output_bit": 59,
+      "field": "rho",
+      "source_bit": 18
+    },
+    {
+      "ordinal": 5,
+      "output_bit": 58,
+      "field": "theta",
+      "source_bit": 16
+    },
+    {
+      "ordinal": 6,
+      "output_bit": 57,
+      "field": "tick",
+      "source_bit": 12
+    },
+    {
+      "ordinal": 7,
+      "output_bit": 56,
+      "field": "phi",
+      "source_bit": 10
+    },
+    {
+      "ordinal": 8,
+      "output_bit": 55,
+      "field": "rho",
+      "source_bit": 17
+    },
+    {
+      "ordinal": 9,
+      "output_bit": 54,
+      "field": "theta",
+      "source_bit": 15
+    },
+    {
+      "ordinal": 10,
+      "output_bit": 53,
+      "field": "tick",
+      "source_bit": 11
+    },
+    {
+      "ordinal": 11,
+      "output_bit": 52,
+      "field": "phi",
+      "source_bit": 9
+    },
+    {
+      "ordinal": 12,
+      "output_bit": 51,
+      "field": "rho",
+      "source_bit": 16
+    },
+    {
+      "ordinal": 13,
+      "output_bit": 50,
+      "field": "theta",
+      "source_bit": 14
+    },
+    {
+      "ordinal": 14,
+      "output_bit": 49,
+      "field": "tick",
+      "source_bit": 10
+    },
+    {
+      "ordinal": 15,
+      "output_bit": 48,
+      "field": "phi",
+      "source_bit": 8
+    },
+    {
+      "ordinal": 16,
+      "output_bit": 47,
+      "field": "rho",
+      "source_bit": 15
+    },
+    {
+      "ordinal": 17,
+      "output_bit": 46,
+      "field": "theta",
+      "source_bit": 13
+    },
+    {
+      "ordinal": 18,
+      "output_bit": 45,
+      "field": "tick",
+      "source_bit": 9
+    },
+    {
+      "ordinal": 19,
+      "output_bit": 44,
+      "field": "phi",
+      "source_bit": 7
+    },
+    {
+      "ordinal": 20,
+      "output_bit": 43,
+      "field": "rho",
+      "source_bit": 14
+    },
+    {
+      "ordinal": 21,
+      "output_bit": 42,
+      "field": "theta",
+      "source_bit": 12
+    },
+    {
+      "ordinal": 22,
+      "output_bit": 41,
+      "field": "tick",
+      "source_bit": 8
+    },
+    {
+      "ordinal": 23,
+      "output_bit": 40,
+      "field": "phi",
+      "source_bit": 6
+    },
+    {
+      "ordinal": 24,
+      "output_bit": 39,
+      "field": "rho",
+      "source_bit": 13
+    },
+    {
+      "ordinal": 25,
+      "output_bit": 38,
+      "field": "theta",
+      "source_bit": 11
+    },
+    {
+      "ordinal": 26,
+      "output_bit": 37,
+      "field": "tick",
+      "source_bit": 7
+    },
+    {
+      "ordinal": 27,
+      "output_bit": 36,
+      "field": "phi",
+      "source_bit": 5
+    },
+    {
+      "ordinal": 28,
+      "output_bit": 35,
+      "field": "rho",
+      "source_bit": 12
+    },
+    {
+      "ordinal": 29,
+      "output_bit": 34,
+      "field": "theta",
+      "source_bit": 10
+    },
+    {
+      "ordinal": 30,
+      "output_bit": 33,
+      "field": "tick",
+      "source_bit": 6
+    },
+    {
+      "ordinal": 31,
+      "output_bit": 32,
+      "field": "phi",
+      "source_bit": 4
+    },
+    {
+      "ordinal": 32,
+      "output_bit": 31,
+      "field": "rho",
+      "source_bit": 11
+    },
+    {
+      "ordinal": 33,
+      "output_bit": 30,
+      "field": "theta",
+      "source_bit": 9
+    },
+    {
+      "ordinal": 34,
+      "output_bit": 29,
+      "field": "tick",
+      "source_bit": 5
+    },
+    {
+      "ordinal": 35,
+      "output_bit": 28,
+      "field": "phi",
+      "source_bit": 3
+    },
+    {
+      "ordinal": 36,
+      "output_bit": 27,
+      "field": "rho",
+      "source_bit": 10
+    },
+    {
+      "ordinal": 37,
+      "output_bit": 26,
+      "field": "theta",
+      "source_bit": 8
+    },
+    {
+      "ordinal": 38,
+      "output_bit": 25,
+      "field": "tick",
+      "source_bit": 4
+    },
+    {
+      "ordinal": 39,
+      "output_bit": 24,
+      "field": "phi",
+      "source_bit": 2
+    },
+    {
+      "ordinal": 40,
+      "output_bit": 23,
+      "field": "rho",
+      "source_bit": 9
+    },
+    {
+      "ordinal": 41,
+      "output_bit": 22,
+      "field": "theta",
+      "source_bit": 7
+    },
+    {
+      "ordinal": 42,
+      "output_bit": 21,
+      "field": "tick",
+      "source_bit": 3
+    },
+    {
+      "ordinal": 43,
+      "output_bit": 20,
+      "field": "phi",
+      "source_bit": 1
+    },
+    {
+      "ordinal": 44,
+      "output_bit": 19,
+      "field": "rho",
+      "source_bit": 8
+    },
+    {
+      "ordinal": 45,
+      "output_bit": 18,
+      "field": "theta",
+      "source_bit": 6
+    },
+    {
+      "ordinal": 46,
+      "output_bit": 17,
+      "field": "tick",
+      "source_bit": 2
+    },
+    {
+      "ordinal": 47,
+      "output_bit": 16,
+      "field": "phi",
+      "source_bit": 0
+    },
+    {
+      "ordinal": 48,
+      "output_bit": 15,
+      "field": "rho",
+      "source_bit": 7
+    },
+    {
+      "ordinal": 49,
+      "output_bit": 14,
+      "field": "theta",
+      "source_bit": 5
+    },
+    {
+      "ordinal": 50,
+      "output_bit": 13,
+      "field": "tick",
+      "source_bit": 1
+    },
+    {
+      "ordinal": 51,
+      "output_bit": 12,
+      "field": "rho",
+      "source_bit": 6
+    },
+    {
+      "ordinal": 52,
+      "output_bit": 11,
+      "field": "theta",
+      "source_bit": 4
+    },
+    {
+      "ordinal": 53,
+      "output_bit": 10,
+      "field": "tick",
+      "source_bit": 0
+    },
+    {
+      "ordinal": 54,
+      "output_bit": 9,
+      "field": "rho",
+      "source_bit": 5
+    },
+    {
+      "ordinal": 55,
+      "output_bit": 8,
+      "field": "theta",
+      "source_bit": 3
+    },
+    {
+      "ordinal": 56,
+      "output_bit": 7,
+      "field": "rho",
+      "source_bit": 4
+    },
+    {
+      "ordinal": 57,
+      "output_bit": 6,
+      "field": "theta",
+      "source_bit": 2
+    },
+    {
+      "ordinal": 58,
+      "output_bit": 5,
+      "field": "rho",
+      "source_bit": 3
+    },
+    {
+      "ordinal": 59,
+      "output_bit": 4,
+      "field": "theta",
+      "source_bit": 1
+    },
+    {
+      "ordinal": 60,
+      "output_bit": 3,
+      "field": "rho",
+      "source_bit": 2
+    },
+    {
+      "ordinal": 61,
+      "output_bit": 2,
+      "field": "theta",
+      "source_bit": 0
+    },
+    {
+      "ordinal": 62,
+      "output_bit": 1,
+      "field": "rho",
+      "source_bit": 1
+    },
+    {
+      "ordinal": 63,
+      "output_bit": 0,
+      "field": "rho",
+      "source_bit": 0
+    }
+  ]
+}

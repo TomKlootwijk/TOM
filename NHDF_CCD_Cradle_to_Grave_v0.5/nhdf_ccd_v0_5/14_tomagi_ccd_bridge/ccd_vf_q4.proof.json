@@ -1,0 +1,134 @@
+{
+  "boundaries": {
+    "ccd_vf_q4.certificate.json": {
+      "bytes": 378,
+      "sha256": "035a9ee91654675326e9b603990048395324855db560cfd54c797ad2da087a2b"
+    },
+    "ccd_vf_q4.compile_manifest.json": {
+      "bytes": 134123,
+      "sha256": "ad45602f9c316325abd0bad2e2e29d892149546eff1e38c8b42542cf7497f068"
+    },
+    "ccd_vf_q4.replay.json": {
+      "bytes": 63961,
+      "sha256": "d348153d62467fb4f268ce423090edf33f8c38c5194458af63814b2a891032fa"
+    },
+    "ccd_vf_q4.tmg": {
+      "bytes": 9392,
+      "sha256": "09cd3a2e311adb84391ec25762ecab2b63147861e7f8ab64f4fddce63568c900"
+    }
+  },
+  "claim_boundary": "single exact zero-thickness q4 vertex-face fixture",
+  "determinism": {
+    "byte_identical": {
+      "ccd_vf_q4.certificate.json": true,
+      "ccd_vf_q4.compile_manifest.json": true,
+      "ccd_vf_q4.replay.json": true,
+      "ccd_vf_q4.tmg": true
+    },
+    "isolated_rebuilds": 2
+  },
+  "execution": {
+    "computed_toi": {
+      "denominator": 4,
+      "numerator": 3
+    },
+    "emit_records": 95,
+    "emitted_bytes": 378,
+    "final_lineage": 4244936959,
+    "final_status": 57,
+    "kinematic_steps": 3,
+    "query_binding": {
+      "geometry_sha256": "989a0fcb754007a35ec32cc608472355dc27849374bd7a8c1300c764966df281",
+      "runtime_vrho": -1,
+      "runtime_x_q4": 1,
+      "runtime_y_q4": 1
+    },
+    "trace_steps": 110
+  },
+  "inputs": {
+    "bridge_validator": {
+      "bytes": 18248,
+      "sha256": "4a9a95cd99ee8381392b16a585a32bbbd479d711fd75c471a89fea4beb97c2c4"
+    },
+    "definition_source": {
+      "bytes": 25561,
+      "sha256": "5743230158c7e1c7bac7ec7453626bddab651a324953df5995a4efeccfff2483"
+    },
+    "genesis_runtime_archive": {
+      "bytes": 3997469,
+      "sha256": "ca5214eb9691f4f1e8b9a8e025fa3eb0b7d6003fcb55c0364d9e874be3483152"
+    },
+    "normative_profile": {
+      "bytes": 5719,
+      "sha256": "51e4de5045b84818a34fcdc9b1e9e10d737eeccb15f0c5ee5efd0ee53a177db4"
+    },
+    "reference_solver_sources": {
+      "__init__.py": {
+        "bytes": 614,
+        "sha256": "956b3e663bf1516a96c76b90b95d80d270f505d725da9ae5aaa1dbc9364815a5"
+      },
+      "batch.py": {
+        "bytes": 2796,
+        "sha256": "ad9b1b9d7ae7ca8f3f65fd9a6fbd0708a82563effdda001d301dd2fb620849f0"
+      },
+      "ccd.py": {
+        "bytes": 15024,
+        "sha256": "d76c10de3ac91ed83518df4f294a7762408db8a50d473dfdec254654a0235e2b"
+      },
+      "cli.py": {
+        "bytes": 1195,
+        "sha256": "cd981470c02aa030475c5ae8327173c7e2ec56b696cc8d18a920ed2ef37628f0"
+      },
+      "corpus.py": {
+        "bytes": 2985,
+        "sha256": "2da0f54c8d7e80cec69791a5925b621b39e86e55cd1c2838d1bc5b55bf49e75b"
+      },
+      "events.py": {
+        "bytes": 1675,
+        "sha256": "2d8ab9aa888166c0e74aa7f2700ad8a08009480f3c14cee93b3f978705d32402"
+      },
+      "geometry.py": {
+        "bytes": 4261,
+        "sha256": "4698642fe859de79c7c9f16987688e6a749581d930e709e6c07b721a03fbed14"
+      },
+      "model.py": {
+        "bytes": 5686,
+        "sha256": "4fe3423058d90c506526ea56cc9a410a052b5fe8014e4e283eef21a5504a7dc5"
+      },
+      "polynomial.py": {
+        "bytes": 1862,
+        "sha256": "e486621776b8da5f5b4f537802cbcc88e7d8703d46ad3b52668f7de25b4f2fed"
+      },
+      "response.py": {
+        "bytes": 2268,
+        "sha256": "b95c01b2c51b61f8c46e7ac8d62cd3ffb24cf2f2a7c72529813031234f298ba4"
+      },
+      "rigid.py": {
+        "bytes": 1645,
+        "sha256": "deed8b21fb1da18b2406727b60639c8e392aee352964b8989fabdb022b52111f"
+      }
+    },
+    "root_seed": {
+      "bytes": 244,
+      "sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"
+    },
+    "token_registry": {
+      "bytes": 5469,
+      "content_hash": "sha256:b14140cf9800e186701557ed982d692931966ea957e5790c1e6b4989e854c609",
+      "sha256": "c9652a188aa74ef913edee71bf9ce125fecd0fc62e42d370ed0e8cdf8c5f114d"
+    }
+  },
+  "reference_solver": {
+    "environment": {
+      "numpy": "2.3.5",
+      "python": "3.12.13"
+    },
+    "method": "cubic-coplanarity+closest-point-containment",
+    "status": "HIT",
+    "toi_lower": 0.749999999999,
+    "toi_upper": 0.750000000001,
+    "witness_distance": 0.0
+  },
+  "schema": "TOM-NHDF-CCD-REPLAY-PROOF-1.0",
+  "status": "PASS"
+}

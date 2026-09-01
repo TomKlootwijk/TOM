@@ -1,0 +1,818 @@
+{
+  "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+  "content_hash": "sha256:7998d6fd00db96cfe9bd977c176127ec7fbe609cef3ec1b1f06c819b504b1b50",
+  "planner_mode": "exhaustive",
+  "reduction_order": "declared_array_order",
+  "request_count": 4,
+  "request_ids": [
+    "state-at-999",
+    "events-bucket-04",
+    "next-event-after-20",
+    "definition-root"
+  ],
+  "results": [
+    {
+      "id": "state-at-999",
+      "operation": "state_at",
+      "plan": {
+        "checkpoint_id": null,
+        "checkpoint_selection": {
+          "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+          "content_hash": "sha256:6486f8af23d13be4bd70c3a14ea84aaddfb93ed2be40e2708cf96bdcdea12a8e",
+          "indexes_hash": "sha256:0c5929eebede3b860bcad305c11692a101f4cbc472bbfaecbc6a181135d24d34",
+          "mode": "exhaustive",
+          "operation": "select_checkpoint",
+          "schema": "TOM-QUERY-PLAN-0.2",
+          "selected_count": 0,
+          "selected_ids": [],
+          "selected_ids_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "snapshot_hash": "sha256:3f2f3cc5751d8c4e68954026146c83973d3e7cf3ca1844e309144de43467a7ec",
+          "stages": [
+            {
+              "detail": {
+                "target_tick": 999
+              },
+              "input_count": 0,
+              "mechanism": "disabled",
+              "name": "checkpoint_policy",
+              "output_count": 0
+            }
+          ],
+          "version": "0.2.0",
+          "work": {
+            "index_lookups": 0,
+            "record_reads": 0
+          }
+        },
+        "checkpoint_tick": 0,
+        "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+        "content_hash": "sha256:3993fe79a4404f927e6367761da5549613b4704b3ead6952ffdaab34bb954dfa",
+        "executed_steps": 999,
+        "instance_hash": "sha256:ce7fd2f02a6c0ed69e5d285b02c2162144df3fa2ebb623529fd8ead7d0e77d1a",
+        "instance_id": "instance:benchmark:042",
+        "logical_steps": 999,
+        "replayed_steps": 999,
+        "saved_replay_steps": 0,
+        "schema": "TOM-STATE-REPLAY-PLAN-0.2",
+        "target_tick": 999,
+        "work": {
+          "checkpoint_record_reads": 0,
+          "tomagi_steps": 999
+        }
+      },
+      "planned_certificate_hash": "sha256:cadac8293d5f7d2af88bad83b812395b6c398ebee80db60b01ecf0564d9ef85c",
+      "position": 0,
+      "result": {
+        "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+        "content_hash": "sha256:9cd302ee9c2f6b380000288181403b7141ba9684ffb357c8c8245efcd2810f30",
+        "executed_steps": 999,
+        "instance_hash": "sha256:ce7fd2f02a6c0ed69e5d285b02c2162144df3fa2ebb623529fd8ead7d0e77d1a",
+        "instance_id": "instance:benchmark:042",
+        "requested_tick": 999,
+        "schema": "TOM-STATE-AT-CERTIFICATE-0.2",
+        "state": {
+          "branch": 0,
+          "cell": 0,
+          "lineage": 970993800,
+          "orientation": 0,
+          "output": 0,
+          "phi": 0,
+          "residual": 0,
+          "rho": 999,
+          "sheet": 2,
+          "status": 0,
+          "theta": 42,
+          "tick": 999,
+          "vphi": 0,
+          "vrho": 1,
+          "vtheta": 0,
+          "vtick": 1
+        },
+        "status": "exact_discrete_replay"
+      },
+      "result_hash": "sha256:9cd302ee9c2f6b380000288181403b7141ba9684ffb357c8c8245efcd2810f30"
+    },
+    {
+      "id": "events-bucket-04",
+      "operation": "events_in_support",
+      "plan": {
+        "after_tick": 0,
+        "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+        "content_hash": "sha256:f1f78fc4c75d21ab37eed352c02bffea4bf1d0f3710b8b9785de8744fb064d1c",
+        "events_found": 2,
+        "horizon": 32,
+        "inactive_interval_skips": 62,
+        "instance_id": "instance:benchmark:042",
+        "mode": "exhaustive",
+        "predicate_evaluations": 4,
+        "relation_evaluations": 2,
+        "relation_selection": {
+          "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+          "content_hash": "sha256:e8184ad480bfac6811d2a97080cadc46f6891d10d2d44d1af3339f61b9b53927",
+          "indexes_hash": null,
+          "mode": "exhaustive",
+          "operation": "select_relations",
+          "schema": "TOM-QUERY-PLAN-0.2",
+          "selected_count": 2,
+          "selected_ids": [
+            "relation:benchmark:042:005",
+            "relation:benchmark:042:021"
+          ],
+          "selected_ids_hash": "sha256:1d40f8018d759e74fd64749e66f0e53b9ff1498f4ac5baa750b84c8e15cf8d94",
+          "snapshot_hash": "sha256:3f2f3cc5751d8c4e68954026146c83973d3e7cf3ca1844e309144de43467a7ec",
+          "stages": [
+            {
+              "detail": {},
+              "input_count": 10000,
+              "mechanism": "exhaustive:snapshot_records",
+              "name": "snapshot",
+              "output_count": 10000
+            },
+            {
+              "detail": {
+                "key": "relation"
+              },
+              "input_count": 10000,
+              "mechanism": "exhaustive:read_and_filter",
+              "name": "record_type",
+              "output_count": 9600
+            },
+            {
+              "detail": {
+                "key": "instance:benchmark:042"
+              },
+              "input_count": 9600,
+              "mechanism": "exhaustive:payload_filter",
+              "name": "instance",
+              "output_count": 96
+            },
+            {
+              "detail": {
+                "key": "support:benchmark-bucket:04"
+              },
+              "input_count": 96,
+              "mechanism": "exhaustive:payload_filter",
+              "name": "support",
+              "output_count": 6
+            },
+            {
+              "detail": {
+                "end": 32,
+                "start": 1
+              },
+              "input_count": 6,
+              "mechanism": "exhaustive:payload_filter",
+              "name": "time_interval",
+              "output_count": 2
+            }
+          ],
+          "version": "0.2.0",
+          "work": {
+            "index_lookups": 0,
+            "record_reads": 19702
+          }
+        },
+        "schema": "TOM-EVENT-SCAN-PLAN-0.2",
+        "selected_relation_count": 2,
+        "state_replay": {
+          "checkpoint_id": null,
+          "checkpoint_selection": {
+            "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+            "content_hash": "sha256:eb734c0419e37c85413386636db8f311a288cdaaba3b730d3f47f558bd0b3477",
+            "indexes_hash": "sha256:0c5929eebede3b860bcad305c11692a101f4cbc472bbfaecbc6a181135d24d34",
+            "mode": "exhaustive",
+            "operation": "select_checkpoint",
+            "schema": "TOM-QUERY-PLAN-0.2",
+            "selected_count": 0,
+            "selected_ids": [],
+            "selected_ids_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "snapshot_hash": "sha256:3f2f3cc5751d8c4e68954026146c83973d3e7cf3ca1844e309144de43467a7ec",
+            "stages": [
+              {
+                "detail": {
+                  "target_tick": 0
+                },
+                "input_count": 0,
+                "mechanism": "disabled",
+                "name": "checkpoint_policy",
+                "output_count": 0
+              }
+            ],
+            "version": "0.2.0",
+            "work": {
+              "index_lookups": 0,
+              "record_reads": 0
+            }
+          },
+          "checkpoint_tick": 0,
+          "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+          "content_hash": "sha256:ccd5f09d23988df1c08aa68666ea9a3b9f262aaf5265c53518e07221a1d8e49f",
+          "executed_steps": 0,
+          "instance_hash": "sha256:ce7fd2f02a6c0ed69e5d285b02c2162144df3fa2ebb623529fd8ead7d0e77d1a",
+          "instance_id": "instance:benchmark:042",
+          "logical_steps": 0,
+          "replayed_steps": 0,
+          "saved_replay_steps": 0,
+          "schema": "TOM-STATE-REPLAY-PLAN-0.2",
+          "target_tick": 0,
+          "work": {
+            "checkpoint_record_reads": 0,
+            "tomagi_steps": 0
+          }
+        },
+        "stop_after_first": false,
+        "ticks_scanned": 32,
+        "work": {
+          "index_lookups": 0,
+          "predicate_evaluations": 4,
+          "record_reads": 19702,
+          "relation_evaluations": 2,
+          "tomagi_steps": 32
+        }
+      },
+      "planned_certificate_hash": "sha256:39d8b6a744709924813354ce4ac1be0b9e29e29a640a5100621e9dbd388a61ad",
+      "position": 1,
+      "result": {
+        "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+        "content_hash": "sha256:102faa3cb5becd73730fa45a4a09e5952d4209b329e8ff7ab175af8d2d3e3d7d",
+        "event_count": 2,
+        "events": [
+          {
+            "compatibility": [
+              {
+                "accepted": true,
+                "hash": "sha256:836c613632cb61df1b1bbe5ff6270c9af47930cc644e09849d46f760d45d2752",
+                "id": "compatibility:benchmark-sheet:2"
+              }
+            ],
+            "confidence": {
+              "kind": "not_declared"
+            },
+            "content_hash": "sha256:b0dff89629b7659bc3e88a21b13c68cf61ce9386aeb64eb7e23831d9bb831a47",
+            "context": {
+              "benchmark_instance_index": 42,
+              "domain": "index-benchmark-10000",
+              "relation_count": 96
+            },
+            "direction": "negative_to_zero",
+            "event_spec_hash": null,
+            "event_spec_id": null,
+            "event_state": {
+              "branch": 0,
+              "cell": 0,
+              "lineage": 2969340656,
+              "orientation": 0,
+              "output": 0,
+              "phi": 0,
+              "residual": 0,
+              "rho": 5,
+              "sheet": 2,
+              "status": 0,
+              "theta": 42,
+              "tick": 5,
+              "vphi": 0,
+              "vrho": 1,
+              "vtheta": 0,
+              "vtick": 1
+            },
+            "event_tick": 5,
+            "guard_margin": 1,
+            "instance_hash": "sha256:ce7fd2f02a6c0ed69e5d285b02c2162144df3fa2ebb623529fd8ead7d0e77d1a",
+            "post_state": {
+              "branch": 0,
+              "cell": 0,
+              "lineage": 2969340656,
+              "orientation": 0,
+              "output": 0,
+              "phi": 0,
+              "residual": 0,
+              "rho": 5,
+              "sheet": 2,
+              "status": 0,
+              "theta": 42,
+              "tick": 5,
+              "vphi": 0,
+              "vrho": 1,
+              "vtheta": 0,
+              "vtick": 1
+            },
+            "pre_state": {
+              "branch": 0,
+              "cell": 0,
+              "lineage": 4163705210,
+              "orientation": 0,
+              "output": 0,
+              "phi": 0,
+              "residual": 0,
+              "rho": 4,
+              "sheet": 2,
+              "status": 0,
+              "theta": 42,
+              "tick": 4,
+              "vphi": 0,
+              "vrho": 1,
+              "vtheta": 0,
+              "vtick": 1
+            },
+            "previous_residual": -1,
+            "query": {
+              "after_tick": 0,
+              "horizon": 32,
+              "instance_id": "instance:benchmark:042",
+              "relation_ids": [
+                "relation:benchmark:042:005"
+              ]
+            },
+            "relation_hash": "sha256:1665212a1fd5378661bf2b52228d0ec4034891fecea69e5fbbb11313b5c7ea1f",
+            "relation_id": "relation:benchmark:042:005",
+            "residual": 0,
+            "route": null,
+            "schema": "TOM-EVENT-CERTIFICATE-0.1",
+            "solver_status": "exact_discrete_scan",
+            "source_commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+            "support": [
+              {
+                "accepted": true,
+                "hash": "sha256:2d7dc82bff860b8a587c2e6eaddae4934b0b52a28c7d52699b5bbb60261d2812",
+                "id": "support:benchmark-bucket:04"
+              }
+            ],
+            "transition_hash": null,
+            "transition_id": null,
+            "trigger": "enter_zero",
+            "zero_test": "equal_zero"
+          },
+          {
+            "compatibility": [
+              {
+                "accepted": true,
+                "hash": "sha256:836c613632cb61df1b1bbe5ff6270c9af47930cc644e09849d46f760d45d2752",
+                "id": "compatibility:benchmark-sheet:2"
+              }
+            ],
+            "confidence": {
+              "kind": "not_declared"
+            },
+            "content_hash": "sha256:4d26c38677a0c4ed935962d3ebd1f0852560de5f216b7194fdccd9832fbb9303",
+            "context": {
+              "benchmark_instance_index": 42,
+              "domain": "index-benchmark-10000",
+              "relation_count": 96
+            },
+            "direction": "negative_to_zero",
+            "event_spec_hash": null,
+            "event_spec_id": null,
+            "event_state": {
+              "branch": 0,
+              "cell": 0,
+              "lineage": 1743749841,
+              "orientation": 0,
+              "output": 0,
+              "phi": 0,
+              "residual": 0,
+              "rho": 21,
+              "sheet": 2,
+              "status": 0,
+              "theta": 42,
+              "tick": 21,
+              "vphi": 0,
+              "vrho": 1,
+              "vtheta": 0,
+              "vtick": 1
+            },
+            "event_tick": 21,
+            "guard_margin": 1,
+            "instance_hash": "sha256:ce7fd2f02a6c0ed69e5d285b02c2162144df3fa2ebb623529fd8ead7d0e77d1a",
+            "post_state": {
+              "branch": 0,
+              "cell": 0,
+              "lineage": 1743749841,
+              "orientation": 0,
+              "output": 0,
+              "phi": 0,
+              "residual": 0,
+              "rho": 21,
+              "sheet": 2,
+              "status": 0,
+              "theta": 42,
+              "tick": 21,
+              "vphi": 0,
+              "vrho": 1,
+              "vtheta": 0,
+              "vtick": 1
+            },
+            "pre_state": {
+              "branch": 0,
+              "cell": 0,
+              "lineage": 3914582426,
+              "orientation": 0,
+              "output": 0,
+              "phi": 0,
+              "residual": 0,
+              "rho": 20,
+              "sheet": 2,
+              "status": 0,
+              "theta": 42,
+              "tick": 20,
+              "vphi": 0,
+              "vrho": 1,
+              "vtheta": 0,
+              "vtick": 1
+            },
+            "previous_residual": -1,
+            "query": {
+              "after_tick": 0,
+              "horizon": 32,
+              "instance_id": "instance:benchmark:042",
+              "relation_ids": [
+                "relation:benchmark:042:021"
+              ]
+            },
+            "relation_hash": "sha256:faa5f1ebf94e106d593e77362b4f3f0b0b62876b66519f2288ca8a5df2336189",
+            "relation_id": "relation:benchmark:042:021",
+            "residual": 0,
+            "route": null,
+            "schema": "TOM-EVENT-CERTIFICATE-0.1",
+            "solver_status": "exact_discrete_scan",
+            "source_commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+            "support": [
+              {
+                "accepted": true,
+                "hash": "sha256:2d7dc82bff860b8a587c2e6eaddae4934b0b52a28c7d52699b5bbb60261d2812",
+                "id": "support:benchmark-bucket:04"
+              }
+            ],
+            "transition_hash": null,
+            "transition_id": null,
+            "trigger": "enter_zero",
+            "zero_test": "equal_zero"
+          }
+        ],
+        "instance_id": "instance:benchmark:042",
+        "interval": {
+          "end_inclusive": 32,
+          "start_exclusive": 0
+        },
+        "schema": "TOM-EVENTS-IN-SUPPORT-CERTIFICATE-0.2",
+        "support_id": "support:benchmark-bucket:04"
+      },
+      "result_hash": "sha256:102faa3cb5becd73730fa45a4a09e5952d4209b329e8ff7ab175af8d2d3e3d7d"
+    },
+    {
+      "id": "next-event-after-20",
+      "operation": "next_event",
+      "plan": {
+        "after_tick": 20,
+        "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+        "content_hash": "sha256:ff54523cb0dcfd838306cea96391710361186d94df245a04034303639de8db02",
+        "events_found": 1,
+        "horizon": 16,
+        "inactive_interval_skips": 15,
+        "instance_id": "instance:benchmark:042",
+        "mode": "exhaustive",
+        "predicate_evaluations": 2,
+        "relation_evaluations": 1,
+        "relation_selection": {
+          "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+          "content_hash": "sha256:d521069e031ab75ccdd8fe2703fe464d0770385729aeec07a1fe16007685b75c",
+          "indexes_hash": null,
+          "mode": "exhaustive",
+          "operation": "select_relations",
+          "schema": "TOM-QUERY-PLAN-0.2",
+          "selected_count": 16,
+          "selected_ids": [
+            "relation:benchmark:042:021",
+            "relation:benchmark:042:022",
+            "relation:benchmark:042:023",
+            "relation:benchmark:042:024",
+            "relation:benchmark:042:025",
+            "relation:benchmark:042:026",
+            "relation:benchmark:042:027",
+            "relation:benchmark:042:028",
+            "relation:benchmark:042:029",
+            "relation:benchmark:042:030",
+            "relation:benchmark:042:031",
+            "relation:benchmark:042:032",
+            "relation:benchmark:042:033",
+            "relation:benchmark:042:034",
+            "relation:benchmark:042:035",
+            "relation:benchmark:042:036"
+          ],
+          "selected_ids_hash": "sha256:aaefa52c8394870dc74decb3c9a203159dcb426cd5293b0ead062f7b676cc38f",
+          "snapshot_hash": "sha256:3f2f3cc5751d8c4e68954026146c83973d3e7cf3ca1844e309144de43467a7ec",
+          "stages": [
+            {
+              "detail": {},
+              "input_count": 10000,
+              "mechanism": "exhaustive:snapshot_records",
+              "name": "snapshot",
+              "output_count": 10000
+            },
+            {
+              "detail": {
+                "key": "relation"
+              },
+              "input_count": 10000,
+              "mechanism": "exhaustive:read_and_filter",
+              "name": "record_type",
+              "output_count": 9600
+            },
+            {
+              "detail": {
+                "key": "instance:benchmark:042"
+              },
+              "input_count": 9600,
+              "mechanism": "exhaustive:payload_filter",
+              "name": "instance",
+              "output_count": 96
+            },
+            {
+              "detail": {
+                "end": 36,
+                "start": 21
+              },
+              "input_count": 96,
+              "mechanism": "exhaustive:payload_filter",
+              "name": "time_interval",
+              "output_count": 16
+            }
+          ],
+          "version": "0.2.0",
+          "work": {
+            "index_lookups": 0,
+            "record_reads": 19696
+          }
+        },
+        "schema": "TOM-EVENT-SCAN-PLAN-0.2",
+        "selected_relation_count": 16,
+        "state_replay": {
+          "checkpoint_id": null,
+          "checkpoint_selection": {
+            "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+            "content_hash": "sha256:dc02252bd7f08ba20c12ceb37180b2ad55173d46d259a168b833f5edbaf5dfd8",
+            "indexes_hash": "sha256:0c5929eebede3b860bcad305c11692a101f4cbc472bbfaecbc6a181135d24d34",
+            "mode": "exhaustive",
+            "operation": "select_checkpoint",
+            "schema": "TOM-QUERY-PLAN-0.2",
+            "selected_count": 0,
+            "selected_ids": [],
+            "selected_ids_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "snapshot_hash": "sha256:3f2f3cc5751d8c4e68954026146c83973d3e7cf3ca1844e309144de43467a7ec",
+            "stages": [
+              {
+                "detail": {
+                  "target_tick": 20
+                },
+                "input_count": 0,
+                "mechanism": "disabled",
+                "name": "checkpoint_policy",
+                "output_count": 0
+              }
+            ],
+            "version": "0.2.0",
+            "work": {
+              "index_lookups": 0,
+              "record_reads": 0
+            }
+          },
+          "checkpoint_tick": 0,
+          "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+          "content_hash": "sha256:d08f17d13ec8579d4706375a88c92cf22122121ed304b2b011fdc0272e6c2db9",
+          "executed_steps": 20,
+          "instance_hash": "sha256:ce7fd2f02a6c0ed69e5d285b02c2162144df3fa2ebb623529fd8ead7d0e77d1a",
+          "instance_id": "instance:benchmark:042",
+          "logical_steps": 20,
+          "replayed_steps": 20,
+          "saved_replay_steps": 0,
+          "schema": "TOM-STATE-REPLAY-PLAN-0.2",
+          "target_tick": 20,
+          "work": {
+            "checkpoint_record_reads": 0,
+            "tomagi_steps": 20
+          }
+        },
+        "stop_after_first": true,
+        "ticks_scanned": 1,
+        "work": {
+          "index_lookups": 0,
+          "predicate_evaluations": 2,
+          "record_reads": 19696,
+          "relation_evaluations": 1,
+          "tomagi_steps": 21
+        }
+      },
+      "planned_certificate_hash": "sha256:0ada76c3a129d9a4d4584eb0420d3ce276502178eccaa4143590538913e00fc4",
+      "position": 2,
+      "result": {
+        "compatibility": [
+          {
+            "accepted": true,
+            "hash": "sha256:836c613632cb61df1b1bbe5ff6270c9af47930cc644e09849d46f760d45d2752",
+            "id": "compatibility:benchmark-sheet:2"
+          }
+        ],
+        "confidence": {
+          "kind": "not_declared"
+        },
+        "content_hash": "sha256:9ce0a8482dfcf3075cb9c830822642aff20816ae1d46c2d5241fb3e7bc1a1470",
+        "context": {
+          "benchmark_instance_index": 42,
+          "domain": "index-benchmark-10000",
+          "relation_count": 96
+        },
+        "direction": "negative_to_zero",
+        "event_spec_hash": null,
+        "event_spec_id": null,
+        "event_state": {
+          "branch": 0,
+          "cell": 0,
+          "lineage": 1743749841,
+          "orientation": 0,
+          "output": 0,
+          "phi": 0,
+          "residual": 0,
+          "rho": 21,
+          "sheet": 2,
+          "status": 0,
+          "theta": 42,
+          "tick": 21,
+          "vphi": 0,
+          "vrho": 1,
+          "vtheta": 0,
+          "vtick": 1
+        },
+        "event_tick": 21,
+        "guard_margin": 1,
+        "instance_hash": "sha256:ce7fd2f02a6c0ed69e5d285b02c2162144df3fa2ebb623529fd8ead7d0e77d1a",
+        "post_state": {
+          "branch": 0,
+          "cell": 0,
+          "lineage": 1743749841,
+          "orientation": 0,
+          "output": 0,
+          "phi": 0,
+          "residual": 0,
+          "rho": 21,
+          "sheet": 2,
+          "status": 0,
+          "theta": 42,
+          "tick": 21,
+          "vphi": 0,
+          "vrho": 1,
+          "vtheta": 0,
+          "vtick": 1
+        },
+        "pre_state": {
+          "branch": 0,
+          "cell": 0,
+          "lineage": 3914582426,
+          "orientation": 0,
+          "output": 0,
+          "phi": 0,
+          "residual": 0,
+          "rho": 20,
+          "sheet": 2,
+          "status": 0,
+          "theta": 42,
+          "tick": 20,
+          "vphi": 0,
+          "vrho": 1,
+          "vtheta": 0,
+          "vtick": 1
+        },
+        "previous_residual": -1,
+        "query": {
+          "after_tick": 20,
+          "horizon": 16,
+          "instance_id": "instance:benchmark:042",
+          "relation_ids": [
+            "relation:benchmark:042:021"
+          ]
+        },
+        "relation_hash": "sha256:faa5f1ebf94e106d593e77362b4f3f0b0b62876b66519f2288ca8a5df2336189",
+        "relation_id": "relation:benchmark:042:021",
+        "residual": 0,
+        "route": null,
+        "schema": "TOM-EVENT-CERTIFICATE-0.1",
+        "solver_status": "exact_discrete_scan",
+        "source_commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+        "support": [
+          {
+            "accepted": true,
+            "hash": "sha256:2d7dc82bff860b8a587c2e6eaddae4934b0b52a28c7d52699b5bbb60261d2812",
+            "id": "support:benchmark-bucket:04"
+          }
+        ],
+        "transition_hash": null,
+        "transition_id": null,
+        "trigger": "enter_zero",
+        "zero_test": "equal_zero"
+      },
+      "result_hash": "sha256:9ce0a8482dfcf3075cb9c830822642aff20816ae1d46c2d5241fb3e7bc1a1470"
+    },
+    {
+      "id": "definition-root",
+      "operation": "definition_at",
+      "plan": {
+        "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+        "content_hash": "sha256:0f0ff38491ac4bc1a51fa2dbab6db752f9271d5d6988d502edd190ef9ea0ae21",
+        "indexes_hash": "sha256:0c5929eebede3b860bcad305c11692a101f4cbc472bbfaecbc6a181135d24d34",
+        "mode": "exhaustive",
+        "operation": "definition_at",
+        "schema": "TOM-QUERY-PLAN-0.2",
+        "selected_count": 1,
+        "selected_ids": [
+          "definition:index-benchmark-linear-world"
+        ],
+        "selected_ids_hash": "sha256:621657459a2ae1db9f8d629eb7d8ea2d6136d9a6f5dd0f440a447595e480af79",
+        "snapshot_hash": "sha256:3f2f3cc5751d8c4e68954026146c83973d3e7cf3ca1844e309144de43467a7ec",
+        "stages": [
+          {
+            "detail": {
+              "id": "definition:index-benchmark-linear-world"
+            },
+            "input_count": 10000,
+            "mechanism": "snapshot:records",
+            "name": "primary_id_map",
+            "output_count": 1
+          }
+        ],
+        "version": "0.2.0",
+        "work": {
+          "record_reads": 1
+        }
+      },
+      "planned_certificate_hash": "sha256:f284a8b8cdf148df9e3a078aac4febd269a6b7426e4125ee4060b366efb80a2a",
+      "position": 3,
+      "result": {
+        "content_hash": "sha256:3786711574b518f281739abf76cc1ce83a2e6d7d2d6a5008c89573e62b0bfb27",
+        "dependencies": [],
+        "id": "definition:index-benchmark-linear-world",
+        "payload": {
+          "capabilities": [
+            "immutable_secondary_indexes",
+            "deterministic_query_plans",
+            "checkpoint_replay",
+            "batch_query",
+            "full_ancestry_audit"
+          ],
+          "codomain": "deterministic_query_certificates",
+          "domain": "content_addressed_world_records",
+          "invariants": [
+            "indexed and exhaustive semantic certificates are byte-equal",
+            "deleting an index file does not destroy world authority",
+            "checkpoint replay preserves state_at semantics"
+          ],
+          "kind": "indexed_exact_discrete_benchmark",
+          "operation": "tom-world.index-benchmark-10000",
+          "order": 0,
+          "parameters": {
+            "checkpoint_ticks": [
+              0,
+              100,
+              200,
+              300,
+              400,
+              500,
+              600,
+              700,
+              800,
+              900
+            ],
+            "compatibility_count": 4,
+            "instance_count": 100,
+            "observation_count": 269,
+            "relations_per_instance": 96,
+            "support_count": 16,
+            "target_instance": "instance:benchmark:042"
+          },
+          "phase": "resolve"
+        },
+        "provenance": {
+          "source": "TOM World & Query Kernel 0.2 frozen 10,000-record benchmark"
+        },
+        "record_type": "definition",
+        "schema": "TOM-WORLD-RECORD-0.1",
+        "version": 1
+      },
+      "result_hash": "sha256:3786711574b518f281739abf76cc1ce83a2e6d7d2d6a5008c89573e62b0bfb27"
+    }
+  ],
+  "schema": "TOM-BATCH-QUERY-CERTIFICATE-0.2",
+  "semantic_reduction_hash": "sha256:cd4b4088b6dcc2327826475184548aeffa33214c92a90835c02fe800470ef765",
+  "semantic_result_hashes": [
+    "sha256:9cd302ee9c2f6b380000288181403b7141ba9684ffb357c8c8245efcd2810f30",
+    "sha256:102faa3cb5becd73730fa45a4a09e5952d4209b329e8ff7ab175af8d2d3e3d7d",
+    "sha256:9ce0a8482dfcf3075cb9c830822642aff20816ae1d46c2d5241fb3e7bc1a1470",
+    "sha256:3786711574b518f281739abf76cc1ce83a2e6d7d2d6a5008c89573e62b0bfb27"
+  ],
+  "version": "0.2.0",
+  "work": {
+    "checkpoint_record_reads": 0,
+    "index_lookups": 0,
+    "predicate_evaluations": 6,
+    "record_reads": 78797,
+    "relation_evaluations": 3,
+    "tomagi_steps": 1072
+  }
+}

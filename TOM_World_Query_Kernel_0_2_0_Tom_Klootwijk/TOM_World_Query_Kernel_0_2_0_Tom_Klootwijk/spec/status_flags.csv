@@ -1,0 +1,9 @@
+bit,mask,name,meaning
+0,0x00000001,HALT,execution has terminated
+1,0x00000002,ZERO,literal SDF0 relation was evaluated
+2,0x00000004,WRAP,odd topological radial wrap occurred
+3,0x00000008,EMIT,an output token was emitted
+4,0x00000010,CONE,last cone relation admitted the state
+5,0x00000020,SPHERE,last sphere relation admitted the state
+6,0x00000040,REKEY_MISS,address-derived lookup missed and explicit successor was used
+7,0x00000080,PHI_WRAP,lower-case phi crossed one or more modular turns

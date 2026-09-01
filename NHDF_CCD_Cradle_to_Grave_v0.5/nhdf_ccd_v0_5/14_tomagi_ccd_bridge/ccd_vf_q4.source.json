@@ -1,0 +1,920 @@
+{
+  "tomagi_version": "1.0.0",
+  "compilation_profile": "TOM-Seeded-Compilation-Profile-1.0",
+  "title": "TOMAGI exact q4 linear vertex-face CCD fixture",
+  "seed_genome": {
+    "file": "../../../TOM_seed_genome_2026-09-01.txt",
+    "bytes": 244,
+    "sha256": "sha256:d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"
+  },
+  "token_registry": {
+    "file": "token_registry_1_0.json",
+    "content_hash": "sha256:b14140cf9800e186701557ed982d692931966ea957e5790c1e6b4989e854c609"
+  },
+  "root_definition": "program:root",
+  "limits": {
+    "max_definitions": 64,
+    "max_dependencies_per_definition": 32,
+    "max_literal_bytes": 4096,
+    "max_output_bytes": 4096,
+    "max_cells": 512,
+    "max_operation_steps": 16384,
+    "max_ticks": 512,
+    "max_repeat": 1,
+    "max_sequence_items": 4096,
+    "max_recursion_depth": 0
+  },
+  "definitions": [
+    {
+      "id": "seed:genome",
+      "kind": "canonical_seed",
+      "domain": "unit",
+      "codomain": "bytes",
+      "phase": 0,
+      "ordinal": 0,
+      "dependencies": [],
+      "inputs": [],
+      "operation": "seed.bytes",
+      "parameters": {},
+      "limits": {
+        "bytes": 244
+      },
+      "provenance": {
+        "role": "authoritative TOM root seed"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "canonical seed bytes",
+        "codomain": "hash discrepancy",
+        "semantics": "zero when the exact 244-byte root seed verifies",
+        "lowering": "compile:seed-integrity"
+      },
+      "content_hash": "sha256:0b2f9ebc39d8d7c7a21a6de93dbcfcce5a1d6f1cc82cad3bb42ca668d50bcb46"
+    },
+    {
+      "id": "state:initial",
+      "kind": "state64_literal",
+      "domain": "unit",
+      "codomain": "state",
+      "phase": 3,
+      "ordinal": 0,
+      "dependencies": [
+        "seed:genome"
+      ],
+      "inputs": [],
+      "operation": "tomagi.state64",
+      "parameters": {
+        "fields": {
+          "lineage": "0x43434431"
+        }
+      },
+      "limits": {
+        "words": 16
+      },
+      "provenance": {
+        "role": "CCD1 initial State64"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "State64 words",
+        "codomain": "state discrepancy",
+        "semantics": "zero when all fixed-width initial words equal the declaration",
+        "lowering": "compile:state64-integrity"
+      },
+      "content_hash": "sha256:6dfaf502cb8c36a637e41deb932ebaa1b40beec471d83a033763692e450b80cd"
+    },
+    {
+      "id": "artifact:hit-record",
+      "kind": "ccd_certificate_literal",
+      "domain": "unit",
+      "codomain": "record",
+      "phase": 3,
+      "ordinal": 1,
+      "dependencies": [
+        "seed:genome"
+      ],
+      "inputs": [],
+      "operation": "literal.record",
+      "parameters": {
+        "value": {
+          "certificate_schema": "TOM-NHDF-CCD-FIXTURE-1.0",
+          "feature_pair": "vertex-face",
+          "fixture": "vf-q4-linear-probe",
+          "fixed_point_scale": 4,
+          "method": "TOMAGI KIN2/CONE/SPHERE/RADIX",
+          "scope": "single exact zero-thickness q4 query",
+          "status": "HIT",
+          "thickness": 0,
+          "toi": {
+            "denominator": 4,
+            "numerator": 3
+          },
+          "triangle_q4": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ]
+          ],
+          "vertex_end_q4": [
+            1,
+            1,
+            -1
+          ],
+          "vertex_start_q4": [
+            1,
+            1,
+            3
+          ]
+        }
+      },
+      "limits": {
+        "fields": 12
+      },
+      "provenance": {
+        "role": "certificate selected only by a verified runtime contact branch"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "HIT certificate record",
+        "codomain": "record discrepancy",
+        "semantics": "zero when the selected fixture certificate equals the declaration",
+        "lowering": "compile:certificate-integrity"
+      },
+      "content_hash": "sha256:f6a9f3f2ce5a2f945bfabbfb29a15e2e4631efb908a213fc7d313e90cb61e3ac"
+    },
+    {
+      "id": "artifact:miss-record",
+      "kind": "ccd_certificate_literal",
+      "domain": "unit",
+      "codomain": "record",
+      "phase": 3,
+      "ordinal": 2,
+      "dependencies": [
+        "seed:genome"
+      ],
+      "inputs": [],
+      "operation": "literal.record",
+      "parameters": {
+        "value": {
+          "certificate_schema": "TOM-NHDF-CCD-FIXTURE-1.0",
+          "feature_pair": "vertex-face",
+          "fixture": "vf-q4-linear-probe",
+          "fixed_point_scale": 4,
+          "method": "TOMAGI KIN2/CONE/SPHERE/RADIX",
+          "scope": "single exact zero-thickness q4 query",
+          "status": "MISS",
+          "thickness": 0,
+          "toi": null,
+          "triangle_q4": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ]
+          ],
+          "vertex_end_q4": [
+            1,
+            1,
+            -1
+          ],
+          "vertex_start_q4": [
+            1,
+            1,
+            3
+          ]
+        }
+      },
+      "limits": {
+        "fields": 12
+      },
+      "provenance": {
+        "role": "bounded-horizon negative certificate route"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "MISS certificate record",
+        "codomain": "record discrepancy",
+        "semantics": "zero when the selected fixture certificate equals the declaration",
+        "lowering": "compile:certificate-integrity"
+      },
+      "content_hash": "sha256:d0173cb890c735f43158b6d05a20344acd1ae0dcb8455c3a9d3b7d1fad8fb682"
+    },
+    {
+      "id": "artifact:hit-bytes",
+      "kind": "canonical_ccd_certificate",
+      "domain": "record",
+      "codomain": "bytes",
+      "phase": 4,
+      "ordinal": 0,
+      "dependencies": [
+        "artifact:hit-record"
+      ],
+      "inputs": [
+        "artifact:hit-record"
+      ],
+      "operation": "json.canonical_bytes",
+      "parameters": {
+        "terminal_newline": true
+      },
+      "limits": {
+        "max_bytes": 1024
+      },
+      "provenance": {
+        "role": "canonical UTF-8 HIT certificate"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "canonical certificate bytes",
+        "codomain": "encoding discrepancy",
+        "semantics": "zero when canonical JSON and terminal LF are exact",
+        "lowering": "compile:canonical-json-integrity"
+      },
+      "content_hash": "sha256:a467a8a74e9ee4e4717af8d7fce763fc04efa53f8766a0687a405031a2bae8b7"
+    },
+    {
+      "id": "artifact:miss-bytes",
+      "kind": "canonical_ccd_certificate",
+      "domain": "record",
+      "codomain": "bytes",
+      "phase": 4,
+      "ordinal": 1,
+      "dependencies": [
+        "artifact:miss-record"
+      ],
+      "inputs": [
+        "artifact:miss-record"
+      ],
+      "operation": "json.canonical_bytes",
+      "parameters": {
+        "terminal_newline": true
+      },
+      "limits": {
+        "max_bytes": 1024
+      },
+      "provenance": {
+        "role": "canonical UTF-8 MISS certificate"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "canonical certificate bytes",
+        "codomain": "encoding discrepancy",
+        "semantics": "zero when canonical JSON and terminal LF are exact",
+        "lowering": "compile:canonical-json-integrity"
+      },
+      "content_hash": "sha256:58475ec9eaa70ab7b994e51eb33a5b6bca9ba48ae142526d406e55c916b836ec"
+    },
+    {
+      "id": "cell:set-rho",
+      "kind": "ccd_state_constructor",
+      "domain": "State64",
+      "codomain": "cell",
+      "phase": 4,
+      "ordinal": 2,
+      "dependencies": [
+        "seed:genome"
+      ],
+      "inputs": [],
+      "operation": "tomagi.cell",
+      "parameters": {
+        "cell_id": "cell:set-rho",
+        "key": "0x0000000000000000",
+        "op": "SET",
+        "flags": 0,
+        "args": [
+          3,
+          0,
+          0,
+          0
+        ],
+        "next": [
+          "cell:set-theta",
+          "cell:set-theta"
+        ],
+        "payload": "0x52484f33",
+        "aux": 1
+      },
+      "limits": {
+        "cells": 1
+      },
+      "provenance": {
+        "seed_token": "rho",
+        "semantics": "rho := signed plane distance z0*4 = 3"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "Cell48 declaration",
+        "codomain": "cell discrepancy",
+        "semantics": "zero when the SET-rho cell equals the literal declaration",
+        "lowering": "compile:cell48-integrity"
+      },
+      "content_hash": "sha256:f04ebe6d61905be04842dbd371485b75fca8063ca993c6733494b6acbb32fd44"
+    },
+    {
+      "id": "cell:set-theta",
+      "kind": "ccd_state_constructor",
+      "domain": "State64",
+      "codomain": "cell",
+      "phase": 4,
+      "ordinal": 3,
+      "dependencies": [
+        "cell:set-rho"
+      ],
+      "inputs": [],
+      "operation": "tomagi.cell",
+      "parameters": {
+        "cell_id": "cell:set-theta",
+        "key": "0x0000000000000001",
+        "op": "SET",
+        "flags": 1,
+        "args": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "next": [
+          "cell:set-tick",
+          "cell:set-tick"
+        ],
+        "payload": "0x54484531",
+        "aux": 2
+      },
+      "limits": {
+        "cells": 1
+      },
+      "provenance": {
+        "seed_token": "theta",
+        "semantics": "theta := x*4 = 1"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "Cell48 declaration",
+        "codomain": "cell discrepancy",
+        "semantics": "zero when the SET-theta cell equals the literal declaration",
+        "lowering": "compile:cell48-integrity"
+      },
+      "content_hash": "sha256:ca71ae5565ee314eadf38994a45020fd86086899cae0915a45da4bbb28b391ba"
+    },
+    {
+      "id": "cell:set-tick",
+      "kind": "ccd_state_constructor",
+      "domain": "State64",
+      "codomain": "cell",
+      "phase": 4,
+      "ordinal": 4,
+      "dependencies": [
+        "cell:set-theta"
+      ],
+      "inputs": [],
+      "operation": "tomagi.cell",
+      "parameters": {
+        "cell_id": "cell:set-tick",
+        "key": "0x0000000000000002",
+        "op": "SET",
+        "flags": 2,
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "next": [
+          "cell:set-phi",
+          "cell:set-phi"
+        ],
+        "payload": "0x54494b30",
+        "aux": 3
+      },
+      "limits": {
+        "cells": 1
+      },
+      "provenance": {
+        "seed_token": "t->",
+        "semantics": "tick := 0"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "Cell48 declaration",
+        "codomain": "cell discrepancy",
+        "semantics": "zero when the SET-tick cell equals the literal declaration",
+        "lowering": "compile:cell48-integrity"
+      },
+      "content_hash": "sha256:1d9a3a2d99c20f0a80c12b9e6d998de554cfc6ef7525b67c7904929a580b8982"
+    },
+    {
+      "id": "cell:set-phi",
+      "kind": "ccd_state_constructor",
+      "domain": "State64",
+      "codomain": "cell",
+      "phase": 4,
+      "ordinal": 5,
+      "dependencies": [
+        "cell:set-tick"
+      ],
+      "inputs": [],
+      "operation": "tomagi.cell",
+      "parameters": {
+        "cell_id": "cell:set-phi",
+        "key": "0x0000000000000003",
+        "op": "SET",
+        "flags": 3,
+        "args": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "next": [
+          "cell:set-vrho",
+          "cell:set-vrho"
+        ],
+        "payload": "0x50484931",
+        "aux": 4
+      },
+      "limits": {
+        "cells": 1
+      },
+      "provenance": {
+        "seed_token": "phi",
+        "semantics": "phi := y*4 = 1"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "Cell48 declaration",
+        "codomain": "cell discrepancy",
+        "semantics": "zero when the SET-phi cell equals the literal declaration",
+        "lowering": "compile:cell48-integrity"
+      },
+      "content_hash": "sha256:028fbf8cae0a86cc78dec214b69879908e7926c185ce7b37119e349e7ceda4ee"
+    },
+    {
+      "id": "cell:set-vrho",
+      "kind": "ccd_state_constructor",
+      "domain": "State64",
+      "codomain": "cell",
+      "phase": 4,
+      "ordinal": 6,
+      "dependencies": [
+        "cell:set-phi"
+      ],
+      "inputs": [],
+      "operation": "tomagi.cell",
+      "parameters": {
+        "cell_id": "cell:set-vrho",
+        "key": "0x0000000000000004",
+        "op": "SET",
+        "flags": 4,
+        "args": [
+          -1,
+          0,
+          0,
+          0
+        ],
+        "next": [
+          "cell:set-vtick",
+          "cell:set-vtick"
+        ],
+        "payload": "0x445A4D31",
+        "aux": 5
+      },
+      "limits": {
+        "cells": 1
+      },
+      "provenance": {
+        "seed_token": "v",
+        "semantics": "vrho := -1 q4 distance per quarter tick"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "Cell48 declaration",
+        "codomain": "cell discrepancy",
+        "semantics": "zero when the SET-vrho cell equals the literal declaration",
+        "lowering": "compile:cell48-integrity"
+      },
+      "content_hash": "sha256:4be03c178ab06b8dad2e275c40050d38a65fc0f86a7d5eaf28445c77597f03ef"
+    },
+    {
+      "id": "cell:set-vtick",
+      "kind": "ccd_state_constructor",
+      "domain": "State64",
+      "codomain": "cell",
+      "phase": 4,
+      "ordinal": 7,
+      "dependencies": [
+        "cell:set-vrho"
+      ],
+      "inputs": [],
+      "operation": "tomagi.cell",
+      "parameters": {
+        "cell_id": "cell:set-vtick",
+        "key": "0x0000000000000005",
+        "op": "SET",
+        "flags": 6,
+        "args": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "next": [
+          "cell:advance",
+          "cell:advance"
+        ],
+        "payload": "0x44543131",
+        "aux": 6
+      },
+      "limits": {
+        "cells": 1
+      },
+      "provenance": {
+        "seed_token": "dt",
+        "semantics": "vtick := one quarter-step"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "Cell48 declaration",
+        "codomain": "cell discrepancy",
+        "semantics": "zero when the SET-vtick cell equals the literal declaration",
+        "lowering": "compile:cell48-integrity"
+      },
+      "content_hash": "sha256:667bce4826f25413ccbd99b6ceb5f25f1915506608169cf79650dd64991a3c5d"
+    },
+    {
+      "id": "cell:advance",
+      "kind": "ccd_linear_kinematics",
+      "domain": "State64",
+      "codomain": "cell",
+      "phase": 4,
+      "ordinal": 8,
+      "dependencies": [
+        "cell:set-vtick"
+      ],
+      "inputs": [],
+      "operation": "tomagi.cell",
+      "parameters": {
+        "cell_id": "cell:advance",
+        "key": "0x0000000000000006",
+        "op": "KIN2",
+        "flags": 0,
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "next": [
+          "cell:contact-x",
+          "cell:contact-x"
+        ],
+        "payload": "0x4B494E32",
+        "aux": 7
+      },
+      "limits": {
+        "cells": 1
+      },
+      "provenance": {
+        "seed_token": "v",
+        "semantics": "rho += vrho and tick += vtick"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "linear q4 motion",
+        "codomain": "kinematic discrepancy",
+        "semantics": "zero when one exact fixed-point KIN2 step equals the declared affine motion",
+        "lowering": "compile:kinematic-integrity"
+      },
+      "content_hash": "sha256:09981cb415e78de2140335b2412baa0fa6b4c4af39e3134ada85d2c646e5f255"
+    },
+    {
+      "id": "cell:contact-x",
+      "kind": "ccd_coplanarity_support_guard",
+      "domain": "State64",
+      "codomain": "cell",
+      "phase": 5,
+      "ordinal": 0,
+      "dependencies": [
+        "cell:advance"
+      ],
+      "inputs": [],
+      "operation": "tomagi.cell",
+      "parameters": {
+        "cell_id": "cell:contact-x",
+        "key": "0x0000000000000007",
+        "op": "CONE",
+        "flags": 0,
+        "args": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "next": [
+          "cell:horizon",
+          "cell:y-inside"
+        ],
+        "payload": "0x434F4E45",
+        "aux": 8
+      },
+      "limits": {
+        "cells": 1
+      },
+      "provenance": {
+        "seed_token": "support",
+        "semantics": "rho=0 and q4 x in [0,2]"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "coplanarity and conservative x support",
+        "codomain": "support residual",
+        "semantics": "zero or negative only when rho is zero and x is in the declared sub-triangle support",
+        "lowering": "CONE"
+      },
+      "content_hash": "sha256:30bc67162be04a5cd5c1f7ffb4df35fd129580f7b93d02c0954d19369ac58249"
+    },
+    {
+      "id": "cell:y-inside",
+      "kind": "ccd_containment_guard",
+      "domain": "State64",
+      "codomain": "cell",
+      "phase": 5,
+      "ordinal": 1,
+      "dependencies": [
+        "cell:contact-x"
+      ],
+      "inputs": [],
+      "operation": "tomagi.cell",
+      "parameters": {
+        "cell_id": "cell:y-inside",
+        "key": "0x0000000000000009",
+        "op": "SPHERE",
+        "flags": 0,
+        "args": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "next": [
+          "cell:miss:000000",
+          "cell:hit:000000"
+        ],
+        "payload": "0x53504852",
+        "aux": 10
+      },
+      "limits": {
+        "cells": 1
+      },
+      "provenance": {
+        "seed_token": "compatibility",
+        "semantics": "rho=0 and q4 y in [0,2]"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "conservative y support",
+        "codomain": "containment residual",
+        "semantics": "zero or negative only when y is in the declared sub-triangle support",
+        "lowering": "SPHERE"
+      },
+      "content_hash": "sha256:a6353a233dd1b9f0b2b7bb71d4feb208532f266bc298a96951e9cbeb1415a898"
+    },
+    {
+      "id": "cell:horizon",
+      "kind": "ccd_bounded_horizon_guard",
+      "domain": "State64",
+      "codomain": "cell",
+      "phase": 6,
+      "ordinal": 0,
+      "dependencies": [
+        "cell:contact-x"
+      ],
+      "inputs": [],
+      "operation": "tomagi.cell",
+      "parameters": {
+        "cell_id": "cell:horizon",
+        "key": "0x0000000000000008",
+        "op": "RADIX",
+        "flags": 0,
+        "args": [
+          14,
+          0,
+          0,
+          0
+        ],
+        "next": [
+          "cell:advance",
+          "cell:miss:000000"
+        ],
+        "payload": "0x54494D45",
+        "aux": 9
+      },
+      "limits": {
+        "cells": 1
+      },
+      "provenance": {
+        "seed_token": "guard",
+        "semantics": "under tick<=4, packed tick bit 2 marks the q4 horizon"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "bounded q4 time",
+        "codomain": "remaining tick count",
+        "semantics": "zero when the four-quarter horizon is reached without contact",
+        "lowering": "runtime:RADIX"
+      },
+      "content_hash": "sha256:93f53ee5cb7c98ca039e785196cbbba331bc542bcb70a3b3a61a6cac5aaed93c"
+    },
+    {
+      "id": "transition:emit-hit",
+      "kind": "ordered_ccd_certificate_emission",
+      "domain": "bytes",
+      "codomain": "cells",
+      "phase": 8,
+      "ordinal": 0,
+      "dependencies": [
+        "artifact:hit-bytes"
+      ],
+      "inputs": [
+        "artifact:hit-bytes"
+      ],
+      "operation": "tomagi.emit_bytes",
+      "parameters": {
+        "key_start": "0x0000000000001000",
+        "cell_id_prefix": "cell:hit",
+        "halt": true
+      },
+      "limits": {
+        "bytes_per_cell": [
+          1,
+          4
+        ]
+      },
+      "provenance": {
+        "seed_token": "event",
+        "role": "HIT route ordered EMIT plan"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "ordered HIT certificate bytes",
+        "codomain": "unemitted-byte count",
+        "semantics": "zero when every selected HIT byte is assigned once to an EMIT cell",
+        "lowering": "compile:emission-completeness"
+      },
+      "content_hash": "sha256:01199b3e166a7581c683545e3143b1815edccce859d938706265a7bd8e8ce20c"
+    },
+    {
+      "id": "transition:emit-miss",
+      "kind": "ordered_ccd_certificate_emission",
+      "domain": "bytes",
+      "codomain": "cells",
+      "phase": 8,
+      "ordinal": 1,
+      "dependencies": [
+        "artifact:miss-bytes"
+      ],
+      "inputs": [
+        "artifact:miss-bytes"
+      ],
+      "operation": "tomagi.emit_bytes",
+      "parameters": {
+        "key_start": "0x0000000000002000",
+        "cell_id_prefix": "cell:miss",
+        "halt": true
+      },
+      "limits": {
+        "bytes_per_cell": [
+          1,
+          4
+        ]
+      },
+      "provenance": {
+        "seed_token": "event",
+        "role": "MISS route ordered EMIT plan"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "ordered MISS certificate bytes",
+        "codomain": "unemitted-byte count",
+        "semantics": "zero when every selected MISS byte is assigned once to an EMIT cell",
+        "lowering": "compile:emission-completeness"
+      },
+      "content_hash": "sha256:df932d386b7317cf3e5fcaf1f869a0bc307d298437484bbd849e3c23e606b739"
+    },
+    {
+      "id": "transition:graph",
+      "kind": "bounded_ccd_cell_graph",
+      "domain": "Cell48 definitions and certificate routes",
+      "codomain": "cells",
+      "phase": 8,
+      "ordinal": 2,
+      "dependencies": [
+        "cell:set-rho",
+        "cell:set-theta",
+        "cell:set-tick",
+        "cell:set-phi",
+        "cell:set-vrho",
+        "cell:set-vtick",
+        "cell:advance",
+        "cell:contact-x",
+        "cell:horizon",
+        "cell:y-inside",
+        "transition:emit-hit",
+        "transition:emit-miss"
+      ],
+      "inputs": [
+        "cell:set-rho",
+        "cell:set-theta",
+        "cell:set-tick",
+        "cell:set-phi",
+        "cell:set-vrho",
+        "cell:set-vtick",
+        "cell:advance",
+        "cell:contact-x",
+        "cell:horizon",
+        "cell:y-inside",
+        "transition:emit-hit",
+        "transition:emit-miss"
+      ],
+      "operation": "tomagi.graph.sequence",
+      "parameters": {},
+      "limits": {
+        "max_cells": 512
+      },
+      "provenance": {
+        "seed_token": "transition",
+        "role": "runtime CCD control graph and both bounded outcomes"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "bounded CCD Cell48 graph",
+        "codomain": "graph discrepancy",
+        "semantics": "zero when all declared runtime and certificate cells occur exactly once",
+        "lowering": "compile:graph-integrity"
+      },
+      "content_hash": "sha256:8c4c9af701803673692f7dfdb3979ddae1fcd82897c999d4c8e1fb42fb02ef9a"
+    },
+    {
+      "id": "program:root",
+      "kind": "seeded_tomagi_ccd_program",
+      "domain": "canonical seed, State64, bounded CCD graph",
+      "codomain": "program",
+      "phase": 9,
+      "ordinal": 0,
+      "dependencies": [
+        "seed:genome",
+        "state:initial",
+        "transition:graph"
+      ],
+      "inputs": [
+        "seed:genome",
+        "state:initial",
+        "transition:graph"
+      ],
+      "operation": "tomagi.program",
+      "parameters": {
+        "seed_input": "seed:genome",
+        "state_input": "state:initial",
+        "entry": "cell:set-rho",
+        "runtime_seed": 19900710,
+        "default_ticks": 512,
+        "program_flags": 0,
+        "bind_genome_hash_to_flags": true
+      },
+      "limits": {
+        "max_cells": 512
+      },
+      "provenance": {
+        "seed_token": "lineage",
+        "profile": "TOM seeded CCD q4 fixture over TOMAGI ABI 1.0"
+      },
+      "zero_relation": {
+        "interface": "SDF0@Def",
+        "domain": "compiled CCD definition graph",
+        "codomain": "program discrepancy",
+        "semantics": "zero when the graph lowers, executes, and emits the selected certificate exactly",
+        "lowering": "compile:program-integrity"
+      },
+      "content_hash": "sha256:0f8fa34cbfa215a2d8bbe90b06fc517413a89c6e05d5c5a00bca25ad5fbd43e7"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "artifact": {
+    "bytes": 5378,
+    "path": "artifacts/TOM_WORLD_QUERY_KERNEL_0_2_RELEASE.md",
+    "sha256": "sha256:7a92365db6ac2ac505a5b3cdd318d31e3201661c70c04c9e911325f0ef260800",
+    "source_byte_equal": true
+  },
+  "chain": [
+    "TOM_seed_genome_2026-09-01.txt",
+    "examples/artifacts/world_query_kernel_0_2_release.source.json",
+    "examples/artifacts/world_query_kernel_0_2_release.tmg",
+    "ordered TOMAGI EMIT trace",
+    "artifacts/TOM_WORLD_QUERY_KERNEL_0_2_RELEASE.md"
+  ],
+  "content_hash": "sha256:c887ca62ae69a0de71b2c8a0e41e8b8b155e54ee7d6ea67a94057f30552ee0a8",
+  "definition_source": {
+    "bytes": 9928,
+    "content_hash": "sha256:a425489694f756c5d72d5d3a680036742a43f9037afd212b8eb43ed20e13085e",
+    "path": "examples/artifacts/world_query_kernel_0_2_release.source.json",
+    "sha256": "sha256:b80d694087de68b1afe120de893a86c0b3ae082f1fb8a723305cec6bbd7b7401"
+  },
+  "execution": {
+    "c_trace_sha256": "sha256:fede81b696fd9935b4a6df5bcd7fc1c55c5b1218952f5674fd6fb0c4cc92d6f3",
+    "emit_records": 1345,
+    "emit_records_sha256": "sha256:f181978737333d7137f214c5b0b8102d30d3375c8269f84c7fc8cb77e0cd69f3",
+    "python_c_full_trace_equal": true,
+    "python_trace_sha256": "sha256:fede81b696fd9935b4a6df5bcd7fc1c55c5b1218952f5674fd6fb0c4cc92d6f3",
+    "steps": 1345
+  },
+  "materializer": {
+    "domain_specific_format_logic": false,
+    "profile": "TOM-EMIT-BYTES-0.1",
+    "python_result": {
+      "artifact_bytes": 5378,
+      "artifact_sha256": "sha256:7a92365db6ac2ac505a5b3cdd318d31e3201661c70c04c9e911325f0ef260800",
+      "emit_records": 1345,
+      "final_state": {
+        "branch": 0,
+        "cell": 1344,
+        "lineage": 658448279,
+        "orientation": 0,
+        "output": 2606,
+        "phi": 0,
+        "residual": 0,
+        "rho": 0,
+        "sheet": 0,
+        "status": 9,
+        "theta": 0,
+        "tick": 0,
+        "vphi": 0,
+        "vrho": 0,
+        "vtheta": 0,
+        "vtick": 0
+      }
+    }
+  },
+  "program": {
+    "bytes": 64688,
+    "cells": 1345,
+    "compile_report_sha256": "sha256:1bd3cc83d84d46e558872a9668c6e27f28f1a9233e3bd6555f1679c136bc9f3e",
+    "path": "examples/artifacts/world_query_kernel_0_2_release.tmg",
+    "sha256": "sha256:88bfad94c39d7e0dfa386fb12de0739324924821d884b1e1415cb1ffddeab8c0"
+  },
+  "schema": "TOM-WORLD-QUERY-RELEASE-ARTIFACT-PROOF-0.2",
+  "source_document": {
+    "bytes": 5378,
+    "path": "docs/WORLD_QUERY_KERNEL_0_2_RELEASE.md",
+    "sha256": "sha256:7a92365db6ac2ac505a5b3cdd318d31e3201661c70c04c9e911325f0ef260800"
+  },
+  "status": "pass",
+  "version": "0.2.0"
+}

@@ -1,0 +1,92 @@
+{
+  "$id": "https://tom.invalid/schema/tom-world-audit-certificate-0.2.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "ancestry": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "checks": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "content_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "counts": {
+      "type": "object"
+    },
+    "errors": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "head": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        }
+      ]
+    },
+    "orphans": {
+      "type": "object"
+    },
+    "require_no_orphans": {
+      "type": "boolean"
+    },
+    "schema": {
+      "const": "TOM-WORLD-AUDIT-CERTIFICATE-0.2"
+    },
+    "target_commit": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        }
+      ]
+    },
+    "valid": {
+      "type": "boolean"
+    },
+    "version": {
+      "const": "0.2.0"
+    },
+    "warnings": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "target_commit",
+    "head",
+    "valid",
+    "checks",
+    "counts",
+    "ancestry",
+    "errors",
+    "warnings",
+    "orphans",
+    "require_no_orphans",
+    "content_hash"
+  ],
+  "title": "TOM world full ancestry audit certificate 0.2",
+  "type": "object"
+}

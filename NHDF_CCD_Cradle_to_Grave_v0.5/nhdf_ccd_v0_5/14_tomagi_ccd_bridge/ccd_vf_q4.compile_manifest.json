@@ -1,0 +1,5502 @@
+{
+  "definition_order": [
+    "seed:genome",
+    "state:initial",
+    "artifact:hit-record",
+    "artifact:miss-record",
+    "artifact:hit-bytes",
+    "artifact:miss-bytes",
+    "cell:set-rho",
+    "cell:set-theta",
+    "cell:set-tick",
+    "cell:set-phi",
+    "cell:set-vrho",
+    "cell:set-vtick",
+    "cell:advance",
+    "cell:contact-x",
+    "cell:y-inside",
+    "cell:horizon",
+    "transition:emit-hit",
+    "transition:emit-miss",
+    "transition:graph",
+    "program:root"
+  ],
+  "definitions": [
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:0b2f9ebc39d8d7c7a21a6de93dbcfcce5a1d6f1cc82cad3bb42ca668d50bcb46",
+      "dependencies": [],
+      "domain": "unit",
+      "id": "seed:genome",
+      "inputs": [],
+      "kind": "canonical_seed",
+      "operation": "seed.bytes",
+      "ordinal": 0,
+      "output": {
+        "bytes": 244,
+        "sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+        "type": "bytes"
+      },
+      "phase": 0,
+      "zero_relation": {
+        "codomain": "hash discrepancy",
+        "domain": "canonical seed bytes",
+        "interface": "SDF0@Def",
+        "lowering": "compile:seed-integrity",
+        "semantics": "zero when the exact 244-byte root seed verifies"
+      }
+    },
+    {
+      "codomain": "state",
+      "content_hash": "sha256:6dfaf502cb8c36a637e41deb932ebaa1b40beec471d83a033763692e450b80cd",
+      "dependencies": [
+        "seed:genome"
+      ],
+      "domain": "unit",
+      "id": "state:initial",
+      "inputs": [],
+      "kind": "state64_literal",
+      "operation": "tomagi.state64",
+      "ordinal": 0,
+      "output": {
+        "sha256": "95d7b75dda0a5299dbed5dce8ab5a44598de6e65adbe2de0465944f826887b31",
+        "type": "state",
+        "words": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1128481841,
+          0,
+          0,
+          0
+        ]
+      },
+      "phase": 3,
+      "zero_relation": {
+        "codomain": "state discrepancy",
+        "domain": "State64 words",
+        "interface": "SDF0@Def",
+        "lowering": "compile:state64-integrity",
+        "semantics": "zero when all fixed-width initial words equal the declaration"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:f6a9f3f2ce5a2f945bfabbfb29a15e2e4631efb908a213fc7d313e90cb61e3ac",
+      "dependencies": [
+        "seed:genome"
+      ],
+      "domain": "unit",
+      "id": "artifact:hit-record",
+      "inputs": [],
+      "kind": "ccd_certificate_literal",
+      "operation": "literal.record",
+      "ordinal": 1,
+      "output": {
+        "canonical_bytes": 377,
+        "fields": 12,
+        "sha256": "8037e1f373e8710fe3090d96490271ca3ddd2aef28341b674721d9a3c9566b05",
+        "type": "record"
+      },
+      "phase": 3,
+      "zero_relation": {
+        "codomain": "record discrepancy",
+        "domain": "HIT certificate record",
+        "interface": "SDF0@Def",
+        "lowering": "compile:certificate-integrity",
+        "semantics": "zero when the selected fixture certificate equals the declaration"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:d0173cb890c735f43158b6d05a20344acd1ae0dcb8455c3a9d3b7d1fad8fb682",
+      "dependencies": [
+        "seed:genome"
+      ],
+      "domain": "unit",
+      "id": "artifact:miss-record",
+      "inputs": [],
+      "kind": "ccd_certificate_literal",
+      "operation": "literal.record",
+      "ordinal": 2,
+      "output": {
+        "canonical_bytes": 351,
+        "fields": 12,
+        "sha256": "124e34064cef7e34294db76c1b640f45732967298c30f893a7f1017a98cddf71",
+        "type": "record"
+      },
+      "phase": 3,
+      "zero_relation": {
+        "codomain": "record discrepancy",
+        "domain": "MISS certificate record",
+        "interface": "SDF0@Def",
+        "lowering": "compile:certificate-integrity",
+        "semantics": "zero when the selected fixture certificate equals the declaration"
+      }
+    },
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:a467a8a74e9ee4e4717af8d7fce763fc04efa53f8766a0687a405031a2bae8b7",
+      "dependencies": [
+        "artifact:hit-record"
+      ],
+      "domain": "record",
+      "id": "artifact:hit-bytes",
+      "inputs": [
+        "artifact:hit-record"
+      ],
+      "kind": "canonical_ccd_certificate",
+      "operation": "json.canonical_bytes",
+      "ordinal": 0,
+      "output": {
+        "bytes": 378,
+        "sha256": "035a9ee91654675326e9b603990048395324855db560cfd54c797ad2da087a2b",
+        "type": "bytes"
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "encoding discrepancy",
+        "domain": "canonical certificate bytes",
+        "interface": "SDF0@Def",
+        "lowering": "compile:canonical-json-integrity",
+        "semantics": "zero when canonical JSON and terminal LF are exact"
+      }
+    },
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:58475ec9eaa70ab7b994e51eb33a5b6bca9ba48ae142526d406e55c916b836ec",
+      "dependencies": [
+        "artifact:miss-record"
+      ],
+      "domain": "record",
+      "id": "artifact:miss-bytes",
+      "inputs": [
+        "artifact:miss-record"
+      ],
+      "kind": "canonical_ccd_certificate",
+      "operation": "json.canonical_bytes",
+      "ordinal": 1,
+      "output": {
+        "bytes": 352,
+        "sha256": "5e88d613ca4d44d0cdedaf045e4f7384905e15c1be0efd8a3d3739f18b9e8d4f",
+        "type": "bytes"
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "encoding discrepancy",
+        "domain": "canonical certificate bytes",
+        "interface": "SDF0@Def",
+        "lowering": "compile:canonical-json-integrity",
+        "semantics": "zero when canonical JSON and terminal LF are exact"
+      }
+    },
+    {
+      "codomain": "cell",
+      "content_hash": "sha256:f04ebe6d61905be04842dbd371485b75fca8063ca993c6733494b6acbb32fd44",
+      "dependencies": [
+        "seed:genome"
+      ],
+      "domain": "State64",
+      "id": "cell:set-rho",
+      "inputs": [],
+      "kind": "ccd_state_constructor",
+      "operation": "tomagi.cell",
+      "ordinal": 2,
+      "output": {
+        "cell_count": 1,
+        "sha256": "750ade981eeee892afa5ede90a54c0960bd23804f4d773361242a1714c774a35",
+        "type": "cell"
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "cell discrepancy",
+        "domain": "Cell48 declaration",
+        "interface": "SDF0@Def",
+        "lowering": "compile:cell48-integrity",
+        "semantics": "zero when the SET-rho cell equals the literal declaration"
+      }
+    },
+    {
+      "codomain": "cell",
+      "content_hash": "sha256:ca71ae5565ee314eadf38994a45020fd86086899cae0915a45da4bbb28b391ba",
+      "dependencies": [
+        "cell:set-rho"
+      ],
+      "domain": "State64",
+      "id": "cell:set-theta",
+      "inputs": [],
+      "kind": "ccd_state_constructor",
+      "operation": "tomagi.cell",
+      "ordinal": 3,
+      "output": {
+        "cell_count": 1,
+        "sha256": "7af2432a1492a89b6abf77e43c0bfd86f7f1129d7a13d7c0befe74f0e5d7215e",
+        "type": "cell"
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "cell discrepancy",
+        "domain": "Cell48 declaration",
+        "interface": "SDF0@Def",
+        "lowering": "compile:cell48-integrity",
+        "semantics": "zero when the SET-theta cell equals the literal declaration"
+      }
+    },
+    {
+      "codomain": "cell",
+      "content_hash": "sha256:1d9a3a2d99c20f0a80c12b9e6d998de554cfc6ef7525b67c7904929a580b8982",
+      "dependencies": [
+        "cell:set-theta"
+      ],
+      "domain": "State64",
+      "id": "cell:set-tick",
+      "inputs": [],
+      "kind": "ccd_state_constructor",
+      "operation": "tomagi.cell",
+      "ordinal": 4,
+      "output": {
+        "cell_count": 1,
+        "sha256": "6aeea6a99c4a79fa9d48ba880bf759baf4d42ce4e2e0a17a1f7c1700a0f2a03f",
+        "type": "cell"
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "cell discrepancy",
+        "domain": "Cell48 declaration",
+        "interface": "SDF0@Def",
+        "lowering": "compile:cell48-integrity",
+        "semantics": "zero when the SET-tick cell equals the literal declaration"
+      }
+    },
+    {
+      "codomain": "cell",
+      "content_hash": "sha256:028fbf8cae0a86cc78dec214b69879908e7926c185ce7b37119e349e7ceda4ee",
+      "dependencies": [
+        "cell:set-tick"
+      ],
+      "domain": "State64",
+      "id": "cell:set-phi",
+      "inputs": [],
+      "kind": "ccd_state_constructor",
+      "operation": "tomagi.cell",
+      "ordinal": 5,
+      "output": {
+        "cell_count": 1,
+        "sha256": "bd428776ed7de75f7319b047beea1dd7b7d26274fe51dd66b1e99edc9b4ec371",
+        "type": "cell"
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "cell discrepancy",
+        "domain": "Cell48 declaration",
+        "interface": "SDF0@Def",
+        "lowering": "compile:cell48-integrity",
+        "semantics": "zero when the SET-phi cell equals the literal declaration"
+      }
+    },
+    {
+      "codomain": "cell",
+      "content_hash": "sha256:4be03c178ab06b8dad2e275c40050d38a65fc0f86a7d5eaf28445c77597f03ef",
+      "dependencies": [
+        "cell:set-phi"
+      ],
+      "domain": "State64",
+      "id": "cell:set-vrho",
+      "inputs": [],
+      "kind": "ccd_state_constructor",
+      "operation": "tomagi.cell",
+      "ordinal": 6,
+      "output": {
+        "cell_count": 1,
+        "sha256": "8a3db4ecca88a8b71667845059153914c65d4afe536499017882d6462765a2af",
+        "type": "cell"
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "cell discrepancy",
+        "domain": "Cell48 declaration",
+        "interface": "SDF0@Def",
+        "lowering": "compile:cell48-integrity",
+        "semantics": "zero when the SET-vrho cell equals the literal declaration"
+      }
+    },
+    {
+      "codomain": "cell",
+      "content_hash": "sha256:667bce4826f25413ccbd99b6ceb5f25f1915506608169cf79650dd64991a3c5d",
+      "dependencies": [
+        "cell:set-vrho"
+      ],
+      "domain": "State64",
+      "id": "cell:set-vtick",
+      "inputs": [],
+      "kind": "ccd_state_constructor",
+      "operation": "tomagi.cell",
+      "ordinal": 7,
+      "output": {
+        "cell_count": 1,
+        "sha256": "0f5d96be03b53d12de4bb4e4b3925cf88d4eb31407c11d667d9063ab91d2ddbb",
+        "type": "cell"
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "cell discrepancy",
+        "domain": "Cell48 declaration",
+        "interface": "SDF0@Def",
+        "lowering": "compile:cell48-integrity",
+        "semantics": "zero when the SET-vtick cell equals the literal declaration"
+      }
+    },
+    {
+      "codomain": "cell",
+      "content_hash": "sha256:09981cb415e78de2140335b2412baa0fa6b4c4af39e3134ada85d2c646e5f255",
+      "dependencies": [
+        "cell:set-vtick"
+      ],
+      "domain": "State64",
+      "id": "cell:advance",
+      "inputs": [],
+      "kind": "ccd_linear_kinematics",
+      "operation": "tomagi.cell",
+      "ordinal": 8,
+      "output": {
+        "cell_count": 1,
+        "sha256": "f50ae7f6bc0acf878bd2a9ebb0c797196beb169a8494829404bb31fe3911919f",
+        "type": "cell"
+      },
+      "phase": 4,
+      "zero_relation": {
+        "codomain": "kinematic discrepancy",
+        "domain": "linear q4 motion",
+        "interface": "SDF0@Def",
+        "lowering": "compile:kinematic-integrity",
+        "semantics": "zero when one exact fixed-point KIN2 step equals the declared affine motion"
+      }
+    },
+    {
+      "codomain": "cell",
+      "content_hash": "sha256:30bc67162be04a5cd5c1f7ffb4df35fd129580f7b93d02c0954d19369ac58249",
+      "dependencies": [
+        "cell:advance"
+      ],
+      "domain": "State64",
+      "id": "cell:contact-x",
+      "inputs": [],
+      "kind": "ccd_coplanarity_support_guard",
+      "operation": "tomagi.cell",
+      "ordinal": 0,
+      "output": {
+        "cell_count": 1,
+        "sha256": "3180a4bf97f01fded2a6b729301ec0dec6ac6b84e31c5895d8063be718f3448f",
+        "type": "cell"
+      },
+      "phase": 5,
+      "zero_relation": {
+        "codomain": "support residual",
+        "domain": "coplanarity and conservative x support",
+        "interface": "SDF0@Def",
+        "lowering": "CONE",
+        "semantics": "zero or negative only when rho is zero and x is in the declared sub-triangle support"
+      }
+    },
+    {
+      "codomain": "cell",
+      "content_hash": "sha256:a6353a233dd1b9f0b2b7bb71d4feb208532f266bc298a96951e9cbeb1415a898",
+      "dependencies": [
+        "cell:contact-x"
+      ],
+      "domain": "State64",
+      "id": "cell:y-inside",
+      "inputs": [],
+      "kind": "ccd_containment_guard",
+      "operation": "tomagi.cell",
+      "ordinal": 1,
+      "output": {
+        "cell_count": 1,
+        "sha256": "738caabc6a6fd68f08f8087a8fb45fc8f2c192c3b758010728f9e2d2f6da6513",
+        "type": "cell"
+      },
+      "phase": 5,
+      "zero_relation": {
+        "codomain": "containment residual",
+        "domain": "conservative y support",
+        "interface": "SDF0@Def",
+        "lowering": "SPHERE",
+        "semantics": "zero or negative only when y is in the declared sub-triangle support"
+      }
+    },
+    {
+      "codomain": "cell",
+      "content_hash": "sha256:93f53ee5cb7c98ca039e785196cbbba331bc542bcb70a3b3a61a6cac5aaed93c",
+      "dependencies": [
+        "cell:contact-x"
+      ],
+      "domain": "State64",
+      "id": "cell:horizon",
+      "inputs": [],
+      "kind": "ccd_bounded_horizon_guard",
+      "operation": "tomagi.cell",
+      "ordinal": 0,
+      "output": {
+        "cell_count": 1,
+        "sha256": "f68e78f606d9414a1afc3fd7587d497dc08b91728e65b758f570743e73bfeb5b",
+        "type": "cell"
+      },
+      "phase": 6,
+      "zero_relation": {
+        "codomain": "remaining tick count",
+        "domain": "bounded q4 time",
+        "interface": "SDF0@Def",
+        "lowering": "runtime:RADIX",
+        "semantics": "zero when the four-quarter horizon is reached without contact"
+      }
+    },
+    {
+      "codomain": "cells",
+      "content_hash": "sha256:01199b3e166a7581c683545e3143b1815edccce859d938706265a7bd8e8ce20c",
+      "dependencies": [
+        "artifact:hit-bytes"
+      ],
+      "domain": "bytes",
+      "id": "transition:emit-hit",
+      "inputs": [
+        "artifact:hit-bytes"
+      ],
+      "kind": "ordered_ccd_certificate_emission",
+      "operation": "tomagi.emit_bytes",
+      "ordinal": 0,
+      "output": {
+        "cell_count": 95,
+        "sha256": "24152fb10870cea4bb6fc39d31d2cadfc98e00f1d9c1d1cf855c3f2b323b59d1",
+        "type": "cells"
+      },
+      "phase": 8,
+      "zero_relation": {
+        "codomain": "unemitted-byte count",
+        "domain": "ordered HIT certificate bytes",
+        "interface": "SDF0@Def",
+        "lowering": "compile:emission-completeness",
+        "semantics": "zero when every selected HIT byte is assigned once to an EMIT cell"
+      }
+    },
+    {
+      "codomain": "cells",
+      "content_hash": "sha256:df932d386b7317cf3e5fcaf1f869a0bc307d298437484bbd849e3c23e606b739",
+      "dependencies": [
+        "artifact:miss-bytes"
+      ],
+      "domain": "bytes",
+      "id": "transition:emit-miss",
+      "inputs": [
+        "artifact:miss-bytes"
+      ],
+      "kind": "ordered_ccd_certificate_emission",
+      "operation": "tomagi.emit_bytes",
+      "ordinal": 1,
+      "output": {
+        "cell_count": 88,
+        "sha256": "a8bb1588d59ccbd894e3d6ed3634f5ece480219d87cac4d7572aa88e9476fcd7",
+        "type": "cells"
+      },
+      "phase": 8,
+      "zero_relation": {
+        "codomain": "unemitted-byte count",
+        "domain": "ordered MISS certificate bytes",
+        "interface": "SDF0@Def",
+        "lowering": "compile:emission-completeness",
+        "semantics": "zero when every selected MISS byte is assigned once to an EMIT cell"
+      }
+    },
+    {
+      "codomain": "cells",
+      "content_hash": "sha256:8c4c9af701803673692f7dfdb3979ddae1fcd82897c999d4c8e1fb42fb02ef9a",
+      "dependencies": [
+        "cell:set-rho",
+        "cell:set-theta",
+        "cell:set-tick",
+        "cell:set-phi",
+        "cell:set-vrho",
+        "cell:set-vtick",
+        "cell:advance",
+        "cell:contact-x",
+        "cell:horizon",
+        "cell:y-inside",
+        "transition:emit-hit",
+        "transition:emit-miss"
+      ],
+      "domain": "Cell48 definitions and certificate routes",
+      "id": "transition:graph",
+      "inputs": [
+        "cell:set-rho",
+        "cell:set-theta",
+        "cell:set-tick",
+        "cell:set-phi",
+        "cell:set-vrho",
+        "cell:set-vtick",
+        "cell:advance",
+        "cell:contact-x",
+        "cell:horizon",
+        "cell:y-inside",
+        "transition:emit-hit",
+        "transition:emit-miss"
+      ],
+      "kind": "bounded_ccd_cell_graph",
+      "operation": "tomagi.graph.sequence",
+      "ordinal": 2,
+      "output": {
+        "cell_count": 193,
+        "sha256": "8a0e985e7c7300533c8c7c3b71de20334193f5e6ce6b99e4308952571e3bfd85",
+        "type": "cells"
+      },
+      "phase": 8,
+      "zero_relation": {
+        "codomain": "graph discrepancy",
+        "domain": "bounded CCD Cell48 graph",
+        "interface": "SDF0@Def",
+        "lowering": "compile:graph-integrity",
+        "semantics": "zero when all declared runtime and certificate cells occur exactly once"
+      }
+    },
+    {
+      "codomain": "program",
+      "content_hash": "sha256:0f8fa34cbfa215a2d8bbe90b06fc517413a89c6e05d5c5a00bca25ad5fbd43e7",
+      "dependencies": [
+        "seed:genome",
+        "state:initial",
+        "transition:graph"
+      ],
+      "domain": "canonical seed, State64, bounded CCD graph",
+      "id": "program:root",
+      "inputs": [
+        "seed:genome",
+        "state:initial",
+        "transition:graph"
+      ],
+      "kind": "seeded_tomagi_ccd_program",
+      "operation": "tomagi.program",
+      "ordinal": 0,
+      "output": {
+        "bytes": 9392,
+        "sha256": "09cd3a2e311adb84391ec25762ecab2b63147861e7f8ab64f4fddce63568c900",
+        "type": "program"
+      },
+      "phase": 9,
+      "zero_relation": {
+        "codomain": "program discrepancy",
+        "domain": "compiled CCD definition graph",
+        "interface": "SDF0@Def",
+        "lowering": "compile:program-integrity",
+        "semantics": "zero when the graph lowers, executes, and emits the selected certificate exactly"
+      }
+    }
+  ],
+  "determinism": {
+    "binary_format": "TOMAGI ABI 1.0 little-endian header 128 + Cell48 records",
+    "canonical_json": "UTF-8; sorted object keys; compact separators; no Unicode escaping",
+    "cell_order": "ascending unsigned canonical 64-bit key",
+    "definition_schedule": "strict unique (phase, ordinal), dependencies before dependents"
+  },
+  "limits": {
+    "max_cells": 512,
+    "max_definitions": 64,
+    "max_dependencies_per_definition": 32,
+    "max_literal_bytes": 4096,
+    "max_operation_steps": 16384,
+    "max_output_bytes": 4096,
+    "max_recursion_depth": 0,
+    "max_repeat": 1,
+    "max_sequence_items": 4096,
+    "max_ticks": 512
+  },
+  "lowering": {
+    "cell_count": 193,
+    "cells": [
+      {
+        "args": [
+          3,
+          0,
+          0,
+          0
+        ],
+        "aux": 1,
+        "cell_id": "cell:set-rho",
+        "definition_id": "cell:set-rho",
+        "flags": 0,
+        "index": 0,
+        "key": "0x0000000000000000",
+        "next0": 1,
+        "next1": 1,
+        "next_ids": [
+          "cell:set-theta",
+          "cell:set-theta"
+        ],
+        "opcode": "SET",
+        "payload": 1380470579
+      },
+      {
+        "args": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "aux": 2,
+        "cell_id": "cell:set-theta",
+        "definition_id": "cell:set-theta",
+        "flags": 1,
+        "index": 1,
+        "key": "0x0000000000000001",
+        "next0": 2,
+        "next1": 2,
+        "next_ids": [
+          "cell:set-tick",
+          "cell:set-tick"
+        ],
+        "opcode": "SET",
+        "payload": 1414022449
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 3,
+        "cell_id": "cell:set-tick",
+        "definition_id": "cell:set-tick",
+        "flags": 2,
+        "index": 2,
+        "key": "0x0000000000000002",
+        "next0": 3,
+        "next1": 3,
+        "next_ids": [
+          "cell:set-phi",
+          "cell:set-phi"
+        ],
+        "opcode": "SET",
+        "payload": 1414089520
+      },
+      {
+        "args": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "aux": 4,
+        "cell_id": "cell:set-phi",
+        "definition_id": "cell:set-phi",
+        "flags": 3,
+        "index": 3,
+        "key": "0x0000000000000003",
+        "next0": 4,
+        "next1": 4,
+        "next_ids": [
+          "cell:set-vrho",
+          "cell:set-vrho"
+        ],
+        "opcode": "SET",
+        "payload": 1346914609
+      },
+      {
+        "args": [
+          -1,
+          0,
+          0,
+          0
+        ],
+        "aux": 5,
+        "cell_id": "cell:set-vrho",
+        "definition_id": "cell:set-vrho",
+        "flags": 4,
+        "index": 4,
+        "key": "0x0000000000000004",
+        "next0": 5,
+        "next1": 5,
+        "next_ids": [
+          "cell:set-vtick",
+          "cell:set-vtick"
+        ],
+        "opcode": "SET",
+        "payload": 1146768689
+      },
+      {
+        "args": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "aux": 6,
+        "cell_id": "cell:set-vtick",
+        "definition_id": "cell:set-vtick",
+        "flags": 6,
+        "index": 5,
+        "key": "0x0000000000000005",
+        "next0": 6,
+        "next1": 6,
+        "next_ids": [
+          "cell:advance",
+          "cell:advance"
+        ],
+        "opcode": "SET",
+        "payload": 1146368305
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 7,
+        "cell_id": "cell:advance",
+        "definition_id": "cell:advance",
+        "flags": 0,
+        "index": 6,
+        "key": "0x0000000000000006",
+        "next0": 7,
+        "next1": 7,
+        "next_ids": [
+          "cell:contact-x",
+          "cell:contact-x"
+        ],
+        "opcode": "KIN2",
+        "payload": 1263095346
+      },
+      {
+        "args": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "aux": 8,
+        "cell_id": "cell:contact-x",
+        "definition_id": "cell:contact-x",
+        "flags": 0,
+        "index": 7,
+        "key": "0x0000000000000007",
+        "next0": 8,
+        "next1": 9,
+        "next_ids": [
+          "cell:horizon",
+          "cell:y-inside"
+        ],
+        "opcode": "CONE",
+        "payload": 1129270853
+      },
+      {
+        "args": [
+          14,
+          0,
+          0,
+          0
+        ],
+        "aux": 9,
+        "cell_id": "cell:horizon",
+        "definition_id": "cell:horizon",
+        "flags": 0,
+        "index": 8,
+        "key": "0x0000000000000008",
+        "next0": 6,
+        "next1": 105,
+        "next_ids": [
+          "cell:advance",
+          "cell:miss:000000"
+        ],
+        "opcode": "RADIX",
+        "payload": 1414090053
+      },
+      {
+        "args": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "aux": 10,
+        "cell_id": "cell:y-inside",
+        "definition_id": "cell:y-inside",
+        "flags": 0,
+        "index": 9,
+        "key": "0x0000000000000009",
+        "next0": 105,
+        "next1": 10,
+        "next_ids": [
+          "cell:miss:000000",
+          "cell:hit:000000"
+        ],
+        "opcode": "SPHERE",
+        "payload": 1397770322
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 0,
+        "byte_count": 4,
+        "bytes_hex": "7b226365",
+        "cell_id": "cell:hit:000000",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 10,
+        "key": "0x0000000000001000",
+        "next0": 11,
+        "next1": 11,
+        "next_ids": [
+          "cell:hit:000001",
+          "cell:hit:000001"
+        ],
+        "opcode": "EMIT",
+        "payload": 1700995707,
+        "source_offset": 0
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 4,
+        "byte_count": 4,
+        "bytes_hex": "72746966",
+        "cell_id": "cell:hit:000001",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 11,
+        "key": "0x0000000000001001",
+        "next0": 12,
+        "next1": 12,
+        "next_ids": [
+          "cell:hit:000002",
+          "cell:hit:000002"
+        ],
+        "opcode": "EMIT",
+        "payload": 1718187122,
+        "source_offset": 4
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 8,
+        "byte_count": 4,
+        "bytes_hex": "69636174",
+        "cell_id": "cell:hit:000002",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 12,
+        "key": "0x0000000000001002",
+        "next0": 13,
+        "next1": 13,
+        "next_ids": [
+          "cell:hit:000003",
+          "cell:hit:000003"
+        ],
+        "opcode": "EMIT",
+        "payload": 1952539497,
+        "source_offset": 8
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 12,
+        "byte_count": 4,
+        "bytes_hex": "655f7363",
+        "cell_id": "cell:hit:000003",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 13,
+        "key": "0x0000000000001003",
+        "next0": 14,
+        "next1": 14,
+        "next_ids": [
+          "cell:hit:000004",
+          "cell:hit:000004"
+        ],
+        "opcode": "EMIT",
+        "payload": 1668505445,
+        "source_offset": 12
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 16,
+        "byte_count": 4,
+        "bytes_hex": "68656d61",
+        "cell_id": "cell:hit:000004",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 14,
+        "key": "0x0000000000001004",
+        "next0": 15,
+        "next1": 15,
+        "next_ids": [
+          "cell:hit:000005",
+          "cell:hit:000005"
+        ],
+        "opcode": "EMIT",
+        "payload": 1634559336,
+        "source_offset": 16
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 20,
+        "byte_count": 4,
+        "bytes_hex": "223a2254",
+        "cell_id": "cell:hit:000005",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 15,
+        "key": "0x0000000000001005",
+        "next0": 16,
+        "next1": 16,
+        "next_ids": [
+          "cell:hit:000006",
+          "cell:hit:000006"
+        ],
+        "opcode": "EMIT",
+        "payload": 1411529250,
+        "source_offset": 20
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 24,
+        "byte_count": 4,
+        "bytes_hex": "4f4d2d4e",
+        "cell_id": "cell:hit:000006",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 16,
+        "key": "0x0000000000001006",
+        "next0": 17,
+        "next1": 17,
+        "next_ids": [
+          "cell:hit:000007",
+          "cell:hit:000007"
+        ],
+        "opcode": "EMIT",
+        "payload": 1311591759,
+        "source_offset": 24
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 28,
+        "byte_count": 4,
+        "bytes_hex": "4844462d",
+        "cell_id": "cell:hit:000007",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 17,
+        "key": "0x0000000000001007",
+        "next0": 18,
+        "next1": 18,
+        "next_ids": [
+          "cell:hit:000008",
+          "cell:hit:000008"
+        ],
+        "opcode": "EMIT",
+        "payload": 759579720,
+        "source_offset": 28
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 32,
+        "byte_count": 4,
+        "bytes_hex": "4343442d",
+        "cell_id": "cell:hit:000008",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 18,
+        "key": "0x0000000000001008",
+        "next0": 19,
+        "next1": 19,
+        "next_ids": [
+          "cell:hit:000009",
+          "cell:hit:000009"
+        ],
+        "opcode": "EMIT",
+        "payload": 759448387,
+        "source_offset": 32
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 36,
+        "byte_count": 4,
+        "bytes_hex": "46495854",
+        "cell_id": "cell:hit:000009",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 19,
+        "key": "0x0000000000001009",
+        "next0": 20,
+        "next1": 20,
+        "next_ids": [
+          "cell:hit:000010",
+          "cell:hit:000010"
+        ],
+        "opcode": "EMIT",
+        "payload": 1415072070,
+        "source_offset": 36
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 40,
+        "byte_count": 4,
+        "bytes_hex": "5552452d",
+        "cell_id": "cell:hit:000010",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 20,
+        "key": "0x000000000000100a",
+        "next0": 21,
+        "next1": 21,
+        "next_ids": [
+          "cell:hit:000011",
+          "cell:hit:000011"
+        ],
+        "opcode": "EMIT",
+        "payload": 759517781,
+        "source_offset": 40
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 44,
+        "byte_count": 4,
+        "bytes_hex": "312e3022",
+        "cell_id": "cell:hit:000011",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 21,
+        "key": "0x000000000000100b",
+        "next0": 22,
+        "next1": 22,
+        "next_ids": [
+          "cell:hit:000012",
+          "cell:hit:000012"
+        ],
+        "opcode": "EMIT",
+        "payload": 573582897,
+        "source_offset": 44
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 48,
+        "byte_count": 4,
+        "bytes_hex": "2c226665",
+        "cell_id": "cell:hit:000012",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 22,
+        "key": "0x000000000000100c",
+        "next0": 23,
+        "next1": 23,
+        "next_ids": [
+          "cell:hit:000013",
+          "cell:hit:000013"
+        ],
+        "opcode": "EMIT",
+        "payload": 1701192236,
+        "source_offset": 48
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 52,
+        "byte_count": 4,
+        "bytes_hex": "61747572",
+        "cell_id": "cell:hit:000013",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 23,
+        "key": "0x000000000000100d",
+        "next0": 24,
+        "next1": 24,
+        "next_ids": [
+          "cell:hit:000014",
+          "cell:hit:000014"
+        ],
+        "opcode": "EMIT",
+        "payload": 1920300129,
+        "source_offset": 52
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 56,
+        "byte_count": 4,
+        "bytes_hex": "655f7061",
+        "cell_id": "cell:hit:000014",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 24,
+        "key": "0x000000000000100e",
+        "next0": 25,
+        "next1": 25,
+        "next_ids": [
+          "cell:hit:000015",
+          "cell:hit:000015"
+        ],
+        "opcode": "EMIT",
+        "payload": 1634754405,
+        "source_offset": 56
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 60,
+        "byte_count": 4,
+        "bytes_hex": "6972223a",
+        "cell_id": "cell:hit:000015",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 25,
+        "key": "0x000000000000100f",
+        "next0": 26,
+        "next1": 26,
+        "next_ids": [
+          "cell:hit:000016",
+          "cell:hit:000016"
+        ],
+        "opcode": "EMIT",
+        "payload": 975336041,
+        "source_offset": 60
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 64,
+        "byte_count": 4,
+        "bytes_hex": "22766572",
+        "cell_id": "cell:hit:000016",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 26,
+        "key": "0x0000000000001010",
+        "next0": 27,
+        "next1": 27,
+        "next_ids": [
+          "cell:hit:000017",
+          "cell:hit:000017"
+        ],
+        "opcode": "EMIT",
+        "payload": 1919252002,
+        "source_offset": 64
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 68,
+        "byte_count": 4,
+        "bytes_hex": "7465782d",
+        "cell_id": "cell:hit:000017",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 27,
+        "key": "0x0000000000001011",
+        "next0": 28,
+        "next1": 28,
+        "next_ids": [
+          "cell:hit:000018",
+          "cell:hit:000018"
+        ],
+        "opcode": "EMIT",
+        "payload": 762865012,
+        "source_offset": 68
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 72,
+        "byte_count": 4,
+        "bytes_hex": "66616365",
+        "cell_id": "cell:hit:000018",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 28,
+        "key": "0x0000000000001012",
+        "next0": 29,
+        "next1": 29,
+        "next_ids": [
+          "cell:hit:000019",
+          "cell:hit:000019"
+        ],
+        "opcode": "EMIT",
+        "payload": 1701011814,
+        "source_offset": 72
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 76,
+        "byte_count": 4,
+        "bytes_hex": "222c2266",
+        "cell_id": "cell:hit:000019",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 29,
+        "key": "0x0000000000001013",
+        "next0": 30,
+        "next1": 30,
+        "next_ids": [
+          "cell:hit:000020",
+          "cell:hit:000020"
+        ],
+        "opcode": "EMIT",
+        "payload": 1713515554,
+        "source_offset": 76
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 80,
+        "byte_count": 4,
+        "bytes_hex": "69786564",
+        "cell_id": "cell:hit:000020",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 30,
+        "key": "0x0000000000001014",
+        "next0": 31,
+        "next1": 31,
+        "next_ids": [
+          "cell:hit:000021",
+          "cell:hit:000021"
+        ],
+        "opcode": "EMIT",
+        "payload": 1684371561,
+        "source_offset": 80
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 84,
+        "byte_count": 4,
+        "bytes_hex": "5f706f69",
+        "cell_id": "cell:hit:000021",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 31,
+        "key": "0x0000000000001015",
+        "next0": 32,
+        "next1": 32,
+        "next_ids": [
+          "cell:hit:000022",
+          "cell:hit:000022"
+        ],
+        "opcode": "EMIT",
+        "payload": 1768910943,
+        "source_offset": 84
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 88,
+        "byte_count": 4,
+        "bytes_hex": "6e745f73",
+        "cell_id": "cell:hit:000022",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 32,
+        "key": "0x0000000000001016",
+        "next0": 33,
+        "next1": 33,
+        "next_ids": [
+          "cell:hit:000023",
+          "cell:hit:000023"
+        ],
+        "opcode": "EMIT",
+        "payload": 1935635566,
+        "source_offset": 88
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 92,
+        "byte_count": 4,
+        "bytes_hex": "63616c65",
+        "cell_id": "cell:hit:000023",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 33,
+        "key": "0x0000000000001017",
+        "next0": 34,
+        "next1": 34,
+        "next_ids": [
+          "cell:hit:000024",
+          "cell:hit:000024"
+        ],
+        "opcode": "EMIT",
+        "payload": 1701601635,
+        "source_offset": 92
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 96,
+        "byte_count": 4,
+        "bytes_hex": "223a342c",
+        "cell_id": "cell:hit:000024",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 34,
+        "key": "0x0000000000001018",
+        "next0": 35,
+        "next1": 35,
+        "next_ids": [
+          "cell:hit:000025",
+          "cell:hit:000025"
+        ],
+        "opcode": "EMIT",
+        "payload": 741620258,
+        "source_offset": 96
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 100,
+        "byte_count": 4,
+        "bytes_hex": "22666978",
+        "cell_id": "cell:hit:000025",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 35,
+        "key": "0x0000000000001019",
+        "next0": 36,
+        "next1": 36,
+        "next_ids": [
+          "cell:hit:000026",
+          "cell:hit:000026"
+        ],
+        "opcode": "EMIT",
+        "payload": 2020173346,
+        "source_offset": 100
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 104,
+        "byte_count": 4,
+        "bytes_hex": "74757265",
+        "cell_id": "cell:hit:000026",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 36,
+        "key": "0x000000000000101a",
+        "next0": 37,
+        "next1": 37,
+        "next_ids": [
+          "cell:hit:000027",
+          "cell:hit:000027"
+        ],
+        "opcode": "EMIT",
+        "payload": 1701999988,
+        "source_offset": 104
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 108,
+        "byte_count": 4,
+        "bytes_hex": "223a2276",
+        "cell_id": "cell:hit:000027",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 37,
+        "key": "0x000000000000101b",
+        "next0": 38,
+        "next1": 38,
+        "next_ids": [
+          "cell:hit:000028",
+          "cell:hit:000028"
+        ],
+        "opcode": "EMIT",
+        "payload": 1981954594,
+        "source_offset": 108
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 112,
+        "byte_count": 4,
+        "bytes_hex": "662d7134",
+        "cell_id": "cell:hit:000028",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 38,
+        "key": "0x000000000000101c",
+        "next0": 39,
+        "next1": 39,
+        "next_ids": [
+          "cell:hit:000029",
+          "cell:hit:000029"
+        ],
+        "opcode": "EMIT",
+        "payload": 879832422,
+        "source_offset": 112
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 116,
+        "byte_count": 4,
+        "bytes_hex": "2d6c696e",
+        "cell_id": "cell:hit:000029",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 39,
+        "key": "0x000000000000101d",
+        "next0": 40,
+        "next1": 40,
+        "next_ids": [
+          "cell:hit:000030",
+          "cell:hit:000030"
+        ],
+        "opcode": "EMIT",
+        "payload": 1852402733,
+        "source_offset": 116
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 120,
+        "byte_count": 4,
+        "bytes_hex": "6561722d",
+        "cell_id": "cell:hit:000030",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 40,
+        "key": "0x000000000000101e",
+        "next0": 41,
+        "next1": 41,
+        "next_ids": [
+          "cell:hit:000031",
+          "cell:hit:000031"
+        ],
+        "opcode": "EMIT",
+        "payload": 762470757,
+        "source_offset": 120
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 124,
+        "byte_count": 4,
+        "bytes_hex": "70726f62",
+        "cell_id": "cell:hit:000031",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 41,
+        "key": "0x000000000000101f",
+        "next0": 42,
+        "next1": 42,
+        "next_ids": [
+          "cell:hit:000032",
+          "cell:hit:000032"
+        ],
+        "opcode": "EMIT",
+        "payload": 1651470960,
+        "source_offset": 124
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 128,
+        "byte_count": 4,
+        "bytes_hex": "65222c22",
+        "cell_id": "cell:hit:000032",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 42,
+        "key": "0x0000000000001020",
+        "next0": 43,
+        "next1": 43,
+        "next_ids": [
+          "cell:hit:000033",
+          "cell:hit:000033"
+        ],
+        "opcode": "EMIT",
+        "payload": 573317733,
+        "source_offset": 128
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 132,
+        "byte_count": 4,
+        "bytes_hex": "6d657468",
+        "cell_id": "cell:hit:000033",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 43,
+        "key": "0x0000000000001021",
+        "next0": 44,
+        "next1": 44,
+        "next_ids": [
+          "cell:hit:000034",
+          "cell:hit:000034"
+        ],
+        "opcode": "EMIT",
+        "payload": 1752458605,
+        "source_offset": 132
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 136,
+        "byte_count": 4,
+        "bytes_hex": "6f64223a",
+        "cell_id": "cell:hit:000034",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 44,
+        "key": "0x0000000000001022",
+        "next0": 45,
+        "next1": 45,
+        "next_ids": [
+          "cell:hit:000035",
+          "cell:hit:000035"
+        ],
+        "opcode": "EMIT",
+        "payload": 975332463,
+        "source_offset": 136
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 140,
+        "byte_count": 4,
+        "bytes_hex": "22544f4d",
+        "cell_id": "cell:hit:000035",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 45,
+        "key": "0x0000000000001023",
+        "next0": 46,
+        "next1": 46,
+        "next_ids": [
+          "cell:hit:000036",
+          "cell:hit:000036"
+        ],
+        "opcode": "EMIT",
+        "payload": 1297044514,
+        "source_offset": 140
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 144,
+        "byte_count": 4,
+        "bytes_hex": "41474920",
+        "cell_id": "cell:hit:000036",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 46,
+        "key": "0x0000000000001024",
+        "next0": 47,
+        "next1": 47,
+        "next_ids": [
+          "cell:hit:000037",
+          "cell:hit:000037"
+        ],
+        "opcode": "EMIT",
+        "payload": 541673281,
+        "source_offset": 144
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 148,
+        "byte_count": 4,
+        "bytes_hex": "4b494e32",
+        "cell_id": "cell:hit:000037",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 47,
+        "key": "0x0000000000001025",
+        "next0": 48,
+        "next1": 48,
+        "next_ids": [
+          "cell:hit:000038",
+          "cell:hit:000038"
+        ],
+        "opcode": "EMIT",
+        "payload": 843991371,
+        "source_offset": 148
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 152,
+        "byte_count": 4,
+        "bytes_hex": "2f434f4e",
+        "cell_id": "cell:hit:000038",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 48,
+        "key": "0x0000000000001026",
+        "next0": 49,
+        "next1": 49,
+        "next_ids": [
+          "cell:hit:000039",
+          "cell:hit:000039"
+        ],
+        "opcode": "EMIT",
+        "payload": 1313817391,
+        "source_offset": 152
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 156,
+        "byte_count": 4,
+        "bytes_hex": "452f5350",
+        "cell_id": "cell:hit:000039",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 49,
+        "key": "0x0000000000001027",
+        "next0": 50,
+        "next1": 50,
+        "next_ids": [
+          "cell:hit:000040",
+          "cell:hit:000040"
+        ],
+        "opcode": "EMIT",
+        "payload": 1347628869,
+        "source_offset": 156
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 160,
+        "byte_count": 4,
+        "bytes_hex": "48455245",
+        "cell_id": "cell:hit:000040",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 50,
+        "key": "0x0000000000001028",
+        "next0": 51,
+        "next1": 51,
+        "next_ids": [
+          "cell:hit:000041",
+          "cell:hit:000041"
+        ],
+        "opcode": "EMIT",
+        "payload": 1163019592,
+        "source_offset": 160
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 164,
+        "byte_count": 4,
+        "bytes_hex": "2f524144",
+        "cell_id": "cell:hit:000041",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 51,
+        "key": "0x0000000000001029",
+        "next0": 52,
+        "next1": 52,
+        "next_ids": [
+          "cell:hit:000042",
+          "cell:hit:000042"
+        ],
+        "opcode": "EMIT",
+        "payload": 1145131567,
+        "source_offset": 164
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 168,
+        "byte_count": 4,
+        "bytes_hex": "4958222c",
+        "cell_id": "cell:hit:000042",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 52,
+        "key": "0x000000000000102a",
+        "next0": 53,
+        "next1": 53,
+        "next_ids": [
+          "cell:hit:000043",
+          "cell:hit:000043"
+        ],
+        "opcode": "EMIT",
+        "payload": 740448329,
+        "source_offset": 168
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 172,
+        "byte_count": 4,
+        "bytes_hex": "2273636f",
+        "cell_id": "cell:hit:000043",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 53,
+        "key": "0x000000000000102b",
+        "next0": 54,
+        "next1": 54,
+        "next_ids": [
+          "cell:hit:000044",
+          "cell:hit:000044"
+        ],
+        "opcode": "EMIT",
+        "payload": 1868788514,
+        "source_offset": 172
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 176,
+        "byte_count": 4,
+        "bytes_hex": "7065223a",
+        "cell_id": "cell:hit:000044",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 54,
+        "key": "0x000000000000102c",
+        "next0": 55,
+        "next1": 55,
+        "next_ids": [
+          "cell:hit:000045",
+          "cell:hit:000045"
+        ],
+        "opcode": "EMIT",
+        "payload": 975332720,
+        "source_offset": 176
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 180,
+        "byte_count": 4,
+        "bytes_hex": "2273696e",
+        "cell_id": "cell:hit:000045",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 55,
+        "key": "0x000000000000102d",
+        "next0": 56,
+        "next1": 56,
+        "next_ids": [
+          "cell:hit:000046",
+          "cell:hit:000046"
+        ],
+        "opcode": "EMIT",
+        "payload": 1852404514,
+        "source_offset": 180
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 184,
+        "byte_count": 4,
+        "bytes_hex": "676c6520",
+        "cell_id": "cell:hit:000046",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 56,
+        "key": "0x000000000000102e",
+        "next0": 57,
+        "next1": 57,
+        "next_ids": [
+          "cell:hit:000047",
+          "cell:hit:000047"
+        ],
+        "opcode": "EMIT",
+        "payload": 543517799,
+        "source_offset": 184
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 188,
+        "byte_count": 4,
+        "bytes_hex": "65786163",
+        "cell_id": "cell:hit:000047",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 57,
+        "key": "0x000000000000102f",
+        "next0": 58,
+        "next1": 58,
+        "next_ids": [
+          "cell:hit:000048",
+          "cell:hit:000048"
+        ],
+        "opcode": "EMIT",
+        "payload": 1667332197,
+        "source_offset": 188
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 192,
+        "byte_count": 4,
+        "bytes_hex": "74207a65",
+        "cell_id": "cell:hit:000048",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 58,
+        "key": "0x0000000000001030",
+        "next0": 59,
+        "next1": 59,
+        "next_ids": [
+          "cell:hit:000049",
+          "cell:hit:000049"
+        ],
+        "opcode": "EMIT",
+        "payload": 1702502516,
+        "source_offset": 192
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 196,
+        "byte_count": 4,
+        "bytes_hex": "726f2d74",
+        "cell_id": "cell:hit:000049",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 59,
+        "key": "0x0000000000001031",
+        "next0": 60,
+        "next1": 60,
+        "next_ids": [
+          "cell:hit:000050",
+          "cell:hit:000050"
+        ],
+        "opcode": "EMIT",
+        "payload": 1949134706,
+        "source_offset": 196
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 200,
+        "byte_count": 4,
+        "bytes_hex": "6869636b",
+        "cell_id": "cell:hit:000050",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 60,
+        "key": "0x0000000000001032",
+        "next0": 61,
+        "next1": 61,
+        "next_ids": [
+          "cell:hit:000051",
+          "cell:hit:000051"
+        ],
+        "opcode": "EMIT",
+        "payload": 1801677160,
+        "source_offset": 200
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 204,
+        "byte_count": 4,
+        "bytes_hex": "6e657373",
+        "cell_id": "cell:hit:000051",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 61,
+        "key": "0x0000000000001033",
+        "next0": 62,
+        "next1": 62,
+        "next_ids": [
+          "cell:hit:000052",
+          "cell:hit:000052"
+        ],
+        "opcode": "EMIT",
+        "payload": 1936942446,
+        "source_offset": 204
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 208,
+        "byte_count": 4,
+        "bytes_hex": "20713420",
+        "cell_id": "cell:hit:000052",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 62,
+        "key": "0x0000000000001034",
+        "next0": 63,
+        "next1": 63,
+        "next_ids": [
+          "cell:hit:000053",
+          "cell:hit:000053"
+        ],
+        "opcode": "EMIT",
+        "payload": 540307744,
+        "source_offset": 208
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 212,
+        "byte_count": 4,
+        "bytes_hex": "71756572",
+        "cell_id": "cell:hit:000053",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 63,
+        "key": "0x0000000000001035",
+        "next0": 64,
+        "next1": 64,
+        "next_ids": [
+          "cell:hit:000054",
+          "cell:hit:000054"
+        ],
+        "opcode": "EMIT",
+        "payload": 1919251825,
+        "source_offset": 212
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 216,
+        "byte_count": 4,
+        "bytes_hex": "79222c22",
+        "cell_id": "cell:hit:000054",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 64,
+        "key": "0x0000000000001036",
+        "next0": 65,
+        "next1": 65,
+        "next_ids": [
+          "cell:hit:000055",
+          "cell:hit:000055"
+        ],
+        "opcode": "EMIT",
+        "payload": 573317753,
+        "source_offset": 216
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 220,
+        "byte_count": 4,
+        "bytes_hex": "73746174",
+        "cell_id": "cell:hit:000055",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 65,
+        "key": "0x0000000000001037",
+        "next0": 66,
+        "next1": 66,
+        "next_ids": [
+          "cell:hit:000056",
+          "cell:hit:000056"
+        ],
+        "opcode": "EMIT",
+        "payload": 1952543859,
+        "source_offset": 220
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 224,
+        "byte_count": 4,
+        "bytes_hex": "7573223a",
+        "cell_id": "cell:hit:000056",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 66,
+        "key": "0x0000000000001038",
+        "next0": 67,
+        "next1": 67,
+        "next_ids": [
+          "cell:hit:000057",
+          "cell:hit:000057"
+        ],
+        "opcode": "EMIT",
+        "payload": 975336309,
+        "source_offset": 224
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 228,
+        "byte_count": 4,
+        "bytes_hex": "22484954",
+        "cell_id": "cell:hit:000057",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 67,
+        "key": "0x0000000000001039",
+        "next0": 68,
+        "next1": 68,
+        "next_ids": [
+          "cell:hit:000058",
+          "cell:hit:000058"
+        ],
+        "opcode": "EMIT",
+        "payload": 1414088738,
+        "source_offset": 228
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 232,
+        "byte_count": 4,
+        "bytes_hex": "222c2274",
+        "cell_id": "cell:hit:000058",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 68,
+        "key": "0x000000000000103a",
+        "next0": 69,
+        "next1": 69,
+        "next_ids": [
+          "cell:hit:000059",
+          "cell:hit:000059"
+        ],
+        "opcode": "EMIT",
+        "payload": 1948396578,
+        "source_offset": 232
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 236,
+        "byte_count": 4,
+        "bytes_hex": "6869636b",
+        "cell_id": "cell:hit:000059",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 69,
+        "key": "0x000000000000103b",
+        "next0": 70,
+        "next1": 70,
+        "next_ids": [
+          "cell:hit:000060",
+          "cell:hit:000060"
+        ],
+        "opcode": "EMIT",
+        "payload": 1801677160,
+        "source_offset": 236
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 240,
+        "byte_count": 4,
+        "bytes_hex": "6e657373",
+        "cell_id": "cell:hit:000060",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 70,
+        "key": "0x000000000000103c",
+        "next0": 71,
+        "next1": 71,
+        "next_ids": [
+          "cell:hit:000061",
+          "cell:hit:000061"
+        ],
+        "opcode": "EMIT",
+        "payload": 1936942446,
+        "source_offset": 240
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 244,
+        "byte_count": 4,
+        "bytes_hex": "223a302c",
+        "cell_id": "cell:hit:000061",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 71,
+        "key": "0x000000000000103d",
+        "next0": 72,
+        "next1": 72,
+        "next_ids": [
+          "cell:hit:000062",
+          "cell:hit:000062"
+        ],
+        "opcode": "EMIT",
+        "payload": 741358114,
+        "source_offset": 244
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 248,
+        "byte_count": 4,
+        "bytes_hex": "22746f69",
+        "cell_id": "cell:hit:000062",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 72,
+        "key": "0x000000000000103e",
+        "next0": 73,
+        "next1": 73,
+        "next_ids": [
+          "cell:hit:000063",
+          "cell:hit:000063"
+        ],
+        "opcode": "EMIT",
+        "payload": 1768911906,
+        "source_offset": 248
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 252,
+        "byte_count": 4,
+        "bytes_hex": "223a7b22",
+        "cell_id": "cell:hit:000063",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 73,
+        "key": "0x000000000000103f",
+        "next0": 74,
+        "next1": 74,
+        "next_ids": [
+          "cell:hit:000064",
+          "cell:hit:000064"
+        ],
+        "opcode": "EMIT",
+        "payload": 578501154,
+        "source_offset": 252
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 256,
+        "byte_count": 4,
+        "bytes_hex": "64656e6f",
+        "cell_id": "cell:hit:000064",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 74,
+        "key": "0x0000000000001040",
+        "next0": 75,
+        "next1": 75,
+        "next_ids": [
+          "cell:hit:000065",
+          "cell:hit:000065"
+        ],
+        "opcode": "EMIT",
+        "payload": 1869505892,
+        "source_offset": 256
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 260,
+        "byte_count": 4,
+        "bytes_hex": "6d696e61",
+        "cell_id": "cell:hit:000065",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 75,
+        "key": "0x0000000000001041",
+        "next0": 76,
+        "next1": 76,
+        "next_ids": [
+          "cell:hit:000066",
+          "cell:hit:000066"
+        ],
+        "opcode": "EMIT",
+        "payload": 1634625901,
+        "source_offset": 260
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 264,
+        "byte_count": 4,
+        "bytes_hex": "746f7222",
+        "cell_id": "cell:hit:000066",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 76,
+        "key": "0x0000000000001042",
+        "next0": 77,
+        "next1": 77,
+        "next_ids": [
+          "cell:hit:000067",
+          "cell:hit:000067"
+        ],
+        "opcode": "EMIT",
+        "payload": 577924980,
+        "source_offset": 264
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 268,
+        "byte_count": 4,
+        "bytes_hex": "3a342c22",
+        "cell_id": "cell:hit:000067",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 77,
+        "key": "0x0000000000001043",
+        "next0": 78,
+        "next1": 78,
+        "next_ids": [
+          "cell:hit:000068",
+          "cell:hit:000068"
+        ],
+        "opcode": "EMIT",
+        "payload": 573322298,
+        "source_offset": 268
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 272,
+        "byte_count": 4,
+        "bytes_hex": "6e756d65",
+        "cell_id": "cell:hit:000068",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 78,
+        "key": "0x0000000000001044",
+        "next0": 79,
+        "next1": 79,
+        "next_ids": [
+          "cell:hit:000069",
+          "cell:hit:000069"
+        ],
+        "opcode": "EMIT",
+        "payload": 1701672302,
+        "source_offset": 272
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 276,
+        "byte_count": 4,
+        "bytes_hex": "7261746f",
+        "cell_id": "cell:hit:000069",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 79,
+        "key": "0x0000000000001045",
+        "next0": 80,
+        "next1": 80,
+        "next_ids": [
+          "cell:hit:000070",
+          "cell:hit:000070"
+        ],
+        "opcode": "EMIT",
+        "payload": 1869898098,
+        "source_offset": 276
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 280,
+        "byte_count": 4,
+        "bytes_hex": "72223a33",
+        "cell_id": "cell:hit:000070",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 80,
+        "key": "0x0000000000001046",
+        "next0": 81,
+        "next1": 81,
+        "next_ids": [
+          "cell:hit:000071",
+          "cell:hit:000071"
+        ],
+        "opcode": "EMIT",
+        "payload": 859447922,
+        "source_offset": 280
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 284,
+        "byte_count": 4,
+        "bytes_hex": "7d2c2274",
+        "cell_id": "cell:hit:000071",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 81,
+        "key": "0x0000000000001047",
+        "next0": 82,
+        "next1": 82,
+        "next_ids": [
+          "cell:hit:000072",
+          "cell:hit:000072"
+        ],
+        "opcode": "EMIT",
+        "payload": 1948396669,
+        "source_offset": 284
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 288,
+        "byte_count": 4,
+        "bytes_hex": "7269616e",
+        "cell_id": "cell:hit:000072",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 82,
+        "key": "0x0000000000001048",
+        "next0": 83,
+        "next1": 83,
+        "next_ids": [
+          "cell:hit:000073",
+          "cell:hit:000073"
+        ],
+        "opcode": "EMIT",
+        "payload": 1851877746,
+        "source_offset": 288
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 292,
+        "byte_count": 4,
+        "bytes_hex": "676c655f",
+        "cell_id": "cell:hit:000073",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 83,
+        "key": "0x0000000000001049",
+        "next0": 84,
+        "next1": 84,
+        "next_ids": [
+          "cell:hit:000074",
+          "cell:hit:000074"
+        ],
+        "opcode": "EMIT",
+        "payload": 1600482407,
+        "source_offset": 292
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 296,
+        "byte_count": 4,
+        "bytes_hex": "7134223a",
+        "cell_id": "cell:hit:000074",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 84,
+        "key": "0x000000000000104a",
+        "next0": 85,
+        "next1": 85,
+        "next_ids": [
+          "cell:hit:000075",
+          "cell:hit:000075"
+        ],
+        "opcode": "EMIT",
+        "payload": 975320177,
+        "source_offset": 296
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 300,
+        "byte_count": 4,
+        "bytes_hex": "5b5b302c",
+        "cell_id": "cell:hit:000075",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 85,
+        "key": "0x000000000000104b",
+        "next0": 86,
+        "next1": 86,
+        "next_ids": [
+          "cell:hit:000076",
+          "cell:hit:000076"
+        ],
+        "opcode": "EMIT",
+        "payload": 741366619,
+        "source_offset": 300
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 304,
+        "byte_count": 4,
+        "bytes_hex": "302c305d",
+        "cell_id": "cell:hit:000076",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 86,
+        "key": "0x000000000000104c",
+        "next0": 87,
+        "next1": 87,
+        "next_ids": [
+          "cell:hit:000077",
+          "cell:hit:000077"
+        ],
+        "opcode": "EMIT",
+        "payload": 1563438128,
+        "source_offset": 304
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 308,
+        "byte_count": 4,
+        "bytes_hex": "2c5b342c",
+        "cell_id": "cell:hit:000077",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 87,
+        "key": "0x000000000000104d",
+        "next0": 88,
+        "next1": 88,
+        "next_ids": [
+          "cell:hit:000078",
+          "cell:hit:000078"
+        ],
+        "opcode": "EMIT",
+        "payload": 741628716,
+        "source_offset": 308
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 312,
+        "byte_count": 4,
+        "bytes_hex": "302c305d",
+        "cell_id": "cell:hit:000078",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 88,
+        "key": "0x000000000000104e",
+        "next0": 89,
+        "next1": 89,
+        "next_ids": [
+          "cell:hit:000079",
+          "cell:hit:000079"
+        ],
+        "opcode": "EMIT",
+        "payload": 1563438128,
+        "source_offset": 312
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 316,
+        "byte_count": 4,
+        "bytes_hex": "2c5b302c",
+        "cell_id": "cell:hit:000079",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 89,
+        "key": "0x000000000000104f",
+        "next0": 90,
+        "next1": 90,
+        "next_ids": [
+          "cell:hit:000080",
+          "cell:hit:000080"
+        ],
+        "opcode": "EMIT",
+        "payload": 741366572,
+        "source_offset": 316
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 320,
+        "byte_count": 4,
+        "bytes_hex": "342c305d",
+        "cell_id": "cell:hit:000080",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 90,
+        "key": "0x0000000000001050",
+        "next0": 91,
+        "next1": 91,
+        "next_ids": [
+          "cell:hit:000081",
+          "cell:hit:000081"
+        ],
+        "opcode": "EMIT",
+        "payload": 1563438132,
+        "source_offset": 320
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 324,
+        "byte_count": 4,
+        "bytes_hex": "5d2c2276",
+        "cell_id": "cell:hit:000081",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 91,
+        "key": "0x0000000000001051",
+        "next0": 92,
+        "next1": 92,
+        "next_ids": [
+          "cell:hit:000082",
+          "cell:hit:000082"
+        ],
+        "opcode": "EMIT",
+        "payload": 1981951069,
+        "source_offset": 324
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 328,
+        "byte_count": 4,
+        "bytes_hex": "65727465",
+        "cell_id": "cell:hit:000082",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 92,
+        "key": "0x0000000000001052",
+        "next0": 93,
+        "next1": 93,
+        "next_ids": [
+          "cell:hit:000083",
+          "cell:hit:000083"
+        ],
+        "opcode": "EMIT",
+        "payload": 1702130277,
+        "source_offset": 328
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 332,
+        "byte_count": 4,
+        "bytes_hex": "785f656e",
+        "cell_id": "cell:hit:000083",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 93,
+        "key": "0x0000000000001053",
+        "next0": 94,
+        "next1": 94,
+        "next_ids": [
+          "cell:hit:000084",
+          "cell:hit:000084"
+        ],
+        "opcode": "EMIT",
+        "payload": 1852137336,
+        "source_offset": 332
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 336,
+        "byte_count": 4,
+        "bytes_hex": "645f7134",
+        "cell_id": "cell:hit:000084",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 94,
+        "key": "0x0000000000001054",
+        "next0": 95,
+        "next1": 95,
+        "next_ids": [
+          "cell:hit:000085",
+          "cell:hit:000085"
+        ],
+        "opcode": "EMIT",
+        "payload": 879845220,
+        "source_offset": 336
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 340,
+        "byte_count": 4,
+        "bytes_hex": "223a5b31",
+        "cell_id": "cell:hit:000085",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 95,
+        "key": "0x0000000000001055",
+        "next0": 96,
+        "next1": 96,
+        "next_ids": [
+          "cell:hit:000086",
+          "cell:hit:000086"
+        ],
+        "opcode": "EMIT",
+        "payload": 828062242,
+        "source_offset": 340
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 344,
+        "byte_count": 4,
+        "bytes_hex": "2c312c2d",
+        "cell_id": "cell:hit:000086",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 96,
+        "key": "0x0000000000001056",
+        "next0": 97,
+        "next1": 97,
+        "next_ids": [
+          "cell:hit:000087",
+          "cell:hit:000087"
+        ],
+        "opcode": "EMIT",
+        "payload": 757870892,
+        "source_offset": 344
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 348,
+        "byte_count": 4,
+        "bytes_hex": "315d2c22",
+        "cell_id": "cell:hit:000087",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 97,
+        "key": "0x0000000000001057",
+        "next0": 98,
+        "next1": 98,
+        "next_ids": [
+          "cell:hit:000088",
+          "cell:hit:000088"
+        ],
+        "opcode": "EMIT",
+        "payload": 573332785,
+        "source_offset": 348
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 352,
+        "byte_count": 4,
+        "bytes_hex": "76657274",
+        "cell_id": "cell:hit:000088",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 98,
+        "key": "0x0000000000001058",
+        "next0": 99,
+        "next1": 99,
+        "next_ids": [
+          "cell:hit:000089",
+          "cell:hit:000089"
+        ],
+        "opcode": "EMIT",
+        "payload": 1953654134,
+        "source_offset": 352
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 356,
+        "byte_count": 4,
+        "bytes_hex": "65785f73",
+        "cell_id": "cell:hit:000089",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 99,
+        "key": "0x0000000000001059",
+        "next0": 100,
+        "next1": 100,
+        "next_ids": [
+          "cell:hit:000090",
+          "cell:hit:000090"
+        ],
+        "opcode": "EMIT",
+        "payload": 1935636581,
+        "source_offset": 356
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 360,
+        "byte_count": 4,
+        "bytes_hex": "74617274",
+        "cell_id": "cell:hit:000090",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 100,
+        "key": "0x000000000000105a",
+        "next0": 101,
+        "next1": 101,
+        "next_ids": [
+          "cell:hit:000091",
+          "cell:hit:000091"
+        ],
+        "opcode": "EMIT",
+        "payload": 1953653108,
+        "source_offset": 360
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 364,
+        "byte_count": 4,
+        "bytes_hex": "5f713422",
+        "cell_id": "cell:hit:000091",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 101,
+        "key": "0x000000000000105b",
+        "next0": 102,
+        "next1": 102,
+        "next_ids": [
+          "cell:hit:000092",
+          "cell:hit:000092"
+        ],
+        "opcode": "EMIT",
+        "payload": 573862239,
+        "source_offset": 364
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 368,
+        "byte_count": 4,
+        "bytes_hex": "3a5b312c",
+        "cell_id": "cell:hit:000092",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 102,
+        "key": "0x000000000000105c",
+        "next0": 103,
+        "next1": 103,
+        "next_ids": [
+          "cell:hit:000093",
+          "cell:hit:000093"
+        ],
+        "opcode": "EMIT",
+        "payload": 741432122,
+        "source_offset": 368
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 372,
+        "byte_count": 4,
+        "bytes_hex": "312c335d",
+        "cell_id": "cell:hit:000093",
+        "definition_id": "transition:emit-hit",
+        "flags": 1792,
+        "index": 103,
+        "key": "0x000000000000105d",
+        "next0": 104,
+        "next1": 104,
+        "next_ids": [
+          "cell:hit:000094",
+          "cell:hit:000094"
+        ],
+        "opcode": "EMIT",
+        "payload": 1563634737,
+        "source_offset": 372
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 376,
+        "byte_count": 2,
+        "bytes_hex": "7d0a",
+        "cell_id": "cell:hit:000094",
+        "definition_id": "transition:emit-hit",
+        "flags": 769,
+        "index": 104,
+        "key": "0x000000000000105e",
+        "next0": 104,
+        "next1": 104,
+        "next_ids": [
+          "cell:hit:000094",
+          "cell:hit:000094"
+        ],
+        "opcode": "EMIT",
+        "payload": 2685,
+        "source_offset": 376
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 0,
+        "byte_count": 4,
+        "bytes_hex": "7b226365",
+        "cell_id": "cell:miss:000000",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 105,
+        "key": "0x0000000000002000",
+        "next0": 106,
+        "next1": 106,
+        "next_ids": [
+          "cell:miss:000001",
+          "cell:miss:000001"
+        ],
+        "opcode": "EMIT",
+        "payload": 1700995707,
+        "source_offset": 0
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 4,
+        "byte_count": 4,
+        "bytes_hex": "72746966",
+        "cell_id": "cell:miss:000001",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 106,
+        "key": "0x0000000000002001",
+        "next0": 107,
+        "next1": 107,
+        "next_ids": [
+          "cell:miss:000002",
+          "cell:miss:000002"
+        ],
+        "opcode": "EMIT",
+        "payload": 1718187122,
+        "source_offset": 4
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 8,
+        "byte_count": 4,
+        "bytes_hex": "69636174",
+        "cell_id": "cell:miss:000002",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 107,
+        "key": "0x0000000000002002",
+        "next0": 108,
+        "next1": 108,
+        "next_ids": [
+          "cell:miss:000003",
+          "cell:miss:000003"
+        ],
+        "opcode": "EMIT",
+        "payload": 1952539497,
+        "source_offset": 8
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 12,
+        "byte_count": 4,
+        "bytes_hex": "655f7363",
+        "cell_id": "cell:miss:000003",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 108,
+        "key": "0x0000000000002003",
+        "next0": 109,
+        "next1": 109,
+        "next_ids": [
+          "cell:miss:000004",
+          "cell:miss:000004"
+        ],
+        "opcode": "EMIT",
+        "payload": 1668505445,
+        "source_offset": 12
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 16,
+        "byte_count": 4,
+        "bytes_hex": "68656d61",
+        "cell_id": "cell:miss:000004",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 109,
+        "key": "0x0000000000002004",
+        "next0": 110,
+        "next1": 110,
+        "next_ids": [
+          "cell:miss:000005",
+          "cell:miss:000005"
+        ],
+        "opcode": "EMIT",
+        "payload": 1634559336,
+        "source_offset": 16
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 20,
+        "byte_count": 4,
+        "bytes_hex": "223a2254",
+        "cell_id": "cell:miss:000005",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 110,
+        "key": "0x0000000000002005",
+        "next0": 111,
+        "next1": 111,
+        "next_ids": [
+          "cell:miss:000006",
+          "cell:miss:000006"
+        ],
+        "opcode": "EMIT",
+        "payload": 1411529250,
+        "source_offset": 20
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 24,
+        "byte_count": 4,
+        "bytes_hex": "4f4d2d4e",
+        "cell_id": "cell:miss:000006",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 111,
+        "key": "0x0000000000002006",
+        "next0": 112,
+        "next1": 112,
+        "next_ids": [
+          "cell:miss:000007",
+          "cell:miss:000007"
+        ],
+        "opcode": "EMIT",
+        "payload": 1311591759,
+        "source_offset": 24
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 28,
+        "byte_count": 4,
+        "bytes_hex": "4844462d",
+        "cell_id": "cell:miss:000007",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 112,
+        "key": "0x0000000000002007",
+        "next0": 113,
+        "next1": 113,
+        "next_ids": [
+          "cell:miss:000008",
+          "cell:miss:000008"
+        ],
+        "opcode": "EMIT",
+        "payload": 759579720,
+        "source_offset": 28
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 32,
+        "byte_count": 4,
+        "bytes_hex": "4343442d",
+        "cell_id": "cell:miss:000008",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 113,
+        "key": "0x0000000000002008",
+        "next0": 114,
+        "next1": 114,
+        "next_ids": [
+          "cell:miss:000009",
+          "cell:miss:000009"
+        ],
+        "opcode": "EMIT",
+        "payload": 759448387,
+        "source_offset": 32
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 36,
+        "byte_count": 4,
+        "bytes_hex": "46495854",
+        "cell_id": "cell:miss:000009",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 114,
+        "key": "0x0000000000002009",
+        "next0": 115,
+        "next1": 115,
+        "next_ids": [
+          "cell:miss:000010",
+          "cell:miss:000010"
+        ],
+        "opcode": "EMIT",
+        "payload": 1415072070,
+        "source_offset": 36
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 40,
+        "byte_count": 4,
+        "bytes_hex": "5552452d",
+        "cell_id": "cell:miss:000010",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 115,
+        "key": "0x000000000000200a",
+        "next0": 116,
+        "next1": 116,
+        "next_ids": [
+          "cell:miss:000011",
+          "cell:miss:000011"
+        ],
+        "opcode": "EMIT",
+        "payload": 759517781,
+        "source_offset": 40
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 44,
+        "byte_count": 4,
+        "bytes_hex": "312e3022",
+        "cell_id": "cell:miss:000011",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 116,
+        "key": "0x000000000000200b",
+        "next0": 117,
+        "next1": 117,
+        "next_ids": [
+          "cell:miss:000012",
+          "cell:miss:000012"
+        ],
+        "opcode": "EMIT",
+        "payload": 573582897,
+        "source_offset": 44
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 48,
+        "byte_count": 4,
+        "bytes_hex": "2c226665",
+        "cell_id": "cell:miss:000012",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 117,
+        "key": "0x000000000000200c",
+        "next0": 118,
+        "next1": 118,
+        "next_ids": [
+          "cell:miss:000013",
+          "cell:miss:000013"
+        ],
+        "opcode": "EMIT",
+        "payload": 1701192236,
+        "source_offset": 48
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 52,
+        "byte_count": 4,
+        "bytes_hex": "61747572",
+        "cell_id": "cell:miss:000013",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 118,
+        "key": "0x000000000000200d",
+        "next0": 119,
+        "next1": 119,
+        "next_ids": [
+          "cell:miss:000014",
+          "cell:miss:000014"
+        ],
+        "opcode": "EMIT",
+        "payload": 1920300129,
+        "source_offset": 52
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 56,
+        "byte_count": 4,
+        "bytes_hex": "655f7061",
+        "cell_id": "cell:miss:000014",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 119,
+        "key": "0x000000000000200e",
+        "next0": 120,
+        "next1": 120,
+        "next_ids": [
+          "cell:miss:000015",
+          "cell:miss:000015"
+        ],
+        "opcode": "EMIT",
+        "payload": 1634754405,
+        "source_offset": 56
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 60,
+        "byte_count": 4,
+        "bytes_hex": "6972223a",
+        "cell_id": "cell:miss:000015",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 120,
+        "key": "0x000000000000200f",
+        "next0": 121,
+        "next1": 121,
+        "next_ids": [
+          "cell:miss:000016",
+          "cell:miss:000016"
+        ],
+        "opcode": "EMIT",
+        "payload": 975336041,
+        "source_offset": 60
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 64,
+        "byte_count": 4,
+        "bytes_hex": "22766572",
+        "cell_id": "cell:miss:000016",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 121,
+        "key": "0x0000000000002010",
+        "next0": 122,
+        "next1": 122,
+        "next_ids": [
+          "cell:miss:000017",
+          "cell:miss:000017"
+        ],
+        "opcode": "EMIT",
+        "payload": 1919252002,
+        "source_offset": 64
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 68,
+        "byte_count": 4,
+        "bytes_hex": "7465782d",
+        "cell_id": "cell:miss:000017",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 122,
+        "key": "0x0000000000002011",
+        "next0": 123,
+        "next1": 123,
+        "next_ids": [
+          "cell:miss:000018",
+          "cell:miss:000018"
+        ],
+        "opcode": "EMIT",
+        "payload": 762865012,
+        "source_offset": 68
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 72,
+        "byte_count": 4,
+        "bytes_hex": "66616365",
+        "cell_id": "cell:miss:000018",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 123,
+        "key": "0x0000000000002012",
+        "next0": 124,
+        "next1": 124,
+        "next_ids": [
+          "cell:miss:000019",
+          "cell:miss:000019"
+        ],
+        "opcode": "EMIT",
+        "payload": 1701011814,
+        "source_offset": 72
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 76,
+        "byte_count": 4,
+        "bytes_hex": "222c2266",
+        "cell_id": "cell:miss:000019",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 124,
+        "key": "0x0000000000002013",
+        "next0": 125,
+        "next1": 125,
+        "next_ids": [
+          "cell:miss:000020",
+          "cell:miss:000020"
+        ],
+        "opcode": "EMIT",
+        "payload": 1713515554,
+        "source_offset": 76
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 80,
+        "byte_count": 4,
+        "bytes_hex": "69786564",
+        "cell_id": "cell:miss:000020",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 125,
+        "key": "0x0000000000002014",
+        "next0": 126,
+        "next1": 126,
+        "next_ids": [
+          "cell:miss:000021",
+          "cell:miss:000021"
+        ],
+        "opcode": "EMIT",
+        "payload": 1684371561,
+        "source_offset": 80
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 84,
+        "byte_count": 4,
+        "bytes_hex": "5f706f69",
+        "cell_id": "cell:miss:000021",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 126,
+        "key": "0x0000000000002015",
+        "next0": 127,
+        "next1": 127,
+        "next_ids": [
+          "cell:miss:000022",
+          "cell:miss:000022"
+        ],
+        "opcode": "EMIT",
+        "payload": 1768910943,
+        "source_offset": 84
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 88,
+        "byte_count": 4,
+        "bytes_hex": "6e745f73",
+        "cell_id": "cell:miss:000022",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 127,
+        "key": "0x0000000000002016",
+        "next0": 128,
+        "next1": 128,
+        "next_ids": [
+          "cell:miss:000023",
+          "cell:miss:000023"
+        ],
+        "opcode": "EMIT",
+        "payload": 1935635566,
+        "source_offset": 88
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 92,
+        "byte_count": 4,
+        "bytes_hex": "63616c65",
+        "cell_id": "cell:miss:000023",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 128,
+        "key": "0x0000000000002017",
+        "next0": 129,
+        "next1": 129,
+        "next_ids": [
+          "cell:miss:000024",
+          "cell:miss:000024"
+        ],
+        "opcode": "EMIT",
+        "payload": 1701601635,
+        "source_offset": 92
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 96,
+        "byte_count": 4,
+        "bytes_hex": "223a342c",
+        "cell_id": "cell:miss:000024",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 129,
+        "key": "0x0000000000002018",
+        "next0": 130,
+        "next1": 130,
+        "next_ids": [
+          "cell:miss:000025",
+          "cell:miss:000025"
+        ],
+        "opcode": "EMIT",
+        "payload": 741620258,
+        "source_offset": 96
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 100,
+        "byte_count": 4,
+        "bytes_hex": "22666978",
+        "cell_id": "cell:miss:000025",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 130,
+        "key": "0x0000000000002019",
+        "next0": 131,
+        "next1": 131,
+        "next_ids": [
+          "cell:miss:000026",
+          "cell:miss:000026"
+        ],
+        "opcode": "EMIT",
+        "payload": 2020173346,
+        "source_offset": 100
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 104,
+        "byte_count": 4,
+        "bytes_hex": "74757265",
+        "cell_id": "cell:miss:000026",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 131,
+        "key": "0x000000000000201a",
+        "next0": 132,
+        "next1": 132,
+        "next_ids": [
+          "cell:miss:000027",
+          "cell:miss:000027"
+        ],
+        "opcode": "EMIT",
+        "payload": 1701999988,
+        "source_offset": 104
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 108,
+        "byte_count": 4,
+        "bytes_hex": "223a2276",
+        "cell_id": "cell:miss:000027",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 132,
+        "key": "0x000000000000201b",
+        "next0": 133,
+        "next1": 133,
+        "next_ids": [
+          "cell:miss:000028",
+          "cell:miss:000028"
+        ],
+        "opcode": "EMIT",
+        "payload": 1981954594,
+        "source_offset": 108
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 112,
+        "byte_count": 4,
+        "bytes_hex": "662d7134",
+        "cell_id": "cell:miss:000028",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 133,
+        "key": "0x000000000000201c",
+        "next0": 134,
+        "next1": 134,
+        "next_ids": [
+          "cell:miss:000029",
+          "cell:miss:000029"
+        ],
+        "opcode": "EMIT",
+        "payload": 879832422,
+        "source_offset": 112
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 116,
+        "byte_count": 4,
+        "bytes_hex": "2d6c696e",
+        "cell_id": "cell:miss:000029",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 134,
+        "key": "0x000000000000201d",
+        "next0": 135,
+        "next1": 135,
+        "next_ids": [
+          "cell:miss:000030",
+          "cell:miss:000030"
+        ],
+        "opcode": "EMIT",
+        "payload": 1852402733,
+        "source_offset": 116
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 120,
+        "byte_count": 4,
+        "bytes_hex": "6561722d",
+        "cell_id": "cell:miss:000030",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 135,
+        "key": "0x000000000000201e",
+        "next0": 136,
+        "next1": 136,
+        "next_ids": [
+          "cell:miss:000031",
+          "cell:miss:000031"
+        ],
+        "opcode": "EMIT",
+        "payload": 762470757,
+        "source_offset": 120
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 124,
+        "byte_count": 4,
+        "bytes_hex": "70726f62",
+        "cell_id": "cell:miss:000031",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 136,
+        "key": "0x000000000000201f",
+        "next0": 137,
+        "next1": 137,
+        "next_ids": [
+          "cell:miss:000032",
+          "cell:miss:000032"
+        ],
+        "opcode": "EMIT",
+        "payload": 1651470960,
+        "source_offset": 124
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 128,
+        "byte_count": 4,
+        "bytes_hex": "65222c22",
+        "cell_id": "cell:miss:000032",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 137,
+        "key": "0x0000000000002020",
+        "next0": 138,
+        "next1": 138,
+        "next_ids": [
+          "cell:miss:000033",
+          "cell:miss:000033"
+        ],
+        "opcode": "EMIT",
+        "payload": 573317733,
+        "source_offset": 128
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 132,
+        "byte_count": 4,
+        "bytes_hex": "6d657468",
+        "cell_id": "cell:miss:000033",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 138,
+        "key": "0x0000000000002021",
+        "next0": 139,
+        "next1": 139,
+        "next_ids": [
+          "cell:miss:000034",
+          "cell:miss:000034"
+        ],
+        "opcode": "EMIT",
+        "payload": 1752458605,
+        "source_offset": 132
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 136,
+        "byte_count": 4,
+        "bytes_hex": "6f64223a",
+        "cell_id": "cell:miss:000034",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 139,
+        "key": "0x0000000000002022",
+        "next0": 140,
+        "next1": 140,
+        "next_ids": [
+          "cell:miss:000035",
+          "cell:miss:000035"
+        ],
+        "opcode": "EMIT",
+        "payload": 975332463,
+        "source_offset": 136
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 140,
+        "byte_count": 4,
+        "bytes_hex": "22544f4d",
+        "cell_id": "cell:miss:000035",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 140,
+        "key": "0x0000000000002023",
+        "next0": 141,
+        "next1": 141,
+        "next_ids": [
+          "cell:miss:000036",
+          "cell:miss:000036"
+        ],
+        "opcode": "EMIT",
+        "payload": 1297044514,
+        "source_offset": 140
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 144,
+        "byte_count": 4,
+        "bytes_hex": "41474920",
+        "cell_id": "cell:miss:000036",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 141,
+        "key": "0x0000000000002024",
+        "next0": 142,
+        "next1": 142,
+        "next_ids": [
+          "cell:miss:000037",
+          "cell:miss:000037"
+        ],
+        "opcode": "EMIT",
+        "payload": 541673281,
+        "source_offset": 144
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 148,
+        "byte_count": 4,
+        "bytes_hex": "4b494e32",
+        "cell_id": "cell:miss:000037",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 142,
+        "key": "0x0000000000002025",
+        "next0": 143,
+        "next1": 143,
+        "next_ids": [
+          "cell:miss:000038",
+          "cell:miss:000038"
+        ],
+        "opcode": "EMIT",
+        "payload": 843991371,
+        "source_offset": 148
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 152,
+        "byte_count": 4,
+        "bytes_hex": "2f434f4e",
+        "cell_id": "cell:miss:000038",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 143,
+        "key": "0x0000000000002026",
+        "next0": 144,
+        "next1": 144,
+        "next_ids": [
+          "cell:miss:000039",
+          "cell:miss:000039"
+        ],
+        "opcode": "EMIT",
+        "payload": 1313817391,
+        "source_offset": 152
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 156,
+        "byte_count": 4,
+        "bytes_hex": "452f5350",
+        "cell_id": "cell:miss:000039",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 144,
+        "key": "0x0000000000002027",
+        "next0": 145,
+        "next1": 145,
+        "next_ids": [
+          "cell:miss:000040",
+          "cell:miss:000040"
+        ],
+        "opcode": "EMIT",
+        "payload": 1347628869,
+        "source_offset": 156
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 160,
+        "byte_count": 4,
+        "bytes_hex": "48455245",
+        "cell_id": "cell:miss:000040",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 145,
+        "key": "0x0000000000002028",
+        "next0": 146,
+        "next1": 146,
+        "next_ids": [
+          "cell:miss:000041",
+          "cell:miss:000041"
+        ],
+        "opcode": "EMIT",
+        "payload": 1163019592,
+        "source_offset": 160
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 164,
+        "byte_count": 4,
+        "bytes_hex": "2f524144",
+        "cell_id": "cell:miss:000041",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 146,
+        "key": "0x0000000000002029",
+        "next0": 147,
+        "next1": 147,
+        "next_ids": [
+          "cell:miss:000042",
+          "cell:miss:000042"
+        ],
+        "opcode": "EMIT",
+        "payload": 1145131567,
+        "source_offset": 164
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 168,
+        "byte_count": 4,
+        "bytes_hex": "4958222c",
+        "cell_id": "cell:miss:000042",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 147,
+        "key": "0x000000000000202a",
+        "next0": 148,
+        "next1": 148,
+        "next_ids": [
+          "cell:miss:000043",
+          "cell:miss:000043"
+        ],
+        "opcode": "EMIT",
+        "payload": 740448329,
+        "source_offset": 168
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 172,
+        "byte_count": 4,
+        "bytes_hex": "2273636f",
+        "cell_id": "cell:miss:000043",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 148,
+        "key": "0x000000000000202b",
+        "next0": 149,
+        "next1": 149,
+        "next_ids": [
+          "cell:miss:000044",
+          "cell:miss:000044"
+        ],
+        "opcode": "EMIT",
+        "payload": 1868788514,
+        "source_offset": 172
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 176,
+        "byte_count": 4,
+        "bytes_hex": "7065223a",
+        "cell_id": "cell:miss:000044",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 149,
+        "key": "0x000000000000202c",
+        "next0": 150,
+        "next1": 150,
+        "next_ids": [
+          "cell:miss:000045",
+          "cell:miss:000045"
+        ],
+        "opcode": "EMIT",
+        "payload": 975332720,
+        "source_offset": 176
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 180,
+        "byte_count": 4,
+        "bytes_hex": "2273696e",
+        "cell_id": "cell:miss:000045",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 150,
+        "key": "0x000000000000202d",
+        "next0": 151,
+        "next1": 151,
+        "next_ids": [
+          "cell:miss:000046",
+          "cell:miss:000046"
+        ],
+        "opcode": "EMIT",
+        "payload": 1852404514,
+        "source_offset": 180
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 184,
+        "byte_count": 4,
+        "bytes_hex": "676c6520",
+        "cell_id": "cell:miss:000046",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 151,
+        "key": "0x000000000000202e",
+        "next0": 152,
+        "next1": 152,
+        "next_ids": [
+          "cell:miss:000047",
+          "cell:miss:000047"
+        ],
+        "opcode": "EMIT",
+        "payload": 543517799,
+        "source_offset": 184
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 188,
+        "byte_count": 4,
+        "bytes_hex": "65786163",
+        "cell_id": "cell:miss:000047",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 152,
+        "key": "0x000000000000202f",
+        "next0": 153,
+        "next1": 153,
+        "next_ids": [
+          "cell:miss:000048",
+          "cell:miss:000048"
+        ],
+        "opcode": "EMIT",
+        "payload": 1667332197,
+        "source_offset": 188
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 192,
+        "byte_count": 4,
+        "bytes_hex": "74207a65",
+        "cell_id": "cell:miss:000048",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 153,
+        "key": "0x0000000000002030",
+        "next0": 154,
+        "next1": 154,
+        "next_ids": [
+          "cell:miss:000049",
+          "cell:miss:000049"
+        ],
+        "opcode": "EMIT",
+        "payload": 1702502516,
+        "source_offset": 192
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 196,
+        "byte_count": 4,
+        "bytes_hex": "726f2d74",
+        "cell_id": "cell:miss:000049",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 154,
+        "key": "0x0000000000002031",
+        "next0": 155,
+        "next1": 155,
+        "next_ids": [
+          "cell:miss:000050",
+          "cell:miss:000050"
+        ],
+        "opcode": "EMIT",
+        "payload": 1949134706,
+        "source_offset": 196
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 200,
+        "byte_count": 4,
+        "bytes_hex": "6869636b",
+        "cell_id": "cell:miss:000050",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 155,
+        "key": "0x0000000000002032",
+        "next0": 156,
+        "next1": 156,
+        "next_ids": [
+          "cell:miss:000051",
+          "cell:miss:000051"
+        ],
+        "opcode": "EMIT",
+        "payload": 1801677160,
+        "source_offset": 200
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 204,
+        "byte_count": 4,
+        "bytes_hex": "6e657373",
+        "cell_id": "cell:miss:000051",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 156,
+        "key": "0x0000000000002033",
+        "next0": 157,
+        "next1": 157,
+        "next_ids": [
+          "cell:miss:000052",
+          "cell:miss:000052"
+        ],
+        "opcode": "EMIT",
+        "payload": 1936942446,
+        "source_offset": 204
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 208,
+        "byte_count": 4,
+        "bytes_hex": "20713420",
+        "cell_id": "cell:miss:000052",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 157,
+        "key": "0x0000000000002034",
+        "next0": 158,
+        "next1": 158,
+        "next_ids": [
+          "cell:miss:000053",
+          "cell:miss:000053"
+        ],
+        "opcode": "EMIT",
+        "payload": 540307744,
+        "source_offset": 208
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 212,
+        "byte_count": 4,
+        "bytes_hex": "71756572",
+        "cell_id": "cell:miss:000053",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 158,
+        "key": "0x0000000000002035",
+        "next0": 159,
+        "next1": 159,
+        "next_ids": [
+          "cell:miss:000054",
+          "cell:miss:000054"
+        ],
+        "opcode": "EMIT",
+        "payload": 1919251825,
+        "source_offset": 212
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 216,
+        "byte_count": 4,
+        "bytes_hex": "79222c22",
+        "cell_id": "cell:miss:000054",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 159,
+        "key": "0x0000000000002036",
+        "next0": 160,
+        "next1": 160,
+        "next_ids": [
+          "cell:miss:000055",
+          "cell:miss:000055"
+        ],
+        "opcode": "EMIT",
+        "payload": 573317753,
+        "source_offset": 216
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 220,
+        "byte_count": 4,
+        "bytes_hex": "73746174",
+        "cell_id": "cell:miss:000055",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 160,
+        "key": "0x0000000000002037",
+        "next0": 161,
+        "next1": 161,
+        "next_ids": [
+          "cell:miss:000056",
+          "cell:miss:000056"
+        ],
+        "opcode": "EMIT",
+        "payload": 1952543859,
+        "source_offset": 220
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 224,
+        "byte_count": 4,
+        "bytes_hex": "7573223a",
+        "cell_id": "cell:miss:000056",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 161,
+        "key": "0x0000000000002038",
+        "next0": 162,
+        "next1": 162,
+        "next_ids": [
+          "cell:miss:000057",
+          "cell:miss:000057"
+        ],
+        "opcode": "EMIT",
+        "payload": 975336309,
+        "source_offset": 224
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 228,
+        "byte_count": 4,
+        "bytes_hex": "224d4953",
+        "cell_id": "cell:miss:000057",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 162,
+        "key": "0x0000000000002039",
+        "next0": 163,
+        "next1": 163,
+        "next_ids": [
+          "cell:miss:000058",
+          "cell:miss:000058"
+        ],
+        "opcode": "EMIT",
+        "payload": 1397312802,
+        "source_offset": 228
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 232,
+        "byte_count": 4,
+        "bytes_hex": "53222c22",
+        "cell_id": "cell:miss:000058",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 163,
+        "key": "0x000000000000203a",
+        "next0": 164,
+        "next1": 164,
+        "next_ids": [
+          "cell:miss:000059",
+          "cell:miss:000059"
+        ],
+        "opcode": "EMIT",
+        "payload": 573317715,
+        "source_offset": 232
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 236,
+        "byte_count": 4,
+        "bytes_hex": "74686963",
+        "cell_id": "cell:miss:000059",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 164,
+        "key": "0x000000000000203b",
+        "next0": 165,
+        "next1": 165,
+        "next_ids": [
+          "cell:miss:000060",
+          "cell:miss:000060"
+        ],
+        "opcode": "EMIT",
+        "payload": 1667852404,
+        "source_offset": 236
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 240,
+        "byte_count": 4,
+        "bytes_hex": "6b6e6573",
+        "cell_id": "cell:miss:000060",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 165,
+        "key": "0x000000000000203c",
+        "next0": 166,
+        "next1": 166,
+        "next_ids": [
+          "cell:miss:000061",
+          "cell:miss:000061"
+        ],
+        "opcode": "EMIT",
+        "payload": 1936027243,
+        "source_offset": 240
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 244,
+        "byte_count": 4,
+        "bytes_hex": "73223a30",
+        "cell_id": "cell:miss:000061",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 166,
+        "key": "0x000000000000203d",
+        "next0": 167,
+        "next1": 167,
+        "next_ids": [
+          "cell:miss:000062",
+          "cell:miss:000062"
+        ],
+        "opcode": "EMIT",
+        "payload": 809116275,
+        "source_offset": 244
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 248,
+        "byte_count": 4,
+        "bytes_hex": "2c22746f",
+        "cell_id": "cell:miss:000062",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 167,
+        "key": "0x000000000000203e",
+        "next0": 168,
+        "next1": 168,
+        "next_ids": [
+          "cell:miss:000063",
+          "cell:miss:000063"
+        ],
+        "opcode": "EMIT",
+        "payload": 1869881900,
+        "source_offset": 248
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 252,
+        "byte_count": 4,
+        "bytes_hex": "69223a6e",
+        "cell_id": "cell:miss:000063",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 168,
+        "key": "0x000000000000203f",
+        "next0": 169,
+        "next1": 169,
+        "next_ids": [
+          "cell:miss:000064",
+          "cell:miss:000064"
+        ],
+        "opcode": "EMIT",
+        "payload": 1849303657,
+        "source_offset": 252
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 256,
+        "byte_count": 4,
+        "bytes_hex": "756c6c2c",
+        "cell_id": "cell:miss:000064",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 169,
+        "key": "0x0000000000002040",
+        "next0": 170,
+        "next1": 170,
+        "next_ids": [
+          "cell:miss:000065",
+          "cell:miss:000065"
+        ],
+        "opcode": "EMIT",
+        "payload": 745303157,
+        "source_offset": 256
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 260,
+        "byte_count": 4,
+        "bytes_hex": "22747269",
+        "cell_id": "cell:miss:000065",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 170,
+        "key": "0x0000000000002041",
+        "next0": 171,
+        "next1": 171,
+        "next_ids": [
+          "cell:miss:000066",
+          "cell:miss:000066"
+        ],
+        "opcode": "EMIT",
+        "payload": 1769108514,
+        "source_offset": 260
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 264,
+        "byte_count": 4,
+        "bytes_hex": "616e676c",
+        "cell_id": "cell:miss:000066",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 171,
+        "key": "0x0000000000002042",
+        "next0": 172,
+        "next1": 172,
+        "next_ids": [
+          "cell:miss:000067",
+          "cell:miss:000067"
+        ],
+        "opcode": "EMIT",
+        "payload": 1818717793,
+        "source_offset": 264
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 268,
+        "byte_count": 4,
+        "bytes_hex": "655f7134",
+        "cell_id": "cell:miss:000067",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 172,
+        "key": "0x0000000000002043",
+        "next0": 173,
+        "next1": 173,
+        "next_ids": [
+          "cell:miss:000068",
+          "cell:miss:000068"
+        ],
+        "opcode": "EMIT",
+        "payload": 879845221,
+        "source_offset": 268
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 272,
+        "byte_count": 4,
+        "bytes_hex": "223a5b5b",
+        "cell_id": "cell:miss:000068",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 173,
+        "key": "0x0000000000002044",
+        "next0": 174,
+        "next1": 174,
+        "next_ids": [
+          "cell:miss:000069",
+          "cell:miss:000069"
+        ],
+        "opcode": "EMIT",
+        "payload": 1532705314,
+        "source_offset": 272
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 276,
+        "byte_count": 4,
+        "bytes_hex": "302c302c",
+        "cell_id": "cell:miss:000069",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 174,
+        "key": "0x0000000000002045",
+        "next0": 175,
+        "next1": 175,
+        "next_ids": [
+          "cell:miss:000070",
+          "cell:miss:000070"
+        ],
+        "opcode": "EMIT",
+        "payload": 741354544,
+        "source_offset": 276
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 280,
+        "byte_count": 4,
+        "bytes_hex": "305d2c5b",
+        "cell_id": "cell:miss:000070",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 175,
+        "key": "0x0000000000002046",
+        "next0": 176,
+        "next1": 176,
+        "next_ids": [
+          "cell:miss:000071",
+          "cell:miss:000071"
+        ],
+        "opcode": "EMIT",
+        "payload": 1529634096,
+        "source_offset": 280
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 284,
+        "byte_count": 4,
+        "bytes_hex": "342c302c",
+        "cell_id": "cell:miss:000071",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 176,
+        "key": "0x0000000000002047",
+        "next0": 177,
+        "next1": 177,
+        "next_ids": [
+          "cell:miss:000072",
+          "cell:miss:000072"
+        ],
+        "opcode": "EMIT",
+        "payload": 741354548,
+        "source_offset": 284
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 288,
+        "byte_count": 4,
+        "bytes_hex": "305d2c5b",
+        "cell_id": "cell:miss:000072",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 177,
+        "key": "0x0000000000002048",
+        "next0": 178,
+        "next1": 178,
+        "next_ids": [
+          "cell:miss:000073",
+          "cell:miss:000073"
+        ],
+        "opcode": "EMIT",
+        "payload": 1529634096,
+        "source_offset": 288
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 292,
+        "byte_count": 4,
+        "bytes_hex": "302c342c",
+        "cell_id": "cell:miss:000073",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 178,
+        "key": "0x0000000000002049",
+        "next0": 179,
+        "next1": 179,
+        "next_ids": [
+          "cell:miss:000074",
+          "cell:miss:000074"
+        ],
+        "opcode": "EMIT",
+        "payload": 741616688,
+        "source_offset": 292
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 296,
+        "byte_count": 4,
+        "bytes_hex": "305d5d2c",
+        "cell_id": "cell:miss:000074",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 179,
+        "key": "0x000000000000204a",
+        "next0": 180,
+        "next1": 180,
+        "next_ids": [
+          "cell:miss:000075",
+          "cell:miss:000075"
+        ],
+        "opcode": "EMIT",
+        "payload": 744316208,
+        "source_offset": 296
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 300,
+        "byte_count": 4,
+        "bytes_hex": "22766572",
+        "cell_id": "cell:miss:000075",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 180,
+        "key": "0x000000000000204b",
+        "next0": 181,
+        "next1": 181,
+        "next_ids": [
+          "cell:miss:000076",
+          "cell:miss:000076"
+        ],
+        "opcode": "EMIT",
+        "payload": 1919252002,
+        "source_offset": 300
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 304,
+        "byte_count": 4,
+        "bytes_hex": "7465785f",
+        "cell_id": "cell:miss:000076",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 181,
+        "key": "0x000000000000204c",
+        "next0": 182,
+        "next1": 182,
+        "next_ids": [
+          "cell:miss:000077",
+          "cell:miss:000077"
+        ],
+        "opcode": "EMIT",
+        "payload": 1601725812,
+        "source_offset": 304
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 308,
+        "byte_count": 4,
+        "bytes_hex": "656e645f",
+        "cell_id": "cell:miss:000077",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 182,
+        "key": "0x000000000000204d",
+        "next0": 183,
+        "next1": 183,
+        "next_ids": [
+          "cell:miss:000078",
+          "cell:miss:000078"
+        ],
+        "opcode": "EMIT",
+        "payload": 1600417381,
+        "source_offset": 308
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 312,
+        "byte_count": 4,
+        "bytes_hex": "7134223a",
+        "cell_id": "cell:miss:000078",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 183,
+        "key": "0x000000000000204e",
+        "next0": 184,
+        "next1": 184,
+        "next_ids": [
+          "cell:miss:000079",
+          "cell:miss:000079"
+        ],
+        "opcode": "EMIT",
+        "payload": 975320177,
+        "source_offset": 312
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 316,
+        "byte_count": 4,
+        "bytes_hex": "5b312c31",
+        "cell_id": "cell:miss:000079",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 184,
+        "key": "0x000000000000204f",
+        "next0": 185,
+        "next1": 185,
+        "next_ids": [
+          "cell:miss:000080",
+          "cell:miss:000080"
+        ],
+        "opcode": "EMIT",
+        "payload": 824979803,
+        "source_offset": 316
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 320,
+        "byte_count": 4,
+        "bytes_hex": "2c2d315d",
+        "cell_id": "cell:miss:000080",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 185,
+        "key": "0x0000000000002050",
+        "next0": 186,
+        "next1": 186,
+        "next_ids": [
+          "cell:miss:000081",
+          "cell:miss:000081"
+        ],
+        "opcode": "EMIT",
+        "payload": 1563503916,
+        "source_offset": 320
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 324,
+        "byte_count": 4,
+        "bytes_hex": "2c227665",
+        "cell_id": "cell:miss:000081",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 186,
+        "key": "0x0000000000002051",
+        "next0": 187,
+        "next1": 187,
+        "next_ids": [
+          "cell:miss:000082",
+          "cell:miss:000082"
+        ],
+        "opcode": "EMIT",
+        "payload": 1702240812,
+        "source_offset": 324
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 328,
+        "byte_count": 4,
+        "bytes_hex": "72746578",
+        "cell_id": "cell:miss:000082",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 187,
+        "key": "0x0000000000002052",
+        "next0": 188,
+        "next1": 188,
+        "next_ids": [
+          "cell:miss:000083",
+          "cell:miss:000083"
+        ],
+        "opcode": "EMIT",
+        "payload": 2019914866,
+        "source_offset": 328
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 332,
+        "byte_count": 4,
+        "bytes_hex": "5f737461",
+        "cell_id": "cell:miss:000083",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 188,
+        "key": "0x0000000000002053",
+        "next0": 189,
+        "next1": 189,
+        "next_ids": [
+          "cell:miss:000084",
+          "cell:miss:000084"
+        ],
+        "opcode": "EMIT",
+        "payload": 1635021663,
+        "source_offset": 332
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 336,
+        "byte_count": 4,
+        "bytes_hex": "72745f71",
+        "cell_id": "cell:miss:000084",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 189,
+        "key": "0x0000000000002054",
+        "next0": 190,
+        "next1": 190,
+        "next_ids": [
+          "cell:miss:000085",
+          "cell:miss:000085"
+        ],
+        "opcode": "EMIT",
+        "payload": 1902081138,
+        "source_offset": 336
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 340,
+        "byte_count": 4,
+        "bytes_hex": "34223a5b",
+        "cell_id": "cell:miss:000085",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 190,
+        "key": "0x0000000000002055",
+        "next0": 191,
+        "next1": 191,
+        "next_ids": [
+          "cell:miss:000086",
+          "cell:miss:000086"
+        ],
+        "opcode": "EMIT",
+        "payload": 1530536500,
+        "source_offset": 340
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 344,
+        "byte_count": 4,
+        "bytes_hex": "312c312c",
+        "cell_id": "cell:miss:000086",
+        "definition_id": "transition:emit-miss",
+        "flags": 1792,
+        "index": 191,
+        "key": "0x0000000000002056",
+        "next0": 192,
+        "next1": 192,
+        "next_ids": [
+          "cell:miss:000087",
+          "cell:miss:000087"
+        ],
+        "opcode": "EMIT",
+        "payload": 741420081,
+        "source_offset": 344
+      },
+      {
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "aux": 348,
+        "byte_count": 4,
+        "bytes_hex": "335d7d0a",
+        "cell_id": "cell:miss:000087",
+        "definition_id": "transition:emit-miss",
+        "flags": 1793,
+        "index": 192,
+        "key": "0x0000000000002057",
+        "next0": 192,
+        "next1": 192,
+        "next_ids": [
+          "cell:miss:000087",
+          "cell:miss:000087"
+        ],
+        "opcode": "EMIT",
+        "payload": 175988019,
+        "source_offset": 348
+      }
+    ],
+    "entry_id": "cell:set-rho",
+    "entry_index": 0
+  },
+  "profile_id": "TOM-Seeded-Compilation-Profile-1.0",
+  "program": {
+    "bytes": 9392,
+    "default_ticks": 512,
+    "genome_flag_tag": 830095825,
+    "initial_state_words": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1128481841,
+      0,
+      0,
+      0
+    ],
+    "program_flags": 830095825,
+    "runtime_seed": 19900710,
+    "sha256": "09cd3a2e311adb84391ec25762ecab2b63147861e7f8ab64f4fddce63568c900"
+  },
+  "schema": "TOM-SEEDED-COMPILATION-MANIFEST-1.0",
+  "seed": {
+    "attribution": "TomKlootwijk",
+    "birth_date": "1990-07-10",
+    "byte_length": 244,
+    "declared_file": "../../../TOM_seed_genome_2026-09-01.txt",
+    "generated_date": "2026-09-01",
+    "identifier": "NL200678942",
+    "pipeline": "LUTlogp^{Klein,SDF0@Def}(rho,theta,t->;phi,dt,d2,J,v,a,j1)>P1>L2_BST^b>ASweepCone(T,apex)>Pi[pyrSide,circle,sphere]>support>compatibility>guard>event>transition>lineage",
+    "sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+    "substrate_name": "TopologicalOpenModular",
+    "tokens": [
+      "LUTlogp",
+      "Klein",
+      "SDF0@Def",
+      "rho",
+      "theta",
+      "t->",
+      "phi",
+      "dt",
+      "d2",
+      "J",
+      "v",
+      "a",
+      "j1",
+      "P1",
+      "L2_BST^b",
+      "ASweepCone",
+      "T",
+      "apex",
+      "Pi",
+      "pyrSide",
+      "circle",
+      "sphere",
+      "support",
+      "compatibility",
+      "guard",
+      "event",
+      "transition",
+      "lineage"
+    ],
+    "version_token": "TOM1"
+  },
+  "source_document": {
+    "canonical_bytes": 16449,
+    "sha256": "d11e0c9720f54b4fe15f59403368b5156a84f2a280679a5cdf8707a5c4d688cb"
+  },
+  "token_registry": {
+    "content_hash": "sha256:b14140cf9800e186701557ed982d692931966ea957e5790c1e6b4989e854c609",
+    "declared_file": "token_registry_1_0.json",
+    "profile_id": "TOM-Seeded-Compilation-Profile-1.0",
+    "resolved_token_count": 28
+  },
+  "tomagi_abi": "1.0.0"
+}

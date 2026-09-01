@@ -2,3 +2,5 @@ id,path,class,role,sha256,bytes
 S1,00_provenance/source_pdfs_v0_5/S1_original_prompt_chain.pdf,project-supplied source,operator vocabulary,ede0fd37504b07fae208d1d7c32ff281b4bdc85661d2ae0b5adb5a9cf9833368,382884
 S2,00_provenance/source_pdfs_v0_5/S2_NHDF_Formal_Specification_v0_1.pdf,project-supplied source,formal baseline,801576c482b514e02f57942cf0643f2abeee4505f56bf860f4e0084af6e90975,372636
 S3,00_provenance/source_pdfs_v0_5/S3_commute_design_transcript.pdf,project-supplied source,CCD/log-polar design transcript,a82fa50f35b69437318b89fac2bc03a94771371b2f7cb0df885325e628675c5a,470176
+TOM-SEED,../../TOM_seed_genome_2026-09-01.txt,sequential repository source,authoritative literal root,d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5,244
+TOM-GENESIS,../../TOM_Genesis_1_0_Tom_Klootwijk.zip,sequential repository toolchain,seeded compiler runtime and generic EMIT materializer,ca5214eb9691f4f1e8b9a8e025fa3eb0b7d6003fcb55c0364d9e874be3483152,3997469

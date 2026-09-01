@@ -1,0 +1,57 @@
+{
+  "acceptance": [
+    "indexed and exhaustive semantic query bytes are equal",
+    "indexed candidate plan records every immutable posting-list stage",
+    "checkpoint replay returns the root-replay state while reducing TOMAGI transitions",
+    "batch semantic reduction hash is equal across planner modes",
+    "deleted immutable index bytes rebuild exactly from the snapshot",
+    "full commit ancestry audit passes"
+  ],
+  "checkpoint_records": 10,
+  "checkpoint_ticks": [
+    0,
+    100,
+    200,
+    300,
+    400,
+    500,
+    600,
+    700,
+    800,
+    900
+  ],
+  "compatibility_records": 4,
+  "content_hash": "sha256:7d0acfd6363e7b83664fd6a3057e9255af69fd7246c244837bd92bd45be390c7",
+  "event_query": {
+    "end_tick": 32,
+    "expected_candidate_path": [
+      10000,
+      9600,
+      96,
+      6,
+      2
+    ],
+    "expected_event_ticks": [
+      5,
+      21
+    ],
+    "start_tick": 0,
+    "support_id": "support:benchmark-bucket:04"
+  },
+  "final_records": 10000,
+  "initial_records": 9990,
+  "instances": 100,
+  "observations": 269,
+  "relations": 9600,
+  "schema": "TOM-INDEX-BENCHMARK-SPECIFICATION-0.2",
+  "seed_sha256": "sha256:d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+  "state_query": {
+    "expected_checkpoint_tick": 900,
+    "expected_indexed_replay_steps": 99,
+    "expected_root_replay_steps": 999,
+    "tick": 999
+  },
+  "supports": 16,
+  "target_instance": "instance:benchmark:042",
+  "version": "0.2.0"
+}

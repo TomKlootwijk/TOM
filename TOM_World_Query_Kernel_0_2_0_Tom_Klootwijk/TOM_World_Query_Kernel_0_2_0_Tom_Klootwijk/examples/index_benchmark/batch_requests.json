@@ -1,0 +1,44 @@
+{
+  "planner_modes": [
+    "indexed",
+    "exhaustive"
+  ],
+  "requests": [
+    {
+      "id": "state-at-999",
+      "operation": "state_at",
+      "parameters": {
+        "instance_id": "instance:benchmark:042",
+        "tick": 999
+      }
+    },
+    {
+      "id": "events-bucket-04",
+      "operation": "events_in_support",
+      "parameters": {
+        "end_tick": 32,
+        "instance_id": "instance:benchmark:042",
+        "start_tick": 0,
+        "support_id": "support:benchmark-bucket:04"
+      }
+    },
+    {
+      "id": "next-event-after-20",
+      "operation": "next_event",
+      "parameters": {
+        "after_tick": 20,
+        "horizon": 16,
+        "instance_id": "instance:benchmark:042"
+      }
+    },
+    {
+      "id": "definition-root",
+      "operation": "definition_at",
+      "parameters": {
+        "id": "definition:index-benchmark-linear-world"
+      }
+    }
+  ],
+  "schema": "TOM-BATCH-QUERY-REQUESTS-0.2",
+  "version": "0.2.0"
+}

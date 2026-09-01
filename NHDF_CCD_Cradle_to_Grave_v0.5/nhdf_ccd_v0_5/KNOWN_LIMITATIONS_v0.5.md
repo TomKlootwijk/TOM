@@ -10,3 +10,5 @@
 8. The vendored evidence is two files, not the complete upstream corpus.
 9. The C++ translation covers bounds/events/impulse, not the full Python feature solver.
 10. The CUDA skeleton is not compiled, executed, or numerically compared with the CPU implementation.
+11. The TOMAGI CCD bridge proves one exact q4, zero-thickness, stationary-face vertex query; it is not general polynomial root isolation or arbitrary-triangle compilation.
+12. The emitted fixture certificate is a literal HIT/MISS route selected by runtime state. The validator binds its stated numerator to replayed `State64.tick`; TOMAGI ABI 1.0 does not directly format arbitrary state fields into emitted JSON.

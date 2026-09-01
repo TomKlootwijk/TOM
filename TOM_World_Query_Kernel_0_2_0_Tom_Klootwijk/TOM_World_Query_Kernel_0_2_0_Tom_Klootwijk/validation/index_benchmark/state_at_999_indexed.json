@@ -1,0 +1,92 @@
+{
+  "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+  "content_hash": "sha256:9d39c9bcb2840416e12652fc57482c2bd2fdce32d50343a201efad4bcf166415",
+  "plan": {
+    "checkpoint_id": "checkpoint:instance:benchmark:042:000000000900:ce7fd2f02a6c",
+    "checkpoint_selection": {
+      "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+      "content_hash": "sha256:e99f6a27ca9ee0b306de8b2312856bd6b888ecace11b50996567c4e4db5e9ae8",
+      "indexes_hash": "sha256:0c5929eebede3b860bcad305c11692a101f4cbc472bbfaecbc6a181135d24d34",
+      "mode": "indexed",
+      "operation": "select_checkpoint",
+      "schema": "TOM-QUERY-PLAN-0.2",
+      "selected_count": 1,
+      "selected_ids": [
+        "checkpoint:instance:benchmark:042:000000000900:ce7fd2f02a6c"
+      ],
+      "selected_ids_hash": "sha256:614aa677c1fcce9a596ef8fd1ba5988765e9d478e3f740e644a7cb7b36571e2d",
+      "snapshot_hash": "sha256:3f2f3cc5751d8c4e68954026146c83973d3e7cf3ca1844e309144de43467a7ec",
+      "stages": [
+        {
+          "detail": {
+            "key": "instance:benchmark:042"
+          },
+          "input_count": 10000,
+          "mechanism": "immutable_index:checkpoint_by_instance",
+          "name": "instance_checkpoints",
+          "output_count": 10
+        },
+        {
+          "detail": {
+            "selected_tick": 900,
+            "target_tick": 999
+          },
+          "input_count": 10,
+          "mechanism": "deterministic:max_tick_then_id",
+          "name": "nearest_not_after",
+          "output_count": 1
+        }
+      ],
+      "version": "0.2.0",
+      "work": {
+        "index_lookups": 1,
+        "record_reads": 0
+      }
+    },
+    "checkpoint_tick": 900,
+    "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+    "content_hash": "sha256:8c287e4839b282f6b3ec50ee00c14d985f35d975c3b1503e60b60ccf70c344ad",
+    "executed_steps": 999,
+    "instance_hash": "sha256:ce7fd2f02a6c0ed69e5d285b02c2162144df3fa2ebb623529fd8ead7d0e77d1a",
+    "instance_id": "instance:benchmark:042",
+    "logical_steps": 999,
+    "replayed_steps": 99,
+    "saved_replay_steps": 900,
+    "schema": "TOM-STATE-REPLAY-PLAN-0.2",
+    "target_tick": 999,
+    "work": {
+      "checkpoint_record_reads": 1,
+      "tomagi_steps": 99
+    }
+  },
+  "query_kind": "state_at",
+  "result": {
+    "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+    "content_hash": "sha256:9cd302ee9c2f6b380000288181403b7141ba9684ffb357c8c8245efcd2810f30",
+    "executed_steps": 999,
+    "instance_hash": "sha256:ce7fd2f02a6c0ed69e5d285b02c2162144df3fa2ebb623529fd8ead7d0e77d1a",
+    "instance_id": "instance:benchmark:042",
+    "requested_tick": 999,
+    "schema": "TOM-STATE-AT-CERTIFICATE-0.2",
+    "state": {
+      "branch": 0,
+      "cell": 0,
+      "lineage": 970993800,
+      "orientation": 0,
+      "output": 0,
+      "phi": 0,
+      "residual": 0,
+      "rho": 999,
+      "sheet": 2,
+      "status": 0,
+      "theta": 42,
+      "tick": 999,
+      "vphi": 0,
+      "vrho": 1,
+      "vtheta": 0,
+      "vtick": 1
+    },
+    "status": "exact_discrete_replay"
+  },
+  "schema": "TOM-PLANNED-QUERY-CERTIFICATE-0.2"
+}

@@ -1,0 +1,28 @@
+{
+  "artifact_definitions": 6,
+  "benchmark_head": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+  "benchmark_indexes_hash": "sha256:0c5929eebede3b860bcad305c11692a101f4cbc472bbfaecbc6a181135d24d34",
+  "benchmark_record_types": {
+    "checkpoint": 10,
+    "compatibility": 4,
+    "definition": 1,
+    "instance": 100,
+    "observation": 269,
+    "relation": 9600,
+    "support": 16
+  },
+  "benchmark_records": 10000,
+  "counter_transaction_records": 15,
+  "jsonschema_available": true,
+  "jsonschema_validations": 31,
+  "required_static_assets": 36,
+  "seed": {
+    "bytes": 244,
+    "encoding": "ASCII/UTF-8",
+    "grammar": "TOM-SRS-1.0-COMPACT-SEED",
+    "sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+    "terminal_line_feed": false
+  },
+  "status": "pass",
+  "version": "0.2.0"
+}

@@ -1,6 +1,6 @@
 {
   "created_utc": "2026-09-01T00:00:00Z",
-  "file_count": 68,
+  "file_count": 79,
   "files": [
     {
       "bytes": 382884,
@@ -308,47 +308,94 @@
       "sha256": "335b1e5e636311ab893cd834f0efca9b7475343d50661f73b6d1c74e7acfda9f"
     },
     {
-      "bytes": 2755,
+      "bytes": 1388,
+      "path": "14_tomagi_ccd_bridge/C_BACKEND_VALIDATION.md",
+      "sha256": "ef4f7cdbeb0bcb93bd5b76e1a0c2d3dcb8802e22a208036bcc107a8a96282781"
+    },
+    {
+      "bytes": 5719,
+      "path": "14_tomagi_ccd_bridge/FORMAL_PROFILE.md",
+      "sha256": "51e4de5045b84818a34fcdc9b1e9e10d737eeccb15f0c5ee5efd0ee53a177db4"
+    },
+    {
+      "bytes": 2015,
+      "path": "14_tomagi_ccd_bridge/README.md",
+      "sha256": "188ec8151f5353981241168bb29a9d6680d682e34178a8265d8e6773e49c7472"
+    },
+    {
+      "bytes": 18248,
+      "path": "14_tomagi_ccd_bridge/build_and_validate.py",
+      "sha256": "4a9a95cd99ee8381392b16a585a32bbbd479d711fd75c471a89fea4beb97c2c4"
+    },
+    {
+      "bytes": 378,
+      "path": "14_tomagi_ccd_bridge/ccd_vf_q4.certificate.json",
+      "sha256": "035a9ee91654675326e9b603990048395324855db560cfd54c797ad2da087a2b"
+    },
+    {
+      "bytes": 134123,
+      "path": "14_tomagi_ccd_bridge/ccd_vf_q4.compile_manifest.json",
+      "sha256": "ad45602f9c316325abd0bad2e2e29d892149546eff1e38c8b42542cf7497f068"
+    },
+    {
+      "bytes": 4344,
+      "path": "14_tomagi_ccd_bridge/ccd_vf_q4.proof.json",
+      "sha256": "80a7ae457bbdb880fb53db3c4521e0dd518fe4353bdec748c7f483366343bcea"
+    },
+    {
+      "bytes": 63961,
+      "path": "14_tomagi_ccd_bridge/ccd_vf_q4.replay.json",
+      "sha256": "d348153d62467fb4f268ce423090edf33f8c38c5194458af63814b2a891032fa"
+    },
+    {
+      "bytes": 25561,
+      "path": "14_tomagi_ccd_bridge/ccd_vf_q4.source.json",
+      "sha256": "5743230158c7e1c7bac7ec7453626bddab651a324953df5995a4efeccfff2483"
+    },
+    {
+      "bytes": 9392,
+      "path": "14_tomagi_ccd_bridge/ccd_vf_q4.tmg",
+      "sha256": "09cd3a2e311adb84391ec25762ecab2b63147861e7f8ab64f4fddce63568c900"
+    },
+    {
+      "bytes": 5469,
+      "path": "14_tomagi_ccd_bridge/token_registry_1_0.json",
+      "sha256": "c9652a188aa74ef913edee71bf9ce125fecd0fc62e42d370ed0e8cdf8c5f114d"
+    },
+    {
+      "bytes": 3241,
       "path": "FILE_INDEX_v0.5.txt",
-      "sha256": "b4514436d5c097b4a239a038efa4096d4ec012e4dd977586c65bc00766ec8c8a"
+      "sha256": "bafd191d910b8b0279d46c1d2436b6436ef112fdc3790654b26d2abc891387c0"
     },
     {
-      "bytes": 1096,
+      "bytes": 1510,
       "path": "KNOWN_LIMITATIONS_v0.5.md",
-      "sha256": "51196abc4e5319a47ddadf743f3fde3ea04d86375439cde12c9304113a3eabe4"
+      "sha256": "0fa1374ff187fc59a849c4bfba75d86338b5e4ec7fc24b8b0e3f8e8fdb1daa32"
     },
     {
-      "bytes": 594,
+      "bytes": 975,
       "path": "PROVENANCE_LEDGER_v0.5.csv",
-      "sha256": "72d732b030f9419e19335fd6b9191c8e928b3fd96c165ce79c8992499059ccbc"
+      "sha256": "6195664b974993506a7acf853cb12fb38bb4778f536343b6d4526336eb346eed"
     },
     {
-      "bytes": 1939,
+      "bytes": 2274,
       "path": "README.md",
-      "sha256": "57bb9be5c10654a0800a12cb023d409a8837d8893b93ada7eb427120366556f2"
+      "sha256": "98ed278001154ae4da4deced37ae30411f17281f708fcc77ef30413431d9d28a"
     },
     {
-      "bytes": 1708,
+      "bytes": 2197,
       "path": "RELEASE_NOTES_v0.5.md",
-      "sha256": "ce2f81ca9e4af1ec66811833199f7b5f6e6cc63c354cb8a5b3f83978b37a4f48"
+      "sha256": "be81ce985652f24fafbcb9143f62801e86ac4856abf718a9948c129bc0624da7"
     },
     {
-      "bytes": 1267,
+      "bytes": 1632,
       "path": "SBOM_v0.5.json",
-      "sha256": "17b0194ae1bff8ae52abe6f1dec403511df2eaa7fa8272d909b096f8351c6871"
+      "sha256": "ff55e6528f675a12d29c2fbe9b6040f8919db2406ce4412478c3c4dff9979aff"
     },
     {
       "bytes": 6,
       "path": "VERSION",
       "sha256": "a0ad50640139a524f86591157145bf1d4674ea9c065bfea21558f0f7b04430c8"
     }
-  ],
-  "hash_algorithm": "SHA-256",
-  "manifest_excludes": [
-    "MANIFEST_v0.5.json",
-    "SHA256SUMS.txt"
-  ],
-  "release": "NHDF-CCD Cradle-to-Grave v0.5",
-  "total_bytes": 5128030,
-  "version": "0.5.0"
+  ]
 }

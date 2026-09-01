@@ -1,0 +1,74 @@
+{
+  "$schema": "../../spec/tomagi.schema.json",
+  "cells": [
+    {
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "aux": "0x00000001",
+      "definition_ref": "definition:counter-linear-rho",
+      "flags": 0,
+      "id": "cell:advance-rho",
+      "key": {
+        "phi": 0,
+        "rho": 0,
+        "theta": 0,
+        "tick": 0
+      },
+      "next": [
+        "cell:advance-rho",
+        "cell:advance-rho"
+      ],
+      "op": "KIN2",
+      "payload": "0x43545231"
+    }
+  ],
+  "default_ticks": 32,
+  "definitions": [
+    {
+      "codomain": {
+        "type": "State64"
+      },
+      "content_hash": "sha256:a31b3b3167073f60804e7c9f2c1a5d5380f84495f76986f2d3491355354972c4",
+      "dependencies": [],
+      "domain": {
+        "type": "State64"
+      },
+      "id": "definition:counter-linear-rho",
+      "kind": "trajectory",
+      "parameters": {
+        "rule": "KIN2 with zero acceleration and initial vrho=1; one transition advances rho by one"
+      },
+      "phase": "transform",
+      "provenance": {
+        "source": "TOM-SRS state_at/next_event starter benchmark"
+      }
+    }
+  ],
+  "entry": "cell:advance-rho",
+  "flags": 0,
+  "initial_state": {
+    "branch": 0,
+    "cell": 0,
+    "lineage": 0,
+    "orientation": 0,
+    "output": 0,
+    "phi": 0,
+    "residual": 0,
+    "rho": 0,
+    "sheet": 0,
+    "status": 0,
+    "theta": 0,
+    "tick": 0,
+    "vphi": 0,
+    "vrho": 1,
+    "vtheta": 0,
+    "vtick": 1
+  },
+  "seed": "0xd1417a31",
+  "title": "TOM World 0.1 linear-rho trajectory",
+  "tomagi_version": "1.0.0"
+}

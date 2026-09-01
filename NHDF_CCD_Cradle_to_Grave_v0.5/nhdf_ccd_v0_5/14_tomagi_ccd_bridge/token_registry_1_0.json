@@ -1,0 +1,219 @@
+{
+  "content_hash": "sha256:b14140cf9800e186701557ed982d692931966ea957e5790c1e6b4989e854c609",
+  "phase_order": [
+    "parse",
+    "normalize",
+    "resolve",
+    "construct",
+    "transform",
+    "support",
+    "compatibility",
+    "guard/root",
+    "transition",
+    "lineage/log"
+  ],
+  "pipeline_tokens": [
+    "LUTlogp",
+    "Klein",
+    "SDF0@Def",
+    "rho",
+    "theta",
+    "t->",
+    "phi",
+    "dt",
+    "d2",
+    "J",
+    "v",
+    "a",
+    "j1",
+    "P1",
+    "L2_BST^b",
+    "ASweepCone",
+    "T",
+    "apex",
+    "Pi",
+    "pyrSide",
+    "circle",
+    "sphere",
+    "support",
+    "compatibility",
+    "guard",
+    "event",
+    "transition",
+    "lineage"
+  ],
+  "profile_id": "TOM-Seeded-Compilation-Profile-1.0",
+  "registry_version": "1.0.0",
+  "schema": "TOM-TOKEN-REGISTRY-1.0",
+  "seed_sha256": "sha256:d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+  "tokens": [
+    {
+      "literal": "LUTlogp",
+      "normalized_operation": "log-polar chart and finite lookup/key domain with explicit core",
+      "phase": 1,
+      "type": "coordinate/state index"
+    },
+    {
+      "literal": "Klein",
+      "normalized_operation": "orientation-reversing wrap with sheet/orientation transport",
+      "phase": 4,
+      "type": "topology profile"
+    },
+    {
+      "literal": "SDF0@Def",
+      "normalized_operation": "typed per-definition zero-relation interface",
+      "phase": 2,
+      "type": "relation interface"
+    },
+    {
+      "literal": "rho",
+      "normalized_operation": "20-bit log-radius coordinate",
+      "phase": 1,
+      "type": "periodic scalar"
+    },
+    {
+      "literal": "theta",
+      "normalized_operation": "18-bit polar angle coordinate",
+      "phase": 1,
+      "type": "periodic scalar"
+    },
+    {
+      "literal": "t->",
+      "normalized_operation": "monotone evaluation and append-only event order",
+      "phase": 8,
+      "type": "causal schedule"
+    },
+    {
+      "literal": "phi",
+      "normalized_operation": "12-bit lower-case phase/hinge coordinate",
+      "phase": 1,
+      "type": "periodic scalar"
+    },
+    {
+      "literal": "dt",
+      "normalized_operation": "first discrete increment",
+      "phase": 4,
+      "type": "kinematic operator"
+    },
+    {
+      "literal": "d2",
+      "normalized_operation": "second discrete difference",
+      "phase": 4,
+      "type": "kinematic operator"
+    },
+    {
+      "literal": "J",
+      "normalized_operation": "log-polar Jacobian metadata",
+      "phase": 3,
+      "type": "compile-time chart operator"
+    },
+    {
+      "literal": "v",
+      "normalized_operation": "first-difference tuple",
+      "phase": 4,
+      "type": "kinematic state"
+    },
+    {
+      "literal": "a",
+      "normalized_operation": "second-difference tuple",
+      "phase": 4,
+      "type": "kinematic state"
+    },
+    {
+      "literal": "j1",
+      "normalized_operation": "parity-derived signed perturbation or selector",
+      "phase": 4,
+      "type": "bounded deterministic bit"
+    },
+    {
+      "literal": "P1",
+      "normalized_operation": "modulo-two selector of declared routes",
+      "phase": 4,
+      "type": "one-bit parity/hinge"
+    },
+    {
+      "literal": "L2_BST^b",
+      "normalized_operation": "binary branch grammar; finite keys use radix refinement",
+      "phase": 4,
+      "type": "bounded grammar/router"
+    },
+    {
+      "literal": "ASweepCone",
+      "normalized_operation": "finite analytic cone and bounded sweep relation",
+      "phase": 3,
+      "type": "geometric relation family"
+    },
+    {
+      "literal": "T",
+      "normalized_operation": "cone slant length",
+      "phase": 3,
+      "type": "finite scalar parameter"
+    },
+    {
+      "literal": "apex",
+      "normalized_operation": "cone apex coordinate",
+      "phase": 3,
+      "type": "geometric parameter"
+    },
+    {
+      "literal": "Pi",
+      "normalized_operation": "optional downstream projection tags",
+      "phase": 3,
+      "type": "projection/support family"
+    },
+    {
+      "literal": "pyrSide",
+      "normalized_operation": "triangular meridian/side profile",
+      "phase": 3,
+      "type": "projection tag"
+    },
+    {
+      "literal": "circle",
+      "normalized_operation": "circular base or radial shell",
+      "phase": 3,
+      "type": "relation/projection tag"
+    },
+    {
+      "literal": "sphere",
+      "normalized_operation": "spherical local support",
+      "phase": 3,
+      "type": "relation/support tag"
+    },
+    {
+      "literal": "support",
+      "normalized_operation": "admit locally relevant candidates",
+      "phase": 5,
+      "type": "predicate"
+    },
+    {
+      "literal": "compatibility",
+      "normalized_operation": "require declared phase/sheet/orientation/address coupling",
+      "phase": 6,
+      "type": "predicate"
+    },
+    {
+      "literal": "guard",
+      "normalized_operation": "evaluate declared relation-zero condition",
+      "phase": 7,
+      "type": "relation test"
+    },
+    {
+      "literal": "event",
+      "normalized_operation": "capture verified relation occurrence and pre-state",
+      "phase": 7,
+      "type": "immutable record"
+    },
+    {
+      "literal": "transition",
+      "normalized_operation": "apply declared post-event state patch",
+      "phase": 8,
+      "type": "atomic map"
+    },
+    {
+      "literal": "lineage",
+      "normalized_operation": "append ancestry, hashes, winding, and route data",
+      "phase": 9,
+      "type": "persistence record"
+    }
+  ]
+}

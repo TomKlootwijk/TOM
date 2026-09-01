@@ -8,6 +8,15 @@ v0.5 moves from primitive-only continuous collision detection toward a mesh-feat
 
 The evidence layer now includes a rational-coordinate parser and complete evaluation of two locally vendored public Sample-Queries CSV files. Their original README and MIT license are preserved. Per-query statuses and digests are retained in CSV; mismatches and inconclusive outcomes are not filtered.
 
+## Post-validation TOMAGI bridge
+
+`14_tomagi_ccd_bridge/` adds a literal, seed-bound q4 vertex-face fixture. Its
+definition graph constructs executable State64/Cell48 kinematics and support
+guards, compiles to `.tmg`, selects the runtime HIT route, and reconstructs the
+certificate from ordered byte-mode EMIT records. Two isolated rebuilds and
+replays are required to match byte-for-byte. This is a bounded integration
+proof, not a claim of general root isolation or arbitrary-mesh CCD.
+
 ## Executed release checks
 
 - Python unit and property-style tests.

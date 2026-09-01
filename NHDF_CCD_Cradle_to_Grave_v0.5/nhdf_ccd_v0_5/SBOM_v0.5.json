@@ -45,6 +45,19 @@
       "scope": "development",
       "type": "application",
       "version": "build-host version"
+    },
+    {
+      "bom-ref": "tom-genesis-seeded-runtime-1.0",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "ca5214eb9691f4f1e8b9a8e025fa3eb0b7d6003fcb55c0364d9e874be3483152"
+        }
+      ],
+      "name": "TOM Genesis seeded compiler and runtime",
+      "scope": "required",
+      "type": "application",
+      "version": "1.0.0"
     }
   ],
   "metadata": {

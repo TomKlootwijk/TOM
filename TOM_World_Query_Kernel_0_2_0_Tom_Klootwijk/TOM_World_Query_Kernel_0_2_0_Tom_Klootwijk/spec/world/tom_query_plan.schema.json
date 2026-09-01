@@ -1,0 +1,120 @@
+{
+  "$id": "https://tom.invalid/schema/tom-query-plan-0.2.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "commit": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "content_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "indexes_hash": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        }
+      ]
+    },
+    "mode": {
+      "enum": [
+        "indexed",
+        "exhaustive"
+      ]
+    },
+    "operation": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema": {
+      "const": "TOM-QUERY-PLAN-0.2"
+    },
+    "selected_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "selected_ids": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "selected_ids_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "snapshot_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "stages": {
+      "items": {
+        "properties": {
+          "detail": {
+            "type": "object"
+          },
+          "input_count": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "mechanism": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "output_count": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "name",
+          "mechanism",
+          "input_count",
+          "output_count",
+          "detail"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "version": {
+      "const": "0.2.0"
+    },
+    "work": {
+      "additionalProperties": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "commit",
+    "snapshot_hash",
+    "indexes_hash",
+    "mode",
+    "operation",
+    "stages",
+    "selected_count",
+    "selected_ids",
+    "selected_ids_hash",
+    "work",
+    "content_hash"
+  ],
+  "title": "TOM deterministic query plan 0.2",
+  "type": "object"
+}
