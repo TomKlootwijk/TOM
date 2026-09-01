@@ -1,0 +1,61 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "licenses": [
+        {
+          "license": {
+            "name": "Python Software Foundation License"
+          }
+        }
+      ],
+      "name": "Python",
+      "scope": "required",
+      "type": "library",
+      "version": "3.10+"
+    },
+    {
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "name": "NumPy",
+      "scope": "required",
+      "type": "library",
+      "version": "1.24+"
+    },
+    {
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "Continuous-Collision-Detection/Sample-Queries subset",
+      "scope": "required",
+      "type": "data",
+      "version": "main snapshot bundled 2026-09-01"
+    },
+    {
+      "name": "pdfTeX/LaTeX report toolchain",
+      "scope": "development",
+      "type": "application",
+      "version": "build-host version"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "name": "NHDF-CCD Cradle-to-Grave",
+      "type": "application",
+      "version": "0.5.0"
+    },
+    "timestamp": "2026-09-01T00:00:00Z"
+  },
+  "serialNumber": "urn:uuid:nhdf-ccd-v0-5-2026-09-01",
+  "specVersion": "1.5",
+  "version": 1
+}

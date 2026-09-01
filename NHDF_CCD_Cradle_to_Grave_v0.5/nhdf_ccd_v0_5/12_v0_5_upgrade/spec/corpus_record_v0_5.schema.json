@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/nhdf-ccd/v0.5/corpus-record.schema.json",
+  "title": "Sample-Queries evaluation record",
+  "type": "object",
+  "required": ["index", "label", "status", "method", "digest"],
+  "properties": {
+    "index": {"type": "integer", "minimum": 0},
+    "label": {"type": "integer", "enum": [0, 1]},
+    "status": {"type": "string"},
+    "toi_lower": {"type": ["number", "null"]},
+    "toi_upper": {"type": ["number", "null"]},
+    "method": {"type": "string"},
+    "condition_indicator": {"type": ["number", "null"]},
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}

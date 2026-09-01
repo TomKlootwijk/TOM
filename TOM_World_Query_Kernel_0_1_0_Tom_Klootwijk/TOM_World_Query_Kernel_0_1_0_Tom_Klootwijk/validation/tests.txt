@@ -1,0 +1,52 @@
+test_canonical_hash_is_stable_and_semantic (test_tomagi.CanonicalTests.test_canonical_hash_is_stable_and_semantic) ... ok
+test_definition_order_and_cycle_rejection (test_tomagi.CanonicalTests.test_definition_order_and_cycle_rejection) ... ok
+test_c_backend_matches_python_when_available (test_tomagi.EndToEndTests.test_c_backend_matches_python_when_available) ... ok
+test_catalog_and_crosswalk_cover_project_sources (test_tomagi.EndToEndTests.test_catalog_and_crosswalk_cover_project_sources) ... ok
+test_compiled_exact19_accept_and_reject (test_tomagi.EndToEndTests.test_compiled_exact19_accept_and_reject) ... ok
+test_nineteen_source_projection (test_tomagi.EndToEndTests.test_nineteen_source_projection) ... ok
+test_polar_loop_reference_result (test_tomagi.EndToEndTests.test_polar_loop_reference_result) ... ok
+test_binary_roundtrip (test_tomagi.FormatCompilerTests.test_binary_roundtrip) ... ok
+test_compile_rejects_bad_hash (test_tomagi.FormatCompilerTests.test_compile_rejects_bad_hash) ... ok
+test_example_schema (test_tomagi.FormatCompilerTests.test_example_schema) ... ok
+test_record_sizes (test_tomagi.FormatCompilerTests.test_record_sizes) ... ok
+test_contiguous_reference_key (test_tomagi.KeyTests.test_contiguous_reference_key) ... ok
+test_modular_roundtrip (test_tomagi.KeyTests.test_modular_roundtrip) ... ok
+test_morton_reference_key (test_tomagi.KeyTests.test_morton_reference_key) ... ok
+test_cone_relation (test_tomagi.PrimitiveOperatorTests.test_cone_relation) ... ok
+test_jit1_is_deterministic_and_bipolar (test_tomagi.PrimitiveOperatorTests.test_jit1_is_deterministic_and_bipolar) ... ok
+test_kin2_change_of_change (test_tomagi.PrimitiveOperatorTests.test_kin2_change_of_change) ... ok
+test_lsystem_chirality (test_tomagi.PrimitiveOperatorTests.test_lsystem_chirality) ... ok
+test_mix32_is_reproducible (test_tomagi.PrimitiveOperatorTests.test_mix32_is_reproducible) ... ok
+test_phi_half_branch (test_tomagi.PrimitiveOperatorTests.test_phi_half_branch) ... ok
+test_reflective_klein_wrap (test_tomagi.PrimitiveOperatorTests.test_reflective_klein_wrap) ... ok
+test_sdf0_is_zero_only_on_declared_domain (test_tomagi.PrimitiveOperatorTests.test_sdf0_is_zero_only_on_declared_domain) ... ok
+test_source_half_turn_is_distinct (test_tomagi.PrimitiveOperatorTests.test_source_half_turn_is_distinct) ... ok
+test_sphere_shell_relation (test_tomagi.PrimitiveOperatorTests.test_sphere_shell_relation) ... ok
+test_c_full_trace_matches_python_when_built (test_world_query.BackendAndSchemaTests.test_c_full_trace_matches_python_when_built) ... ok
+test_shipped_roadmap_artifact_chain (test_world_query.BackendAndSchemaTests.test_shipped_roadmap_artifact_chain) ... ok
+test_world_json_schemas (test_world_query.BackendAndSchemaTests.test_world_json_schemas) ... ok
+test_expression_budget_rejected (test_world_query.ExpressionTests.test_expression_budget_rejected) ... ok
+test_integer_boolean_interval_and_cyclic_expressions (test_world_query.ExpressionTests.test_integer_boolean_interval_and_cyclic_expressions) ... ok
+test_bounded_binary_expansion (test_world_query.GrammarTests.test_bounded_binary_expansion) ... ok
+test_depth_and_strict_bit_budgets (test_world_query.GrammarTests.test_depth_and_strict_bit_budgets) ... ok
+test_literal_definition_to_tmg_to_bytes (test_world_query.LiteralArtifactTests.test_literal_definition_to_tmg_to_bytes) ... ok
+test_compatibility_positive_and_negative (test_world_query.NativeQueryTests.test_compatibility_positive_and_negative) ... ok
+test_event_commit_and_lineage_reconstruction (test_world_query.NativeQueryTests.test_event_commit_and_lineage_reconstruction) ... ok
+test_events_in_support (test_world_query.NativeQueryTests.test_events_in_support) ... ok
+test_next_event_exact_zero (test_world_query.NativeQueryTests.test_next_event_exact_zero) ... ok
+test_no_event_before_horizon (test_world_query.NativeQueryTests.test_no_event_before_horizon) ... ok
+test_state_at_and_trace (test_world_query.NativeQueryTests.test_state_at_and_trace) ... ok
+test_tampered_certificate_rejected (test_world_query.NativeQueryTests.test_tampered_certificate_rejected) ... ok
+test_dependency_order_and_cycle (test_world_query.SeedAndCanonicalTests.test_dependency_order_and_cycle) ... ok
+test_record_hash_is_semantic (test_world_query.SeedAndCanonicalTests.test_record_hash_is_semantic) ... ok
+test_seed_identity (test_world_query.SeedAndCanonicalTests.test_seed_identity) ... ok
+test_seed_mutation_rejected (test_world_query.SeedAndCanonicalTests.test_seed_mutation_rejected) ... ok
+test_bad_blob_hash_rejected (test_world_query.StoreTests.test_bad_blob_hash_rejected) ... ok
+test_same_transaction_produces_same_commit_in_two_stores (test_world_query.StoreTests.test_same_transaction_produces_same_commit_in_two_stores) ... ok
+test_stale_base_commit_rejected (test_world_query.StoreTests.test_stale_base_commit_rejected) ... ok
+test_verify_definition_and_missing_id (test_world_query.StoreTests.test_verify_definition_and_missing_id) ... ok
+
+----------------------------------------------------------------------
+Ran 47 tests in 0.245s
+
+OK

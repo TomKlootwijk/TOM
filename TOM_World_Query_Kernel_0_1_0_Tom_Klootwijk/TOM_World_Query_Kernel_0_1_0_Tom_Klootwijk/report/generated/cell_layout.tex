@@ -1,0 +1,31 @@
+\small
+\begin{longtable}{@{}L{0.07\textwidth}L{0.07\textwidth}L{0.13\textwidth}L{0.09\textwidth}L{0.56\textwidth}@{}}
+\caption{Cell48 ABI}\label{tab:cell48}\\
+\toprule
+\textbf{Word} & \textbf{Byte} & \textbf{Field} & \textbf{Type} & \textbf{Meaning} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{l}{\small\itshape Cell48 ABI -- continued}\\
+\toprule
+\textbf{Word} & \textbf{Byte} & \textbf{Field} & \textbf{Type} & \textbf{Meaning} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{\small continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+0 & 0 & key\_hi & u32 & canonical key bits 63..32 \\
+1 & 4 & key\_lo & u32 & canonical key bits 31..0 \\
+2 & 8 & opcode & u32 & opcode 0..15 \\
+3 & 12 & flags & u32 & generic and opcode-specific flags \\
+4 & 16 & arg0 & i32 & operator argument 0 \\
+5 & 20 & arg1 & i32 & operator argument 1 \\
+6 & 24 & arg2 & i32 & operator argument 2 \\
+7 & 28 & arg3 & i32 & operator argument 3 \\
+8 & 32 & next0 & u32 & successor for branch 0 \\
+9 & 36 & next1 & u32 & successor for branch 1 \\
+10 & 40 & payload & u32 & literal/output/provenance token \\
+11 & 44 & aux & u32 & literal/hash salt/operator auxiliary \\
+\end{longtable}
+\normalsize

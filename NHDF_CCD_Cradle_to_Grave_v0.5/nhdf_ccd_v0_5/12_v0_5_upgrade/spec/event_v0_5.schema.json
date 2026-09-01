@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/nhdf-ccd/v0.5/event.schema.json",
+  "title": "NHDF-CCD contact event",
+  "type": "object",
+  "required": ["event_id", "toi_lower", "toi_upper", "pair_ids", "contacts"],
+  "properties": {
+    "event_id": {"type": "integer", "minimum": 0},
+    "toi_lower": {"type": "number", "minimum": 0, "maximum": 1},
+    "toi_upper": {"type": "number", "minimum": 0, "maximum": 1},
+    "pair_ids": {"type": "array", "items": {"type": "string"}},
+    "contacts": {"type": "array", "minItems": 1, "items": {"$ref": "certificate_v0_5.schema.json"}}
+  },
+  "additionalProperties": false
+}

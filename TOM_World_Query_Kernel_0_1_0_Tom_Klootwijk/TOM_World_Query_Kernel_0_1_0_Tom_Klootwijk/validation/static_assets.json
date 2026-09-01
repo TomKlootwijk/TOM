@@ -1,0 +1,15 @@
+{
+  "artifact_definitions": 3,
+  "counter_source_records": 15,
+  "jsonschema_available": true,
+  "required_static_assets": 16,
+  "seed": {
+    "bytes": 244,
+    "encoding": "ASCII/UTF-8",
+    "grammar": "TOM-SRS-1.0-COMPACT-SEED",
+    "sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+    "terminal_line_feed": false
+  },
+  "status": "pass",
+  "transaction_records": 15
+}

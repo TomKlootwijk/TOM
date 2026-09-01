@@ -1,0 +1,2558 @@
+{
+  "schema": "TOMAGI-SOURCE-CROSSWALK-1.0",
+  "count": 319,
+  "rows": [
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M001",
+      "source_name": "Radix digit threshold",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RADIX;TOM.KEY.C;TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M002",
+      "source_name": "Positional power weighting",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M003",
+      "source_name": "Literal binary glyph parse",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.DEF;TOM.REF;TOM.RADIX;TOM.KEY.C",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M004",
+      "source_name": "Left-shift pulse placement",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RADIX;TOM.KEY.C;TOM.PULSE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M005",
+      "source_name": "Zero-based offset/ordinal distinction",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.INDEX0",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M006",
+      "source_name": "Active-bit filtering",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RADIX;TOM.KEY.C;TOM.ACTIVE;TOM.LINEAGE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M007",
+      "source_name": "Zero as inactive/silence metadata",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M008",
+      "source_name": "Binary 19 decomposition",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RADIX;TOM.KEY.C;TOM.ACTIVE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M009",
+      "source_name": "Phonetic-to-active-count map",
+      "source_status": "BOUNDED",
+      "tomagi_mapping": "TOM.RADIX;TOM.KEY.C;TOM.PULSE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M010",
+      "source_name": "Pascal parity recurrence",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PASCAL2;TOM.PARITY",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M011",
+      "source_name": "Sierpiński generation",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RADIX;TOM.KEY.C;TOM.PASCAL2;TOM.PARITY",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M012",
+      "source_name": "Combination count C(5,3)",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M013",
+      "source_name": "Power-of-two scale boundary",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M014",
+      "source_name": "Standard percent semantics boundary",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M015",
+      "source_name": "Percent loop decomposition",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M016",
+      "source_name": "Slash/phi removal operator",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M017",
+      "source_name": "Open-loop terminal suppression",
+      "source_status": "BOUNDED",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M018",
+      "source_name": "100100 concatenation",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PULSE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M019",
+      "source_name": "Two-pulse timeline",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.PULSE;TOM.TIME;TOM.PHI;TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M020",
+      "source_name": "Pulse superposition by OR",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PULSE;TOM.OVERLAP",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M021",
+      "source_name": "Explicit-width complement",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.BRANCH",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M022",
+      "source_name": "Fractional scale correction",
+      "source_status": "CORRECTED",
+      "tomagi_mapping": "TOM.RADIX;TOM.KEY.C",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M023",
+      "source_name": "Packed fixed-width record",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.DEF;TOM.REF;TOM.RADIX;TOM.KEY.C",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M024",
+      "source_name": "Fixed-point financial boundary",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M025",
+      "source_name": "One-bit parity narrow role",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PARITY;TOM.HINGE;TOM.BRANCH",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M026",
+      "source_name": "One-bit support mask",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PARITY",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M027",
+      "source_name": "Deterministic jitter seed",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.JIT1;TOM.LINEAGE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M028",
+      "source_name": "D-to-R cut and unroll",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M029",
+      "source_name": "B-to-R lower-loop unfurl",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M030",
+      "source_name": "Phi loop-plus-stem decomposition",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M031",
+      "source_name": "Stem as cutting/rotation axis",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.KIN2",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M032",
+      "source_name": "Side-view pyramid as delta triangle",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.KIN2",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M033",
+      "source_name": "Delta-T changing axis",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.KIN2;TOM.TIME;TOM.PHI",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M034",
+      "source_name": "Loop-to-line release",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.KIN2",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M035",
+      "source_name": "Localized parity hinge",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PARITY;TOM.HINGE;TOM.KIN2",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M036",
+      "source_name": "Global hinge everywhere",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.HINGE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M037",
+      "source_name": "Split zero-centered oval",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.KIN2",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M038",
+      "source_name": "Antisymmetric torsional wave",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.HINGE;TOM.KIN2",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M039",
+      "source_name": "2π unrolled into two π arches",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.KIN2",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M040",
+      "source_name": "1:1 arch balance",
+      "source_status": "BOUNDED",
+      "tomagi_mapping": "TOM.KIN2",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M041",
+      "source_name": "Lens intersection region",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.OVERLAP;TOM.TIME;TOM.PHI",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M042",
+      "source_name": "Constructive interference interpretation",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.OVERLAP",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M043",
+      "source_name": "Tolerance/phase-slip buffer",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.OVERLAP;TOM.TIME;TOM.PHI",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M044",
+      "source_name": "Mutual-information domain",
+      "source_status": "CORRECTED",
+      "tomagi_mapping": "TOM.OVERLAP",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M045",
+      "source_name": "Scaled 5–12–13 triangle",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M046",
+      "source_name": "Leg ratio 2.4",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.KIN2",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M047",
+      "source_name": "Torque-cone angle",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.CONE;TOM.KIN2",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M048",
+      "source_name": "Logarithmic spiral step law",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.KIN2;TOM.TIME;TOM.PHI",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M049",
+      "source_name": "Base-2 log-radius",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.LOGPOLAR",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M050",
+      "source_name": "Local spherical chart",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.LOGPOLAR;TOM.SPHERE;TOM.QUERY",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M051",
+      "source_name": "Cone support",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.CONE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M052",
+      "source_name": "Nested shell support",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M053",
+      "source_name": "Four-chamber hourglass",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.BRANCH",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M054",
+      "source_name": "Pinch event locus",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BRANCH;TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M055",
+      "source_name": "Invariant eigen-axis",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.BRANCH;TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M056",
+      "source_name": "Swept phase arc",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.TIME;TOM.PHI;TOM.BRANCH",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M057",
+      "source_name": "Trident 3-to-1 convergence",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.BRANCH;TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M058",
+      "source_name": "Pythagorean-cup trigger",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M059",
+      "source_name": "Greedy reset cycle",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M060",
+      "source_name": "Inward G/shelf transform",
+      "source_status": "OPTIONAL",
+      "tomagi_mapping": "TOM.LSYS",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M061",
+      "source_name": "Lemniscate crossing",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.HINGE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M062",
+      "source_name": "Escher-style shrink to crossing",
+      "source_status": "CORRECTED",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M063",
+      "source_name": "Cone SDF",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.CONE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M064",
+      "source_name": "Sphere SDF",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.SPHERE;TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M065",
+      "source_name": "Möbius orientation reversal",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.MOBIUS;TOM.HINGE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M066",
+      "source_name": "Klein gluing map",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.KLEIN;TOM.HINGE;TOM.BRANCH",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M067",
+      "source_name": "Same coordinate, different sheet",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.HINGE;TOM.TIME;TOM.PHI",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M068",
+      "source_name": "Non-orientable orientation bit",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.HINGE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M069",
+      "source_name": "Projected self-intersection",
+      "source_status": "CORRECTED",
+      "tomagi_mapping": "TOM.OVERLAP;TOM.HINGE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M070",
+      "source_name": "Double vacuum as incompatibility",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M071",
+      "source_name": "Phase-separated co-location",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TIME;TOM.PHI",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M072",
+      "source_name": "Four-way routing partition",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.BRANCH;TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M073",
+      "source_name": "Portal/gluing transition",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.HINGE;TOM.TRANSITION;TOM.LINEAGE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M074",
+      "source_name": "Branch transition",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BRANCH;TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M075",
+      "source_name": "Lineage-based identity",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.LINEAGE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M076",
+      "source_name": "Split/merge lineage",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.LINEAGE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M077",
+      "source_name": "Toroidal/poloidal chart labels",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M078",
+      "source_name": "Re-entry map",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.HINGE;TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M079",
+      "source_name": "Parity-controlled open/closed boundary",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PARITY;TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M080",
+      "source_name": "Sphere eversion analogy",
+      "source_status": "DEMOTE",
+      "tomagi_mapping": "TOM.SPHERE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M081",
+      "source_name": "Physical Klein self-assembly",
+      "source_status": "REJECT",
+      "tomagi_mapping": "TOM.PARITY;TOM.KLEIN",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M082",
+      "source_name": "Topology-powered energy recycling",
+      "source_status": "REJECT",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M083",
+      "source_name": "Finite grammar",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.DEF;TOM.REF;TOM.LSYS",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M084",
+      "source_name": "L-system production",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.LSYS",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M085",
+      "source_name": "Projective-phase state manifold",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TIME;TOM.PHI",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M086",
+      "source_name": "Typed state tuple",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.DEF;TOM.REF",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M087",
+      "source_name": "Relation surface",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M088",
+      "source_name": "Support predicate",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M089",
+      "source_name": "Compatibility predicate",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.HINGE;TOM.TIME;TOM.PHI;TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M090",
+      "source_name": "Earliest valid event",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M091",
+      "source_name": "Transition operator",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M092",
+      "source_name": "External novelty log",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.LINEAGE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M093",
+      "source_name": "state_at(t)",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TIME;TOM.PHI;TOM.LINEAGE;TOM.QUERY",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M094",
+      "source_name": "next_event",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BRANCH;TOM.TRANSITION;TOM.QUERY",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M095",
+      "source_name": "events_in_cone",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.CONE;TOM.TRANSITION;TOM.QUERY",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M096",
+      "source_name": "reachable relation query",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.LSYS;TOM.QUERY",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M097",
+      "source_name": "identity reconstruction",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.LINEAGE;TOM.QUERY",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M098",
+      "source_name": "Support rejection",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M099",
+      "source_name": "Compatibility rejection",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M100",
+      "source_name": "Finite guard band",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M101",
+      "source_name": "Confidence threshold",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M102",
+      "source_name": "Hysteresis/debounce",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TIME;TOM.PHI;TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M103",
+      "source_name": "Certified/bracketed root solve",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M104",
+      "source_name": "Tangency and degeneracy handling",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M105",
+      "source_name": "SDF zero as event boundary",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.SDF0;TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M106",
+      "source_name": "CSG union",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M107",
+      "source_name": "CSG intersection",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.OVERLAP",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M108",
+      "source_name": "CSG subtraction",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M109",
+      "source_name": "SDF gradient orientation",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.HINGE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M110",
+      "source_name": "Parity-conditioned field blend",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.PARITY",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M111",
+      "source_name": "Log-polar LUT",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.LOGPOLAR",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M112",
+      "source_name": "BST-to-flat-table translation",
+      "source_status": "CORRECTED",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M113",
+      "source_name": "Horizon-independent closed expression",
+      "source_status": "BOUNDED",
+      "tomagi_mapping": "TOM.QUERY",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M114",
+      "source_name": "Novelty-proportional retention",
+      "source_status": "BOUNDED",
+      "tomagi_mapping": "TOM.LSYS;TOM.TRANSITION;TOM.LINEAGE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M115",
+      "source_name": "Seed+grammar+log rebuild",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.LSYS;TOM.TRANSITION;TOM.LINEAGE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M116",
+      "source_name": "Query-first, no mandatory frame loop",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TIME;TOM.PHI;TOM.TRANSITION;TOM.QUERY",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M117",
+      "source_name": "Optional projection",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.QUERY;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M118",
+      "source_name": "Bounded Compatibility Event",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M119",
+      "source_name": "Event lineage record",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TIME;TOM.PHI;TOM.BRANCH;TOM.TRANSITION;TOM.LINEAGE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M120",
+      "source_name": "Schema-bound one-bit semantics",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.DEF;TOM.REF;TOM.PARITY",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M121",
+      "source_name": "Deterministic rollback/replay",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.LINEAGE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M122",
+      "source_name": "Algebraic closure",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.QUERY;TOM.TRACE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M123",
+      "source_name": "Event/branch explosion",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BRANCH;TOM.TRANSITION;TOM.TRACE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M124",
+      "source_name": "Query authority and policy",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.QUERY",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M125",
+      "source_name": "GLSL-to-SPIR-V compilation",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M126",
+      "source_name": "Direct Vulkan compute runtime",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TIME;TOM.PHI;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M127",
+      "source_name": "Descriptor ABI",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M128",
+      "source_name": "256-thread workgroup",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M129",
+      "source_name": "G64 authoritative state record",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TIME;TOM.PHI;TOM.TRANSITION;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M130",
+      "source_name": "E32 full event record",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.LINEAGE;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M131",
+      "source_name": "G32 packed state record",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M132",
+      "source_name": "E16 packed event record",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.LINEAGE;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M133",
+      "source_name": "Evaluate mode",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M134",
+      "source_name": "Evaluate+commit mode",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M135",
+      "source_name": "Device timestamp measurement",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TIME;TOM.PHI;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M136",
+      "source_name": "Pipeline cache artifact",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M137",
+      "source_name": "SPIR-V module manifest",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M138",
+      "source_name": "Lineage hash",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.LINEAGE;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M139",
+      "source_name": "Dense output path",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M140",
+      "source_name": "Verified-event compaction",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RADIX;TOM.KEY.C;TOM.TRANSITION;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M141",
+      "source_name": "Structure-of-arrays option",
+      "source_status": "OPTIONAL",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M142",
+      "source_name": "Memory coalescing contract",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.LINEAGE;TOM.QUERY;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M143",
+      "source_name": "FP16 error contract",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M144",
+      "source_name": "Cold versus cache-seeded compilation",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TIME;TOM.PHI;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M145",
+      "source_name": "CPU reference oracle",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU;TOM.BACKEND.CPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M146",
+      "source_name": "Deterministic benchmark corpus",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M147",
+      "source_name": "No Unity/Godot target layer",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.DEF;TOM.REF;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M148",
+      "source_name": "Cartesian-to-log-polar mapping",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.LOGPOLAR;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M149",
+      "source_name": "One-bit sector activation",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PARITY;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M150",
+      "source_name": "Phasor coverage accumulation",
+      "source_status": "CORRECTED",
+      "tomagi_mapping": "TOM.TIME;TOM.PHI;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M151",
+      "source_name": "Subpixel gradient alignment",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M152",
+      "source_name": "Pulse-density modulation",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PULSE;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M153",
+      "source_name": "Anisotropic delta-sigma",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M154",
+      "source_name": "Chromatic log-radius offset",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.LOGPOLAR;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M155",
+      "source_name": "Wavelength-dependent phase",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.TIME;TOM.PHI;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M156",
+      "source_name": "Seeded stochastic blend",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.JIT1;TOM.LINEAGE;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M157",
+      "source_name": "Log-polar blue-noise screening",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.LOGPOLAR;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M158",
+      "source_name": "SDF edge lock",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M159",
+      "source_name": "Dot-gain compensation",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.RADIX;TOM.KEY.C;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M160",
+      "source_name": "CMYK angular separation",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M161",
+      "source_name": "Liquid overclad",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M162",
+      "source_name": "Liquid-core guide",
+      "source_status": "OPTIONAL",
+      "tomagi_mapping": "TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M163",
+      "source_name": "Input liquid lens",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.OVERLAP;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M164",
+      "source_name": "Solid photonic substrate",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BRANCH;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M165",
+      "source_name": "2×2 interferometric kernel",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TIME;TOM.PHI;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M166",
+      "source_name": "Balanced detection",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M167",
+      "source_name": "Spherical-to-mode overlap",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.SPHERE;TOM.OVERLAP;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M168",
+      "source_name": "Coupled-mode evolution",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M169",
+      "source_name": "Young–Laplace curvature",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.OVERLAP;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M170",
+      "source_name": "Maxwell field boundary",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M171",
+      "source_name": "Actuation modes",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M172",
+      "source_name": "Measured B.C.E. guard",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M173",
+      "source_name": "Calibration and drift state",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M174",
+      "source_name": "Events per joule",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M175",
+      "source_name": "Optical insertion loss",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M176",
+      "source_name": "Packaging failure controls",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M177",
+      "source_name": "Digital commit sidecar",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.LINEAGE;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M178",
+      "source_name": "Fixed-function support engine",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M179",
+      "source_name": "Compatibility mask engine",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M180",
+      "source_name": "Event FIFO and lineage commit",
+      "source_status": "TRANSLATE",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.LINEAGE;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M181",
+      "source_name": "Fluidic threshold/reset endpoint",
+      "source_status": "BOUNDED",
+      "tomagi_mapping": "TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M182",
+      "source_name": "Explicit topology transfer map",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.HINGE;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M183",
+      "source_name": "Failure/kill criteria",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.PROJECT",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M184",
+      "source_name": "100% does not ordinarily equal 36",
+      "source_status": "CORRECTED",
+      "tomagi_mapping": "TOM.TRACE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M185",
+      "source_name": "100101 versus 100100 inconsistency",
+      "source_status": "CORRECTED",
+      "tomagi_mapping": "TOM.TRACE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M186",
+      "source_name": "Information entropy is not automatically heat",
+      "source_status": "REJECT",
+      "tomagi_mapping": "TOM.TRACE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M187",
+      "source_name": "Absolute single vacuum claim",
+      "source_status": "CORRECTED",
+      "tomagi_mapping": "TOM.TRACE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M188",
+      "source_name": "Zero-cost chromatic correction",
+      "source_status": "REJECT",
+      "tomagi_mapping": "TOM.PROJECT;TOM.TRACE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M189",
+      "source_name": "Perfect alias elimination",
+      "source_status": "REJECT",
+      "tomagi_mapping": "TOM.TRACE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M190",
+      "source_name": "Universal O(1)",
+      "source_status": "BOUNDED",
+      "tomagi_mapping": "TOM.BRANCH;TOM.TRANSITION;TOM.TRACE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M191",
+      "source_name": "Zero memory/latency/heat",
+      "source_status": "REJECT",
+      "tomagi_mapping": "TOM.TRACE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M192",
+      "source_name": "Perfect determinism/exact chaos",
+      "source_status": "REJECT",
+      "tomagi_mapping": "TOM.LINEAGE;TOM.TRACE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M193",
+      "source_name": "One bit as complete state",
+      "source_status": "REJECT",
+      "tomagi_mapping": "TOM.BRANCH;TOM.LINEAGE;TOM.TRACE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M194",
+      "source_name": "No broad phase ever",
+      "source_status": "CORRECTED",
+      "tomagi_mapping": "TOM.TIME;TOM.PHI;TOM.TRACE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M195",
+      "source_name": "General AI/world replacement",
+      "source_status": "REJECT",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.TRACE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M196",
+      "source_name": "Biological one-bit equivalence",
+      "source_status": "DEMOTE",
+      "tomagi_mapping": "TOM.PARITY;TOM.TRACE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M197",
+      "source_name": "Physical-GPU benchmark boundary",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRACE",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M198",
+      "source_name": "Native device-clock L2 boundary",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M199",
+      "source_name": "Native CUDA L2 cycle control",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M200",
+      "source_name": "Native CUDA L2 concurrency curve",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M201",
+      "source_name": "Native CUDA texture-path capacity control",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M202",
+      "source_name": "Dense 6-bit CUDA log-LUT packing",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M203",
+      "source_name": "Native CUDA sparse-stride effective residency",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M204",
+      "source_name": "Packed-LUT neighborhood occupancy curve",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M205",
+      "source_name": "Sparse-LUT residency decomposition",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M206",
+      "source_name": "Sparse-LUT page-spaced address reach",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M207",
+      "source_name": "Sparse-LUT exact-stride alias control",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M208",
+      "source_name": "VMM-isolated virtual address reach",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M209",
+      "source_name": "Content-sensitive CUDA VMM compression",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M210",
+      "source_name": "Constant-pattern CUDA VMM compression",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-G:knowledge_catalog_1.1",
+      "source_id": "M211",
+      "source_name": "Zero-sentinel texture validation guard",
+      "source_status": "RETAIN",
+      "tomagi_mapping": "TOM.TIME;TOM.PHI;TOM.TRANSITION;TOM.BACKEND.GPU",
+      "role": "condensed source mechanism"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.profile.packed-swept-cone-v1",
+      "source_name": "packed SCLP profile",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.QUERY;TOM.CONE;TOM.LOGPOLAR",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.type.symbol-separation-v1",
+      "source_name": "overloaded-symbol separation",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.PHI;TOM.TIME",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.type.lowercase-phi-circle-v1",
+      "source_name": "lower-case phi as S1 coordinate",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.PHI",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.type.delta-family-v1",
+      "source_name": "typed delta family",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.DELTA1;TOM.DELTA2",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.type.evidence-boundary-v1",
+      "source_name": "source/normalization boundary",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.TRACE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.geometry.cone-slant-angle-v1",
+      "source_name": "cone from slant length and half-angle",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.CONE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.geometry.finite-cone-sdf-v1",
+      "source_name": "exact finite-cone signed distance",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.CONE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.geometry.cone-relation-class-v1",
+      "source_name": "three-state cone relation",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.CONE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.geometry.sphere-sdf-v1",
+      "source_name": "sphere relation",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.SPHERE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.geometry.paired-sphere-support-v1",
+      "source_name": "two-sphere support pair",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.SPHERE;TOM.OVERLAP",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.sweep.translation-family-v1",
+      "source_name": "rigid translational cone family",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.SWEEP",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.sweep.lipschitz-interval-v1",
+      "source_name": "certified sweep interval",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.SWEEP",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.sweep.zero-tangent-projector-v1",
+      "source_name": "zero-surface tangent projection",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.SDF0;TOM.PROJECT",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.logpolar.chart-v1",
+      "source_name": "log-polar chart",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.LOGPOLAR",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.logpolar.core-v1",
+      "source_name": "explicit origin core",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.LOGPOLAR",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.logpolar.metric-v1",
+      "source_name": "conformal metric tensor",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.LOGPOLAR",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.logpolar.exact-radial-step-v1",
+      "source_name": "exact local radial increment",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.LOGPOLAR",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.logpolar.jacobian-v1",
+      "source_name": "log-polar Jacobian",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.LOGPOLAR;TOM.KIN2",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.logpolar.velocity-v1",
+      "source_name": "velocity transform",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.DELTA1;TOM.KIN2",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.logpolar.acceleration-v1",
+      "source_name": "change-of-change transform",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.DELTA2;TOM.KIN2",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.logpolar.gradient-v1",
+      "source_name": "gradient covector transform",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.LOGPOLAR",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.jitter.deterministic-bit-v1",
+      "source_name": "deterministic one-bit jitter",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.JIT1",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.jitter.interval-guard-v1",
+      "source_name": "jitter interval certificate",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.JIT1",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.time.phase-clock-v1",
+      "source_name": "linear-time phase clock",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.TIME",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.time.winding-lineage-v1",
+      "source_name": "winding lineage",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.TIME;TOM.LINEAGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.topology.source-half-turn-v0",
+      "source_name": "source half-turn bundle twist",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.MOBIUS",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.topology.klein-reflection-v1",
+      "source_name": "reflective Klein radial gluing",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.KLEIN",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.topology.tangent-chirality-v1",
+      "source_name": "tangent chirality map",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.KLEIN;TOM.HINGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.topology.wrap-event-v1",
+      "source_name": "topological wrap event",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.KLEIN;TOM.TRANSITION",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.hinge.state-v1",
+      "source_name": "hinge state",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.PHI;TOM.HINGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.hinge.torque-model-v1",
+      "source_name": "optional torque model",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.KIN2",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.constraint.row-release-v1",
+      "source_name": "missing-shackle row deletion",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.HINGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.constraint.nullity-gain-v1",
+      "source_name": "freedom-gain certificate",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.HINGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.branch.binary-guard-v1",
+      "source_name": "binary guard branch",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.BRANCH",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.branch.no-chaos-inference-v1",
+      "source_name": "deterministic binary branch",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.BRANCH;TOM.TRACE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.grammar.bounded-binary-lsystem-v1",
+      "source_name": "bounded binary parametric L-system",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.LSYS",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.grammar.chirality-automorphism-v1",
+      "source_name": "chirality turn automorphism",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.LSYS;TOM.HINGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.packing.quantize-20-18-14-12-v1",
+      "source_name": "20/18/14/12 quantizer",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.KEY.C",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.packing.contiguous-key-v1",
+      "source_name": "contiguous field key",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.KEY.C",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.packing.morton-key-v1",
+      "source_name": "MSB round-robin Morton key",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.KEY.M",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.packing.layout-separation-v1",
+      "source_name": "key-layout separation",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.KEY.C;TOM.KEY.M",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.index.prefix-refinement-v1",
+      "source_name": "radix prefix refinement",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.RADIX",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.index.radix-trie-v1",
+      "source_name": "radix-2 trie",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.RADIX",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.index.one-bit-payload-v1",
+      "source_name": "one-bit payload",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.PARITY;TOM.BRANCH",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.index.sparse-presence-accounting-v1",
+      "source_name": "sparse presence accounting",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.FETCH",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.metrics.cacheline-eight-keys-v1",
+      "source_name": "eight raw keys per cache line",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.BACKEND.GPU",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.metrics.nominal-width-audit-v1",
+      "source_name": "nominal width audit",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.TRACE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.metrics.finite-capacity-v1",
+      "source_name": "finite 2^64 key capacity",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.KEY.C",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.query.direct-lookup-bound-v1",
+      "source_name": "direct lookup",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.FETCH;TOM.QUERY",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-B:SCLP-3.6.2",
+      "source_id": "sclp362.query.ugts-handoff-v1",
+      "source_name": "UGTS handoff",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.TRANSITION;TOM.LINEAGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-01",
+      "source_name": "Literal definition node",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.DEF",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-02",
+      "source_name": "Content-addressed definition",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.DEF",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-03",
+      "source_name": "Explicit dependency edge",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.REF",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-04",
+      "source_name": "Versioned namespace",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.DEF",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-05",
+      "source_name": "Definition-instance separation",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.DEF",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-06",
+      "source_name": "Acyclic resolution rule",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.REF",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-07",
+      "source_name": "Typed implicit-field sign",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.SDF0",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-08",
+      "source_name": "Exact-SDF capability flag",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.SDF0",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-09",
+      "source_name": "Parametric curve and sweep",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.SWEEP",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-10",
+      "source_name": "Pulse polygon embedding",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.PULSE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-11",
+      "source_name": "Radix shell chart",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.RADIX;TOM.LOGPOLAR",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-12",
+      "source_name": "Log-polar core chart",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.LOGPOLAR",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-13",
+      "source_name": "Explicit quotient/gluing map",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.KLEIN;TOM.MOBIUS",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-14",
+      "source_name": "Sheet-aware co-location",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.HINGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-15",
+      "source_name": "Orientation transport",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.HINGE;TOM.KLEIN",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-16",
+      "source_name": "Port and branch routing",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.BRANCH",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-17",
+      "source_name": "Split-merge lineage",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.LINEAGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-18",
+      "source_name": "Guarded topology change",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.TRANSITION",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-19",
+      "source_name": "Generic hinge tuple",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.HINGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-20",
+      "source_name": "Continuous planar hinge",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.HINGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-21",
+      "source_name": "Discrete parity hinge",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.PARITY;TOM.HINGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-22",
+      "source_name": "Connector hinge",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.HINGE;TOM.OVERLAP",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-23",
+      "source_name": "Non-commutative hinge chain",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.SEQ;TOM.HINGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-24",
+      "source_name": "Invariant subspace contract",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.HINGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-25",
+      "source_name": "Bounded Dutch number profile",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.RULE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-26",
+      "source_name": "Syllable-pulse operator",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.PULSE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-27",
+      "source_name": "Teen suffix hinge",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.HINGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-28",
+      "source_name": "En connector hinge",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.HINGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-29",
+      "source_name": "Spoken-place permutation",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.HINGE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-30",
+      "source_name": "Feature-count comparison",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.ACTIVE;TOM.PULSE;TOM.RULE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-31",
+      "source_name": "Phase-ordered evaluator",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.SEQ;TOM.QUERY",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-32",
+      "source_name": "Support-compatibility-guard discipline",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.CONE;TOM.QUERY",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-33",
+      "source_name": "Deterministic trace",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.TRACE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-34",
+      "source_name": "Evidence disposition",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.TRACE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-35",
+      "source_name": "Unknown-reference and cycle rejection",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.REF",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-C:UGTS-3.6",
+      "source_id": "K36-36",
+      "source_name": "Package verification contract",
+      "source_status": "source catalog",
+      "tomagi_mapping": "TOM.TRACE",
+      "role": "condensed source operator"
+    },
+    {
+      "source": "SRC-A:literal-chain",
+      "source_id": "A01",
+      "source_name": "SDF0 packed inside the log-polar LUT",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.SDF0;TOM.FETCH;TOM.KEY.C",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-A:literal-chain",
+      "source_id": "A02",
+      "source_name": "one-bit parity as the first branch-producing operator",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.PARITY;TOM.JIT1;TOM.BRANCH",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-A:literal-chain",
+      "source_id": "A03",
+      "source_name": "kinematic calculus stored in the LUT",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.DELTA1;TOM.DELTA2;TOM.KIN2",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-A:literal-chain",
+      "source_id": "A04",
+      "source_name": "analytic cone sweep followed by pyramid/circle/sphere projection",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.CONE;TOM.SWEEP;TOM.PROJECT",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-A:literal-chain",
+      "source_id": "A05",
+      "source_name": "binary L-system routing after parity and before projection",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.LSYS;TOM.BRANCH;TOM.PROJECT",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-A:literal-chain",
+      "source_id": "A06",
+      "source_name": "strict operator precedence of the chained prompt",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.SEQ;TOM.QUERY",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-D:ben-burger",
+      "source_id": "D01",
+      "source_name": "zero-based offset versus one-based ordinal",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.INDEX0",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-D:ben-burger",
+      "source_id": "D02",
+      "source_name": "split lower-case phi / double-D fold around a straight hinge",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.PHI;TOM.HINGE",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-D:ben-burger",
+      "source_id": "D03",
+      "source_name": "slight overlap interpreted as shared lens domain",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.OVERLAP",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-D:ben-burger",
+      "source_id": "D04",
+      "source_name": "one-dimensional timeline as an address sequence",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.TIME;TOM.INDEX0",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-E:19-dialogue",
+      "source_id": "E01",
+      "source_name": "radix digit thresholds at powers of the base",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.RADIX",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-E:19-dialogue",
+      "source_id": "E02",
+      "source_name": "19 equals binary 10011 with active positions 0,1,4",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.ACTIVE",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-E:19-dialogue",
+      "source_id": "E03",
+      "source_name": "three declared Dutch segments map to three pulses",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.PULSE",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-E:19-dialogue",
+      "source_id": "E04",
+      "source_name": "three pulses projected as a triangle while numeric identity remains 19",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.PULSE;TOM.PROJECT",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-E:19-dialogue",
+      "source_id": "E05",
+      "source_name": "log-encoded polar LUT with one-bit jitter and kinematic change-of-change",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.LOGPOLAR;TOM.JIT1;TOM.KIN2",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-E:19-dialogue",
+      "source_id": "E06",
+      "source_name": "Klein non-orientable wrap as chirality transport",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.KLEIN;TOM.HINGE",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-F:chronological-synthesis",
+      "source_id": "F01",
+      "source_name": "finite grammar generates a directly queryable relation state",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.DEF;TOM.LSYS;TOM.QUERY",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-F:chronological-synthesis",
+      "source_id": "F02",
+      "source_name": "local spherical or radial-angular supports organize relevance",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.SPHERE;TOM.CONE;TOM.LOGPOLAR",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-F:chronological-synthesis",
+      "source_id": "F03",
+      "source_name": "compatibility and relation crossing select the next transition",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.RULE;TOM.TRANSITION",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-F:chronological-synthesis",
+      "source_id": "F04",
+      "source_name": "identity persists by lineage rather than instantaneous coordinates",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.LINEAGE",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-F:chronological-synthesis",
+      "source_id": "F05",
+      "source_name": "projection is downstream and non-authoritative",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.PROJECT",
+      "role": "explicit document crosswalk"
+    },
+    {
+      "source": "SRC-F:chronological-synthesis",
+      "source_id": "F06",
+      "source_name": "state-at-time and next-event are primary query forms",
+      "source_status": "direct document motif",
+      "tomagi_mapping": "TOM.QUERY;TOM.TRACE",
+      "role": "explicit document crosswalk"
+    }
+  ]
+}

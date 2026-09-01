@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.16)
+project(nhdf_ccd_v05 LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+add_library(nhdf_ccd_v05 src/nhdf_ccd_v05.cpp)
+target_include_directories(nhdf_ccd_v05 PUBLIC include)
+add_executable(nhdf_ccd_v05_smoke tests/smoke.cpp)
+target_link_libraries(nhdf_ccd_v05_smoke PRIVATE nhdf_ccd_v05)

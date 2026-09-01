@@ -1,0 +1,53 @@
+{
+  "schema": "TOMAGI-STATUS-1.0",
+  "flags": [
+    {
+      "bit": 0,
+      "mask": "0x00000001",
+      "name": "HALT",
+      "meaning": "execution has terminated"
+    },
+    {
+      "bit": 1,
+      "mask": "0x00000002",
+      "name": "ZERO",
+      "meaning": "literal SDF0 relation was evaluated"
+    },
+    {
+      "bit": 2,
+      "mask": "0x00000004",
+      "name": "WRAP",
+      "meaning": "odd topological radial wrap occurred"
+    },
+    {
+      "bit": 3,
+      "mask": "0x00000008",
+      "name": "EMIT",
+      "meaning": "an output token was emitted"
+    },
+    {
+      "bit": 4,
+      "mask": "0x00000010",
+      "name": "CONE",
+      "meaning": "last cone relation admitted the state"
+    },
+    {
+      "bit": 5,
+      "mask": "0x00000020",
+      "name": "SPHERE",
+      "meaning": "last sphere relation admitted the state"
+    },
+    {
+      "bit": 6,
+      "mask": "0x00000040",
+      "name": "REKEY_MISS",
+      "meaning": "address-derived lookup missed and explicit successor was used"
+    },
+    {
+      "bit": 7,
+      "mask": "0x00000080",
+      "name": "PHI_WRAP",
+      "meaning": "lower-case phi crossed one or more modular turns"
+    }
+  ]
+}

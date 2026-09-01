@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tom.invalid/schema/tom-event-certificate-0.1.json",
+  "title": "TOM exact discrete event certificate 0.1",
+  "type": "object",
+  "required": [
+    "schema",
+    "source_commit",
+    "query",
+    "event_tick",
+    "relation_id",
+    "relation_hash",
+    "previous_residual",
+    "residual",
+    "support",
+    "compatibility",
+    "solver_status",
+    "pre_state",
+    "event_state",
+    "post_state",
+    "content_hash"
+  ],
+  "properties": {
+    "schema": {"const": "TOM-EVENT-CERTIFICATE-0.1"},
+    "source_commit": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "query": {"type": "object"},
+    "event_tick": {"type": "integer", "minimum": 1},
+    "relation_id": {"type": "string"},
+    "relation_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "previous_residual": {},
+    "residual": {},
+    "support": {"type": "array"},
+    "compatibility": {"type": "array"},
+    "solver_status": {"const": "exact_discrete_scan"},
+    "pre_state": {"type": "object"},
+    "event_state": {"type": "object"},
+    "post_state": {"type": "object"},
+    "content_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  }
+}

@@ -1,0 +1,487 @@
+{
+  "blobs": [
+    {
+      "id": "blob:counter-trajectory.tmg",
+      "media_type": "application/x-tomagi",
+      "path": "counter_program.tmg"
+    }
+  ],
+  "message": "Initialize the TOM World & Query Kernel 0.1 counter benchmark",
+  "provenance": {
+    "basis": "TOM-SRS 1.0 minimum native queries and bounded grammar acceptance tests",
+    "date": "2026-09-01"
+  },
+  "records": [
+    {
+      "dependencies": [],
+      "id": "definition:world-query-kernel",
+      "payload": {
+        "capabilities": [
+          "SDF0@Def",
+          "content_addressing",
+          "lineage"
+        ],
+        "codomain": "typed_query_certificates",
+        "domain": "content_addressed_world",
+        "kind": "query_kernel",
+        "operation": "native.query.kernel",
+        "order": 0,
+        "parameters": {
+          "queries": [
+            "definition_at",
+            "verify_definition",
+            "state_at",
+            "next_event",
+            "events_in_support",
+            "compatible",
+            "trace",
+            "reconstruct"
+          ],
+          "solver_profile": "exact_discrete_finite_horizon"
+        },
+        "phase": "resolve"
+      },
+      "provenance": {
+        "source": "TOM-SRS 1.0 sections 4, 7, 8, 10 and 11"
+      },
+      "record_type": "definition",
+      "schema": "TOM-WORLD-RECORD-0.1",
+      "version": 1
+    },
+    {
+      "dependencies": [
+        "definition:world-query-kernel"
+      ],
+      "id": "definition:counter-trajectory",
+      "payload": {
+        "capabilities": [
+          "state_at",
+          "trace"
+        ],
+        "codomain": "State64",
+        "domain": "State64",
+        "kind": "tomagi_trajectory",
+        "operation": "tomagi.replay",
+        "order": 0,
+        "parameters": {
+          "program_blob_id": "blob:counter-trajectory.tmg",
+          "step_meaning": "rho advances by one because vrho=1 and KIN2 acceleration is zero"
+        },
+        "phase": "construct"
+      },
+      "provenance": {
+        "source": "examples/world_counter/counter_program.source.json"
+      },
+      "record_type": "definition",
+      "schema": "TOM-WORLD-RECORD-0.1",
+      "version": 1
+    },
+    {
+      "dependencies": [
+        "definition:counter-trajectory"
+      ],
+      "id": "instance:counter",
+      "payload": {
+        "context": {
+          "declared_target_rho": 5,
+          "domain": "counter-benchmark",
+          "role": "primary"
+        },
+        "program_blob_id": "blob:counter-trajectory.tmg"
+      },
+      "provenance": {
+        "source": "literal starter benchmark"
+      },
+      "record_type": "instance",
+      "schema": "TOM-WORLD-RECORD-0.1",
+      "version": 1
+    },
+    {
+      "dependencies": [
+        "definition:counter-trajectory"
+      ],
+      "id": "instance:peer",
+      "payload": {
+        "context": {
+          "domain": "counter-benchmark",
+          "role": "peer"
+        },
+        "initial_state": {
+          "orientation": 0,
+          "rho": 2,
+          "sheet": 0,
+          "vrho": 1
+        },
+        "program_blob_id": "blob:counter-trajectory.tmg"
+      },
+      "provenance": {
+        "source": "literal starter benchmark"
+      },
+      "record_type": "instance",
+      "schema": "TOM-WORLD-RECORD-0.1",
+      "version": 1
+    },
+    {
+      "dependencies": [
+        "definition:counter-trajectory"
+      ],
+      "id": "instance:odd-peer",
+      "payload": {
+        "context": {
+          "domain": "counter-benchmark",
+          "role": "incompatible-peer"
+        },
+        "initial_state": {
+          "orientation": 1,
+          "rho": 2,
+          "sheet": 0,
+          "vrho": 1,
+          "vtick": 1
+        },
+        "program_blob_id": "blob:counter-trajectory.tmg"
+      },
+      "provenance": {
+        "source": "literal starter benchmark negative compatibility case"
+      },
+      "record_type": "instance",
+      "schema": "TOM-WORLD-RECORD-0.1",
+      "version": 1
+    },
+    {
+      "dependencies": [
+        "instance:counter"
+      ],
+      "id": "support:counter-rho-window",
+      "payload": {
+        "expression": {
+          "args": [
+            {
+              "name": "rho",
+              "op": "field",
+              "source": "state"
+            },
+            {
+              "op": "const",
+              "value": 0
+            },
+            {
+              "op": "const",
+              "value": 10
+            }
+          ],
+          "op": "in_closed_interval"
+        },
+        "meaning": "Only locally relevant counter states rho in [0,10] are admitted."
+      },
+      "provenance": {
+        "source": "TOM-SRS support gate"
+      },
+      "record_type": "support",
+      "schema": "TOM-WORLD-RECORD-0.1",
+      "version": 1
+    },
+    {
+      "dependencies": [
+        "instance:counter"
+      ],
+      "id": "compatibility:counter-event-topology",
+      "payload": {
+        "expression": {
+          "args": [
+            {
+              "args": [
+                {
+                  "name": "orientation",
+                  "op": "field",
+                  "source": "state"
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ],
+              "op": "eq"
+            },
+            {
+              "args": [
+                {
+                  "name": "sheet",
+                  "op": "field",
+                  "source": "state"
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ],
+              "op": "eq"
+            }
+          ],
+          "op": "all"
+        },
+        "meaning": "The event is compatible only on orientation 0, sheet 0."
+      },
+      "provenance": {
+        "source": "TOM-SRS compatibility gate"
+      },
+      "record_type": "compatibility",
+      "schema": "TOM-WORLD-RECORD-0.1",
+      "version": 1
+    },
+    {
+      "dependencies": [
+        "instance:counter",
+        "instance:peer"
+      ],
+      "id": "compatibility:same-topology",
+      "payload": {
+        "expression": {
+          "args": [
+            {
+              "args": [
+                {
+                  "name": "orientation",
+                  "op": "field",
+                  "source": "left"
+                },
+                {
+                  "name": "orientation",
+                  "op": "field",
+                  "source": "right"
+                }
+              ],
+              "op": "eq"
+            },
+            {
+              "args": [
+                {
+                  "name": "sheet",
+                  "op": "field",
+                  "source": "left"
+                },
+                {
+                  "name": "sheet",
+                  "op": "field",
+                  "source": "right"
+                }
+              ],
+              "op": "eq"
+            }
+          ],
+          "op": "all"
+        },
+        "meaning": "Two instances are compatible when orientation and sheet agree."
+      },
+      "provenance": {
+        "source": "TOM-SRS compatible(q1,q2) starter"
+      },
+      "record_type": "compatibility",
+      "schema": "TOM-WORLD-RECORD-0.1",
+      "version": 1
+    },
+    {
+      "dependencies": [
+        "instance:counter",
+        "support:counter-rho-window",
+        "compatibility:counter-event-topology"
+      ],
+      "id": "relation:counter-rho-equals-five",
+      "payload": {
+        "compatibility_ids": [
+          "compatibility:counter-event-topology"
+        ],
+        "event_spec_id": "event-spec:counter-rho-five",
+        "expression": {
+          "args": [
+            {
+              "name": "rho",
+              "op": "field",
+              "source": "state"
+            },
+            {
+              "op": "const",
+              "value": 5
+            }
+          ],
+          "op": "sub"
+        },
+        "instance_id": "instance:counter",
+        "priority": 0,
+        "support_ids": [
+          "support:counter-rho-window"
+        ],
+        "trigger": "enter_zero",
+        "zero_relation": {
+          "codomain": "signed_i64_residual",
+          "domain": "State64.rho",
+          "interface": "SDF0@Def",
+          "zero_locus": "rho = 5"
+        },
+        "zero_test": "equal_zero"
+      },
+      "provenance": {
+        "source": "literal exact discrete zero relation"
+      },
+      "record_type": "relation",
+      "schema": "TOM-WORLD-RECORD-0.1",
+      "version": 1
+    },
+    {
+      "dependencies": [
+        "relation:counter-rho-equals-five"
+      ],
+      "id": "transition:counter-mark-five",
+      "payload": {
+        "lineage_salt": 1129601077,
+        "meaning": "Atomically mark the verified rho=5 event in State64 output and branch.",
+        "normalize_periodic": true,
+        "set": {
+          "branch": {
+            "op": "const",
+            "value": 1
+          },
+          "output": {
+            "op": "const",
+            "value": 5
+          }
+        }
+      },
+      "provenance": {
+        "source": "TOM-SRS atomic transition"
+      },
+      "record_type": "transition",
+      "schema": "TOM-WORLD-RECORD-0.1",
+      "version": 1
+    },
+    {
+      "dependencies": [
+        "relation:counter-rho-equals-five",
+        "transition:counter-mark-five"
+      ],
+      "id": "event-spec:counter-rho-five",
+      "payload": {
+        "confidence": {
+          "denominator": 1,
+          "kind": "declared_exact_discrete",
+          "numerator": 1
+        },
+        "relation_id": "relation:counter-rho-equals-five",
+        "required_solver_status": "exact_discrete_scan",
+        "route": "counter.target.reached",
+        "transition_id": "transition:counter-mark-five"
+      },
+      "provenance": {
+        "source": "TOM-SRS verified event record"
+      },
+      "record_type": "event_spec",
+      "schema": "TOM-WORLD-RECORD-0.1",
+      "version": 1
+    },
+    {
+      "dependencies": [
+        "definition:world-query-kernel"
+      ],
+      "id": "grammar:bounded-binary-branch",
+      "payload": {
+        "axiom": [
+          "F"
+        ],
+        "branch_bits": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0
+        ],
+        "branch_policy": "strict",
+        "budgets": {
+          "max_depth": 3,
+          "max_stack": 4,
+          "max_symbols": 64
+        },
+        "meaning": "Finite branch-selected L-system starter; no dependency cycle or unbounded recursion.",
+        "productions": {
+          "F": {
+            "one": [
+              "F",
+              "[",
+              "-",
+              "F",
+              "]"
+            ],
+            "zero": [
+              "F",
+              "[",
+              "+",
+              "F",
+              "]"
+            ]
+          }
+        }
+      },
+      "provenance": {
+        "source": "TOM-SRS bounded binary grammar"
+      },
+      "record_type": "grammar",
+      "schema": "TOM-WORLD-RECORD-0.1",
+      "version": 1
+    },
+    {
+      "dependencies": [
+        "instance:counter"
+      ],
+      "id": "observation:counter-target-five",
+      "payload": {
+        "observed_claim": "The starter task asks for the first discrete state with rho equal to 5.",
+        "source_class": "declared_benchmark",
+        "uncertainty": {
+          "kind": "none_declared"
+        }
+      },
+      "provenance": {
+        "source": "literal benchmark declaration"
+      },
+      "record_type": "observation",
+      "schema": "TOM-WORLD-RECORD-0.1",
+      "version": 1
+    },
+    {
+      "dependencies": [
+        "observation:counter-target-five",
+        "relation:counter-rho-equals-five"
+      ],
+      "id": "hypothesis:counter-linear-arrival",
+      "payload": {
+        "claim": "The exact discrete next event after state index 0 occurs at index 5.",
+        "status": "candidate_to_be_tested_by_validation",
+        "verification_query": "next_event(instance:counter, after_tick=0, horizon=8)"
+      },
+      "provenance": {
+        "source": "starter hypothesis; not an autonomous learning result"
+      },
+      "record_type": "hypothesis",
+      "schema": "TOM-WORLD-RECORD-0.1",
+      "version": 1
+    },
+    {
+      "dependencies": [
+        "relation:counter-rho-equals-five"
+      ],
+      "id": "goal:find-counter-five",
+      "payload": {
+        "horizon": 8,
+        "objective": "Return the earliest verified event where relation:counter-rho-equals-five reaches zero.",
+        "success_relation_id": "relation:counter-rho-equals-five"
+      },
+      "provenance": {
+        "source": "minimal planning-facing goal record"
+      },
+      "record_type": "goal",
+      "schema": "TOM-WORLD-RECORD-0.1",
+      "version": 1
+    }
+  ],
+  "schema": "TOM-WORLD-SOURCE-0.1"
+}

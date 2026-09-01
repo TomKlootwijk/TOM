@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/mnt/data/nhdf_ccd_v0_5/12_v0_5_upgrade/benchmarks/run_validation.py", line 367, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/data/nhdf_ccd_v0_5/12_v0_5_upgrade/benchmarks/run_validation.py", line 316, in main
+    external, vf_records, ee_records=external_corpus()
+                                     ~~~~~~~~~~~~~~~^^
+  File "/mnt/data/nhdf_ccd_v0_5/12_v0_5_upgrade/benchmarks/run_validation.py", line 212, in external_corpus
+    vf=load_sample_queries(vf_path,"vertex-face")
+  File "/mnt/data/nhdf_ccd_v0_5/12_v0_5_upgrade/src/nhdf_ccd_v05/corpus.py", line 62, in load_sample_queries
+    rows = _load_rows(path)
+  File "/mnt/data/nhdf_ccd_v0_5/12_v0_5_upgrade/src/nhdf_ccd_v05/corpus.py", line 46, in _load_rows
+    with Path(path).open("r", newline="", encoding="utf-8") as f:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/nhdf_ccd_v0_5/12_v0_5_upgrade/corpus/vendor/sample_queries/erleben-sliding-spike/vertex-face/data_0_0.csv'

@@ -1,0 +1,46 @@
+{
+  "certificates": {
+    "compatible": "sha256:0ec5d6d192b10409d66452caa45462ce915ad6ab29644fe11391d10d28d7154b",
+    "events_in_support": "sha256:64d7c1f7e825dc1215eec81d594c354c34ae99987f99263d9057a30a15d5beaf",
+    "grammar": "sha256:b510331537e1f945819cc6d5fbd58fd1aa177df7cff32501fabf2380101179c3",
+    "incompatible": "sha256:0a314b8af57647ec4e957eb2b2cf5403df675a3c4f2b7a12ba32ac4a1ccb4226",
+    "lineage_reconstruction": "sha256:8bfe3a38a0f0064c097d8332df010b513d87914dc38e0b5956707cb006348c56",
+    "next_event": "sha256:6b476d58ad63cc2aca073f28e06759812255d53a4f1f521777907e15fea6de82",
+    "reconstruction": "sha256:8bfe3a38a0f0064c097d8332df010b513d87914dc38e0b5956707cb006348c56",
+    "state_at_3": "sha256:9cf702899d4e197910b98a79ae507e60fa443a35e3b10f078d00497021c3d6b2"
+  },
+  "checks": {
+    "compatibility_passed": true,
+    "direct_reconstruction": true,
+    "event_record_count": true,
+    "events_in_support": true,
+    "grammar_depth_3": true,
+    "lineage_reconstruction": true,
+    "lineage_record_count": true,
+    "next_event_tick": true,
+    "next_event_zero": true,
+    "pair_compatible": true,
+    "pair_incompatible": true,
+    "python_c_trace_equal": true,
+    "seed_valid": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+    "state_at_3": true,
+    "support_passed": true
+  },
+  "content_hash": "sha256:8559efdfe25f8f7ded1f2fdec4f9e0f0303d9aaaf038e42bdcb0aeef4be0834b",
+  "program": {
+    "compiled_source_sha256": "sha256:fe4b969762571d41a752c8486ae6d4b6a52612ef9edd93ec43b4eda463dd3cb9",
+    "source_sha256": "sha256:6b8ebc6608d91eebe18bcd8538d0e0c4d1426ed8ec23ff2f8afea6f6940bb546",
+    "tmg_bytes": 176,
+    "tmg_sha256": "sha256:6fede49e0e4e1df31cafef602e42a3511984b5740d1643282ee37a32a9f5c704"
+  },
+  "schema": "TOM-WORLD-COUNTER-BENCHMARK-MANIFEST-0.1",
+  "seed_sha256": "sha256:d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+  "status": "pass",
+  "world": {
+    "event_commit": "sha256:96d2c98fb4ae5479d9219701995f79d267947848700a75adb0f6cebd1987e5cb",
+    "head": "sha256:96d2c98fb4ae5479d9219701995f79d267947848700a75adb0f6cebd1987e5cb",
+    "initial_commit": "sha256:eb21971cef3c0c24e2880e7427f88db530d6f79b1dc0a7957e42ff86140ef593",
+    "source_sha256": "sha256:19f704ac8536891906a5d3274c8f81d9ac87a8fedb566d421b52d262b1a1a3eb",
+    "transaction_sha256": "sha256:1ca91095732c6220b3f7a4786a2c248cf872f23b37fe98c2a4bd8fb3ed89e802"
+  }
+}

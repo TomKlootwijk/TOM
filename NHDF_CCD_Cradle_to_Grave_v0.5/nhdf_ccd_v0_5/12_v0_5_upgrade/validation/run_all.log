@@ -1,0 +1,49 @@
+test_constructed_edge_edge_crossings (test_ccd.CCDTests.test_constructed_edge_edge_crossings) ... ok
+test_constructed_vertex_face_crossings (test_ccd.CCDTests.test_constructed_vertex_face_crossings) ... ok
+test_edge_edge_miss (test_ccd.CCDTests.test_edge_edge_miss) ... ok
+test_edge_edge_tunnelling (test_ccd.CCDTests.test_edge_edge_tunnelling) ... ok
+test_persistent_coplanar_fallback_hit (test_ccd.CCDTests.test_persistent_coplanar_fallback_hit) ... ok
+test_sphere_sphere (test_ccd.CCDTests.test_sphere_sphere) ... ok
+test_vertex_face_initial_overlap (test_ccd.CCDTests.test_vertex_face_initial_overlap) ... ok
+test_vertex_face_outside_miss (test_ccd.CCDTests.test_vertex_face_outside_miss) ... ok
+test_vertex_face_tunnelling (test_ccd.CCDTests.test_vertex_face_tunnelling) ... ok
+test_digest_determinism (test_certificate.CertificateTests.test_digest_determinism) ... ok
+test_invalid_interval (test_certificate.CertificateTests.test_invalid_interval) ... ok
+test_json_roundtrip_shape (test_certificate.CertificateTests.test_json_roundtrip_shape) ... ok
+test_parse_vf_block (test_corpus.CorpusTests.test_parse_vf_block) ... ok
+test_reject_incomplete (test_corpus.CorpusTests.test_reject_incomplete) ... ok
+test_reject_label_mismatch (test_corpus.CorpusTests.test_reject_label_mismatch) ... ok
+test_advance_step (test_events_rigid_response.EventRigidResponseTests.test_advance_step) ... ok
+test_event_transitive_grouping (test_events_rigid_response.EventRigidResponseTests.test_event_transitive_grouping) ... ok
+test_frictionless_impulse_equal_masses (test_events_rigid_response.EventRigidResponseTests.test_frictionless_impulse_equal_masses) ... ok
+test_grouping_deterministic (test_events_rigid_response.EventRigidResponseTests.test_grouping_deterministic) ... ok
+test_rigid_relative_bound (test_events_rigid_response.EventRigidResponseTests.test_rigid_relative_bound) ... ok
+test_rotational_margin (test_events_rigid_response.EventRigidResponseTests.test_rotational_margin) ... ok
+test_split_step (test_events_rigid_response.EventRigidResponseTests.test_split_step) ... ok
+test_parallel_segments (test_geometry.GeometryTests.test_parallel_segments) ... ok
+test_point_inside_triangle (test_geometry.GeometryTests.test_point_inside_triangle) ... ok
+test_point_triangle_degenerate (test_geometry.GeometryTests.test_point_triangle_degenerate) ... ok
+test_segment_crossing (test_geometry.GeometryTests.test_segment_crossing) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 0.021s
+
+OK
+Traceback (most recent call last):
+  File "/mnt/data/nhdf_ccd_v0_5/12_v0_5_upgrade/benchmarks/run_validation.py", line 367, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/data/nhdf_ccd_v0_5/12_v0_5_upgrade/benchmarks/run_validation.py", line 316, in main
+    external, vf_records, ee_records=external_corpus()
+                                     ~~~~~~~~~~~~~~~^^
+  File "/mnt/data/nhdf_ccd_v0_5/12_v0_5_upgrade/benchmarks/run_validation.py", line 212, in external_corpus
+    vf=load_sample_queries(vf_path,"vertex-face")
+  File "/mnt/data/nhdf_ccd_v0_5/12_v0_5_upgrade/src/nhdf_ccd_v05/corpus.py", line 62, in load_sample_queries
+    rows = _load_rows(path)
+  File "/mnt/data/nhdf_ccd_v0_5/12_v0_5_upgrade/src/nhdf_ccd_v05/corpus.py", line 46, in _load_rows
+    with Path(path).open("r", newline="", encoding="utf-8") as f:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/nhdf_ccd_v0_5/12_v0_5_upgrade/corpus/vendor/sample_queries/erleben-sliding-spike/vertex-face/data_0_0.csv'

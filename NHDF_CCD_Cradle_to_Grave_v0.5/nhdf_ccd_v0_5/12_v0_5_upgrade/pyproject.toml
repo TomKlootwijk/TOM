@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nhdf-ccd-v05"
+version = "0.5.0"
+description = "NHDF CCD v0.5 feature-level continuous collision detection validation package"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24"]
+license = {text = "Research release; see LICENSES.md and vendored third-party licenses"}
+authors = [{name = "Tom Klootwijk (attribution supplied in source materials)"}]
+
+[project.scripts]
+nhdf-ccd-v05 = "nhdf_ccd_v05.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

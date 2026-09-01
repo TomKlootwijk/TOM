@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tom.invalid/schema/tom-world-record-0.1.json",
+  "title": "TOM World & Query Kernel 0.1 content-addressed record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "record_type",
+    "id",
+    "version",
+    "dependencies",
+    "payload",
+    "provenance",
+    "content_hash"
+  ],
+  "properties": {
+    "schema": {"const": "TOM-WORLD-RECORD-0.1"},
+    "record_type": {
+      "enum": [
+        "definition",
+        "instance",
+        "relation",
+        "support",
+        "compatibility",
+        "transition",
+        "event_spec",
+        "grammar",
+        "observation",
+        "hypothesis",
+        "goal",
+        "policy",
+        "event",
+        "lineage"
+      ]
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$"
+    },
+    "version": {"type": "integer", "minimum": 1},
+    "dependencies": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "payload": {"type": "object"},
+    "provenance": {"type": "object"},
+    "content_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  }
+}

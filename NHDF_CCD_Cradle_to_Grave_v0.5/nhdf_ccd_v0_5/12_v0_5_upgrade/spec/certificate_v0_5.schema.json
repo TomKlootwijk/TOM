@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/nhdf-ccd/v0.5/certificate.schema.json",
+  "title": "NHDF-CCD v0.5 certificate",
+  "type": "object",
+  "required": ["status", "query_type", "method", "termination_reason", "iterations", "candidate_roots", "tolerance"],
+  "properties": {
+    "status": {"enum": ["HIT", "MISS", "INITIAL_OVERLAP", "INCONCLUSIVE", "UNSUPPORTED", "RESOURCE_EXHAUSTED", "NUMERICAL_FAILURE"]},
+    "query_type": {"type": "string", "minLength": 1},
+    "pair_id": {"type": "string"},
+    "feature_ids": {"type": "array", "items": {"type": "string"}},
+    "toi_lower": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "toi_upper": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "witness": {"type": ["object", "null"]},
+    "iterations": {"type": "integer", "minimum": 0},
+    "candidate_roots": {"type": "integer", "minimum": 0},
+    "method": {"type": "string"},
+    "termination_reason": {"type": "string"},
+    "tolerance": {"type": "number", "minimum": 0},
+    "condition_indicator": {"type": ["number", "null"]},
+    "trace": {"type": "array", "items": {"type": "object"}},
+    "metadata": {"type": "object"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"enum": ["HIT", "INITIAL_OVERLAP"]}}},
+      "then": {"required": ["toi_upper", "witness"]}
+    }
+  ],
+  "additionalProperties": false
+}

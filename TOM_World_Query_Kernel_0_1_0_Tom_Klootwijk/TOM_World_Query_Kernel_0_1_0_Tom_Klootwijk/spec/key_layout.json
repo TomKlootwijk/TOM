@@ -1,0 +1,44 @@
+{
+  "schema": "TOMAGI-KEY-LAYOUT-1.0",
+  "total_bits": 64,
+  "fields": [
+    {
+      "name": "rho",
+      "bits": 20,
+      "contiguous_range": "63:44",
+      "states": 1048576,
+      "profile_decode": "[-20,0]"
+    },
+    {
+      "name": "theta",
+      "bits": 18,
+      "contiguous_range": "43:26",
+      "states": 262144,
+      "profile_decode": "[0,2*pi)"
+    },
+    {
+      "name": "tick",
+      "bits": 14,
+      "contiguous_range": "25:12",
+      "states": 16384,
+      "profile_decode": "zero-based modular ticks"
+    },
+    {
+      "name": "phi",
+      "bits": 12,
+      "contiguous_range": "11:0",
+      "states": 4096,
+      "profile_decode": "[0,2*pi)"
+    }
+  ],
+  "contiguous_formula": "K=(q_rho<<44)|(q_theta<<26)|(q_tick<<12)|q_phi",
+  "capacity": 18446744073709551616,
+  "reference_tuple": [
+    949111,
+    0,
+    1920,
+    227
+  ],
+  "reference_contiguous": "0xe7b77000007800e3",
+  "reference_morton": "0x88823bb88099128b"
+}

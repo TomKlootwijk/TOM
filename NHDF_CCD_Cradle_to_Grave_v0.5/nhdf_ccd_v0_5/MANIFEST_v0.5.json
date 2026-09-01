@@ -1,0 +1,354 @@
+{
+  "created_utc": "2026-09-01T00:00:00Z",
+  "file_count": 68,
+  "files": [
+    {
+      "bytes": 382884,
+      "path": "00_provenance/source_pdfs_v0_5/S1_original_prompt_chain.pdf",
+      "sha256": "ede0fd37504b07fae208d1d7c32ff281b4bdc85661d2ae0b5adb5a9cf9833368"
+    },
+    {
+      "bytes": 372636,
+      "path": "00_provenance/source_pdfs_v0_5/S2_NHDF_Formal_Specification_v0_1.pdf",
+      "sha256": "801576c482b514e02f57942cf0643f2abeee4505f56bf860f4e0084af6e90975"
+    },
+    {
+      "bytes": 470176,
+      "path": "00_provenance/source_pdfs_v0_5/S3_commute_design_transcript.pdf",
+      "sha256": "a82fa50f35b69437318b89fac2bc03a94771371b2f7cb0df885325e628675c5a"
+    },
+    {
+      "bytes": 825,
+      "path": "12_v0_5_upgrade/CHANGELOG.md",
+      "sha256": "928f81d4280454cfc993caff01f667e8f09e3fb2b3b5c4bda753bee6313e3fa1"
+    },
+    {
+      "bytes": 323,
+      "path": "12_v0_5_upgrade/Makefile",
+      "sha256": "c5c23913d35727257696b2a69a6b7015a3c75eb3d345f3e3e9233beaf601aee2"
+    },
+    {
+      "bytes": 1545,
+      "path": "12_v0_5_upgrade/README.md",
+      "sha256": "46480e921c94dbc51fb4c762db73142e334ba5028b7bc5f93f7deabf57e528de"
+    },
+    {
+      "bytes": 922,
+      "path": "12_v0_5_upgrade/ROADMAP_v0_6.md",
+      "sha256": "c002d53a2b009506d88434c6c04aead9f4b2dc68914c4c001c9f52b2c0e0627e"
+    },
+    {
+      "bytes": 17949,
+      "path": "12_v0_5_upgrade/benchmarks/run_validation.py",
+      "sha256": "92ba4ab5c1d5e3720028680a84e9455d6c95468dcc21436366e8461500c3a8c7"
+    },
+    {
+      "bytes": 353,
+      "path": "12_v0_5_upgrade/cpp/CMakeLists.txt",
+      "sha256": "5e464c73a6ec660dee9976469357db8297f5b16f52d585944037b1164499b749"
+    },
+    {
+      "bytes": 1519,
+      "path": "12_v0_5_upgrade/cpp/include/nhdf_ccd_v05.hpp",
+      "sha256": "f367d9cde7293be311afd28c1918231f0680551b1d09e9c1b798c92c6087e17e"
+    },
+    {
+      "bytes": 1991,
+      "path": "12_v0_5_upgrade/cpp/src/nhdf_ccd_v05.cpp",
+      "sha256": "b930a702eb6e98a844a960d7362f70d19e1348fb783964a3bfe64f97b3d56093"
+    },
+    {
+      "bytes": 690,
+      "path": "12_v0_5_upgrade/cpp/tests/smoke.cpp",
+      "sha256": "481a2306fdf6e48f1b32f6976556968554ac7c0b6d330078b8cf0de092ff0cbf"
+    },
+    {
+      "bytes": 1485,
+      "path": "12_v0_5_upgrade/docs/adapter_mapping_update.md",
+      "sha256": "bff3559dff72696840cecd63f9cef34239de60f1e7ccef520a5875d3970b81fc"
+    },
+    {
+      "bytes": 1433,
+      "path": "12_v0_5_upgrade/docs/formal_addendum.md",
+      "sha256": "20b1b2f97f806f76c5ef6103e44ee77e3d0bfe041296c93f9b37ccf3ce414fe9"
+    },
+    {
+      "bytes": 687,
+      "path": "12_v0_5_upgrade/docs/maintenance_retirement.md",
+      "sha256": "606beff5aba66442535443236550f11c3daf17c93852936002850d9868abf5b6"
+    },
+    {
+      "bytes": 685,
+      "path": "12_v0_5_upgrade/docs/reproducibility.md",
+      "sha256": "98714c5e3dd8ccf53e9c551964cc7815bd14b8e8d32b99ae1fdd668346c28f5b"
+    },
+    {
+      "bytes": 1182,
+      "path": "12_v0_5_upgrade/docs/safety_case.md",
+      "sha256": "e7c8abda03477a998f7715bd2de52d710a2fc4e55935cffe32bd5c650d02dbd3"
+    },
+    {
+      "bytes": 481,
+      "path": "12_v0_5_upgrade/examples/feature_ccd_demo.py",
+      "sha256": "b8bc2e2403e582e836d7f4fbcfc64a3746ed2e413ece04197ab5a19686ab614e"
+    },
+    {
+      "bytes": 426,
+      "path": "12_v0_5_upgrade/gpu/README.md",
+      "sha256": "8a2e79ef613b360e0b1118978d799b0c013c3c93987f8bb18ae336ae74a2c9b1"
+    },
+    {
+      "bytes": 1865,
+      "path": "12_v0_5_upgrade/gpu/feature_ccd_kernels.cu",
+      "sha256": "b1559bf118ef8c57e09274be5180a685c908942bcd799bd10c9776a166df8479"
+    },
+    {
+      "bytes": 619,
+      "path": "12_v0_5_upgrade/pyproject.toml",
+      "sha256": "da3d370bcb6d17d18136349ff4ad24ff30a92d3539205e0c8c57f4ba4340a94b"
+    },
+    {
+      "bytes": 10916,
+      "path": "12_v0_5_upgrade/report/build_pass1.log",
+      "sha256": "c0cce6a1baabfa35ed9ff32557fa13c13b011567b3f6ece7c433e1c54ce71cc6"
+    },
+    {
+      "bytes": 4849,
+      "path": "12_v0_5_upgrade/report/generate_report_inputs.py",
+      "sha256": "e37c34892f7159b54c6776eadb2fad08dae17534a8429b7a6f5004bc6bbdbda0"
+    },
+    {
+      "bytes": 32759,
+      "path": "12_v0_5_upgrade/report/main.log",
+      "sha256": "e1291329e11f7558ebfd960e39e8203b2f5ef794af29fcbaa0b540e70a6a8320"
+    },
+    {
+      "bytes": 41067,
+      "path": "12_v0_5_upgrade/report/main.tex",
+      "sha256": "111054eec2ce416fb93b863a79499d52dec70c8530b3b122b04e37fac4139623"
+    },
+    {
+      "bytes": 1677,
+      "path": "12_v0_5_upgrade/spec/algorithm_contracts.md",
+      "sha256": "bbd262c3b1fc36be4ebbec0c9171bcf6027f78c0f354eb9fe47825b16eb63683"
+    },
+    {
+      "bytes": 1413,
+      "path": "12_v0_5_upgrade/spec/certificate_v0_5.schema.json",
+      "sha256": "8bad642447c3f06e0f195ff2984be03dc513def1538fe535b3d9d2ea9e67fb4f"
+    },
+    {
+      "bytes": 706,
+      "path": "12_v0_5_upgrade/spec/corpus_record_v0_5.schema.json",
+      "sha256": "3bc15bc783dd017fa21fcc8bb797a621047004c17760aa5d4dcd5a8bc1ca9184"
+    },
+    {
+      "bytes": 1288,
+      "path": "12_v0_5_upgrade/spec/engine_integration_contract.md",
+      "sha256": "e7964edd84d4af0b6fa30d12d54dac4efd069dda59e374794047a1105ade9bb2"
+    },
+    {
+      "bytes": 668,
+      "path": "12_v0_5_upgrade/spec/event_v0_5.schema.json",
+      "sha256": "fb8a74572afadf99e2acd97fad20c49c7e06f023114a6d70d4979e7c6460f7d5"
+    },
+    {
+      "bytes": 614,
+      "path": "12_v0_5_upgrade/src/nhdf_ccd_v05/__init__.py",
+      "sha256": "956b3e663bf1516a96c76b90b95d80d270f505d725da9ae5aaa1dbc9364815a5"
+    },
+    {
+      "bytes": 2796,
+      "path": "12_v0_5_upgrade/src/nhdf_ccd_v05/batch.py",
+      "sha256": "ad9b1b9d7ae7ca8f3f65fd9a6fbd0708a82563effdda001d301dd2fb620849f0"
+    },
+    {
+      "bytes": 15024,
+      "path": "12_v0_5_upgrade/src/nhdf_ccd_v05/ccd.py",
+      "sha256": "d76c10de3ac91ed83518df4f294a7762408db8a50d473dfdec254654a0235e2b"
+    },
+    {
+      "bytes": 1195,
+      "path": "12_v0_5_upgrade/src/nhdf_ccd_v05/cli.py",
+      "sha256": "cd981470c02aa030475c5ae8327173c7e2ec56b696cc8d18a920ed2ef37628f0"
+    },
+    {
+      "bytes": 2985,
+      "path": "12_v0_5_upgrade/src/nhdf_ccd_v05/corpus.py",
+      "sha256": "2da0f54c8d7e80cec69791a5925b621b39e86e55cd1c2838d1bc5b55bf49e75b"
+    },
+    {
+      "bytes": 1675,
+      "path": "12_v0_5_upgrade/src/nhdf_ccd_v05/events.py",
+      "sha256": "2d8ab9aa888166c0e74aa7f2700ad8a08009480f3c14cee93b3f978705d32402"
+    },
+    {
+      "bytes": 4261,
+      "path": "12_v0_5_upgrade/src/nhdf_ccd_v05/geometry.py",
+      "sha256": "4698642fe859de79c7c9f16987688e6a749581d930e709e6c07b721a03fbed14"
+    },
+    {
+      "bytes": 5686,
+      "path": "12_v0_5_upgrade/src/nhdf_ccd_v05/model.py",
+      "sha256": "4fe3423058d90c506526ea56cc9a410a052b5fe8014e4e283eef21a5504a7dc5"
+    },
+    {
+      "bytes": 1862,
+      "path": "12_v0_5_upgrade/src/nhdf_ccd_v05/polynomial.py",
+      "sha256": "e486621776b8da5f5b4f537802cbcc88e7d8703d46ad3b52668f7de25b4f2fed"
+    },
+    {
+      "bytes": 2268,
+      "path": "12_v0_5_upgrade/src/nhdf_ccd_v05/response.py",
+      "sha256": "b95c01b2c51b61f8c46e7ac8d62cd3ffb24cf2f2a7c72529813031234f298ba4"
+    },
+    {
+      "bytes": 1645,
+      "path": "12_v0_5_upgrade/src/nhdf_ccd_v05/rigid.py",
+      "sha256": "deed8b21fb1da18b2406727b60639c8e392aee352964b8989fabdb022b52111f"
+    },
+    {
+      "bytes": 3507,
+      "path": "12_v0_5_upgrade/tests/test_ccd.py",
+      "sha256": "f5ccf2aec3340312fccb3902d9ee4d51751a1be06e7ee64412352e5cb092197c"
+    },
+    {
+      "bytes": 916,
+      "path": "12_v0_5_upgrade/tests/test_certificate.py",
+      "sha256": "2de117002dad1336ec66079044acee10257838985562d44162d90d42a6277915"
+    },
+    {
+      "bytes": 1330,
+      "path": "12_v0_5_upgrade/tests/test_corpus.py",
+      "sha256": "a48a1b826509c1022fad63c9864de041fb00d9c3b30fa47ccd9aaf58d025f4b8"
+    },
+    {
+      "bytes": 2353,
+      "path": "12_v0_5_upgrade/tests/test_events_rigid_response.py",
+      "sha256": "ae6b8b96cbf8fd2729fb597c133206eb721f6526c747f81b860d9254f86c2249"
+    },
+    {
+      "bytes": 1219,
+      "path": "12_v0_5_upgrade/tests/test_geometry.py",
+      "sha256": "67aa8541108d8eb3a3c16d37e595ae85100cc1ee23979c463010a47bc6600b87"
+    },
+    {
+      "bytes": 786,
+      "path": "12_v0_5_upgrade/tools/fuzz_parser.py",
+      "sha256": "aea07d33b77493f6ce78192f44c8ebb3dc4d775a93bbacd6bac348b8e22c1b00"
+    },
+    {
+      "bytes": 488,
+      "path": "12_v0_5_upgrade/tools/replay_certificate.py",
+      "sha256": "86a310ee6deceff38b8a3cec0d3b9a61d2f867d119444a5a651a4e6278b8db2c"
+    },
+    {
+      "bytes": 336,
+      "path": "12_v0_5_upgrade/tools/run_all.sh",
+      "sha256": "e13abd5235162079aa323d00d45604c80d0aa2f64d7d6db1d2976859e8ba78ac"
+    },
+    {
+      "bytes": 648,
+      "path": "12_v0_5_upgrade/validation/ARCHIVE_AND_MANIFEST_POLICY.md",
+      "sha256": "01673d474898133cb1a65fc1aa683a0b311dd99b74f79f418fa15c54d8f83843"
+    },
+    {
+      "bytes": 1264,
+      "path": "12_v0_5_upgrade/validation/benchmark_stderr.log",
+      "sha256": "e8bf9150d9b102d873822ca373ef3f82085d33ccb2dec6ac6194808daed6eddc"
+    },
+    {
+      "bytes": 0,
+      "path": "12_v0_5_upgrade/validation/benchmark_stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 32928,
+      "path": "12_v0_5_upgrade/validation/cpp_build/nhdf_ccd_v05_smoke",
+      "sha256": "0fb062b0209d18e0a608ef4beafedf4a72d519165cb35d85b45c200ac446d31a"
+    },
+    {
+      "bytes": 22,
+      "path": "12_v0_5_upgrade/validation/cpp_smoke.log",
+      "sha256": "2bcc716c5503b62e1201164fdc30499ee20c4f53eb03306e884c35d9490a774a"
+    },
+    {
+      "bytes": 5,
+      "path": "12_v0_5_upgrade/validation/cpp_smoke.status",
+      "sha256": "c26de83abdc9496cd1301470918ec39ecca1cf389ef0ae1c6504da1800d1c431"
+    },
+    {
+      "bytes": 3794,
+      "path": "12_v0_5_upgrade/validation/run_all.log",
+      "sha256": "e709fd157c8352c5f8c863b7f4cf56fd8176f62a999840431ceb3d9827f1d1d6"
+    },
+    {
+      "bytes": 2530,
+      "path": "12_v0_5_upgrade/validation/unit_tests_initial.log",
+      "sha256": "6421e8f7c3f12e00b360bccc6fc3149b63b5216998409a163efbe4d563d4a93f"
+    },
+    {
+      "bytes": 5,
+      "path": "12_v0_5_upgrade/validation/unit_tests_initial.status",
+      "sha256": "c26de83abdc9496cd1301470918ec39ecca1cf389ef0ae1c6504da1800d1c431"
+    },
+    {
+      "bytes": 773984,
+      "path": "13_baseline_release/NHDF_CCD_Cradle_to_Grave_v0.4.pdf",
+      "sha256": "d5f383a5470cdc8ebfa39e21f35a6f0ddbfb48a750f20370f8ffeec88cfee6fb"
+    },
+    {
+      "bytes": 2896294,
+      "path": "13_baseline_release/NHDF_CCD_Cradle_to_Grave_v0.4.zip",
+      "sha256": "9317afd982b5151d92fce08f2417a2675a75c30514008ddf9aed07e2fc5a64e8"
+    },
+    {
+      "bytes": 226,
+      "path": "13_baseline_release/README.md",
+      "sha256": "335b1e5e636311ab893cd834f0efca9b7475343d50661f73b6d1c74e7acfda9f"
+    },
+    {
+      "bytes": 2755,
+      "path": "FILE_INDEX_v0.5.txt",
+      "sha256": "b4514436d5c097b4a239a038efa4096d4ec012e4dd977586c65bc00766ec8c8a"
+    },
+    {
+      "bytes": 1096,
+      "path": "KNOWN_LIMITATIONS_v0.5.md",
+      "sha256": "51196abc4e5319a47ddadf743f3fde3ea04d86375439cde12c9304113a3eabe4"
+    },
+    {
+      "bytes": 594,
+      "path": "PROVENANCE_LEDGER_v0.5.csv",
+      "sha256": "72d732b030f9419e19335fd6b9191c8e928b3fd96c165ce79c8992499059ccbc"
+    },
+    {
+      "bytes": 1939,
+      "path": "README.md",
+      "sha256": "57bb9be5c10654a0800a12cb023d409a8837d8893b93ada7eb427120366556f2"
+    },
+    {
+      "bytes": 1708,
+      "path": "RELEASE_NOTES_v0.5.md",
+      "sha256": "ce2f81ca9e4af1ec66811833199f7b5f6e6cc63c354cb8a5b3f83978b37a4f48"
+    },
+    {
+      "bytes": 1267,
+      "path": "SBOM_v0.5.json",
+      "sha256": "17b0194ae1bff8ae52abe6f1dec403511df2eaa7fa8272d909b096f8351c6871"
+    },
+    {
+      "bytes": 6,
+      "path": "VERSION",
+      "sha256": "a0ad50640139a524f86591157145bf1d4674ea9c065bfea21558f0f7b04430c8"
+    }
+  ],
+  "hash_algorithm": "SHA-256",
+  "manifest_excludes": [
+    "MANIFEST_v0.5.json",
+    "SHA256SUMS.txt"
+  ],
+  "release": "NHDF-CCD Cradle-to-Grave v0.5",
+  "total_bytes": 5128030,
+  "version": "0.5.0"
+}
