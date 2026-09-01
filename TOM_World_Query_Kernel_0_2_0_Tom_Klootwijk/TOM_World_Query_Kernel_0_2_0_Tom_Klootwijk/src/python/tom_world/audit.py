@@ -3,11 +3,20 @@ from __future__ import annotations
 
 from collections import Counter
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
+
+from tomagi.format import loads as load_tomagi_program
 
 from .canonical import attach_hash, canonical_bytes
 from .indexes import validate_index_record
-from .store import COMMIT_SCHEMA, SNAPSHOT_SCHEMA, TRANSACTION_SCHEMA, WorldStore
+from .records import validate_record, validate_record_dependency_graph
+from .store import (
+    COMMIT_SCHEMA,
+    SNAPSHOT_SCHEMA,
+    TRANSACTION_SCHEMA,
+    WorldStore,
+    _validate_record_relationships,
+)
 
 AUDIT_SCHEMA = "TOM-WORLD-AUDIT-CERTIFICATE-0.2"
 
@@ -89,6 +98,8 @@ def audit_store(
     reachable_blobs: set[str] = set()
     verified_objects: set[str] = set()
     verified_blobs: set[str] = set()
+    verified_checkpoint_objects: set[str] = set()
+    verified_event_certificates: dict[str, tuple[dict[str, Any], dict[str, Any]]] = {}
     ancestry: list[dict[str, Any]] = []
     type_counts: Counter[str] = Counter()
     record_references = 0
@@ -121,6 +132,7 @@ def audit_store(
             error("commit", current, "commit seed binding mismatch")
 
         transaction_hash = str(commit_record.get("transaction_hash"))
+        transaction: dict[str, Any] | None = None
         transaction_valid = False
         transaction_path = store._transaction_path(transaction_hash)
         if transaction_path.is_file():
@@ -132,6 +144,8 @@ def audit_store(
                     and transaction.get("base_commit") == commit_record.get("parent")
                     and transaction.get("sequence") == sequence
                     and transaction.get("seed_sha256") == commit_record.get("seed_sha256")
+                    and str(transaction.get("message", "")) == commit_record.get("message")
+                    and transaction.get("provenance", {}) == commit_record.get("provenance")
                 )
                 if not transaction_valid:
                     error("transaction", transaction_hash, "transaction/commit metadata mismatch")
@@ -155,12 +169,85 @@ def audit_store(
         if identity is not None and snapshot.get("seed_sha256") != "sha256:" + identity.sha256:
             error("snapshot", snapshot_hash, "snapshot seed binding mismatch")
 
+        # A valid hash for each object is not enough to establish lineage.  Replay
+        # the stored transaction as a map update over its parent's snapshot and
+        # require that the result is exactly the snapshot named by this commit.
+        # This detects self-consistent but false transaction/snapshot pairings.
+        if transaction is not None and transaction_valid:
+            expected_records: dict[str, str] = {}
+            expected_blobs: dict[str, str] = {}
+            parent = commit_record.get("parent")
+            try:
+                if isinstance(parent, str):
+                    parent_commit = store.read_commit(parent)
+                    parent_snapshot = store.read_snapshot(str(parent_commit["snapshot_hash"]))
+                    expected_records = {
+                        str(key): str(value) for key, value in parent_snapshot["records"].items()
+                    }
+                    expected_blobs = {
+                        str(key): str(value) for key, value in parent_snapshot["blobs"].items()
+                    }
+
+                staged_records = transaction.get("records")
+                staged_blobs = transaction.get("blobs", [])
+                if not isinstance(staged_records, list) or not isinstance(staged_blobs, list):
+                    raise ValueError("transaction records and blobs must be arrays")
+
+                seen_record_ids: set[str] = set()
+                for record in staged_records:
+                    if not isinstance(record, dict):
+                        raise ValueError("transaction record must be an object")
+                    validate_record(record)
+                    record_id = str(record["id"])
+                    if record_id in seen_record_ids:
+                        raise ValueError(f"duplicate staged record id: {record_id}")
+                    seen_record_ids.add(record_id)
+                    expected_records[record_id] = str(record["content_hash"])
+
+                seen_blob_ids: set[str] = set()
+                for blob in staged_blobs:
+                    if not isinstance(blob, dict):
+                        raise ValueError("transaction blob entry must be an object")
+                    blob_id = blob.get("id")
+                    blob_hash = blob.get("sha256")
+                    if not isinstance(blob_id, str) or not blob_id:
+                        raise ValueError("transaction blob id must be a nonempty string")
+                    if blob_id in seen_blob_ids:
+                        raise ValueError(f"duplicate staged blob id: {blob_id}")
+                    seen_blob_ids.add(blob_id)
+                    # _blob_path also validates the sha256 identifier syntax.
+                    store._blob_path(str(blob_hash))
+                    expected_blobs[blob_id] = str(blob_hash)
+
+                actual_records = {
+                    str(key): str(value) for key, value in snapshot["records"].items()
+                }
+                actual_blobs = {
+                    str(key): str(value) for key, value in snapshot["blobs"].items()
+                }
+                if expected_records != actual_records or expected_blobs != actual_blobs:
+                    transaction_valid = False
+                    error(
+                        "transaction",
+                        transaction_hash,
+                        "replaying transaction over parent does not reproduce snapshot maps",
+                    )
+            except Exception as exc:
+                transaction_valid = False
+                error("transaction", transaction_hash, f"lineage replay failed: {type(exc).__name__}: {exc}")
+
         index_hash = snapshot.get("indexes_hash")
         index_valid = False
         index_rebuilt_equal = False
         if isinstance(index_hash, str):
             reachable_indexes.add(index_hash)
-            if commit_record.get("indexes_hash") not in (None, index_hash):
+            if (
+                commit_record.get("version") == "0.1.0"
+                and commit_record.get("indexes_hash") not in (None, index_hash)
+            ) or (
+                commit_record.get("version") != "0.1.0"
+                and commit_record.get("indexes_hash") != index_hash
+            ):
                 error("index", index_hash, "commit/snapshot index hash mismatch")
             try:
                 index = store.read_index(index_hash)
@@ -177,10 +264,14 @@ def audit_store(
             except Exception as exc:
                 error("index", index_hash, f"{type(exc).__name__}: {exc}")
         else:
-            warning("index", snapshot_hash, "legacy snapshot has no immutable secondary index")
+            if commit_record.get("version") == "0.1.0":
+                warning("index", snapshot_hash, "legacy snapshot has no immutable secondary index")
+            else:
+                error("index", snapshot_hash, "0.2 snapshot has no immutable secondary index")
 
         snapshot_record_errors = 0
         records = snapshot["records"]
+        snapshot_records: dict[str, Mapping[str, Any]] = {}
         for record_id in sorted(records):
             record_references += 1
             object_hash = str(records[record_id])
@@ -192,6 +283,7 @@ def audit_store(
                 if missing:
                     snapshot_record_errors += 1
                     error("record", str(record_id), "unresolved dependencies: " + ", ".join(sorted(missing)))
+                snapshot_records[str(record_id)] = record
                 verified_objects.add(object_hash)
             except Exception as exc:
                 snapshot_record_errors += 1
@@ -211,6 +303,97 @@ def audit_store(
             except Exception as exc:
                 snapshot_blob_errors += 1
                 error("blob", str(blob_id), f"{type(exc).__name__}: {exc}")
+
+        # Reapply the same whole-snapshot invariants enforced at publication.
+        # Individually valid hashes and resolved dependency names do not rule
+        # out cycles, wrong reference types, invalid bytecode, or forged
+        # executable checkpoint/event claims.
+        if len(snapshot_records) == len(records):
+            try:
+                validate_record_dependency_graph(snapshot_records)
+                _validate_record_relationships(snapshot_records)
+            except Exception as exc:
+                snapshot_record_errors += 1
+                error("record", snapshot_hash, f"record graph validation failed: {type(exc).__name__}: {exc}")
+
+            program_cache: dict[str, Any] = {}
+            for record_id in sorted(snapshot_records):
+                record = snapshot_records[record_id]
+                if record["record_type"] != "instance":
+                    continue
+                try:
+                    payload = record["payload"]
+                    blob_id = str(payload["program_blob_id"])
+                    if blob_id not in blobs:
+                        raise ValueError(f"unknown program blob {blob_id}")
+                    blob_hash = str(blobs[blob_id])
+                    if blob_hash not in program_cache:
+                        program = load_tomagi_program(store.read_blob(blob_hash))
+                        if not 0 <= program.initial_state.cell < len(program.cells):
+                            raise ValueError("program has an out-of-range initial cell")
+                        program_cache[blob_hash] = program
+                    program = program_cache[blob_hash]
+                    initial_state = payload.get("initial_state", {})
+                    selected_cell = initial_state.get("cell", program.initial_state.cell)
+                    if (int(selected_cell) & 0xFFFFFFFF) >= len(program.cells):
+                        raise ValueError("initial_state.cell is outside its program cell table")
+                except Exception as exc:
+                    snapshot_record_errors += 1
+                    error("record", record_id, f"program validation failed: {type(exc).__name__}: {exc}")
+
+            query_engine = None
+            for record_id in sorted(snapshot_records):
+                record = snapshot_records[record_id]
+                record_type = str(record["record_type"])
+                object_hash = str(record["content_hash"])
+                if record_type == "checkpoint":
+                    try:
+                        source_commit = str(record["payload"]["source_commit"])
+                        if not store.is_ancestor(source_commit, current):
+                            raise ValueError("source commit is not in snapshot commit ancestry")
+                        if object_hash not in verified_checkpoint_objects:
+                            from .query import verify_checkpoint_record
+
+                            verify_checkpoint_record(store, record)
+                            verified_checkpoint_objects.add(object_hash)
+                    except Exception as exc:
+                        snapshot_record_errors += 1
+                        error(
+                            "record",
+                            record_id,
+                            f"checkpoint semantic verification failed: {type(exc).__name__}: {exc}",
+                        )
+                elif record_type in {"event", "lineage"}:
+                    try:
+                        certificate = record["payload"].get("certificate")
+                        if not isinstance(certificate, Mapping):
+                            raise ValueError("embedded event certificate is missing")
+                        source_commit = certificate.get("source_commit")
+                        if not isinstance(source_commit, str) or not store.is_ancestor(source_commit, current):
+                            raise ValueError("certificate source is not in snapshot commit ancestry")
+                        certificate_hash = str(certificate.get("content_hash"))
+                        expected_pair = verified_event_certificates.get(certificate_hash)
+                        if expected_pair is None:
+                            from .query import QueryEngine
+
+                            query_engine = query_engine or QueryEngine(
+                                store, commit=current, use_checkpoints=False
+                            )
+                            reconstruction = query_engine.reconstruct(certificate)
+                            if not reconstruction["byte_equal"]:
+                                raise ValueError("certificate does not reconstruct byte-for-byte")
+                            expected_pair = query_engine.event_records(certificate)
+                            verified_event_certificates[certificate_hash] = expected_pair
+                        expected = expected_pair[0] if record_type == "event" else expected_pair[1]
+                        if canonical_bytes(record) != canonical_bytes(expected):
+                            raise ValueError("record is not the canonical certificate-derived record")
+                    except Exception as exc:
+                        snapshot_record_errors += 1
+                        error(
+                            "record",
+                            record_id,
+                            f"event semantic verification failed: {type(exc).__name__}: {exc}",
+                        )
 
         parent = commit_record.get("parent")
         if sequence == 0 and parent is not None:

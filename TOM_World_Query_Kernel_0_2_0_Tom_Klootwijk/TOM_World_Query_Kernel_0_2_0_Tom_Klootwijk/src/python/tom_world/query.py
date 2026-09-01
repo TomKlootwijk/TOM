@@ -28,7 +28,7 @@ from tomagi.format import loads
 from .canonical import attach_hash, canonical_bytes, digest_bytes, verify_hash
 from .expression import ExpressionBudget, evaluate_expression
 from .planner import PLANNER_MODES, QueryPlanner, make_plan
-from .records import make_record
+from .records import make_record, validate_record
 from .store import TRANSACTION_SCHEMA, WorldStore
 
 _STATE_FIELDS = tuple(State.__dataclass_fields__)
@@ -78,9 +78,13 @@ def _record_sources(
 
 def _zero_test(value: Any, mode: str) -> bool:
     if mode == "equal_zero":
-        return isinstance(value, int) and not isinstance(value, bool) and value == 0
+        if isinstance(value, bool) or not isinstance(value, int):
+            raise TypeError("equal_zero relation must return an integer")
+        return value == 0
     if mode == "less_equal_zero":
-        return isinstance(value, int) and not isinstance(value, bool) and value <= 0
+        if isinstance(value, bool) or not isinstance(value, int):
+            raise TypeError("less_equal_zero relation must return an integer")
+        return value <= 0
     if mode == "contains_zero":
         if not isinstance(value, Mapping):
             raise TypeError("contains_zero relation must return an interval object")
@@ -88,6 +92,8 @@ def _zero_test(value: Any, mode: str) -> bool:
         upper = value.get("upper")
         if isinstance(lower, bool) or not isinstance(lower, int) or isinstance(upper, bool) or not isinstance(upper, int):
             raise TypeError("interval bounds must be integers")
+        if lower > upper:
+            raise ValueError("interval lower bound must not exceed upper bound")
         return lower <= 0 <= upper
     raise ValueError(f"unsupported zero test {mode}")
 
@@ -140,7 +146,7 @@ def _guard_margin(previous: Any, current: Any) -> int | dict[str, int] | None:
     return None
 
 
-def _length_prefixed(values: Sequence[Mapping[str, Any]]) -> bytes:
+def _length_prefixed(values: Sequence[Any]) -> bytes:
     output = bytearray()
     for value in values:
         data = canonical_bytes(value)
@@ -149,24 +155,145 @@ def _length_prefixed(values: Sequence[Mapping[str, Any]]) -> bytes:
     return bytes(output)
 
 
-def _work_sum(value: Any) -> dict[str, int]:
+def _merge_work(*values: Mapping[str, Any]) -> dict[str, int]:
     totals: dict[str, int] = {}
-    if isinstance(value, Mapping):
-        work = value.get("work")
-        if isinstance(work, Mapping):
-            for key, raw in work.items():
-                if isinstance(raw, int) and not isinstance(raw, bool):
-                    totals[str(key)] = totals.get(str(key), 0) + raw
-        for item in value.values():
-            nested = _work_sum(item)
-            for key, raw in nested.items():
-                totals[key] = totals.get(key, 0) + raw
-    elif isinstance(value, list):
-        for item in value:
-            nested = _work_sum(item)
-            for key, raw in nested.items():
-                totals[key] = totals.get(key, 0) + raw
+    for work in values:
+        for key, raw in work.items():
+            if isinstance(raw, bool) or not isinstance(raw, int) or raw < 0:
+                raise ValueError(f"work counter {key} must be a nonnegative integer")
+            totals[str(key)] = totals.get(str(key), 0) + raw
     return totals
+
+
+def _batch_work(results: Sequence[Mapping[str, Any]]) -> dict[str, int]:
+    """Sum each request's complete top-level plan once.
+
+    Plans intentionally retain their nested evidence.  Recursively walking that
+    evidence double-counts the same work in both parent and child plans.
+    """
+
+    works: list[Mapping[str, Any]] = []
+    for result in results:
+        plan = result.get("plan")
+        if not isinstance(plan, Mapping) or not isinstance(plan.get("work"), Mapping):
+            raise ValueError("batch result plan must declare work counters")
+        works.append(plan["work"])
+    return _merge_work(*works)
+
+
+def _nonempty_string(value: Any, name: str) -> str:
+    if not isinstance(value, str) or not value:
+        raise ValueError(f"{name} must be a nonempty string")
+    return value
+
+
+def _optional_context(value: Any, name: str = "context") -> Mapping[str, Any] | None:
+    if value is not None and not isinstance(value, Mapping):
+        raise ValueError(f"{name} must be an object or null")
+    return value
+
+
+def _optional_id_sequence(value: Any, name: str = "relation_ids") -> Sequence[str] | None:
+    if value is None:
+        return None
+    if isinstance(value, (str, bytes, bytearray)) or not isinstance(value, Sequence):
+        raise ValueError(f"{name} must be an array of nonempty strings or null")
+    if any(not isinstance(item, str) or not item for item in value):
+        raise ValueError(f"{name} must be an array of nonempty strings or null")
+    return value
+
+
+def _checkpoint_state_certificate(payload: Mapping[str, Any]) -> dict[str, Any]:
+    """Recreate the state-certificate envelope bound by a checkpoint payload."""
+
+    tick = payload["tick"]
+    return attach_hash({
+        "schema": "TOM-STATE-AT-CERTIFICATE-0.2",
+        "commit": payload["source_commit"],
+        "instance_id": payload["instance_id"],
+        "instance_hash": payload["instance_hash"],
+        "requested_tick": tick,
+        "executed_steps": payload.get("executed_steps", tick),
+        "state": dict(payload["state"]),
+        "status": "exact_discrete_replay",
+    })
+
+
+def verify_checkpoint_record(
+    store: WorldStore,
+    record: Mapping[str, Any],
+    *,
+    target_instance_id: str | None = None,
+    max_query_steps: int | None = None,
+    max_expression_nodes: int = 10_000,
+    max_expression_depth: int = 64,
+) -> dict[str, Any]:
+    """Prove a checkpoint record by replaying from its source-commit root.
+
+    This accepts a record mapping so commit validation can prove a staged
+    checkpoint before publishing it.  Checkpoint use is explicitly disabled in
+    the proving engine, which prevents a checkpoint from recursively vouching
+    for itself or another checkpoint.
+    """
+
+    validate_record(record)
+    if record["record_type"] != "checkpoint":
+        raise TypeError(f"{record['id']} is not a checkpoint record")
+    payload = record["payload"]
+    instance_id = str(payload["instance_id"])
+    if target_instance_id is not None and instance_id != target_instance_id:
+        raise ValueError(
+            f"checkpoint {record['id']} targets {instance_id}, not {target_instance_id}"
+        )
+    tick = int(payload["tick"])
+    step_budget = tick if max_query_steps is None else max_query_steps
+    root_engine = QueryEngine(
+        store,
+        commit=str(payload["source_commit"]),
+        max_query_steps=step_budget,
+        max_expression_nodes=max_expression_nodes,
+        max_expression_depth=max_expression_depth,
+        planner_mode="exhaustive",
+        use_checkpoints=False,
+    )
+    _, instance, blob_hash = root_engine._program_for_instance(instance_id)
+    if payload["instance_hash"] != instance["content_hash"]:
+        raise ValueError(
+            f"checkpoint {record['id']} instance hash does not match its source commit"
+        )
+    if payload["program_blob_hash"] != blob_hash:
+        raise ValueError(
+            f"checkpoint {record['id']} program blob hash does not match its source commit"
+        )
+
+    expected = root_engine.state_at(instance_id, tick)
+    declared = _checkpoint_state_certificate(payload)
+    errors: list[str] = []
+    if payload["state_certificate_hash"] != declared["content_hash"]:
+        errors.append("state_certificate_hash does not bind the declared checkpoint state")
+    if payload["state_certificate_hash"] != expected["content_hash"]:
+        errors.append("state_certificate_hash does not match exact root replay")
+    if canonical_bytes(payload["state"]) != canonical_bytes(expected["state"]):
+        errors.append("state is not byte-equal to exact root replay")
+    if payload.get("executed_steps", tick) != expected["executed_steps"]:
+        errors.append("executed_steps does not match exact root replay")
+    if errors:
+        raise ValueError(f"checkpoint {record['id']} semantic verification failed: " + "; ".join(errors))
+
+    return attach_hash({
+        "schema": "TOM-CHECKPOINT-VERIFICATION-CERTIFICATE-0.2",
+        "checkpoint_id": record["id"],
+        "checkpoint_hash": record["content_hash"],
+        "source_commit": payload["source_commit"],
+        "instance_id": instance_id,
+        "instance_hash": instance["content_hash"],
+        "program_blob_hash": blob_hash,
+        "tick": tick,
+        "root_replay_steps": expected["executed_steps"],
+        "state_certificate_hash": expected["content_hash"],
+        "byte_equal": True,
+        "status": "verified_exact_root_replay",
+    })
 
 
 class QueryEngine:
@@ -186,6 +313,14 @@ class QueryEngine:
         store.validate()
         if planner_mode not in PLANNER_MODES:
             raise ValueError(f"planner_mode must be one of {sorted(PLANNER_MODES)}")
+        if isinstance(max_query_steps, bool) or not isinstance(max_query_steps, int) or max_query_steps < 0:
+            raise ValueError("max_query_steps must be a nonnegative integer")
+        if isinstance(max_expression_nodes, bool) or not isinstance(max_expression_nodes, int) or max_expression_nodes < 1:
+            raise ValueError("max_expression_nodes must be a positive integer")
+        if isinstance(max_expression_depth, bool) or not isinstance(max_expression_depth, int) or max_expression_depth < 0:
+            raise ValueError("max_expression_depth must be a nonnegative integer")
+        if not isinstance(use_checkpoints, bool):
+            raise ValueError("use_checkpoints must be boolean")
         self.store = store
         self.commit = commit or store.head
         if self.commit is None:
@@ -206,7 +341,7 @@ class QueryEngine:
         return ExpressionBudget(self.max_expression_nodes, self.max_expression_depth)
 
     def definition_at(self, ident: str) -> dict[str, Any]:
-        return self.store.read_record(ident, commit=self.commit)
+        return self.store.read_record(_nonempty_string(ident, "id"), commit=self.commit)
 
     def verify_definition(self, ident: str) -> dict[str, Any]:
         result = self.store.verify_record(ident, commit=self.commit)
@@ -217,6 +352,7 @@ class QueryEngine:
         return result
 
     def _instance(self, instance_id: str) -> dict[str, Any]:
+        _nonempty_string(instance_id, "instance_id")
         record = self.store.read_record(instance_id, commit=self.commit)
         if record["record_type"] != "instance":
             raise TypeError(f"{instance_id} is not an instance")
@@ -250,9 +386,10 @@ class QueryEngine:
         target_tick: int,
         *,
         planner_mode: str | None = None,
+        allow_checkpoint: bool = True,
     ) -> tuple[State | None, int, int, dict[str, Any]]:
         mode = planner_mode or self.planner_mode
-        if not self.use_checkpoints:
+        if not self.use_checkpoints or not allow_checkpoint:
             plan = make_plan(
                 commit=self.commit,
                 snapshot_hash=str(self.snapshot["content_hash"]),
@@ -261,7 +398,7 @@ class QueryEngine:
                 operation="select_checkpoint",
                 stages=[{
                     "name": "checkpoint_policy",
-                    "mechanism": "disabled",
+                    "mechanism": "disabled" if not self.use_checkpoints else "disabled_for_full_trace",
                     "input_count": 0,
                     "output_count": 0,
                     "detail": {"target_tick": target_tick},
@@ -287,11 +424,41 @@ class QueryEngine:
         source_commit = str(payload["source_commit"])
         if not self.store.is_ancestor(source_commit, self.commit):
             raise ValueError(f"checkpoint {record['id']} source commit is not in query commit ancestry")
+        declared_certificate = _checkpoint_state_certificate(payload)
+        if payload["state_certificate_hash"] != declared_certificate["content_hash"]:
+            raise ValueError(
+                f"checkpoint {record['id']} state certificate hash does not bind its declared state"
+            )
         tick = int(payload["tick"])
         if tick > target_tick:
             raise ValueError("planner selected a checkpoint after the target tick")
         executed_steps = int(payload.get("executed_steps", tick))
         return state_from_mapping(payload["state"]), tick, executed_steps, plan
+
+    def verify_checkpoint(
+        self,
+        checkpoint_id: str,
+        *,
+        target_instance_id: str | None = None,
+    ) -> dict[str, Any]:
+        """Prove a committed checkpoint by an exact, non-checkpoint root replay."""
+
+        record = self.store.read_record(checkpoint_id, commit=self.commit)
+        if record["record_type"] != "checkpoint":
+            raise TypeError(f"{checkpoint_id} is not a checkpoint record")
+        source_commit = str(record["payload"]["source_commit"])
+        if not self.store.is_ancestor(source_commit, self.commit):
+            raise ValueError(
+                f"checkpoint {checkpoint_id} source commit is not in query commit ancestry"
+            )
+        return verify_checkpoint_record(
+            self.store,
+            record,
+            target_instance_id=target_instance_id,
+            max_query_steps=self.max_query_steps,
+            max_expression_nodes=self.max_expression_nodes,
+            max_expression_depth=self.max_expression_depth,
+        )
 
     def _replay_state(
         self,
@@ -308,10 +475,14 @@ class QueryEngine:
         mode = planner_mode or self.planner_mode
         program, instance, _ = self._program_for_instance(instance_id)
         checkpoint_state, checkpoint_tick, checkpoint_executed, checkpoint_plan = self._checkpoint_start(
-            instance_id, target_tick, planner_mode=mode
+            instance_id, target_tick, planner_mode=mode, allow_checkpoint=not include_trace
         )
         remaining = target_tick - checkpoint_tick
-        state, trace = run(program, ticks=remaining, state=checkpoint_state, trace=True)
+        # Passing the selected root state explicitly preserves an instance's
+        # override of every State64 word, including ``cell``.  TOMAGI's bare
+        # run(program) entry behavior otherwise overwrites that one word.
+        replay_start = checkpoint_state if checkpoint_state is not None else program.initial_state
+        state, trace = run(program, ticks=remaining, state=replay_start, trace=True)
         for item in trace:
             item["step"] = checkpoint_tick + int(item["step"])
         actual_replayed_steps = len(trace)
@@ -330,11 +501,14 @@ class QueryEngine:
             "logical_steps": target_tick,
             "replayed_steps": actual_replayed_steps,
             "executed_steps": executed_steps,
-            "saved_replay_steps": checkpoint_tick,
-            "work": {
-                "tomagi_steps": actual_replayed_steps,
-                "checkpoint_record_reads": 1 if checkpoint_plan["selected_ids"] else 0,
-            },
+            "saved_replay_steps": checkpoint_executed,
+            "work": _merge_work(
+                checkpoint_plan["work"],
+                {
+                    "tomagi_steps": actual_replayed_steps,
+                    "checkpoint_record_reads": 1 if checkpoint_plan["selected_ids"] else 0,
+                },
+            ),
         })
         return state, trace, replay_plan, instance
 
@@ -346,6 +520,8 @@ class QueryEngine:
         include_trace: bool = False,
         planner_mode: str | None = None,
     ) -> tuple[dict[str, Any], dict[str, Any]]:
+        if not isinstance(include_trace, bool):
+            raise ValueError("include_trace must be boolean")
         state, trace, plan, instance = self._replay_state(
             instance_id, tick, include_trace=include_trace, planner_mode=planner_mode
         )
@@ -393,8 +569,9 @@ class QueryEngine:
         base = instance["payload"].get("context", {})
         if not isinstance(base, Mapping):
             raise ValueError("instance context must be an object")
+        _optional_context(context)
         merged = dict(base)
-        if context:
+        if context is not None:
             merged.update(context)
         return merged
 
@@ -531,6 +708,9 @@ class QueryEngine:
         *,
         instance: Mapping[str, Any],
         relation: Mapping[str, Any],
+        query_kind: str,
+        query_relation_ids: Sequence[str],
+        support_id: str | None,
         after_tick: int,
         horizon: int,
         event_tick: int,
@@ -573,10 +753,12 @@ class QueryEngine:
             "schema": "TOM-EVENT-CERTIFICATE-0.1",
             "source_commit": self.commit,
             "query": {
+                "query_kind": query_kind,
                 "instance_id": instance["id"],
                 "after_tick": after_tick,
                 "horizon": horizon,
-                "relation_ids": [relation["id"]],
+                "relation_ids": list(query_relation_ids),
+                "support_id": support_id,
             },
             "instance_hash": instance["content_hash"],
             "event_tick": event_tick,
@@ -627,6 +809,17 @@ class QueryEngine:
             raise ValueError("after_tick must be a nonnegative integer")
         if isinstance(horizon, bool) or not isinstance(horizon, int) or horizon < 1:
             raise ValueError("horizon must be a positive integer")
+        _nonempty_string(instance_id, "instance_id")
+        relation_ids = _optional_id_sequence(relation_ids)
+        _optional_context(context)
+        if support_id is not None:
+            _nonempty_string(support_id, "support_id")
+        if topology_sheet is not None and (
+            isinstance(topology_sheet, bool)
+            or not isinstance(topology_sheet, int)
+            or not 0 <= topology_sheet <= 0xFFFFFFFF
+        ):
+            raise ValueError("topology_sheet must be a u32 integer or null")
         if after_tick + horizon > self.max_query_steps:
             raise ValueError(
                 f"event scan exceeds query budget: {after_tick + horizon} > {self.max_query_steps}"
@@ -645,16 +838,20 @@ class QueryEngine:
             instance_id, after_tick, include_trace=False, planner_mode=mode
         )
         merged_context = self._context(instance, context)
+        query_kind = "next_event" if stop_after_first else "events_in_support"
+        query_relation_ids = [str(relation["id"]) for relation in relations]
         logical_tick = after_tick
         events: list[dict[str, Any]] = []
         relation_evaluations = 0
         predicate_evaluations = 0
         inactive_interval_skips = 0
         ticks_scanned = 0
+        tomagi_steps_scanned = 0
         for _ in range(horizon):
             pre_state = replace(state)
             if not (state.status & STATUS_HALT):
                 step(program, state)
+                tomagi_steps_scanned += 1
             logical_tick += 1
             ticks_scanned += 1
             candidates: list[dict[str, Any]] = []
@@ -682,6 +879,9 @@ class QueryEngine:
                     candidates.append(self._event_certificate(
                         instance=instance,
                         relation=relation,
+                        query_kind=query_kind,
+                        query_relation_ids=query_relation_ids,
+                        support_id=support_id,
                         after_tick=after_tick,
                         horizon=horizon,
                         event_tick=logical_tick,
@@ -698,9 +898,15 @@ class QueryEngine:
                     int(self.store.read_record(certificate["relation_id"], commit=self.commit)["payload"].get("priority", 0)),
                     certificate["relation_id"],
                 ))
-                events.extend(candidates)
                 if stop_after_first:
-                    events = [candidates[0]]
+                    candidates = [candidates[0]]
+                for candidate in candidates:
+                    query = dict(candidate["query"])
+                    query["result_index"] = len(events)
+                    candidate = dict(candidate)
+                    candidate["query"] = query
+                    events.append(attach_hash(candidate))
+                if stop_after_first:
                     break
         scan_plan = attach_hash({
             "schema": "TOM-EVENT-SCAN-PLAN-0.2",
@@ -714,17 +920,20 @@ class QueryEngine:
             "state_replay": replay_plan,
             "selected_relation_count": len(relations),
             "ticks_scanned": ticks_scanned,
+            "tomagi_steps_scanned": tomagi_steps_scanned,
             "relation_evaluations": relation_evaluations,
             "predicate_evaluations": predicate_evaluations,
             "inactive_interval_skips": inactive_interval_skips,
             "events_found": len(events),
-            "work": {
-                "tomagi_steps": int(replay_plan["work"]["tomagi_steps"]) + ticks_scanned,
-                "relation_evaluations": relation_evaluations,
-                "predicate_evaluations": predicate_evaluations,
-                "record_reads": int(relation_plan["work"].get("record_reads", 0)),
-                "index_lookups": int(relation_plan["work"].get("index_lookups", 0)),
-            },
+            "work": _merge_work(
+                relation_plan["work"],
+                replay_plan["work"],
+                {
+                    "tomagi_steps": tomagi_steps_scanned,
+                    "relation_evaluations": relation_evaluations,
+                    "predicate_evaluations": predicate_evaluations,
+                },
+            ),
         })
         return events, scan_plan
 
@@ -809,9 +1018,14 @@ class QueryEngine:
         context: Mapping[str, Any] | None,
         planner_mode: str | None,
     ) -> tuple[dict[str, Any], dict[str, Any]]:
+        if isinstance(start_tick, bool) or not isinstance(start_tick, int) or start_tick < 0:
+            raise ValueError("start_tick must be a nonnegative integer")
+        if isinstance(end_tick, bool) or not isinstance(end_tick, int) or end_tick < 0:
+            raise ValueError("end_tick must be a nonnegative integer")
         if end_tick <= start_tick:
             raise ValueError("end_tick must be greater than start_tick")
         if support_id is not None:
+            _nonempty_string(support_id, "support_id")
             support_record = self.store.read_record(support_id, commit=self.commit)
             if support_record["record_type"] != "support":
                 raise TypeError(f"{support_id} is not a support record")
@@ -873,6 +1087,10 @@ class QueryEngine:
         context: Mapping[str, Any] | None,
         planner_mode: str | None,
     ) -> tuple[dict[str, Any], dict[str, Any]]:
+        _nonempty_string(left_instance_id, "left_instance_id")
+        _nonempty_string(right_instance_id, "right_instance_id")
+        _nonempty_string(compatibility_id, "compatibility_id")
+        _optional_context(context)
         record = self.store.read_record(compatibility_id, commit=self.commit)
         if record["record_type"] != "compatibility":
             raise TypeError(f"{compatibility_id} is not a compatibility record")
@@ -897,7 +1115,7 @@ class QueryEngine:
             "left_state": state_dict(left),
             "right_state": state_dict(right),
             "compatible": value,
-            "context": dict(context or {}),
+            "context": dict(context) if context is not None else {},
         })
         plan = attach_hash({
             "schema": "TOM-COMPATIBILITY-QUERY-PLAN-0.2",
@@ -906,10 +1124,11 @@ class QueryEngine:
             "left_replay": left_plan,
             "right_replay": right_plan,
             "expression_nodes_limit": self.max_expression_nodes,
-            "work": {
-                "tomagi_steps": int(left_plan["work"]["tomagi_steps"]) + int(right_plan["work"]["tomagi_steps"]),
-                "compatibility_evaluations": 1,
-            },
+            "work": _merge_work(
+                left_plan["work"],
+                right_plan["work"],
+                {"compatibility_evaluations": 1},
+            ),
         })
         return result, plan
 
@@ -1022,12 +1241,14 @@ class QueryEngine:
     ) -> dict[str, Any]:
         """Execute a finite declared batch in array order with stable reduction."""
 
+        if isinstance(requests, (str, bytes, bytearray)) or not isinstance(requests, Sequence):
+            raise ValueError("batch requests must be an array")
         mode = planner_mode or self.planner_mode
         if mode not in PLANNER_MODES:
             raise ValueError(f"planner mode must be one of {sorted(PLANNER_MODES)}")
         seen: set[str] = set()
         results: list[dict[str, Any]] = []
-        semantic_results: list[Mapping[str, Any]] = []
+        semantic_results: list[Any] = []
         for position, request in enumerate(requests):
             if not isinstance(request, Mapping):
                 raise ValueError("batch requests must be objects")
@@ -1044,24 +1265,29 @@ class QueryEngine:
             if not isinstance(parameters, Mapping):
                 raise ValueError(f"batch request {ident} parameters must be an object")
 
+            def required(name: str) -> Any:
+                if name not in parameters:
+                    raise ValueError(f"batch request {ident} is missing parameter {name}")
+                return parameters[name]
+
             if operation == "state_at":
                 planned = self.state_at_with_plan(
-                    str(parameters["instance_id"]), int(parameters["tick"]),
-                    include_trace=bool(parameters.get("include_trace", False)), planner_mode=mode,
+                    _nonempty_string(required("instance_id"), "instance_id"), required("tick"),
+                    include_trace=parameters.get("include_trace", False), planner_mode=mode,
                 )
             elif operation == "next_event":
                 planned = self.next_event_with_plan(
-                    str(parameters["instance_id"]), int(parameters["after_tick"]),
-                    horizon=int(parameters.get("horizon", 1024)),
+                    _nonempty_string(required("instance_id"), "instance_id"), required("after_tick"),
+                    horizon=parameters.get("horizon", 1024),
                     relation_ids=parameters.get("relation_ids"),
                     context=parameters.get("context"),
                     planner_mode=mode,
                 )
             elif operation == "events_in_support":
                 planned = self.events_in_support_with_plan(
-                    str(parameters["instance_id"]),
-                    start_tick=int(parameters["start_tick"]),
-                    end_tick=int(parameters["end_tick"]),
+                    _nonempty_string(required("instance_id"), "instance_id"),
+                    start_tick=required("start_tick"),
+                    end_tick=required("end_tick"),
                     support_id=parameters.get("support_id"),
                     relation_ids=parameters.get("relation_ids"),
                     context=parameters.get("context"),
@@ -1069,15 +1295,16 @@ class QueryEngine:
                 )
             elif operation == "compatible":
                 planned = self.compatible_with_plan(
-                    str(parameters["left_instance_id"]),
-                    str(parameters["right_instance_id"]),
-                    str(parameters["compatibility_id"]),
-                    tick=int(parameters["tick"]),
+                    _nonempty_string(required("left_instance_id"), "left_instance_id"),
+                    _nonempty_string(required("right_instance_id"), "right_instance_id"),
+                    _nonempty_string(required("compatibility_id"), "compatibility_id"),
+                    tick=required("tick"),
                     context=parameters.get("context"),
                     planner_mode=mode,
                 )
             elif operation == "definition_at":
-                semantic = self.definition_at(str(parameters["id"]))
+                definition_id = _nonempty_string(required("id"), "id")
+                semantic = self.definition_at(definition_id)
                 trivial_plan = make_plan(
                     commit=self.commit,
                     snapshot_hash=str(self.snapshot["content_hash"]),
@@ -1089,9 +1316,9 @@ class QueryEngine:
                         "mechanism": "snapshot:records",
                         "input_count": len(self.snapshot["records"]),
                         "output_count": 1,
-                        "detail": {"id": parameters["id"]},
+                        "detail": {"id": definition_id},
                     }],
-                    selected_ids=[str(parameters["id"])],
+                    selected_ids=[definition_id],
                     work={"record_reads": 1},
                 )
                 planned = attach_hash({
@@ -1105,7 +1332,7 @@ class QueryEngine:
                 raise ValueError(f"unsupported batch operation {operation}")
 
             semantic = planned["result"]
-            semantic_results.append(semantic if isinstance(semantic, Mapping) else {"value": semantic})
+            semantic_results.append(semantic)
             results.append({
                 "position": position,
                 "id": ident,
@@ -1117,7 +1344,7 @@ class QueryEngine:
             })
 
         reduction_input = _length_prefixed(semantic_results)
-        work = _work_sum(results)
+        work = _batch_work(results)
         return attach_hash({
             "schema": "TOM-BATCH-QUERY-CERTIFICATE-0.2",
             "version": "0.2.0",
@@ -1146,6 +1373,11 @@ class QueryEngine:
             raise ValueError("event certificate is invalid")
         source_commit = str(certificate["source_commit"])
         query = certificate["query"]
+        if not isinstance(query, Mapping):
+            raise ValueError("event certificate query is invalid")
+        relation_ids = query.get("relation_ids")
+        if not isinstance(relation_ids, list) or any(not isinstance(value, str) for value in relation_ids):
+            raise ValueError("event certificate relation_ids are invalid")
         engine = QueryEngine(
             self.store,
             commit=source_commit,
@@ -1155,13 +1387,56 @@ class QueryEngine:
             planner_mode=self.planner_mode,
             use_checkpoints=self.use_checkpoints,
         )
-        recomputed = engine.next_event(
-            str(query["instance_id"]),
-            int(query["after_tick"]),
-            horizon=int(query["horizon"]),
-            relation_ids=list(query["relation_ids"]),
-            context=certificate.get("context", {}),
-        )
+        query_kind = query.get("query_kind")
+        if query_kind is None:
+            # 0.1 certificates named only their originating relation and were
+            # always reconstructed as a next_event query.  Project the newly
+            # generated certificate back onto that legacy query envelope so
+            # already committed lineages remain byte-reconstructible.
+            recomputed = engine.next_event(
+                str(query["instance_id"]),
+                int(query["after_tick"]),
+                horizon=int(query["horizon"]),
+                relation_ids=relation_ids,
+                context=certificate.get("context", {}),
+            )
+            if recomputed is not None:
+                recomputed = dict(recomputed)
+                recomputed["query"] = dict(query)
+                recomputed = attach_hash(recomputed)
+        elif query_kind == "next_event":
+            result_index = query.get("result_index")
+            if result_index != 0:
+                recomputed = None
+            else:
+                recomputed = engine.next_event(
+                    str(query["instance_id"]),
+                    int(query["after_tick"]),
+                    horizon=int(query["horizon"]),
+                    relation_ids=relation_ids,
+                    context=certificate.get("context", {}),
+                )
+        elif query_kind == "events_in_support":
+            result_index = query.get("result_index")
+            if isinstance(result_index, bool) or not isinstance(result_index, int) or result_index < 0:
+                recomputed = None
+            else:
+                support_id = query.get("support_id")
+                if support_id is not None and not isinstance(support_id, str):
+                    raise ValueError("event certificate support_id is invalid")
+                start_tick = int(query["after_tick"])
+                result = engine.events_in_support(
+                    str(query["instance_id"]),
+                    start_tick=start_tick,
+                    end_tick=start_tick + int(query["horizon"]),
+                    support_id=support_id,
+                    relation_ids=relation_ids,
+                    context=certificate.get("context", {}),
+                )
+                events = result["events"]
+                recomputed = events[result_index] if result_index < len(events) else None
+        else:
+            raise ValueError(f"event certificate query_kind is unsupported: {query_kind}")
         equal = recomputed is not None and canonical_bytes(recomputed) == canonical_bytes(certificate)
         return attach_hash({
             "schema": "TOM-RECONSTRUCTION-CERTIFICATE-0.1",
@@ -1225,6 +1500,9 @@ class QueryEngine:
     def commit_event(self, certificate: Mapping[str, Any], *, message: str = "commit verified event") -> dict[str, Any]:
         if certificate.get("source_commit") != self.store.head:
             raise ValueError("event certificate source commit must equal current HEAD")
+        reconstruction = self.reconstruct(certificate)
+        if not reconstruction["byte_equal"]:
+            raise ValueError("event certificate does not reconstruct byte-for-byte")
         event_record, lineage_record = self.event_records(certificate)
         sequence = int(self.commit_record["sequence"]) + 1
         transaction = attach_hash({

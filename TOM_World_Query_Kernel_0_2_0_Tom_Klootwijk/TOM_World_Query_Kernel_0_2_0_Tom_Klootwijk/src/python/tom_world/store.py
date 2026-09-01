@@ -15,9 +15,12 @@ import json
 import os
 import shutil
 import tempfile
+from copy import deepcopy
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Any, Iterator, Mapping
+
+from tomagi.format import loads as load_tomagi_program
 
 from .canonical import attach_hash, canonical_bytes, digest_bytes, verify_hash
 from .indexes import (
@@ -28,7 +31,11 @@ from .indexes import (
     interval_ids,
     validate_index_record,
 )
-from .records import topological_record_order, validate_record
+from .records import (
+    topological_record_order,
+    validate_record,
+    validate_record_dependency_graph,
+)
 from .seed import CANONICAL_SEED_SHA256, SeedIdentity, verify_seed_bytes
 
 # The base schemas are kept compatible with 0.1.  New optional fields are
@@ -70,6 +77,82 @@ def _atomic_write(path: Path, data: bytes, *, fsync: bool = True) -> None:
         os.replace(temp, path)
     finally:
         temp.unlink(missing_ok=True)
+
+
+def _require_record_reference(
+    records: Mapping[str, Mapping[str, Any]],
+    source_id: str,
+    field: str,
+    reference: Any,
+    expected_type: str,
+) -> Mapping[str, Any]:
+    if not isinstance(reference, str) or not reference:
+        raise ValueError(f"record {source_id} requires nonempty {field}")
+    target = records.get(reference)
+    if target is None:
+        raise ValueError(f"record {source_id} references unknown {field} {reference}")
+    actual_type = target.get("record_type")
+    if actual_type != expected_type:
+        raise ValueError(
+            f"record {source_id} {field} {reference} must reference "
+            f"{expected_type}, not {actual_type}"
+        )
+    return target
+
+
+def _validate_record_relationships(records: Mapping[str, Mapping[str, Any]]) -> None:
+    """Validate typed links and bidirectional event-spec coherence."""
+
+    for ident in sorted(records):
+        record = records[ident]
+        record_type = record["record_type"]
+        payload = record["payload"]
+        if record_type == "relation":
+            _require_record_reference(records, ident, "instance_id", payload["instance_id"], "instance")
+            for support_id in payload.get("support_ids", []):
+                _require_record_reference(records, ident, "support_ids", support_id, "support")
+            for compatibility_id in payload.get("compatibility_ids", []):
+                _require_record_reference(
+                    records,
+                    ident,
+                    "compatibility_ids",
+                    compatibility_id,
+                    "compatibility",
+                )
+            event_spec_id = payload.get("event_spec_id")
+            if event_spec_id is not None:
+                event_spec = _require_record_reference(
+                    records,
+                    ident,
+                    "event_spec_id",
+                    event_spec_id,
+                    "event_spec",
+                )
+                declared_relation = event_spec["payload"]["relation_id"]
+                if declared_relation != ident:
+                    raise ValueError(
+                        f"relation {ident} and event_spec {event_spec_id} disagree: "
+                        f"event_spec.relation_id is {declared_relation}"
+                    )
+        elif record_type == "event_spec":
+            _require_record_reference(
+                records,
+                ident,
+                "relation_id",
+                payload["relation_id"],
+                "relation",
+            )
+            transition_id = payload.get("transition_id")
+            if transition_id is not None:
+                _require_record_reference(
+                    records,
+                    ident,
+                    "transition_id",
+                    transition_id,
+                    "transition",
+                )
+        elif record_type == "checkpoint":
+            _require_record_reference(records, ident, "instance_id", payload["instance_id"], "instance")
 
 
 class WorldStore:
@@ -215,7 +298,7 @@ class WorldStore:
         self._blob_cache[ident] = data
         return data
 
-    def read_commit(self, ident: str | None = None) -> dict[str, Any]:
+    def _read_commit_cached(self, ident: str | None = None) -> dict[str, Any]:
         commit_id = ident or self.head
         if commit_id is None:
             raise ValueError("world store has no commit")
@@ -230,7 +313,12 @@ class WorldStore:
         self._commit_cache[commit_id] = record
         return record
 
-    def read_snapshot(self, ident: str) -> dict[str, Any]:
+    def read_commit(self, ident: str | None = None) -> dict[str, Any]:
+        """Return a caller-owned copy of a verified immutable commit."""
+
+        return deepcopy(self._read_commit_cached(ident))
+
+    def _read_snapshot_cached(self, ident: str) -> dict[str, Any]:
         cached = self._snapshot_cache.get(ident)
         if cached is not None:
             return cached
@@ -246,7 +334,12 @@ class WorldStore:
         self._snapshot_cache[ident] = snapshot
         return snapshot
 
-    def read_index(self, ident: str) -> dict[str, Any]:
+    def read_snapshot(self, ident: str) -> dict[str, Any]:
+        """Return a caller-owned copy of a verified immutable snapshot."""
+
+        return deepcopy(self._read_snapshot_cached(ident))
+
+    def _read_index_cached(self, ident: str) -> dict[str, Any]:
         cached = self._index_cache.get(ident)
         if cached is not None:
             return cached
@@ -257,7 +350,12 @@ class WorldStore:
         self._index_cache[ident] = index
         return index
 
-    def read_transaction(self, ident: str) -> dict[str, Any]:
+    def read_index(self, ident: str) -> dict[str, Any]:
+        """Return a caller-owned copy of a verified immutable index."""
+
+        return deepcopy(self._read_index_cached(ident))
+
+    def _read_transaction_cached(self, ident: str) -> dict[str, Any]:
         cached = self._transaction_cache.get(ident)
         if cached is not None:
             return cached
@@ -269,9 +367,19 @@ class WorldStore:
         self._transaction_cache[ident] = transaction
         return transaction
 
+    def read_transaction(self, ident: str) -> dict[str, Any]:
+        """Return a caller-owned copy of a verified immutable transaction."""
+
+        return deepcopy(self._read_transaction_cached(ident))
+
+    def _snapshot_for_commit_cached(self, commit: str | None = None) -> dict[str, Any]:
+        commit_record = self._read_commit_cached(commit)
+        return self._read_snapshot_cached(str(commit_record["snapshot_hash"]))
+
     def snapshot_for_commit(self, commit: str | None = None) -> dict[str, Any]:
-        commit_record = self.read_commit(commit)
-        return self.read_snapshot(str(commit_record["snapshot_hash"]))
+        """Return a caller-owned copy of the snapshot selected by a commit."""
+
+        return deepcopy(self._snapshot_for_commit_cached(commit))
 
     def is_ancestor(self, ancestor: str, descendant: str | None = None) -> bool:
         """Return whether ``ancestor`` is in the parent chain of ``descendant``."""
@@ -285,25 +393,36 @@ class WorldStore:
             if current in seen:
                 raise ValueError("commit ancestry cycle")
             seen.add(current)
-            record = self.read_commit(current)
+            record = self._read_commit_cached(current)
             parent = record.get("parent")
             current = str(parent) if isinstance(parent, str) else None
         return False
 
-    def index_for_commit(self, commit: str | None = None, *, required: bool = False) -> dict[str, Any] | None:
-        snapshot = self.snapshot_for_commit(commit)
+    def _index_for_commit_cached(
+        self,
+        commit: str | None = None,
+        *,
+        required: bool = False,
+    ) -> dict[str, Any] | None:
+        snapshot = self._snapshot_for_commit_cached(commit)
         index_id = snapshot.get("indexes_hash")
         if index_id is None:
             if required:
                 raise ValueError("snapshot has no immutable 0.2 secondary index")
             return None
-        index = self.read_index(str(index_id))
+        index = self._read_index_cached(str(index_id))
         validate_index_record(
             index,
             records={str(key): str(value) for key, value in snapshot["records"].items()},
             seed_sha256=str(snapshot["seed_sha256"]),
         )
         return index
+
+    def index_for_commit(self, commit: str | None = None, *, required: bool = False) -> dict[str, Any] | None:
+        """Return a caller-owned copy of a commit's immutable index."""
+
+        index = self._index_for_commit_cached(commit, required=required)
+        return deepcopy(index) if index is not None else None
 
     def _load_record_from_map(self, record_id: str, object_id: str) -> dict[str, Any]:
         record = self._record_cache.get(object_id)
@@ -318,17 +437,17 @@ class WorldStore:
         return record
 
     def read_record(self, record_id: str, *, commit: str | None = None) -> dict[str, Any]:
-        snapshot = self.snapshot_for_commit(commit)
+        snapshot = self._snapshot_for_commit_cached(commit)
         records = snapshot["records"]
         if record_id not in records:
             raise KeyError(record_id)
-        return self._load_record_from_map(record_id, str(records[record_id]))
+        return deepcopy(self._load_record_from_map(record_id, str(records[record_id])))
 
     def list_record_ids(self, *, commit: str | None = None, record_type: str | None = None) -> list[str]:
-        snapshot = self.snapshot_for_commit(commit)
+        snapshot = self._snapshot_for_commit_cached(commit)
         if record_type is None:
             return sorted(str(key) for key in snapshot["records"])
-        index = self.index_for_commit(commit)
+        index = self._index_for_commit_cached(commit)
         if index is not None:
             return ids_for(index, "by_type", record_type)
         result: list[str] = []
@@ -339,14 +458,14 @@ class WorldStore:
         return result
 
     def list_records(self, *, commit: str | None = None, record_type: str | None = None) -> list[dict[str, Any]]:
-        snapshot = self.snapshot_for_commit(commit)
+        snapshot = self._snapshot_for_commit_cached(commit)
         result: list[dict[str, Any]] = []
         for record_id in self.list_record_ids(commit=commit, record_type=record_type):
-            result.append(self._load_record_from_map(record_id, str(snapshot["records"][record_id])))
+            result.append(deepcopy(self._load_record_from_map(record_id, str(snapshot["records"][record_id]))))
         return result
 
     def indexed_record_ids(self, name: str, key: Any, *, commit: str | None = None) -> list[str]:
-        index = self.index_for_commit(commit, required=True)
+        index = self._index_for_commit_cached(commit, required=True)
         assert index is not None
         if name == "by_generative_address":
             key, _ = canonical_index_key(key)
@@ -366,12 +485,12 @@ class WorldStore:
         commit: str | None = None,
         record_type: str | None = None,
     ) -> list[str]:
-        index = self.index_for_commit(commit, required=True)
+        index = self._index_for_commit_cached(commit, required=True)
         assert index is not None
         return interval_ids(index, start, end, record_type=record_type)
 
     def verify_record(self, record_id: str, *, commit: str | None = None) -> dict[str, Any]:
-        snapshot = self.snapshot_for_commit(commit)
+        snapshot = self._snapshot_for_commit_cached(commit)
         index = snapshot["records"]
         if record_id not in index:
             return {"id": record_id, "valid": False, "reason": "not present in snapshot"}
@@ -394,7 +513,7 @@ class WorldStore:
         }
 
     def compute_indexes(self, *, commit: str | None = None) -> dict[str, Any]:
-        snapshot = self.snapshot_for_commit(commit)
+        snapshot = self._snapshot_for_commit_cached(commit)
         record_map = {str(key): str(value) for key, value in snapshot["records"].items()}
         return build_index_record(
             record_map,
@@ -405,8 +524,8 @@ class WorldStore:
     def rebuild_indexes(self, *, commit: str | None = None, write: bool = True) -> dict[str, Any]:
         """Recreate the exact index bytes named by an immutable snapshot."""
 
-        commit_record = self.read_commit(commit)
-        snapshot = self.read_snapshot(str(commit_record["snapshot_hash"]))
+        commit_record = self._read_commit_cached(commit)
+        snapshot = self._read_snapshot_cached(str(commit_record["snapshot_hash"]))
         expected = snapshot.get("indexes_hash")
         if expected is None:
             raise ValueError("cannot rebuild indexes for a legacy snapshot without indexes_hash")
@@ -473,8 +592,8 @@ class WorldStore:
                 existing_blobs: dict[str, str] = {}
                 expected_sequence = 0
             else:
-                current_commit = self.read_commit(current_head)
-                current_snapshot = self.read_snapshot(str(current_commit["snapshot_hash"]))
+                current_commit = self._read_commit_cached(current_head)
+                current_snapshot = self._read_snapshot_cached(str(current_commit["snapshot_hash"]))
                 existing_records = {str(key): str(value) for key, value in current_snapshot["records"].items()}
                 existing_blobs = {str(key): str(value) for key, value in current_snapshot["blobs"].items()}
                 expected_sequence = int(current_commit["sequence"]) + 1
@@ -482,8 +601,20 @@ class WorldStore:
             if isinstance(sequence, bool) or not isinstance(sequence, int) or sequence != expected_sequence:
                 raise ValueError(f"transaction sequence must be {expected_sequence}")
 
-            order = topological_record_order(records, existing_ids=set(existing_records))
-            staged_by_id = {str(record["id"]): record for record in records}
+            staged_by_id: dict[str, Mapping[str, Any]] = {}
+            for record in records:
+                if not isinstance(record, Mapping):
+                    raise ValueError("transaction record entry must be an object")
+                validate_record(record)
+                ident = str(record["id"])
+                if ident in staged_by_id:
+                    raise ValueError(f"duplicate staged record id: {ident}")
+                staged_by_id[ident] = record
+            # A replaced logical ID is no longer an already-resolved external
+            # dependency for this transaction; its prospective definition must
+            # participate in ordering and cycle checks.
+            unchanged_ids = set(existing_records) - set(staged_by_id)
+            order = topological_record_order(records, existing_ids=unchanged_ids)
 
             blob_index = dict(existing_blobs)
             staged_blob_data: list[tuple[str, bytes, str]] = []
@@ -510,24 +641,114 @@ class WorldStore:
                 staged_blob_data.append((str(blob_id), data, actual))
                 blob_index[str(blob_id)] = actual
 
-            prospective_ids = set(existing_records).union(staged_by_id)
-            prospective_blob_ids = set(blob_index)
-            for ident in order:
-                record = staged_by_id[ident]
-                validate_record(record)
+            # Validate the complete prospective logical snapshot, not merely
+            # staged records.  Replacing one ID can close a cycle through an
+            # untouched record or invalidate the type of an untouched link.
+            prospective_records: dict[str, Mapping[str, Any]] = {
+                ident: self._load_record_from_map(ident, object_id)
+                for ident, object_id in existing_records.items()
+                if ident not in staged_by_id
+            }
+            prospective_records.update(staged_by_id)
+            validate_record_dependency_graph(prospective_records)
+            _validate_record_relationships(prospective_records)
+
+            staged_blobs_by_hash = {actual: data for _, data, actual in staged_blob_data}
+            validated_programs: dict[str, Any] = {}
+            for ident in sorted(prospective_records):
+                record = prospective_records[ident]
                 payload = record["payload"]
                 if record["record_type"] == "instance":
-                    blob_id = payload["program_blob_id"]
-                    if blob_id not in prospective_blob_ids:
+                    blob_id = str(payload["program_blob_id"])
+                    if blob_id not in blob_index:
                         raise ValueError(f"instance {ident} references unknown program blob {blob_id}")
-                for field in ("instance_id", "event_spec_id", "relation_id", "transition_id"):
-                    reference = payload.get(field)
-                    if isinstance(reference, str) and reference not in prospective_ids:
-                        raise ValueError(f"record {ident} references unknown {field} {reference}")
-                for field in ("support_ids", "compatibility_ids"):
-                    for reference in payload.get(field, []):
-                        if reference not in prospective_ids:
-                            raise ValueError(f"record {ident} references unknown {field} item {reference}")
+                    blob_hash = str(blob_index[blob_id])
+                    if blob_hash not in validated_programs:
+                        data = staged_blobs_by_hash.get(blob_hash)
+                        if data is None:
+                            data = self.read_blob(blob_hash)
+                        try:
+                            program = load_tomagi_program(data)
+                        except (TypeError, ValueError) as exc:
+                            raise ValueError(
+                                f"instance {ident} program blob {blob_id} is not a valid TOMAGI program: {exc}"
+                            ) from exc
+                        if not 0 <= program.initial_state.cell < len(program.cells):
+                            raise ValueError(
+                                f"instance {ident} program blob {blob_id} has an out-of-range initial cell"
+                            )
+                        validated_programs[blob_hash] = program
+                    program = validated_programs[blob_hash]
+                    initial_state = payload.get("initial_state", {})
+                    selected_cell = initial_state.get("cell", program.initial_state.cell)
+                    normalized_cell = int(selected_cell) & 0xFFFFFFFF
+                    if normalized_cell >= len(program.cells):
+                        raise ValueError(
+                            f"instance {ident} initial_state.cell is outside its program cell table"
+                        )
+                elif record["record_type"] == "checkpoint":
+                    instance_id = str(payload["instance_id"])
+                    instance = prospective_records[instance_id]
+                    if payload["instance_hash"] != instance["content_hash"]:
+                        raise ValueError(
+                            f"checkpoint {ident} instance hash does not match prospective snapshot"
+                        )
+                    blob_id = str(instance["payload"]["program_blob_id"])
+                    blob_hash = blob_index.get(blob_id)
+                    if payload["program_blob_hash"] != blob_hash:
+                        raise ValueError(
+                            f"checkpoint {ident} program blob hash does not match prospective snapshot"
+                        )
+                    source_commit = str(payload["source_commit"])
+                    if current_head is None or not self.is_ancestor(source_commit, current_head):
+                        raise ValueError(
+                            f"checkpoint {ident} source commit is not in base commit ancestry"
+                        )
+
+            # Checkpoints are executable acceleration claims.  Verify every
+            # claim in the prospective snapshot so an unrelated later commit
+            # cannot carry forward a historically forged checkpoint.
+            if any(record["record_type"] == "checkpoint" for record in prospective_records.values()):
+                from .query import verify_checkpoint_record
+
+                for ident in sorted(prospective_records):
+                    record = prospective_records[ident]
+                    if record["record_type"] == "checkpoint":
+                        verify_checkpoint_record(self, record)
+
+            # Event and lineage records are persistence forms of an exactly
+            # replayable query certificate, not arbitrary generic payloads.
+            # Enforce that contract even when callers use commit_transaction
+            # directly instead of QueryEngine.commit_event().
+            if any(record["record_type"] in {"event", "lineage"} for record in prospective_records.values()):
+                if current_head is None:
+                    raise ValueError("event/lineage records require an existing source commit")
+                from .query import QueryEngine
+
+                event_engine = QueryEngine(self, commit=current_head, use_checkpoints=False)
+                for ident in sorted(prospective_records):
+                    record = prospective_records[ident]
+                    if record["record_type"] not in {"event", "lineage"}:
+                        continue
+                    certificate = record["payload"].get("certificate")
+                    if not isinstance(certificate, Mapping):
+                        raise ValueError(f"{record['record_type']} {ident} has no embedded certificate")
+                    source_commit = certificate.get("source_commit")
+                    if not isinstance(source_commit, str) or not self.is_ancestor(source_commit, current_head):
+                        raise ValueError(
+                            f"{record['record_type']} {ident} certificate source is not in base ancestry"
+                        )
+                    reconstruction = event_engine.reconstruct(certificate)
+                    if not reconstruction["byte_equal"]:
+                        raise ValueError(
+                            f"{record['record_type']} {ident} certificate does not reconstruct byte-for-byte"
+                        )
+                    expected_event, expected_lineage = event_engine.event_records(certificate)
+                    expected = expected_event if record["record_type"] == "event" else expected_lineage
+                    if canonical_bytes(record) != canonical_bytes(expected):
+                        raise ValueError(
+                            f"{record['record_type']} {ident} is not the canonical certificate-derived record"
+                        )
 
             # Immutable content is written first.  Large synthetic transactions
             # avoid one fsync per object; the transaction/index/snapshot/commit
@@ -539,7 +760,9 @@ class WorldStore:
             for ident in order:
                 record = staged_by_id[ident]
                 object_id = self._put_hashed_json(self.objects_dir, record, durable=not bulk)
-                self._record_cache[object_id] = dict(record)
+                # Do not retain nested containers owned by the transaction
+                # caller; later mutation of the input must not poison caches.
+                self._record_cache[object_id] = deepcopy(dict(record))
                 record_index[ident] = object_id
 
             index_record = build_index_record(

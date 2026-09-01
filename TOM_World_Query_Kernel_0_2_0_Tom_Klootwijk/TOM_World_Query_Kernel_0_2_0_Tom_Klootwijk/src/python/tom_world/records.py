@@ -3,9 +3,11 @@ from __future__ import annotations
 
 import re
 from collections.abc import Mapping, Sequence
+from heapq import heapify, heappop, heappush
 from typing import Any
 
 from .canonical import attach_hash, verify_hash
+from .expression import validate_expression
 
 RECORD_SCHEMA = "TOM-WORLD-RECORD-0.1"
 RECORD_TYPES = frozenset({
@@ -38,6 +40,10 @@ DEFINITION_PHASES = (
     "lineage",
 )
 _ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._:/@+\-]*$")
+_STATE64_FIELDS = frozenset({
+    "rho", "theta", "tick", "phi", "vrho", "vtheta", "vtick", "vphi",
+    "orientation", "sheet", "branch", "cell", "lineage", "output", "residual", "status",
+})
 
 
 def _require_mapping(value: Any, name: str) -> Mapping[str, Any]:
@@ -153,13 +159,12 @@ def _validate_instance(ident: str, payload: Mapping[str, Any]) -> None:
     _require_string(payload.get("program_blob_id"), f"{ident}.payload.program_blob_id")
     if "initial_state" in payload:
         state = _require_mapping(payload["initial_state"], f"{ident}.payload.initial_state")
-        valid = {
-            "rho", "theta", "tick", "phi", "vrho", "vtheta", "vtick", "vphi",
-            "orientation", "sheet", "branch", "cell", "lineage", "output", "residual", "status",
-        }
-        unknown = sorted(set(state) - valid)
+        unknown = sorted(set(state) - _STATE64_FIELDS)
         if unknown:
             raise ValueError(f"{ident}.payload.initial_state has unknown fields: {', '.join(unknown)}")
+        for field, value in state.items():
+            if isinstance(value, bool) or not isinstance(value, int):
+                raise ValueError(f"{ident}.payload.initial_state.{field} must be an integer")
     if "context" in payload:
         _require_mapping(payload["context"], f"{ident}.payload.context")
     if "time_interval" in payload:
@@ -170,6 +175,10 @@ def _validate_instance(ident: str, payload: Mapping[str, Any]) -> None:
 def _validate_expression_record(ident: str, payload: Mapping[str, Any]) -> None:
     if "expression" not in payload:
         raise ValueError(f"{ident}.payload.expression is required")
+    try:
+        validate_expression(payload["expression"])
+    except ValueError as exc:
+        raise ValueError(f"{ident}.payload.expression is invalid: {exc}") from exc
 
 
 def _validate_relation(ident: str, payload: Mapping[str, Any]) -> None:
@@ -207,11 +216,29 @@ def _validate_compatibility(ident: str, payload: Mapping[str, Any]) -> None:
 def _validate_transition(ident: str, payload: Mapping[str, Any]) -> None:
     for field in ("set", "add", "xor"):
         if field in payload:
-            _require_mapping(payload[field], f"{ident}.payload.{field}")
+            expressions = _require_mapping(payload[field], f"{ident}.payload.{field}")
+            unknown = sorted(
+                (repr(name) for name in expressions if not isinstance(name, str) or name not in _STATE64_FIELDS)
+            )
+            if unknown:
+                raise ValueError(
+                    f"{ident}.payload.{field} has unknown State64 fields: {', '.join(unknown)}"
+                )
+            for state_field, expression in expressions.items():
+                try:
+                    validate_expression(expression)
+                except ValueError as exc:
+                    raise ValueError(
+                        f"{ident}.payload.{field}.{state_field} is invalid: {exc}"
+                    ) from exc
     if not any(field in payload for field in ("set", "add", "xor")):
         raise ValueError(f"{ident}.payload requires set, add, or xor")
     if "normalize_periodic" in payload and not isinstance(payload["normalize_periodic"], bool):
         raise ValueError(f"{ident}.payload.normalize_periodic must be boolean")
+    if "lineage_salt" in payload:
+        salt = payload["lineage_salt"]
+        if isinstance(salt, bool) or not isinstance(salt, int):
+            raise ValueError(f"{ident}.payload.lineage_salt must be an integer")
 
 
 def _validate_event_spec(ident: str, payload: Mapping[str, Any]) -> None:
@@ -267,14 +294,13 @@ def _validate_checkpoint(ident: str, payload: Mapping[str, Any]) -> None:
     tick = payload.get("tick")
     if isinstance(tick, bool) or not isinstance(tick, int) or tick < 0:
         raise ValueError(f"{ident}.payload.tick must be a nonnegative integer")
+    executed_steps = payload.get("executed_steps")
+    if isinstance(executed_steps, bool) or not isinstance(executed_steps, int) or executed_steps < 0:
+        raise ValueError(f"{ident}.payload.executed_steps must be a nonnegative integer")
     state = _require_mapping(payload.get("state"), f"{ident}.payload.state")
-    valid = {
-        "rho", "theta", "tick", "phi", "vrho", "vtheta", "vtick", "vphi",
-        "orientation", "sheet", "branch", "cell", "lineage", "output", "residual", "status",
-    }
-    if set(state) != valid:
-        missing = sorted(valid - set(state))
-        extra = sorted(set(state) - valid)
+    if set(state) != _STATE64_FIELDS:
+        missing = sorted(_STATE64_FIELDS - set(state))
+        extra = sorted(set(state) - _STATE64_FIELDS)
         raise ValueError(f"{ident}.payload.state field mismatch: missing={missing}, extra={extra}")
     for field, value in state.items():
         if isinstance(value, bool) or not isinstance(value, int):
@@ -283,7 +309,20 @@ def _validate_checkpoint(ident: str, payload: Mapping[str, Any]) -> None:
     _require_sha256(payload.get("program_blob_hash"), f"{ident}.payload.program_blob_hash")
     _require_sha256(payload.get("source_commit"), f"{ident}.payload.source_commit")
     _require_sha256(payload.get("state_certificate_hash"), f"{ident}.payload.state_certificate_hash")
+    if "topology_sheet" not in payload:
+        raise ValueError(f"{ident}.payload.topology_sheet is required")
     _validate_topology_sheet(payload, f"{ident}.payload")
+    if payload["topology_sheet"] != state["sheet"]:
+        raise ValueError(f"{ident}.payload.topology_sheet must equal payload.state.sheet")
+    address = _require_mapping(payload.get("generative_address"), f"{ident}.payload.generative_address")
+    if address.get("instance_id") != payload["instance_id"] or address.get("tick") != tick:
+        raise ValueError(
+            f"{ident}.payload.generative_address must identify payload.instance_id and payload.tick"
+        )
+    interval = payload.get("time_interval")
+    _validate_interval(interval, f"{ident}.payload.time_interval")
+    if interval["start"] != tick or interval["end"] != tick:
+        raise ValueError(f"{ident}.payload.time_interval must be the singleton payload.tick")
 
 
 def _validate_generic(ident: str, payload: Mapping[str, Any]) -> None:
@@ -334,17 +373,55 @@ def topological_record_order(records: Sequence[Mapping[str, Any]], existing_ids:
             indegree[ident] += 1
             children[dep].append(ident)
 
-    ready = sorted((input_rank[ident], ident) for ident, degree in indegree.items() if degree == 0)
+    ready = [(input_rank[ident], ident) for ident, degree in indegree.items() if degree == 0]
+    # A heap preserves input-order tie breaking without repeatedly sorting and
+    # shifting a potentially large ready list.
+    heapify(ready)
     order: list[str] = []
     while ready:
-        _, ident = ready.pop(0)
+        _, ident = heappop(ready)
         order.append(ident)
         for child in sorted(children[ident], key=input_rank.__getitem__):
             indegree[child] -= 1
             if indegree[child] == 0:
-                ready.append((input_rank[child], child))
-                ready.sort()
+                heappush(ready, (input_rank[child], child))
     if len(order) != len(by_id):
         cyclic = sorted(ident for ident, degree in indegree.items() if degree > 0)
         raise ValueError("record dependency cycle: " + ", ".join(cyclic))
     return order
+
+
+def validate_record_dependency_graph(records: Mapping[str, Mapping[str, Any]]) -> None:
+    """Validate the complete prospective logical record graph.
+
+    Unlike ``topological_record_order``'s staged-record convenience mode, this
+    function treats every supplied ID as its prospective value.  Replacing an
+    existing record therefore cannot disguise a self-cycle or a cycle that
+    passes through an otherwise unchanged record.
+    """
+
+    indegree: dict[str, int] = {ident: 0 for ident in records}
+    children: dict[str, list[str]] = {ident: [] for ident in records}
+    for ident, record in records.items():
+        validate_record(record)
+        if record["id"] != ident:
+            raise ValueError(f"record graph key/id mismatch: {ident} != {record['id']}")
+        for dependency in record["dependencies"]:
+            if dependency not in records:
+                raise ValueError(f"unresolved dependency {dependency} from {ident}")
+            indegree[ident] += 1
+            children[str(dependency)].append(ident)
+
+    ready = [ident for ident, degree in indegree.items() if degree == 0]
+    heapify(ready)
+    visited = 0
+    while ready:
+        ident = heappop(ready)
+        visited += 1
+        for child in children[ident]:
+            indegree[child] -= 1
+            if indegree[child] == 0:
+                heappush(ready, child)
+    if visited != len(records):
+        cyclic = sorted(ident for ident, degree in indegree.items() if degree > 0)
+        raise ValueError("record dependency cycle: " + ", ".join(cyclic))

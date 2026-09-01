@@ -270,6 +270,8 @@ class Program:
         if len(set(keys)) != len(keys):
             raise ValueError("canonical cell keys must be unique")
         for c in self.cells:
+            if c.opcode > int(Opcode.HALT):
+                raise ValueError("cell opcode is outside the TOMAGI 1.0 range")
             if c.next0 >= len(self.cells) or c.next1 >= len(self.cells):
                 raise ValueError("cell successor is outside the cell table")
 
