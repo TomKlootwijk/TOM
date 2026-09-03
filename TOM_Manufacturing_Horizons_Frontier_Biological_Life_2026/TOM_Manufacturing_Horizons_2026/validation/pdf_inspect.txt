@@ -1,0 +1,23 @@
+PDF: /mnt/data/tom_manufacturing_frontiers/build/TOM_Manufacturing_Horizons_Frontier_Biological_Life_2026.pdf
+Pages: 47
+Encrypted: False
+Page sizes (pt, rounded):
+  - 595 x 842 (47 page(s))
+Metadata:
+  /CreationDate: D:20260903145146Z
+  /Creator: LaTeX via pandoc
+  /Producer: xdvipdfmx (20240305)
+Outline items: 126
+Form fields: 0
+Attachments: 0
+Annotations: 153
+
+Fonts (pdffonts, first 25 lines):
+name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+VLYQAP+DejaVuSans-Bold               CID TrueType      Identity-H       yes yes yes     54  0
+ZOJWCQ+DejaVuSans                    CID TrueType      Identity-H       yes yes yes     56  0
+ROEKSG+DejaVuSerif                   CID TrueType      Identity-H       yes yes yes     58  0
+TLFEYP+DejaVuSerif-Bold              CID TrueType      Identity-H       yes yes yes     66  0
+USUBQZ+DejaVuSansMono                CID TrueType      Identity-H       yes yes yes     68  0
+PMSJFV+DejaVuSerif-Italic            CID TrueType      Identity-H       yes yes yes    335  0

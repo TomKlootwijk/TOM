@@ -1,0 +1,23 @@
+PDF: /mnt/data/TOM_Commons_Human_Needs_2026/TOM_Commons_Human_Needs_Network_2026.pdf
+Pages: 57
+Encrypted: False
+Page sizes (pt, rounded):
+  - 595 x 842 (57 page(s))
+Metadata:
+  /CreationDate: D:20260903160207Z
+  /Creator: LaTeX via pandoc
+  /Producer: xdvipdfmx (20240305)
+Outline items: 175
+Form fields: 0
+Attachments: 0
+Annotations: 175
+
+Fonts (pdffonts, first 25 lines):
+name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+VWYAVQ+DejaVuSans-Bold               CID TrueType      Identity-H       yes yes yes     54  0
+KPBMTV+DejaVuSans                    CID TrueType      Identity-H       yes yes yes     56  0
+DLNDBL+DejaVuSerif                   CID TrueType      Identity-H       yes yes yes     60  0
+PCUFGJ+DejaVuSerif-Bold              CID TrueType      Identity-H       yes yes yes     66  0
+VHLBLD+DejaVuSansMono                CID TrueType      Identity-H       yes yes yes     68  0
+VBIINU+DejaVuSerif-Italic            CID TrueType      Identity-H       yes yes yes     73  0

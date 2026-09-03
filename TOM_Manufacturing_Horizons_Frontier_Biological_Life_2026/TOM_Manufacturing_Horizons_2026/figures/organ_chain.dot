@@ -1,0 +1,17 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="white", pad="0.2", nodesep="0.22", ranksep="0.25", splines=ortho];
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=9.5, margin="0.10,0.07", color="#19384A", penwidth=1.1];
+  edge [color="#58717F", penwidth=1.1, arrowsize=0.65];
+
+  source [label="Cell / donor / line\nidentity and consent", fillcolor="#D9F3F1"];
+  prog [label="Differentiation program\nexact protocol version", fillcolor="#D9F3F1"];
+  modules [label="Organ building blocks\norganoids, cell sheets, spheroids", fillcolor="#DFF1D7", color="#3E6C32"];
+  arch [label="Architecture\nscaffold, geometry, vascular channels", fillcolor="#FFF2CC", color="#B08500"];
+  integrate [label="Integration\nperfusion, lymphatics, innervation, immune fit", fillcolor="#FFF2CC", color="#B08500"];
+  mature [label="Maturation\nmechanical, metabolic, electrical function", fillcolor="#F4E4F8", color="#704080"];
+  qa [label="Release evidence\nsterility, identity, potency, safety, durability", fillcolor="#F8D9D7", color="#A33A35"];
+  implant [label="Clinical implantation\nor external bioartificial support", fillcolor="#CFE9F5"];
+  monitor [label="Longitudinal monitoring\nevents, revisions, lineage", fillcolor="#CFE9F5"];
+
+  source -> prog -> modules -> arch -> integrate -> mature -> qa -> implant -> monitor;
+}

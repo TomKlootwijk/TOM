@@ -1,0 +1,13 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="white", pad="0.25", nodesep="0.18", ranksep="0.3", splines=ortho];
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=10, margin="0.12,0.08", color="#19384A", penwidth=1.2];
+  edge [color="#58717F", penwidth=1.2, arrowsize=0.65];
+
+  a [label="A. Demonstrated now\nsoftware authority, simulation,\nrobotic labs, organoids, bioprinting precursors", fillcolor="#DFF1D7", color="#3E6C32"];
+  b [label="B. Engineering extrapolation\nproof-carrying factories, FPGA/ASIC TOM,\nvascularized tissue modules, space spares", fillcolor="#D9F3F1"];
+  c [label="C. Major research frontier\nwhole replacement organs, synthetic symbionts,\nliving infrastructure, molecular robotics", fillcolor="#FFF2CC", color="#B08500"];
+  d [label="D. Known-physics-compatible speculation\nself-growing habitats, organ foundries,\nclosed-loop planetary microfactories", fillcolor="#F4E4F8", color="#704080"];
+  e [label="E. Not established\nde novo autonomous life from raw chemicals,\ngeneral molecular nanofactory, AGI from the kernel alone", fillcolor="#F8D9D7", color="#A33A35"];
+
+  a -> b -> c -> d -> e;
+}

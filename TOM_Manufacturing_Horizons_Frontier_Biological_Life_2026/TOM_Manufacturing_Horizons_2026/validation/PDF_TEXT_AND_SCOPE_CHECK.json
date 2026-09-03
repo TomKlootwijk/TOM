@@ -1,0 +1,30 @@
+{
+  "inclusion_checks": {
+    "current_pdf_request_present": true,
+    "new_biological_life_section_present": true,
+    "new_functional_organs_discussed": true,
+    "preceding_assistant_reply_present": true,
+    "preceding_user_prompt_present": true,
+    "sci_fi_frontier_section_present": true
+  },
+  "pdf": {
+    "bytes": 972250,
+    "page_size": "A4",
+    "pages": 47,
+    "path": "TOM_Manufacturing_Horizons_Frontier_Biological_Life_2026.pdf",
+    "sha256": "153333a3b1a5fa884f527ec27fd49a11064362976a07b3e2cb6829d76cb93ffc"
+  },
+  "safety_scope": {
+    "clinical_instructions": false,
+    "operational_wet_lab_protocols": false,
+    "physical_manufacturing_claimed_as_achieved": false,
+    "speculation_labeled": true
+  },
+  "schema": "TOM-MANUFACTURING-HORIZONS-PDF-VALIDATION-1.0",
+  "source": {
+    "bytes": 125233,
+    "path": "TOM_Manufacturing_Horizons_Frontier_Biological_Life_2026.md",
+    "words": 16172
+  },
+  "status": "pass"
+}

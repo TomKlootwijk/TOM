@@ -1,0 +1,15 @@
+digraph G {
+  graph [rankdir=TB, bgcolor="white", pad="0.2", nodesep="0.16", ranksep="0.26", splines=ortho];
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=10, margin="0.12,0.07", color="#19384A", penwidth=1.1];
+  edge [color="#58717F", penwidth=1.1, arrowsize=0.65];
+
+  g1 [label="Chemically synthesized genome controlling an existing cell\nDEMONSTRATED", fillcolor="#DFF1D7", color="#3E6C32"];
+  g2 [label="Minimal synthetic bacterial genome\nDEMONSTRATED", fillcolor="#DFF1D7", color="#3E6C32"];
+  g3 [label="Alternative genetic polymers with heredity/evolution in vitro\nDEMONSTRATED COMPONENT", fillcolor="#D9F3F1"];
+  g4 [label="Reconfigurable multicellular biobots and anthrobots\nDEMONSTRATED IN VITRO", fillcolor="#D9F3F1"];
+  g5 [label="Programmable engineered living materials\nEARLY RESEARCH PLATFORM", fillcolor="#FFF2CC", color="#B08500"];
+  g6 [label="Designed multicellular organisms with novel organs and life cycles\nMAJOR RESEARCH FRONTIER", fillcolor="#F4E4F8", color="#704080"];
+  g7 [label="Fully autonomous de novo life assembled from nonliving components\nNOT YET ACHIEVED", fillcolor="#F8D9D7", color="#A33A35"];
+
+  g1 -> g2 -> g3 -> g4 -> g5 -> g6 -> g7;
+}

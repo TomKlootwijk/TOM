@@ -1,0 +1,21 @@
+digraph G {
+  graph [rankdir=TB, bgcolor="white", pad="0.25", nodesep="0.25", ranksep="0.35", splines=ortho];
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=11, margin="0.14,0.08", color="#19384A", penwidth=1.3];
+  edge [fontname="DejaVu Sans", fontsize=9, color="#58717F", penwidth=1.2, arrowsize=0.7];
+
+  seed [label="Canonical 244-byte TOM seed\n+ versioned token registry", fillcolor="#D9F3F1"];
+  defs [label="Content-addressed domain definitions\nproduct, material, process, support, compatibility, guard", fillcolor="#D9F3F1"];
+  kernel [label="Frozen TOMAGI kernel\n128-byte header | State64 | Cell48 | 16 opcodes", fillcolor="#0E3342", fontcolor="white", color="#0E3342"];
+  query [label="Deterministic query / event / transition / lineage authority", fillcolor="#CFE9F5"];
+  adapter [label="Mechanical adapter\ncanonicalize, transport, invoke, hash, persist", fillcolor="#FFF2CC", color="#B08500"];
+  external [label="External phenotype or oracle\nAI | simulator | robot | instrument | biofoundry | factory", fillcolor="#F4E4F8", color="#704080"];
+  obs [label="Typed observations and proposals\nmeasurements, model outputs, process states", fillcolor="#FFF2CC", color="#B08500"];
+  gate [label="support -> compatibility -> guard\nexplicit accept / reject / ambiguous", fillcolor="#F8D9D7", color="#A33A35"];
+  publish [label="Atomic transition + parent-bound publication\nimmutable evidence and lineage", fillcolor="#CFE9F5"];
+  product [label="Proof-carrying artifact\nsoftware | hardware | material | tissue | organism | habitat", fillcolor="#DFF1D7", color="#3E6C32", penwidth=1.5];
+
+  seed -> defs -> kernel -> query -> adapter -> external -> obs -> gate -> publish -> product;
+  obs -> query [style=dashed, constraint=false];
+  query -> gate [style=dashed, constraint=false];
+  product -> defs [style=dashed, constraint=false];
+}

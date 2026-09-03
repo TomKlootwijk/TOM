@@ -1,0 +1,6 @@
+PDF: /mnt/data/TOM_Commons_Human_Needs_2026/TOM_Commons_Human_Needs_Network_2026.pdf
+Pages: 57
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False

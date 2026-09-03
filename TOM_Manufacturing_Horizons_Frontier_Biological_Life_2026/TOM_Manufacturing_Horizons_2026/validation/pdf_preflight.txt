@@ -1,0 +1,6 @@
+PDF: /mnt/data/tom_manufacturing_frontiers/build/TOM_Manufacturing_Horizons_Frontier_Biological_Life_2026.pdf
+Pages: 47
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False

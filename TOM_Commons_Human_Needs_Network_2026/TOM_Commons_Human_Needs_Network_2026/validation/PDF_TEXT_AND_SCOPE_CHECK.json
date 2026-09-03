@@ -1,0 +1,82 @@
+{
+  "artifact": {
+    "bytes": 2144476,
+    "embedded_fonts": [
+      "DejaVu Sans Bold",
+      "DejaVu Sans",
+      "DejaVu Serif",
+      "DejaVu Serif Bold",
+      "DejaVu Sans Mono",
+      "DejaVu Serif Italic"
+    ],
+    "encrypted": false,
+    "likely_scanned": false,
+    "openable": true,
+    "page_format": "A4",
+    "pages": 57,
+    "path": "TOM_Commons_Human_Needs_Network_2026.pdf",
+    "sha256": "29b69b06cf7931efce93ebee01ea6e277e62c9d36cb294212106d80ce6847056",
+    "xfa_present": false
+  },
+  "claim_boundary": [
+    "Architecture and transition blueprint, not a deployed Google-scale service.",
+    "No affiliation with or endorsement by Google or Alphabet.",
+    "No claim of AGI, global consensus, universal knowledge, safe autonomous medicine or biological manufacturing at scale.",
+    "The canonical 244-byte TOM seed and fixed TOMAGI kernel remain unchanged; TOM-HUMAN-NEEDS is a proposed domain pack above them.",
+    "The critique of present systems is directed at institutional interfaces and incentive structures, not the worth or intelligence of people, cultures, professions or genders."
+  ],
+  "generated_utc": "2026-09-03T16:10:00Z",
+  "inclusion_checks": {
+    "Functional mapping from the present Google surface to TOM Commons": true,
+    "Genome TOM": true,
+    "Google advertising revenue": true,
+    "Human Needs Genome": true,
+    "Human Needs Genome taxonomy": true,
+    "Manufacturing Horizons": true,
+    "Request as received": true,
+    "TOM Commons": true,
+    "TOM Foundry, Biofoundry, Habitat and Frontier": true,
+    "cave-men and women": true,
+    "institutional transition map": true,
+    "new type of Google": true,
+    "not evidence of AGI": true
+  },
+  "references": {
+    "canonical_seed": {
+      "bytes": 244,
+      "path": "references/TOM_seed_genome_2026-09-01.txt",
+      "sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+      "terminal_newline": false
+    },
+    "prior_manufacturing_horizons_pdf": {
+      "path": "references/TOM_Manufacturing_Horizons_Frontier_Biological_Life_2026.pdf",
+      "sha256": "153333a3b1a5fa884f527ec27fd49a11064362976a07b3e2cb6829d76cb93ffc"
+    }
+  },
+  "schema": "TOM-COMMONS-PDF-VALIDATION-1.0",
+  "scope": {
+    "contains_36_domain_human_needs_taxonomy": true,
+    "contains_google_to_tom_crosswalk": true,
+    "contains_transition_roadmap_metrics_risks_and_institutional_map": true,
+    "contains_twelve_human_journeys": true,
+    "covers_search_ai_identity_communication_workspace_maps_media_learning_markets_civic_health_home_compute_manufacturing_biofoundry_habitat_frontier": true,
+    "defines_tom_human_needs_domain_pack": true,
+    "maps_current_google_functional_surface": true,
+    "reproduces_user_request_verbatim": true
+  },
+  "source": {
+    "bytes": 128667,
+    "figures": 10,
+    "path": "TOM_Commons_Human_Needs_Network_2026.md",
+    "sha256": "2e0f1932d72227b93e620307defb95250d21fac35a483548077b5c32406ee30c",
+    "word_count_wc": 17602
+  },
+  "status": "pass",
+  "visual_review": {
+    "clipping_or_overlap_detected": false,
+    "contact_sheets_reviewed": 5,
+    "notes": "All 57 pages were rendered. Five contact sheets covering every page and selected full-resolution pages were visually reviewed. Tables, diagrams, headings, footers and final appendices remained inside the page frame.",
+    "pages_reviewed": "1-57",
+    "rendered_pages": 57
+  }
+}
