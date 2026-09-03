@@ -42,12 +42,21 @@ def audit_store(
     commit: str | None = None,
     require_no_orphans: bool = False,
     strict: bool = False,
+    max_event_replay_steps: int = 100_000,
 ) -> dict[str, Any]:
     """Audit a target commit, all ancestors, and all reachable immutable bytes.
 
     The certificate is deterministic: it contains no duration, hostname, PID,
-    or absolute path.  Repeated audits of the same bytes produce the same hash.
+    or absolute path. Repeated audits of the same bytes with the same arguments
+    produce the same hash.
     """
+
+    if (
+        isinstance(max_event_replay_steps, bool)
+        or not isinstance(max_event_replay_steps, int)
+        or max_event_replay_steps < 0
+    ):
+        raise ValueError("max_event_replay_steps must be a nonnegative integer")
 
     # An audit is a disk-integrity operation and must not inherit cached parses
     # from prior queries in the same process.
@@ -70,14 +79,19 @@ def audit_store(
         error("store", "descriptor", f"{type(exc).__name__}: {exc}")
         checks.append({"name": "store_descriptor_and_seed", "valid": False})
 
-    target = commit or store.head
+    try:
+        head = store.head
+    except Exception as exc:
+        head = None
+        error("head", "HEAD", f"{type(exc).__name__}: {exc}")
+    target = commit or head
     if target is None:
         error("commit", "HEAD", "store has no target commit")
         certificate = attach_hash({
             "schema": AUDIT_SCHEMA,
             "version": "0.2.0",
             "target_commit": None,
-            "head": store.head,
+            "head": head,
             "valid": False,
             "checks": checks,
             "counts": {},
@@ -85,6 +99,8 @@ def audit_store(
             "errors": errors,
             "warnings": warnings,
             "orphans": {},
+            "require_no_orphans": require_no_orphans,
+            "max_event_replay_steps": max_event_replay_steps,
         })
         if strict:
             raise ValueError("world audit failed: store has no target commit")
@@ -134,8 +150,12 @@ def audit_store(
         transaction_hash = str(commit_record.get("transaction_hash"))
         transaction: dict[str, Any] | None = None
         transaction_valid = False
-        transaction_path = store._transaction_path(transaction_hash)
-        if transaction_path.is_file():
+        try:
+            transaction_path = store._transaction_path(transaction_hash)
+        except Exception as exc:
+            transaction_path = None
+            error("transaction", transaction_hash, f"invalid transaction identifier: {type(exc).__name__}: {exc}")
+        if transaction_path is not None and transaction_path.is_file():
             reachable_transactions.add(transaction_hash)
             try:
                 transaction = store.read_transaction(transaction_hash)
@@ -144,14 +164,16 @@ def audit_store(
                     and transaction.get("base_commit") == commit_record.get("parent")
                     and transaction.get("sequence") == sequence
                     and transaction.get("seed_sha256") == commit_record.get("seed_sha256")
-                    and str(transaction.get("message", "")) == commit_record.get("message")
+                    and isinstance(transaction.get("message", ""), str)
+                    and transaction.get("message", "") == commit_record.get("message")
+                    and isinstance(transaction.get("provenance", {}), dict)
                     and transaction.get("provenance", {}) == commit_record.get("provenance")
                 )
                 if not transaction_valid:
                     error("transaction", transaction_hash, "transaction/commit metadata mismatch")
             except Exception as exc:
                 error("transaction", transaction_hash, f"{type(exc).__name__}: {exc}")
-        else:
+        elif transaction_path is not None:
             if commit_record.get("version") == "0.1.0":
                 warning("transaction", transaction_hash, "legacy 0.1 commit has no stored transaction body")
             else:
@@ -329,12 +351,10 @@ def audit_store(
                     blob_hash = str(blobs[blob_id])
                     if blob_hash not in program_cache:
                         program = load_tomagi_program(store.read_blob(blob_hash))
-                        if not 0 <= program.initial_state.cell < len(program.cells):
-                            raise ValueError("program has an out-of-range initial cell")
                         program_cache[blob_hash] = program
                     program = program_cache[blob_hash]
                     initial_state = payload.get("initial_state", {})
-                    selected_cell = initial_state.get("cell", program.initial_state.cell)
+                    selected_cell = initial_state.get("cell", program.entry)
                     if (int(selected_cell) & 0xFFFFFFFF) >= len(program.cells):
                         raise ValueError("initial_state.cell is outside its program cell table")
                 except Exception as exc:
@@ -377,7 +397,10 @@ def audit_store(
                             from .query import QueryEngine
 
                             query_engine = query_engine or QueryEngine(
-                                store, commit=current, use_checkpoints=False
+                                store,
+                                commit=current,
+                                max_query_steps=max_event_replay_steps,
+                                use_checkpoints=False,
                             )
                             reconstruction = query_engine.reconstruct(certificate)
                             if not reconstruction["byte_equal"]:
@@ -419,7 +442,7 @@ def audit_store(
 
     if ancestry and ancestry[-1]["sequence"] != 0:
         error("commit", ancestry[-1]["commit"], "ancestry did not terminate at sequence zero")
-    if commit is None and target != store.head:
+    if commit is None and target != head:
         error("head", "HEAD", "audit target does not equal current HEAD")
 
     disk_sets = {
@@ -457,7 +480,7 @@ def audit_store(
         "schema": AUDIT_SCHEMA,
         "version": "0.2.0",
         "target_commit": target,
-        "head": store.head,
+        "head": head,
         "valid": valid,
         "checks": checks,
         "counts": {
@@ -476,6 +499,7 @@ def audit_store(
         "warnings": warnings,
         "orphans": orphan_record,
         "require_no_orphans": require_no_orphans,
+        "max_event_replay_steps": max_event_replay_steps,
     })
     if strict and not valid:
         summary = "; ".join(f"{item['kind']}:{item['id']}:{item['message']}" for item in errors[:8])

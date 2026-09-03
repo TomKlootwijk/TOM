@@ -262,6 +262,8 @@ class Program:
     def __post_init__(self) -> None:
         if not self.cells:
             raise ValueError("TOMAGI program requires at least one cell")
+        if isinstance(self.entry, bool) or not isinstance(self.entry, int):
+            raise ValueError("entry index must be an integer")
         if not (0 <= self.entry < len(self.cells)):
             raise ValueError("entry index is outside the cell table")
         keys = [c.key_u64 for c in self.cells]
@@ -270,9 +272,13 @@ class Program:
         if len(set(keys)) != len(keys):
             raise ValueError("canonical cell keys must be unique")
         for c in self.cells:
-            if c.opcode > int(Opcode.HALT):
+            if isinstance(c.opcode, bool) or not isinstance(c.opcode, int):
+                raise ValueError("cell opcode must be an integer")
+            if not 0 <= c.opcode <= int(Opcode.HALT):
                 raise ValueError("cell opcode is outside the TOMAGI 1.0 range")
-            if c.next0 >= len(self.cells) or c.next1 >= len(self.cells):
+            if any(isinstance(value, bool) or not isinstance(value, int) for value in (c.next0, c.next1)):
+                raise ValueError("cell successor must be an integer")
+            if not 0 <= c.next0 < len(self.cells) or not 0 <= c.next1 < len(self.cells):
                 raise ValueError("cell successor is outside the cell table")
 
     def find_key(self, hi: int, lo: int) -> int | None:

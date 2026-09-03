@@ -1,6 +1,6 @@
 {
   "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
-  "content_hash": "sha256:cadac8293d5f7d2af88bad83b812395b6c398ebee80db60b01ecf0564d9ef85c",
+  "content_hash": "sha256:b578a90510e2850f616b0e599c06f5205493ae672571c4f4bc8770e8c362fa79",
   "plan": {
     "checkpoint_id": null,
     "checkpoint_selection": {
@@ -33,7 +33,7 @@
     },
     "checkpoint_tick": 0,
     "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
-    "content_hash": "sha256:3993fe79a4404f927e6367761da5549613b4704b3ead6952ffdaab34bb954dfa",
+    "content_hash": "sha256:b63c0be5b846d7ab01d8888b93f80b609f30df50ae90f9e2029e9bde85129d59",
     "executed_steps": 999,
     "instance_hash": "sha256:ce7fd2f02a6c0ed69e5d285b02c2162144df3fa2ebb623529fd8ead7d0e77d1a",
     "instance_id": "instance:benchmark:042",
@@ -44,6 +44,8 @@
     "target_tick": 999,
     "work": {
       "checkpoint_record_reads": 0,
+      "index_lookups": 0,
+      "record_reads": 0,
       "tomagi_steps": 999
     }
   },

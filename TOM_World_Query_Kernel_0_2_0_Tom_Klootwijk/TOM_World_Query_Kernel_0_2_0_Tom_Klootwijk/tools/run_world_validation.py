@@ -261,8 +261,8 @@ def main(argv: list[str] | None = None) -> int:
         batch["request_count"] == 4
         and batch["reduction_order"] == "declared_array_order"
         and batch["semantic_equal"] is True
-        and batch["indexed_work"]["tomagi_steps"] == 172
-        and batch["exhaustive_work"]["tomagi_steps"] == 1072
+        and batch["indexed_work"]["tomagi_steps"] == 152
+        and batch["exhaustive_work"]["tomagi_steps"] == 1052
     )
     add(
         checks,

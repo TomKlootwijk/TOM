@@ -1,9 +1,15 @@
-# Keep TOM WQK 0.6 literal sources and evidence byte-stable on every platform.
+# Keep TOM kernel literal sources and evidence byte-stable on every platform.
 /.gitattributes text eol=lf
 /.gitignore text eol=lf
+/TOM_World_Query_Kernel_0_2_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_2_0_Tom_Klootwijk/** text=auto eol=lf
 /TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/** text=auto eol=lf
 
 # Fixed-width programs and materialized artifacts are byte-bearing formats.
+/TOM_World_Query_Kernel_0_2_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_2_0_Tom_Klootwijk/**/*.tmg -text
+/TOM_World_Query_Kernel_0_2_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_2_0_Tom_Klootwijk/**/*.bin -text
+/TOM_World_Query_Kernel_0_2_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_2_0_Tom_Klootwijk/**/*.png -text
+/TOM_World_Query_Kernel_0_2_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_2_0_Tom_Klootwijk/**/*.jpg -text
+/TOM_World_Query_Kernel_0_2_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_2_0_Tom_Klootwijk/**/*.jpeg -text
 /TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/*.tmg -text
 /TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/*.bin -text
 /TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/*.png -text

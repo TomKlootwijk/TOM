@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, is_dataclass
+from math import isfinite
 from typing import Any, Mapping, Sequence
 
 I64_MIN = -(1 << 63)
@@ -68,8 +69,10 @@ def _validate_constant(value: Any, path: str) -> None:
     if value is None or isinstance(value, (str, bool)):
         return
     if isinstance(value, int):
-        if not I64_MIN <= value <= I64_MAX:
-            raise ValueError(f"{path} integer literal exceeds signed 64-bit range")
+        return
+    if isinstance(value, float):
+        if not isfinite(value):
+            raise ValueError(f"{path} floating literal must be finite")
         return
     if isinstance(value, list):
         for index, item in enumerate(value):
@@ -110,13 +113,14 @@ def _validate_expression_node(
     budget: ExpressionBudget,
     depth: int,
     path: str,
+    check_static: bool,
 ) -> tuple[bool, Any]:
     budget.visit(depth)
     if expression is None or isinstance(expression, (str, bool)):
-        return True, expression
+        return (True, expression) if check_static else (False, None)
     if isinstance(expression, int):
         _validate_constant(expression, path)
-        return True, expression
+        return (True, expression) if check_static else (False, None)
     if isinstance(expression, list):
         values: list[Any] = []
         all_static = True
@@ -126,6 +130,7 @@ def _validate_expression_node(
                 budget=budget,
                 depth=depth + 1,
                 path=f"{path}[{index}]",
+                check_static=check_static,
             )
             all_static = all_static and is_static
             values.append(value)
@@ -144,6 +149,7 @@ def _validate_expression_node(
                 budget=budget,
                 depth=depth + 1,
                 path=f"{path}.{key}",
+                check_static=check_static,
             )
             all_static = all_static and is_static
             values[key] = value
@@ -163,7 +169,7 @@ def _validate_expression_node(
             path=path,
         )
         _validate_constant(expression["value"], f"{path}.value")
-        return True, expression["value"]
+        return (True, expression["value"]) if check_static else (False, None)
 
     if op == "field":
         _require_expression_keys(
@@ -185,19 +191,18 @@ def _validate_expression_node(
                 raise ValueError(f"{path}.name must be a nonempty string")
         else:
             field_path = expression["path"]
-            if not isinstance(field_path, list) or not field_path:
-                raise ValueError(f"{path}.path must be a nonempty array")
+            if not isinstance(field_path, list):
+                raise ValueError(f"{path}.path must be an array")
             for index, component in enumerate(field_path):
-                valid_string = isinstance(component, str) and bool(component)
+                valid_string = isinstance(component, str)
                 valid_index = (
                     isinstance(component, int)
                     and not isinstance(component, bool)
-                    and component >= 0
                 )
                 if not valid_string and not valid_index:
                     raise ValueError(
-                        f"{path}.path[{index}] must be a nonempty string or nonnegative integer"
-                    )
+                        f"{path}.path[{index}] must be a string or integer"
+        )
         return False, None
 
     if op == "if":
@@ -208,18 +213,44 @@ def _validate_expression_node(
             path=path,
         )
         condition = _validate_expression_node(
-            expression["condition"], budget=budget, depth=depth + 1, path=f"{path}.condition"
+            expression["condition"],
+            budget=budget,
+            depth=depth + 1,
+            path=f"{path}.condition",
+            check_static=check_static,
         )
+        if check_static and condition[0] and isinstance(condition[1], bool):
+            check_then = condition[1]
+            check_else = not condition[1]
+        elif check_static and not condition[0]:
+            check_then = True
+            check_else = True
+        else:
+            # An unreachable outer branch, or an invalid statically known
+            # condition, still requires valid structure in both branches but
+            # must not eagerly enforce their value/type constraints.
+            check_then = False
+            check_else = False
         then_value = _validate_expression_node(
-            expression["then"], budget=budget, depth=depth + 1, path=f"{path}.then"
+            expression["then"],
+            budget=budget,
+            depth=depth + 1,
+            path=f"{path}.then",
+            check_static=check_then,
         )
         else_value = _validate_expression_node(
-            expression["else"], budget=budget, depth=depth + 1, path=f"{path}.else"
+            expression["else"],
+            budget=budget,
+            depth=depth + 1,
+            path=f"{path}.else",
+            check_static=check_else,
         )
-        if condition[0] and not isinstance(condition[1], bool):
+        if check_static and condition[0] and not isinstance(condition[1], bool):
             raise ValueError(f"{path}.condition must be boolean when statically known")
-        all_static = condition[0] and then_value[0] and else_value[0]
-        return (True, _static_result(expression, path, budget)) if all_static else (False, None)
+        if not check_static or not condition[0]:
+            return False, None
+        selected = then_value if condition[1] else else_value
+        return (True, _static_result(expression, path, budget)) if selected[0] else (False, None)
 
     _require_expression_keys(
         expression,
@@ -249,63 +280,141 @@ def _validate_expression_node(
             budget=budget,
             depth=depth + 1,
             path=f"{path}.args[{index}]",
+            check_static=check_static,
         )
         for index, arg in enumerate(args)
     ]
 
-    integer_positions: range | tuple[int, ...] = ()
-    if op in {"add", "sub", "mul", "floor_div", "mod", "interval", "bit"}:
-        integer_positions = range(2)
-    elif op in {"abs", "neg"}:
-        integer_positions = (0,)
-    elif op in {"max", "min"}:
-        integer_positions = range(len(args))
-    elif op in {"cyclic_delta", "in_closed_interval"}:
-        integer_positions = range(3)
-    for index in integer_positions:
-        _validate_static_integer(
-            validated_args[index][0],
-            validated_args[index][1],
-            f"{path}.args[{index}]",
-        )
+    if check_static:
+        integer_positions: range | tuple[int, ...] = ()
+        if op in {"add", "sub", "mul", "floor_div", "mod", "interval", "bit"}:
+            integer_positions = range(2)
+        elif op in {"abs", "neg"}:
+            integer_positions = (0,)
+        elif op in {"max", "min"}:
+            integer_positions = range(len(args))
+        elif op in {"cyclic_delta", "in_closed_interval"}:
+            integer_positions = range(3)
+        for index in integer_positions:
+            _validate_static_integer(
+                validated_args[index][0],
+                validated_args[index][1],
+                f"{path}.args[{index}]",
+            )
 
-    if op in {"all", "any"}:
-        for index, (is_static, value) in enumerate(validated_args):
-            if is_static and not isinstance(value, bool):
-                raise ValueError(f"{path}.args[{index}] must be boolean when statically known")
-    elif op == "not" and validated_args[0][0] and not isinstance(validated_args[0][1], bool):
-        raise ValueError(f"{path}.args[0] must be boolean when statically known")
+        if op in {"all", "any"}:
+            for index, (is_static, value) in enumerate(validated_args):
+                if is_static and not isinstance(value, bool):
+                    raise ValueError(f"{path}.args[{index}] must be boolean when statically known")
+        elif op == "not" and validated_args[0][0] and not isinstance(validated_args[0][1], bool):
+            raise ValueError(f"{path}.args[0] must be boolean when statically known")
 
-    if op in {"floor_div", "mod"} and validated_args[1] == (True, 0):
-        raise ValueError(f"{path}.args[1] must not be statically zero")
-    if op == "cyclic_delta" and validated_args[2][0]:
-        period = validated_args[2][1]
-        if isinstance(period, int) and not isinstance(period, bool) and period <= 0:
-            raise ValueError(f"{path}.args[2] period must be positive")
-    if op == "bit" and validated_args[1][0]:
-        index = validated_args[1][1]
-        if isinstance(index, int) and not isinstance(index, bool) and not 0 <= index < 64:
-            raise ValueError(f"{path}.args[1] bit index must be in 0..63")
-    if op == "interval" and validated_args[0][0] and validated_args[1][0]:
-        lower, upper = validated_args[0][1], validated_args[1][1]
-        if isinstance(lower, int) and isinstance(upper, int) and lower > upper:
-            raise ValueError(f"{path} interval lower bound exceeds upper bound")
-    if op == "in_closed_interval" and validated_args[1][0] and validated_args[2][0]:
-        lower, upper = validated_args[1][1], validated_args[2][1]
-        if isinstance(lower, int) and isinstance(upper, int) and lower > upper:
-            raise ValueError(f"{path} interval lower bound exceeds upper bound")
+        if op in {"floor_div", "mod"} and validated_args[1] == (True, 0):
+            raise ValueError(f"{path}.args[1] must not be statically zero")
+        if op == "cyclic_delta" and validated_args[2][0]:
+            period = validated_args[2][1]
+            if isinstance(period, int) and not isinstance(period, bool) and period <= 0:
+                raise ValueError(f"{path}.args[2] period must be positive")
+        if op == "bit" and validated_args[1][0]:
+            index = validated_args[1][1]
+            if isinstance(index, int) and not isinstance(index, bool) and not 0 <= index < 64:
+                raise ValueError(f"{path}.args[1] bit index must be in 0..63")
+        if op == "interval" and validated_args[0][0] and validated_args[1][0]:
+            lower, upper = validated_args[0][1], validated_args[1][1]
+            if isinstance(lower, int) and isinstance(upper, int) and lower > upper:
+                raise ValueError(f"{path} interval lower bound exceeds upper bound")
+        if op == "in_closed_interval" and validated_args[1][0] and validated_args[2][0]:
+            lower, upper = validated_args[1][1], validated_args[2][1]
+            if isinstance(lower, int) and isinstance(upper, int) and lower > upper:
+                raise ValueError(f"{path} interval lower bound exceeds upper bound")
 
     all_static = all(is_static for is_static, _ in validated_args)
     return (True, _static_result(expression, path, budget)) if all_static else (False, None)
 
 
-def validate_expression(
+def _literal_result_kind(value: Any) -> str:
+    if isinstance(value, bool):
+        return "bool"
+    if isinstance(value, int):
+        return "int"
+    if isinstance(value, float):
+        return "float"
+    if isinstance(value, Mapping):
+        lower = value.get("lower")
+        upper = value.get("upper")
+        if (
+            isinstance(lower, int)
+            and not isinstance(lower, bool)
+            and isinstance(upper, int)
+            and not isinstance(upper, bool)
+        ):
+            return "interval"
+        return "object"
+    if isinstance(value, list):
+        return "list"
+    if isinstance(value, str):
+        return "string"
+    if value is None:
+        return "null"
+    return "unknown"
+
+
+def _expression_result_kind(expression: Any) -> str:
+    if isinstance(expression, Mapping) and "op" not in expression:
+        if "lower" in expression and "upper" in expression:
+            lower_kind = _expression_result_kind(expression["lower"])
+            upper_kind = _expression_result_kind(expression["upper"])
+            if lower_kind in {"int", "unknown"} and upper_kind in {"int", "unknown"}:
+                return "interval"
+        return "object"
+    if not isinstance(expression, Mapping):
+        return _literal_result_kind(expression)
+    op = expression["op"]
+    if op == "const":
+        return _literal_result_kind(expression["value"])
+    if op == "field":
+        return "unknown"
+    if op in {
+        "add", "sub", "mul", "floor_div", "mod", "abs", "neg",
+        "max", "min", "cyclic_delta", "bit",
+    }:
+        return "int"
+    if op in {
+        "eq", "ne", "lt", "le", "gt", "ge", "all", "any", "not",
+        "contains_zero", "in_closed_interval",
+    }:
+        return "bool"
+    if op == "interval":
+        return "interval"
+    if op == "if":
+        try:
+            condition = evaluate_expression(expression["condition"], {})
+        except Exception:
+            condition = None
+        if isinstance(condition, bool):
+            return _expression_result_kind(expression["then"] if condition else expression["else"])
+        then_kind = _expression_result_kind(expression["then"])
+        else_kind = _expression_result_kind(expression["else"])
+        if then_kind == else_kind:
+            return then_kind
+        # A field contributes no statically known type. Preserve any type that
+        # is known from the other reachable branch, and distinguish genuinely
+        # incompatible known branches from field-dependent uncertainty.
+        if then_kind == "unknown":
+            return else_kind
+        if else_kind == "unknown":
+            return then_kind
+        return "mixed"
+    return "unknown"
+
+
+def analyze_expression(
     expression: Any,
     *,
     max_nodes: int = 10_000,
     max_depth: int = 64,
-) -> None:
-    """Validate the accepted structural form of one bounded expression.
+) -> tuple[str, bool, Any]:
+    """Validate an expression and return its known result kind/static value.
 
     Field-dependent result types and values remain runtime concerns.  Invalid
     literal-only operations are rejected because their failure is knowable when
@@ -316,12 +425,25 @@ def validate_expression(
         raise ValueError("max_nodes must be a positive integer")
     if isinstance(max_depth, bool) or not isinstance(max_depth, int) or max_depth < 0:
         raise ValueError("max_depth must be a nonnegative integer")
-    _validate_expression_node(
+    is_static, value = _validate_expression_node(
         expression,
         budget=ExpressionBudget(max_nodes=max_nodes, max_depth=max_depth),
         depth=0,
         path="$",
+        check_static=True,
     )
+    return _expression_result_kind(expression), is_static, value
+
+
+def validate_expression(
+    expression: Any,
+    *,
+    max_nodes: int = 10_000,
+    max_depth: int = 64,
+) -> None:
+    """Validate the accepted structural form of one bounded expression."""
+
+    analyze_expression(expression, max_nodes=max_nodes, max_depth=max_depth)
 
 
 def _mapping(value: Any) -> Mapping[str, Any]:

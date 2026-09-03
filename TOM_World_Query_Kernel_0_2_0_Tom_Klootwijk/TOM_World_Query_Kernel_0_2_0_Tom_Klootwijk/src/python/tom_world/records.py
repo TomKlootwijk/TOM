@@ -7,7 +7,7 @@ from heapq import heapify, heappop, heappush
 from typing import Any
 
 from .canonical import attach_hash, verify_hash
-from .expression import validate_expression
+from .expression import analyze_expression
 
 RECORD_SCHEMA = "TOM-WORLD-RECORD-0.1"
 RECORD_TYPES = frozenset({
@@ -172,17 +172,17 @@ def _validate_instance(ident: str, payload: Mapping[str, Any]) -> None:
     _validate_topology_sheet(payload, f"{ident}.payload")
 
 
-def _validate_expression_record(ident: str, payload: Mapping[str, Any]) -> None:
+def _validate_expression_record(ident: str, payload: Mapping[str, Any]) -> tuple[str, bool, Any]:
     if "expression" not in payload:
         raise ValueError(f"{ident}.payload.expression is required")
     try:
-        validate_expression(payload["expression"])
+        return analyze_expression(payload["expression"])
     except ValueError as exc:
         raise ValueError(f"{ident}.payload.expression is invalid: {exc}") from exc
 
 
 def _validate_relation(ident: str, payload: Mapping[str, Any]) -> None:
-    _validate_expression_record(ident, payload)
+    result_kind, is_static, static_value = _validate_expression_record(ident, payload)
     _require_string(payload.get("instance_id"), f"{ident}.payload.instance_id")
     zero_test = payload.get("zero_test", "equal_zero")
     if zero_test not in {"equal_zero", "contains_zero", "less_equal_zero"}:
@@ -190,6 +190,26 @@ def _validate_relation(ident: str, payload: Mapping[str, Any]) -> None:
     trigger = payload.get("trigger", "enter_zero")
     if trigger not in {"zero", "enter_zero", "crossing", "enter_nonpositive"}:
         raise ValueError(f"{ident}.payload.trigger is unsupported")
+    expected_kind = "interval" if zero_test == "contains_zero" else "int"
+    if result_kind != "unknown" and result_kind != expected_kind:
+        raise ValueError(
+            f"{ident}.payload.expression must produce {expected_kind} for {zero_test}"
+        )
+    if zero_test == "contains_zero" and trigger == "enter_nonpositive":
+        raise ValueError(
+            f"{ident}.payload.trigger enter_nonpositive requires an integer zero test"
+        )
+    if is_static and zero_test == "contains_zero":
+        lower = static_value.get("lower") if isinstance(static_value, Mapping) else None
+        upper = static_value.get("upper") if isinstance(static_value, Mapping) else None
+        if (
+            isinstance(lower, bool)
+            or not isinstance(lower, int)
+            or isinstance(upper, bool)
+            or not isinstance(upper, int)
+            or lower > upper
+        ):
+            raise ValueError(f"{ident}.payload.expression must produce a valid closed interval")
     for field in ("support_ids", "compatibility_ids"):
         if field in payload:
             _require_string_list(payload[field], f"{ident}.payload.{field}")
@@ -206,11 +226,15 @@ def _validate_relation(ident: str, payload: Mapping[str, Any]) -> None:
 
 
 def _validate_support(ident: str, payload: Mapping[str, Any]) -> None:
-    _validate_expression_record(ident, payload)
+    result_kind, _, _ = _validate_expression_record(ident, payload)
+    if result_kind != "unknown" and result_kind != "bool":
+        raise ValueError(f"{ident}.payload.expression must produce a boolean")
 
 
 def _validate_compatibility(ident: str, payload: Mapping[str, Any]) -> None:
-    _validate_expression_record(ident, payload)
+    result_kind, _, _ = _validate_expression_record(ident, payload)
+    if result_kind != "unknown" and result_kind != "bool":
+        raise ValueError(f"{ident}.payload.expression must produce a boolean")
 
 
 def _validate_transition(ident: str, payload: Mapping[str, Any]) -> None:
@@ -226,11 +250,15 @@ def _validate_transition(ident: str, payload: Mapping[str, Any]) -> None:
                 )
             for state_field, expression in expressions.items():
                 try:
-                    validate_expression(expression)
+                    result_kind, _, _ = analyze_expression(expression)
                 except ValueError as exc:
                     raise ValueError(
                         f"{ident}.payload.{field}.{state_field} is invalid: {exc}"
                     ) from exc
+                if result_kind != "unknown" and result_kind != "int":
+                    raise ValueError(
+                        f"{ident}.payload.{field}.{state_field} must produce an integer"
+                    )
     if not any(field in payload for field in ("set", "add", "xor")):
         raise ValueError(f"{ident}.payload requires set, add, or xor")
     if "normalize_periodic" in payload and not isinstance(payload["normalize_periodic"], bool):
@@ -252,7 +280,13 @@ def _validate_event_spec(ident: str, payload: Mapping[str, Any]) -> None:
         if "numerator" in confidence or "denominator" in confidence:
             numerator = confidence.get("numerator")
             denominator = confidence.get("denominator")
-            if not isinstance(numerator, int) or not isinstance(denominator, int) or denominator <= 0:
+            if (
+                isinstance(numerator, bool)
+                or not isinstance(numerator, int)
+                or isinstance(denominator, bool)
+                or not isinstance(denominator, int)
+                or denominator <= 0
+            ):
                 raise ValueError(f"{ident}.payload.confidence rational is invalid")
 
 
@@ -278,12 +312,35 @@ def _validate_grammar(ident: str, payload: Mapping[str, Any]) -> None:
         value = budgets.get(field)
         if isinstance(value, bool) or not isinstance(value, int) or value < 0:
             raise ValueError(f"{ident}.payload.budgets.{field} must be a nonnegative integer")
-    if "branch_bits" in payload:
+    if len(axiom) > budgets["max_symbols"]:
+        raise ValueError(f"{ident}.payload.axiom exceeds max_symbols")
+    stack_depth = 0
+    maximum_stack_depth = 0
+    for symbol in axiom:
+        if symbol == "[":
+            stack_depth += 1
+            maximum_stack_depth = max(maximum_stack_depth, stack_depth)
+        elif symbol == "]":
+            stack_depth -= 1
+            if stack_depth < 0:
+                raise ValueError(f"{ident}.payload.axiom has an unmatched closing bracket")
+    if stack_depth != 0:
+        raise ValueError(f"{ident}.payload.axiom has unbalanced brackets")
+    if maximum_stack_depth > budgets["max_stack"]:
+        raise ValueError(f"{ident}.payload.axiom exceeds max_stack")
+    branched = any(isinstance(production, Mapping) for production in productions.values())
+    if "branch_bits" not in payload:
+        if branched:
+            raise ValueError(f"{ident} requires nonempty branch_bits for branched productions")
+    else:
         bits = payload["branch_bits"]
-        if not isinstance(bits, list) or any(bit not in (0, 1) for bit in bits):
-            raise ValueError(f"{ident}.payload.branch_bits must contain only 0/1")
-        if not bits and any(isinstance(p, Mapping) for p in productions.values()):
-            raise ValueError(f"{ident} requires branch_bits for branched productions")
+        if not isinstance(bits, list) or any(
+            isinstance(bit, bool) or not isinstance(bit, int) or bit not in (0, 1)
+            for bit in bits
+        ):
+            raise ValueError(f"{ident}.payload.branch_bits must contain only integer 0/1 values")
+        if branched and not bits:
+            raise ValueError(f"{ident} requires nonempty branch_bits for branched productions")
     policy = payload.get("branch_policy", "cycle")
     if policy not in {"cycle", "strict"}:
         raise ValueError(f"{ident}.payload.branch_policy is unsupported")

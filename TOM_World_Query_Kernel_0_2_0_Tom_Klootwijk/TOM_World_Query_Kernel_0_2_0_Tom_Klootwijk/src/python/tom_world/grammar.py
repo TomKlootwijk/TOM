@@ -68,10 +68,15 @@ class GrammarEngine:
             raise ValueError(f"grammar depth budget exceeded: {requested_depth} > {maximum_depth}")
 
         bits = list(payload.get("branch_bits", [])) if branch_bits is None else list(branch_bits)
-        if any(bit not in (0, 1) for bit in bits):
-            raise ValueError("branch_bits must contain only 0 and 1")
-        cursor = _BitCursor(bits, str(payload.get("branch_policy", "cycle")))
         productions: Mapping[str, Any] = payload["productions"]
+        if any(
+            isinstance(bit, bool) or not isinstance(bit, int) or bit not in (0, 1)
+            for bit in bits
+        ):
+            raise ValueError("branch_bits must contain only integer 0 and 1 values")
+        if not bits and any(isinstance(production, Mapping) for production in productions.values()):
+            raise ValueError("branched grammar requires nonempty branch_bits")
+        cursor = _BitCursor(bits, str(payload.get("branch_policy", "cycle")))
         current = list(payload["axiom"])
         max_symbols = int(budgets["max_symbols"])
         max_stack = int(budgets["max_stack"])

@@ -259,6 +259,8 @@ The 0.1 exact-discrete event condition remains authoritative. For each logical t
 
 The scan plan records selected relations, ticks scanned, relation and predicate evaluations, inactive-interval skips, events found, state replay, and candidate-selection plan.
 
+Every query engine has a caller-selected nonnegative integer `max_query_steps` budget, defaulting to 100,000. Reconstructing an event certificate requires `after_tick + horizon` to be no greater than that budget. Transaction publication and full-store audit independently apply a nonnegative `max_event_replay_steps` budget, also defaulting to 100,000. `QueryEngine.commit_event` MUST pass its configured query budget into transaction publication so that a certificate the engine is authorized to reconstruct remains publishable. Direct transaction publication and audit require an explicit larger budget to verify certificates above the safe default. Invalid budgets and certificates exceeding the active budget MUST be rejected before they can establish validity.
+
 ## 9. Stable batch queries
 
 The batch schema is `TOM-BATCH-QUERY-CERTIFICATE-0.2`. Requests are evaluated strictly in their declared JSON array order. Each request requires a unique ID, operation, and parameter object.
@@ -303,7 +305,7 @@ For each commit it verifies:
 
 It reports all reachable immutable identifiers, record-type counts across snapshots, errors, warnings, and unreachable immutable objects. `require_no_orphans` turns any unreachable immutable object into an error.
 
-The audit certificate contains no hostname, PID, duration, absolute path, or clock value. Repeated audits of identical store bytes produce the same certificate hash.
+The audit certificate contains no hostname, PID, duration, absolute path, or clock value. It records `max_event_replay_steps`, because this caller-selected resource boundary can affect validity. Repeated audits of identical store bytes with the same audit arguments produce the same certificate hash.
 
 ## 11. Caching boundary
 

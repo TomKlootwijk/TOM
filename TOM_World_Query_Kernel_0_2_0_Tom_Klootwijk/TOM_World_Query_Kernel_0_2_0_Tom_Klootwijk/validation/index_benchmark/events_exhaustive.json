@@ -1,10 +1,10 @@
 {
   "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
-  "content_hash": "sha256:39d8b6a744709924813354ce4ac1be0b9e29e29a640a5100621e9dbd388a61ad",
+  "content_hash": "sha256:d24f5cf589e724a4bdc74dea2edb42215dff8a96882f9b10c260f859c38647fd",
   "plan": {
     "after_tick": 0,
     "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
-    "content_hash": "sha256:f1f78fc4c75d21ab37eed352c02bffea4bf1d0f3710b8b9785de8744fb064d1c",
+    "content_hash": "sha256:980d9756d8abc2a383624fa9da7025035d54af876ff5da1fcfc1886ccb121a19",
     "events_found": 2,
     "horizon": 32,
     "inactive_interval_skips": 62,
@@ -112,7 +112,7 @@
       },
       "checkpoint_tick": 0,
       "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
-      "content_hash": "sha256:ccd5f09d23988df1c08aa68666ea9a3b9f262aaf5265c53518e07221a1d8e49f",
+      "content_hash": "sha256:57acb8e238c1ed0693b8b5ef7c704c6550ddfa26c555092e8459b19daa67946f",
       "executed_steps": 0,
       "instance_hash": "sha256:ce7fd2f02a6c0ed69e5d285b02c2162144df3fa2ebb623529fd8ead7d0e77d1a",
       "instance_id": "instance:benchmark:042",
@@ -123,12 +123,16 @@
       "target_tick": 0,
       "work": {
         "checkpoint_record_reads": 0,
+        "index_lookups": 0,
+        "record_reads": 0,
         "tomagi_steps": 0
       }
     },
     "stop_after_first": false,
     "ticks_scanned": 32,
+    "tomagi_steps_scanned": 32,
     "work": {
+      "checkpoint_record_reads": 0,
       "index_lookups": 0,
       "predicate_evaluations": 4,
       "record_reads": 19702,
@@ -139,7 +143,7 @@
   "query_kind": "events_in_support",
   "result": {
     "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
-    "content_hash": "sha256:102faa3cb5becd73730fa45a4a09e5952d4209b329e8ff7ab175af8d2d3e3d7d",
+    "content_hash": "sha256:245c10503e9c53c88d15b76858f38c2df2d0dc69cce3088d64065eff3ee6659b",
     "event_count": 2,
     "events": [
       {
@@ -153,7 +157,7 @@
         "confidence": {
           "kind": "not_declared"
         },
-        "content_hash": "sha256:b0dff89629b7659bc3e88a21b13c68cf61ce9386aeb64eb7e23831d9bb831a47",
+        "content_hash": "sha256:ed3f22632c99dfd3a891eb3de6532194798ed1f80a20883922d5db2f78978286",
         "context": {
           "benchmark_instance_index": 42,
           "domain": "index-benchmark-10000",
@@ -224,9 +228,13 @@
           "after_tick": 0,
           "horizon": 32,
           "instance_id": "instance:benchmark:042",
+          "query_kind": "events_in_support",
           "relation_ids": [
-            "relation:benchmark:042:005"
-          ]
+            "relation:benchmark:042:005",
+            "relation:benchmark:042:021"
+          ],
+          "result_index": 0,
+          "support_id": "support:benchmark-bucket:04"
         },
         "relation_hash": "sha256:1665212a1fd5378661bf2b52228d0ec4034891fecea69e5fbbb11313b5c7ea1f",
         "relation_id": "relation:benchmark:042:005",
@@ -258,7 +266,7 @@
         "confidence": {
           "kind": "not_declared"
         },
-        "content_hash": "sha256:4d26c38677a0c4ed935962d3ebd1f0852560de5f216b7194fdccd9832fbb9303",
+        "content_hash": "sha256:72ffc33b5cf854beb7fb203fc044a3284b352480ba15e09a26a5b4300327b136",
         "context": {
           "benchmark_instance_index": 42,
           "domain": "index-benchmark-10000",
@@ -329,9 +337,13 @@
           "after_tick": 0,
           "horizon": 32,
           "instance_id": "instance:benchmark:042",
+          "query_kind": "events_in_support",
           "relation_ids": [
+            "relation:benchmark:042:005",
             "relation:benchmark:042:021"
-          ]
+          ],
+          "result_index": 1,
+          "support_id": "support:benchmark-bucket:04"
         },
         "relation_hash": "sha256:faa5f1ebf94e106d593e77362b4f3f0b0b62876b66519f2288ca8a5df2336189",
         "relation_id": "relation:benchmark:042:021",

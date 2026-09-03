@@ -8,12 +8,13 @@ from dataclasses import replace
 from pathlib import Path
 from typing import Any
 
-from tomagi.core import Cell, Opcode, Program
+from tomagi.core import Cell, Opcode, Program, STATUS_HALT
 from tomagi.format import dumps, load, loads
 from tom_world.audit import audit_store
 from tom_world.canonical import attach_hash, canonical_bytes, content_hash, digest_bytes
 from tom_world.indexes import build_index_record
-from tom_world.query import QueryEngine
+from tom_world.query import QueryEngine, _triggered
+from tom_world.records import make_record
 from tom_world.store import (
     COMMIT_SCHEMA,
     SNAPSHOT_SCHEMA,
@@ -99,6 +100,24 @@ def publish_unchecked_commit(store: WorldStore, records: list[dict[str, Any]]) -
 
 
 class QueryBoundaryTests(unittest.TestCase):
+    def test_crossing_requires_entry_or_an_actual_sign_change(self):
+        self.assertFalse(_triggered(0, 0, "crossing", "equal_zero"))
+        self.assertFalse(_triggered(-1, -2, "crossing", "less_equal_zero"))
+        self.assertTrue(_triggered(1, 0, "crossing", "equal_zero"))
+        self.assertTrue(_triggered(-1, 1, "crossing", "equal_zero"))
+        self.assertFalse(_triggered(
+            {"lower": -1, "upper": 1},
+            {"lower": -2, "upper": 2},
+            "crossing",
+            "contains_zero",
+        ))
+        self.assertTrue(_triggered(
+            {"lower": 1, "upper": 2},
+            {"lower": -1, "upper": 1},
+            "crossing",
+            "contains_zero",
+        ))
+
     def test_batch_hashes_literal_null_and_counts_each_plan_once(self):
         with tempfile.TemporaryDirectory() as directory:
             engine = QueryEngine(new_store(Path(directory)), max_query_steps=20)
@@ -145,8 +164,58 @@ class QueryBoundaryTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "end_tick"):
                 engine.events_in_support("instance:counter", start_tick=0, end_tick=True)
 
+    def test_non_string_context_keys_cannot_change_across_json_persistence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            engine = QueryEngine(new_store(Path(directory)), max_query_steps=20)
+            with self.assertRaisesRegex(ValueError, "object key.*string"):
+                engine.next_event(
+                    "instance:counter",
+                    0,
+                    horizon=8,
+                    context={0: 0},  # type: ignore[dict-item]
+                )
+            with self.assertRaisesRegex(TypeError, "object key.*string"):
+                attach_hash({"schema": "example", "payload": {0: "would become string"}})
+            with self.assertRaisesRegex(TypeError, "exact JSON-domain types"):
+                attach_hash({"schema": "example", "payload": {"items": (1, 2)}})
+
 
 class ProgramAndInstanceBoundaryTests(unittest.TestCase):
+    def test_program_entry_is_root_unless_instance_explicitly_overrides_cell(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            store = new_store(root / "store")
+            original = load(PROGRAM_PATH)
+            program = Program(
+                cells=[
+                    Cell(0, 0, int(Opcode.PROJECT), 0, 0, 0, 0, 0, 0, 0, 111, 0),
+                    Cell(0, 1, int(Opcode.PROJECT), 0, 0, 0, 0, 0, 1, 1, 222, 0),
+                ],
+                entry=1,
+                seed=original.seed,
+                default_ticks=1,
+                # Both reference runtimes ignore serialized q0.cell for bare
+                # execution and reset it to the header entry.
+                initial_state=replace(original.initial_state, cell=999),
+                flags=original.flags,
+            )
+            blob_data = dumps(program)
+            blob_path = root / "entry-authority.tmg"
+            blob_path.write_bytes(blob_data)
+            transaction = transaction_for(
+                store,
+                [],
+                blobs=[{
+                    "id": "blob:counter-trajectory.tmg",
+                    "path": blob_path.name,
+                    "sha256": digest_bytes(blob_data),
+                }],
+            )
+            store.commit_transaction(transaction, source_dir=root)
+
+            state = QueryEngine(store).state_at("instance:counter", 1)
+            self.assertEqual(state["state"]["output"], 222)
+
     def test_instance_cell_override_is_the_actual_root_state(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -215,6 +284,129 @@ class ProgramAndInstanceBoundaryTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "valid TOMAGI program"):
                 store.commit_transaction(transaction, source_dir=root)
 
+    def test_python_program_rejects_negative_opcode_and_successor(self):
+        initial = load(PROGRAM_PATH).initial_state
+        with self.assertRaisesRegex(ValueError, "opcode"):
+            Program([Cell(0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0)], 0, 0, 1, initial)
+        with self.assertRaisesRegex(ValueError, "successor"):
+            Program(
+                [Cell(0, 0, int(Opcode.NOP), 0, 0, 0, 0, 0, -1, 0, 0, 0)],
+                0,
+                0,
+                1,
+                initial,
+            )
+
+    def test_python_program_rejects_non_integer_control_fields(self):
+        initial = load(PROGRAM_PATH).initial_state
+        valid_opcode = int(Opcode.NOP)
+        cases = (
+            ("entry", 0.5, valid_opcode, 0, 0),
+            ("entry", True, valid_opcode, 0, 0),
+            ("opcode", 0, 1.5, 0, 0),
+            ("opcode", 0, True, 0, 0),
+            ("successor", 0, valid_opcode, 0.5, 0),
+            ("successor", 0, valid_opcode, 0, True),
+        )
+        for message, entry, opcode, next0, next1 in cases:
+            with self.subTest(message=message, value=(entry, opcode, next0, next1)):
+                with self.assertRaisesRegex(ValueError, message):
+                    Program(
+                        [Cell(0, 0, opcode, 0, 0, 0, 0, 0, next0, next1, 0, 0)],
+                        entry,
+                        0,
+                        1,
+                        initial,
+                    )
+
+
+class RecordContractTests(unittest.TestCase):
+    def test_statically_known_expression_result_contracts_are_enforced(self):
+        cases = [
+            ("relation", "relation:bool-residual", {
+                "instance_id": "instance:any",
+                "expression": {"op": "eq", "args": [1, 1]},
+                "zero_test": "equal_zero",
+            }),
+            ("support", "support:integer-gate", {"expression": 1}),
+            ("support", "support:float-gate", {"expression": {"op": "const", "value": 1.5}}),
+            ("compatibility", "compatibility:string-gate", {"expression": "yes"}),
+            ("transition", "transition:boolean-state", {"set": {"output": True}}),
+            ("transition", "transition:float-state", {
+                "set": {"output": {"op": "const", "value": 1.5}},
+            }),
+            ("support", "support:mixed-branches", {
+                "expression": {
+                    "op": "if",
+                    "condition": {"op": "field", "source": "context", "name": "choose"},
+                    "then": True,
+                    "else": 1,
+                },
+            }),
+        ]
+        for record_type, ident, payload in cases:
+            with self.subTest(record_type=record_type), self.assertRaisesRegex(
+                ValueError, "must produce"
+            ):
+                make_record(record_type, ident, payload)
+
+    def test_incompatible_interval_trigger_contract_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "enter_nonpositive requires an integer"):
+            make_record(
+                "relation",
+                "relation:impossible-trigger-contract",
+                {
+                    "instance_id": "instance:any",
+                    "expression": {"op": "interval", "args": [-1, 1]},
+                    "zero_test": "contains_zero",
+                    "trigger": "enter_nonpositive",
+                },
+            )
+
+    def test_dynamic_interval_object_and_integer_transition_remain_valid(self):
+        relation = make_record(
+            "relation",
+            "relation:dynamic-interval",
+            {
+                "instance_id": "instance:any",
+                "expression": {
+                    "lower": {"op": "field", "source": "context", "name": "lower"},
+                    "upper": {"op": "field", "source": "context", "name": "upper"},
+                },
+                "zero_test": "contains_zero",
+            },
+        )
+        transition = make_record(
+            "transition",
+            "transition:dynamic-integer",
+            {"set": {"output": {"op": "field", "source": "context", "name": "value"}}},
+        )
+        support = make_record(
+            "support",
+            "support:known-bool-or-field",
+            {
+                "expression": {
+                    "op": "if",
+                    "condition": {"op": "field", "source": "context", "name": "choose"},
+                    "then": True,
+                    "else": {"op": "field", "source": "context", "name": "gate"},
+                },
+            },
+        )
+        self.assertEqual(relation["record_type"], "relation")
+        self.assertEqual(transition["record_type"], "transition")
+        self.assertEqual(support["record_type"], "support")
+
+    def test_inherently_invalid_grammar_axiom_is_rejected_at_acceptance(self):
+        base = {
+            "productions": {},
+            "budgets": {"max_depth": 0, "max_symbols": 1, "max_stack": 0},
+        }
+        with self.assertRaisesRegex(ValueError, "max_symbols"):
+            make_record("grammar", "grammar:too-many", {**base, "axiom": ["A", "B"]})
+        with self.assertRaisesRegex(ValueError, "unbalanced"):
+            make_record("grammar", "grammar:unbalanced", {**base, "axiom": ["["]})
+
 
 class ExecutableCertificateBoundaryTests(unittest.TestCase):
     @staticmethod
@@ -235,6 +427,70 @@ class ExecutableCertificateBoundaryTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "reconstruct"):
                 store.commit_transaction(transaction_for(store, [event_record, lineage_record]))
             self.assertEqual(store.head, old_head)
+
+    def test_event_persistence_and_reconstruction_respect_replay_budget(self):
+        with tempfile.TemporaryDirectory() as directory:
+            store = new_store(Path(directory))
+            instance = store.read_record("instance:counter")
+            instance["payload"]["initial_state"] = {"status": STATUS_HALT}
+            instance["content_hash"] = content_hash(instance)
+            relation = make_record(
+                "relation",
+                "relation:always-zero-high-index",
+                {
+                    "instance_id": "instance:counter",
+                    "expression": {"op": "const", "value": 0},
+                    "zero_test": "equal_zero",
+                    "trigger": "zero",
+                },
+                dependencies=["instance:counter"],
+            )
+            store.commit_transaction(transaction_for(store, [instance, relation]))
+            engine = QueryEngine(store, max_query_steps=100_001)
+            event = engine.next_event(
+                "instance:counter",
+                100_000,
+                horizon=1,
+                relation_ids=[relation["id"]],
+            )
+            assert event is not None
+            engine.commit_event(event)
+
+            lineage_id = "lineage:" + event["content_hash"][7:23]
+            with self.assertRaisesRegex(ValueError, "replay exceeds query budget"):
+                QueryEngine(store, max_query_steps=100_000).reconstruct(lineage_id)
+            self.assertTrue(
+                QueryEngine(store, max_query_steps=100_001).reconstruct(lineage_id)["byte_equal"]
+            )
+            default_audit = audit_store(store)
+            self.assertFalse(default_audit["valid"])
+            self.assertTrue(
+                audit_store(store, max_event_replay_steps=100_001)["valid"]
+            )
+
+    def test_event_replay_budget_inputs_reject_bool(self):
+        with tempfile.TemporaryDirectory() as directory:
+            store = new_store(Path(directory))
+            transaction = transaction_for(store, [])
+            with self.assertRaisesRegex(ValueError, "max_event_replay_steps"):
+                store.commit_transaction(transaction, max_event_replay_steps=True)
+            with self.assertRaisesRegex(ValueError, "max_event_replay_steps"):
+                audit_store(store, max_event_replay_steps=True)
+
+    def test_transaction_metadata_is_not_coerced_into_commit_metadata(self):
+        with tempfile.TemporaryDirectory() as directory:
+            store = new_store(Path(directory))
+            old_head = store.head
+            for field, value, message in (
+                ("provenance", [["key", 1]], "provenance must be an object"),
+                ("message", {"unordered": "object"}, "message must be a string"),
+            ):
+                transaction = transaction_for(store, [])
+                transaction[field] = value
+                transaction["content_hash"] = content_hash(transaction)
+                with self.subTest(field=field), self.assertRaisesRegex(ValueError, message):
+                    store.commit_transaction(transaction)
+                self.assertEqual(store.head, old_head)
 
     def test_audit_rejects_self_consistent_forged_checkpoint(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -271,6 +527,40 @@ class ExecutableCertificateBoundaryTests(unittest.TestCase):
             audit = audit_store(store)
             self.assertFalse(audit["valid"])
             self.assertTrue(any("event semantic" in item["message"] for item in audit["errors"]))
+
+    def test_audit_requires_an_immutable_index_for_0_2_snapshots(self):
+        with tempfile.TemporaryDirectory() as directory:
+            store = new_store(Path(directory))
+            parent = store.read_commit()
+            parent_snapshot = store.snapshot_for_commit()
+            transaction = transaction_for(store, [])
+            transaction_id = store._put_hashed_json(store.transactions_dir, transaction)
+            snapshot = attach_hash({
+                "schema": SNAPSHOT_SCHEMA,
+                "version": STORE_VERSION,
+                "seed_sha256": parent_snapshot["seed_sha256"],
+                "records": dict(parent_snapshot["records"]),
+                "blobs": dict(parent_snapshot["blobs"]),
+            })
+            snapshot_id = store._put_hashed_json(store.snapshots_dir, snapshot)
+            commit = attach_hash({
+                "schema": COMMIT_SCHEMA,
+                "version": STORE_VERSION,
+                "seed_sha256": parent["seed_sha256"],
+                "sequence": int(parent["sequence"]) + 1,
+                "parent": parent["content_hash"],
+                "transaction_hash": transaction_id,
+                "snapshot_hash": snapshot_id,
+                "indexes_hash": None,
+                "message": transaction["message"],
+                "provenance": transaction["provenance"],
+            })
+            commit_id = store._put_hashed_json(store.commits_dir, commit)
+            store.head_path.write_text(commit_id + "\n", encoding="ascii")
+
+            audit = audit_store(store)
+            self.assertFalse(audit["valid"])
+            self.assertTrue(any("no immutable secondary index" in item["message"] for item in audit["errors"]))
 
 
 if __name__ == "__main__":

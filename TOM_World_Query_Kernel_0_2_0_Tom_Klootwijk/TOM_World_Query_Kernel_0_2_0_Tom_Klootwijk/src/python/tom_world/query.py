@@ -110,10 +110,12 @@ def _triggered(previous: Any, current: Any, mode: str, zero_mode: str) -> bool:
             raise TypeError("enter_nonpositive requires integer residuals")
         return previous > 0 and current <= 0
     if mode == "crossing":
-        if current_zero:
-            return True
         if isinstance(previous, int) and not isinstance(previous, bool) and isinstance(current, int) and not isinstance(current, bool):
-            return (previous < 0 < current) or (current < 0 < previous)
+            return (
+                (current_zero and not previous_zero)
+                or (previous < 0 < current)
+                or (current < 0 < previous)
+            )
         return current_zero and not previous_zero
     raise ValueError(f"unsupported trigger mode {mode}")
 
@@ -190,6 +192,11 @@ def _nonempty_string(value: Any, name: str) -> str:
 def _optional_context(value: Any, name: str = "context") -> Mapping[str, Any] | None:
     if value is not None and not isinstance(value, Mapping):
         raise ValueError(f"{name} must be an object or null")
+    if value is not None:
+        try:
+            canonical_bytes(value)
+        except (TypeError, ValueError) as exc:
+            raise ValueError(f"{name} must be a canonical JSON object: {exc}") from exc
     return value
 
 
@@ -201,6 +208,22 @@ def _optional_id_sequence(value: Any, name: str = "relation_ids") -> Sequence[st
     if any(not isinstance(item, str) or not item for item in value):
         raise ValueError(f"{name} must be an array of nonempty strings or null")
     return value
+
+
+def event_certificate_query_limit(certificate: Mapping[str, Any]) -> int:
+    """Return the finite replay index required by an event certificate."""
+
+    query = certificate.get("query")
+    if not isinstance(query, Mapping):
+        raise ValueError("event certificate query is invalid")
+    _nonempty_string(query.get("instance_id"), "event certificate instance_id")
+    after_tick = query.get("after_tick")
+    horizon = query.get("horizon")
+    if isinstance(after_tick, bool) or not isinstance(after_tick, int) or after_tick < 0:
+        raise ValueError("event certificate after_tick must be a nonnegative integer")
+    if isinstance(horizon, bool) or not isinstance(horizon, int) or horizon < 1:
+        raise ValueError("event certificate horizon must be a positive integer")
+    return after_tick + horizon
 
 
 def _checkpoint_state_certificate(payload: Mapping[str, Any]) -> dict[str, Any]:
@@ -368,16 +391,21 @@ class QueryEngine:
         if blob_hash not in self._program_cache:
             self._program_cache[blob_hash] = loads(self.store.read_blob(blob_hash))
         program = self._program_cache[blob_hash]
+        # TOMAGI's header entry is the root cell for bare execution.  Instance
+        # overrides apply on top of that effective root, including an explicit
+        # override of ``cell`` itself.
+        initial_state = replace(program.initial_state, cell=program.entry)
         override = instance["payload"].get("initial_state")
         if isinstance(override, Mapping):
-            program = Program(
-                cells=program.cells,
-                entry=program.entry,
-                seed=program.seed,
-                default_ticks=program.default_ticks,
-                initial_state=state_from_mapping(override, base=program.initial_state),
-                flags=program.flags,
-            )
+            initial_state = state_from_mapping(override, base=initial_state)
+        program = Program(
+            cells=program.cells,
+            entry=program.entry,
+            seed=program.seed,
+            default_ticks=program.default_ticks,
+            initial_state=initial_state,
+            flags=program.flags,
+        )
         return program, instance, blob_hash
 
     def _checkpoint_start(
@@ -1231,7 +1259,10 @@ class QueryEngine:
                 "ticks": unique,
             },
         })
-        return self.store.commit_transaction(transaction)
+        return self.store.commit_transaction(
+            transaction,
+            max_event_replay_steps=self.max_query_steps,
+        )
 
     def batch(
         self,
@@ -1371,13 +1402,22 @@ class QueryEngine:
             certificate = certificate_or_lineage
         if certificate.get("schema") != "TOM-EVENT-CERTIFICATE-0.1" or not verify_hash(certificate):
             raise ValueError("event certificate is invalid")
-        source_commit = str(certificate["source_commit"])
+        source_commit = _nonempty_string(certificate.get("source_commit"), "event certificate source_commit")
         query = certificate["query"]
         if not isinstance(query, Mapping):
             raise ValueError("event certificate query is invalid")
         relation_ids = query.get("relation_ids")
-        if not isinstance(relation_ids, list) or any(not isinstance(value, str) for value in relation_ids):
+        if not isinstance(relation_ids, list) or any(not isinstance(value, str) or not value for value in relation_ids):
             raise ValueError("event certificate relation_ids are invalid")
+        required_query_steps = event_certificate_query_limit(certificate)
+        if required_query_steps > self.max_query_steps:
+            raise ValueError(
+                "event certificate replay exceeds query budget: "
+                f"{required_query_steps} > {self.max_query_steps}"
+            )
+        instance_id = _nonempty_string(query.get("instance_id"), "event certificate instance_id")
+        after_tick = query["after_tick"]
+        horizon = query["horizon"]
         engine = QueryEngine(
             self.store,
             commit=source_commit,
@@ -1394,9 +1434,9 @@ class QueryEngine:
             # generated certificate back onto that legacy query envelope so
             # already committed lineages remain byte-reconstructible.
             recomputed = engine.next_event(
-                str(query["instance_id"]),
-                int(query["after_tick"]),
-                horizon=int(query["horizon"]),
+                instance_id,
+                after_tick,
+                horizon=horizon,
                 relation_ids=relation_ids,
                 context=certificate.get("context", {}),
             )
@@ -1410,9 +1450,9 @@ class QueryEngine:
                 recomputed = None
             else:
                 recomputed = engine.next_event(
-                    str(query["instance_id"]),
-                    int(query["after_tick"]),
-                    horizon=int(query["horizon"]),
+                    instance_id,
+                    after_tick,
+                    horizon=horizon,
                     relation_ids=relation_ids,
                     context=certificate.get("context", {}),
                 )
@@ -1424,11 +1464,11 @@ class QueryEngine:
                 support_id = query.get("support_id")
                 if support_id is not None and not isinstance(support_id, str):
                     raise ValueError("event certificate support_id is invalid")
-                start_tick = int(query["after_tick"])
+                start_tick = after_tick
                 result = engine.events_in_support(
-                    str(query["instance_id"]),
+                    instance_id,
                     start_tick=start_tick,
-                    end_tick=start_tick + int(query["horizon"]),
+                    end_tick=start_tick + horizon,
                     support_id=support_id,
                     relation_ids=relation_ids,
                     context=certificate.get("context", {}),
@@ -1515,4 +1555,7 @@ class QueryEngine:
             "blobs": [],
             "provenance": {"query_certificate": certificate["content_hash"]},
         })
-        return self.store.commit_transaction(transaction)
+        return self.store.commit_transaction(
+            transaction,
+            max_event_replay_steps=self.max_query_steps,
+        )

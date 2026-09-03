@@ -197,6 +197,18 @@ def verify_prerequisites() -> dict[str, Any]:
         raise RuntimeError("canonical seed prerequisite mismatch")
 
     validation = json.loads((ROOT / "validation/validation_report.json").read_text(encoding="utf-8"))
+    test_checks = [
+        item
+        for item in validation.get("checks", [])
+        if isinstance(item, dict) and item.get("name") == "conformance tests"
+    ]
+    if len(test_checks) != 1 or test_checks[0].get("status") != "pass":
+        raise RuntimeError("validation report must have one passing conformance-tests check")
+    test_check = test_checks[0]
+    test_evidence = test_check.get("evidence")
+    test_count = test_evidence.get("count") if type(test_evidence) is dict else None
+    if type(test_count) is not int or test_count < 60:
+        raise RuntimeError("validation report has no valid conformance test count")
     clean = json.loads((ROOT / "validation/clean_rebuild.json").read_text(encoding="utf-8"))
     benchmark = json.loads((ROOT / "validation/index_benchmark/report.json").read_text(encoding="utf-8"))
     audit = json.loads((ROOT / "validation/index_benchmark/audit.json").read_text(encoding="utf-8"))
@@ -224,7 +236,7 @@ def verify_prerequisites() -> dict[str, Any]:
         "seed_sha256": expected_seed,
         "validation_content_hash": validation.get("content_hash"),
         "validation_checks": validation.get("passed"),
-        "test_count": 60,
+        "test_count": test_count,
         "clean_rebuild_content_hash": clean.get("content_hash"),
         "clean_rebuild_boundaries": clean.get("compared_boundaries"),
         "benchmark_content_hash": benchmark.get("content_hash"),

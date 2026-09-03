@@ -1,13 +1,47 @@
-# TOM World Query Kernel 0.6 local caches and scratch outputs.
-/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/__pycache__/
-/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/*.py[cod]
-/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/.pytest_cache/
-/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/.mypy_cache/
-/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/.ruff_cache/
-/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/build/
-/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/dist/
-/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/tmp/
+# Interpreter, test, and analysis caches are never repository inputs.
+**/__pycache__/
+*.py[cod]
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+**/.coverage
+**/htmlcov/
+**/validation/tests.txt
 
-# Release archives are delivered separately, not stored in Git history.
-/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk.zip
-/TOM_WQK_0_6_FIXED.zip
+# Reproducible host builds and temporary replay trees stay local.
+**/build/
+**/dist/
+**/tmp/
+
+# These existing sibling release workspaces are retained locally and are not
+# part of this repository commit. Exact names avoid hiding future workspaces.
+/NHDF_CCD_Cradle_to_Grave_v0.6/
+/NHDF_CCD_Cradle_to_Grave_v0.7/
+/NHDF_TOMAGI_Literal_Kernel_v0.8.0-LSM1_EXTERNAL_TCB_ORACLE/
+/NHDF_TOMAGI_World_Query_Kernel_v0.8.1-LSM2_HANDOFF/
+/NHDF_TOMAGI_World_Query_Kernel_v0.8.2-LSM2R1_HANDOFF/
+/TOM_World_Query_Kernel_0_3_0_Tom_Klootwijk/
+/TOM_World_Query_Kernel_0_4_1_Rebuilt_Tom_Klootwijk/
+/TOM_World_Query_Kernel_0_4_2_Literal_Handoff_Tom_Klootwijk/
+/TOM_World_Query_Kernel_0_5_0_Tom_Klootwijk/
+/TOM_World_Query_Kernel_0_5_2_Transaction_Authority_Tom_Klootwijk/
+
+# Root-level handoff copies and release archives are delivery outputs. Canonical
+# copies remain inside the tracked kernel and release archives remain on disk.
+/*.zip
+/*.pdf
+/CODEX_KERNEL_*.md
+/CODEX_KERNEL_*_PROOF.json
+/NHDF_*_DELIVERY_SHA256.txt
+/TOM_AGI_ROADMAP_AND_STARTER_*.md
+/TOM_CONTINUATION_HANDOFF_*.json
+/TOM_LEARNER_*.md
+/TOM_Learner_*.json
+/TOM_Learner_*.tmg
+/TOM_WORLD_QUERY_KERNEL_*.md
+/TOM_WQK_*.json
+/TOM_WQK_*.md
+/TOM_WQK_*.txt
+/TOM_World_Query_Kernel_0_[3-6]_*.json
+/TOM_World_Query_Kernel_0_[3-6]_*.md
+/TOM_World_Query_Kernel_0_[3-6]_*.txt

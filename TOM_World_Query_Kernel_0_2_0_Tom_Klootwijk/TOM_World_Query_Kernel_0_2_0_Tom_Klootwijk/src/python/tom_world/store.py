@@ -566,9 +566,16 @@ class WorldStore:
         *,
         source_dir: str | Path | None = None,
         update_head: bool = True,
+        max_event_replay_steps: int = 100_000,
     ) -> dict[str, Any]:
         """Validate and atomically commit a content-addressed transaction."""
 
+        if (
+            isinstance(max_event_replay_steps, bool)
+            or not isinstance(max_event_replay_steps, int)
+            or max_event_replay_steps < 0
+        ):
+            raise ValueError("max_event_replay_steps must be a nonnegative integer")
         identity = self.validate()
         source_root = Path(source_dir) if source_dir is not None else Path.cwd()
         if transaction.get("schema") != TRANSACTION_SCHEMA:
@@ -581,6 +588,12 @@ class WorldStore:
         blobs = transaction.get("blobs", [])
         if not isinstance(records, list) or not isinstance(blobs, list):
             raise ValueError("transaction records and blobs must be arrays")
+        message = transaction.get("message", "")
+        if not isinstance(message, str):
+            raise ValueError("transaction message must be a string")
+        provenance = transaction.get("provenance", {})
+        if not isinstance(provenance, Mapping):
+            raise ValueError("transaction provenance must be an object")
 
         with self._commit_lock():
             current_head = self.head
@@ -673,14 +686,10 @@ class WorldStore:
                             raise ValueError(
                                 f"instance {ident} program blob {blob_id} is not a valid TOMAGI program: {exc}"
                             ) from exc
-                        if not 0 <= program.initial_state.cell < len(program.cells):
-                            raise ValueError(
-                                f"instance {ident} program blob {blob_id} has an out-of-range initial cell"
-                            )
                         validated_programs[blob_hash] = program
                     program = validated_programs[blob_hash]
                     initial_state = payload.get("initial_state", {})
-                    selected_cell = initial_state.get("cell", program.initial_state.cell)
+                    selected_cell = initial_state.get("cell", program.entry)
                     normalized_cell = int(selected_cell) & 0xFFFFFFFF
                     if normalized_cell >= len(program.cells):
                         raise ValueError(
@@ -725,7 +734,12 @@ class WorldStore:
                     raise ValueError("event/lineage records require an existing source commit")
                 from .query import QueryEngine
 
-                event_engine = QueryEngine(self, commit=current_head, use_checkpoints=False)
+                event_engine = QueryEngine(
+                    self,
+                    commit=current_head,
+                    max_query_steps=max_event_replay_steps,
+                    use_checkpoints=False,
+                )
                 for ident in sorted(prospective_records):
                     record = prospective_records[ident]
                     if record["record_type"] not in {"event", "lineage"}:
@@ -790,15 +804,26 @@ class WorldStore:
                 "transaction_hash": transaction_id,
                 "snapshot_hash": snapshot_id,
                 "indexes_hash": index_id,
-                "message": str(transaction.get("message", "")),
-                "provenance": dict(transaction.get("provenance", {})),
+                "message": message,
+                "provenance": dict(provenance),
             })
             commit_id = self._put_hashed_json(self.commits_dir, commit)
             if update_head:
                 _atomic_write(self.head_path, (commit_id + "\n").encode("ascii"))
             return commit
 
-    def commit_transaction_file(self, path: str | Path, *, update_head: bool = True) -> dict[str, Any]:
+    def commit_transaction_file(
+        self,
+        path: str | Path,
+        *,
+        update_head: bool = True,
+        max_event_replay_steps: int = 100_000,
+    ) -> dict[str, Any]:
         source = Path(path)
         transaction = _load_json(source)
-        return self.commit_transaction(transaction, source_dir=source.parent, update_head=update_head)
+        return self.commit_transaction(
+            transaction,
+            source_dir=source.parent,
+            update_head=update_head,
+            max_event_replay_steps=max_event_replay_steps,
+        )

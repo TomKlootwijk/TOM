@@ -39,6 +39,10 @@
         }
       ]
     },
+    "max_event_replay_steps": {
+      "minimum": 0,
+      "type": "integer"
+    },
     "orphans": {
       "type": "object"
     },
@@ -85,6 +89,7 @@
     "warnings",
     "orphans",
     "require_no_orphans",
+    "max_event_replay_steps",
     "content_hash"
   ],
   "title": "TOM world full ancestry audit certificate 0.2",

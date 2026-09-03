@@ -58,7 +58,7 @@
       "valid": true
     }
   ],
-  "content_hash": "sha256:773540bf4bd52fb444ddfcb1d618d2ef317c00deae5fd120517a6ec1bf8e2f05",
+  "content_hash": "sha256:19ade837b735e9fd52a101c3bcda7d11d5fc29580182f3679cd913a3a701a1a4",
   "counts": {
     "blob_references": 2,
     "commits": 2,
@@ -80,6 +80,7 @@
   },
   "errors": [],
   "head": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+  "max_event_replay_steps": 100000,
   "orphans": {
     "blobs": {
       "count": 0,

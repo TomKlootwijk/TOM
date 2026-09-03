@@ -1,6 +1,6 @@
 {
   "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
-  "content_hash": "sha256:7998d6fd00db96cfe9bd977c176127ec7fbe609cef3ec1b1f06c819b504b1b50",
+  "content_hash": "sha256:4ca3eae859cf67793bb82a9e374019f8ababb27ddb35cca67c582c5b60669135",
   "planner_mode": "exhaustive",
   "reduction_order": "declared_array_order",
   "request_count": 4,
@@ -46,7 +46,7 @@
         },
         "checkpoint_tick": 0,
         "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
-        "content_hash": "sha256:3993fe79a4404f927e6367761da5549613b4704b3ead6952ffdaab34bb954dfa",
+        "content_hash": "sha256:b63c0be5b846d7ab01d8888b93f80b609f30df50ae90f9e2029e9bde85129d59",
         "executed_steps": 999,
         "instance_hash": "sha256:ce7fd2f02a6c0ed69e5d285b02c2162144df3fa2ebb623529fd8ead7d0e77d1a",
         "instance_id": "instance:benchmark:042",
@@ -57,10 +57,12 @@
         "target_tick": 999,
         "work": {
           "checkpoint_record_reads": 0,
+          "index_lookups": 0,
+          "record_reads": 0,
           "tomagi_steps": 999
         }
       },
-      "planned_certificate_hash": "sha256:cadac8293d5f7d2af88bad83b812395b6c398ebee80db60b01ecf0564d9ef85c",
+      "planned_certificate_hash": "sha256:b578a90510e2850f616b0e599c06f5205493ae672571c4f4bc8770e8c362fa79",
       "position": 0,
       "result": {
         "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
@@ -98,7 +100,7 @@
       "plan": {
         "after_tick": 0,
         "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
-        "content_hash": "sha256:f1f78fc4c75d21ab37eed352c02bffea4bf1d0f3710b8b9785de8744fb064d1c",
+        "content_hash": "sha256:980d9756d8abc2a383624fa9da7025035d54af876ff5da1fcfc1886ccb121a19",
         "events_found": 2,
         "horizon": 32,
         "inactive_interval_skips": 62,
@@ -206,7 +208,7 @@
           },
           "checkpoint_tick": 0,
           "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
-          "content_hash": "sha256:ccd5f09d23988df1c08aa68666ea9a3b9f262aaf5265c53518e07221a1d8e49f",
+          "content_hash": "sha256:57acb8e238c1ed0693b8b5ef7c704c6550ddfa26c555092e8459b19daa67946f",
           "executed_steps": 0,
           "instance_hash": "sha256:ce7fd2f02a6c0ed69e5d285b02c2162144df3fa2ebb623529fd8ead7d0e77d1a",
           "instance_id": "instance:benchmark:042",
@@ -217,12 +219,16 @@
           "target_tick": 0,
           "work": {
             "checkpoint_record_reads": 0,
+            "index_lookups": 0,
+            "record_reads": 0,
             "tomagi_steps": 0
           }
         },
         "stop_after_first": false,
         "ticks_scanned": 32,
+        "tomagi_steps_scanned": 32,
         "work": {
+          "checkpoint_record_reads": 0,
           "index_lookups": 0,
           "predicate_evaluations": 4,
           "record_reads": 19702,
@@ -230,11 +236,11 @@
           "tomagi_steps": 32
         }
       },
-      "planned_certificate_hash": "sha256:39d8b6a744709924813354ce4ac1be0b9e29e29a640a5100621e9dbd388a61ad",
+      "planned_certificate_hash": "sha256:d24f5cf589e724a4bdc74dea2edb42215dff8a96882f9b10c260f859c38647fd",
       "position": 1,
       "result": {
         "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
-        "content_hash": "sha256:102faa3cb5becd73730fa45a4a09e5952d4209b329e8ff7ab175af8d2d3e3d7d",
+        "content_hash": "sha256:245c10503e9c53c88d15b76858f38c2df2d0dc69cce3088d64065eff3ee6659b",
         "event_count": 2,
         "events": [
           {
@@ -248,7 +254,7 @@
             "confidence": {
               "kind": "not_declared"
             },
-            "content_hash": "sha256:b0dff89629b7659bc3e88a21b13c68cf61ce9386aeb64eb7e23831d9bb831a47",
+            "content_hash": "sha256:ed3f22632c99dfd3a891eb3de6532194798ed1f80a20883922d5db2f78978286",
             "context": {
               "benchmark_instance_index": 42,
               "domain": "index-benchmark-10000",
@@ -319,9 +325,13 @@
               "after_tick": 0,
               "horizon": 32,
               "instance_id": "instance:benchmark:042",
+              "query_kind": "events_in_support",
               "relation_ids": [
-                "relation:benchmark:042:005"
-              ]
+                "relation:benchmark:042:005",
+                "relation:benchmark:042:021"
+              ],
+              "result_index": 0,
+              "support_id": "support:benchmark-bucket:04"
             },
             "relation_hash": "sha256:1665212a1fd5378661bf2b52228d0ec4034891fecea69e5fbbb11313b5c7ea1f",
             "relation_id": "relation:benchmark:042:005",
@@ -353,7 +363,7 @@
             "confidence": {
               "kind": "not_declared"
             },
-            "content_hash": "sha256:4d26c38677a0c4ed935962d3ebd1f0852560de5f216b7194fdccd9832fbb9303",
+            "content_hash": "sha256:72ffc33b5cf854beb7fb203fc044a3284b352480ba15e09a26a5b4300327b136",
             "context": {
               "benchmark_instance_index": 42,
               "domain": "index-benchmark-10000",
@@ -424,9 +434,13 @@
               "after_tick": 0,
               "horizon": 32,
               "instance_id": "instance:benchmark:042",
+              "query_kind": "events_in_support",
               "relation_ids": [
+                "relation:benchmark:042:005",
                 "relation:benchmark:042:021"
-              ]
+              ],
+              "result_index": 1,
+              "support_id": "support:benchmark-bucket:04"
             },
             "relation_hash": "sha256:faa5f1ebf94e106d593e77362b4f3f0b0b62876b66519f2288ca8a5df2336189",
             "relation_id": "relation:benchmark:042:021",
@@ -456,7 +470,7 @@
         "schema": "TOM-EVENTS-IN-SUPPORT-CERTIFICATE-0.2",
         "support_id": "support:benchmark-bucket:04"
       },
-      "result_hash": "sha256:102faa3cb5becd73730fa45a4a09e5952d4209b329e8ff7ab175af8d2d3e3d7d"
+      "result_hash": "sha256:245c10503e9c53c88d15b76858f38c2df2d0dc69cce3088d64065eff3ee6659b"
     },
     {
       "id": "next-event-after-20",
@@ -464,7 +478,7 @@
       "plan": {
         "after_tick": 20,
         "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
-        "content_hash": "sha256:ff54523cb0dcfd838306cea96391710361186d94df245a04034303639de8db02",
+        "content_hash": "sha256:038f303679901a5a1f063a322c1567f3605fa9b7ae92af7e3d9670bd499dbd0d",
         "events_found": 1,
         "horizon": 16,
         "inactive_interval_skips": 15,
@@ -577,7 +591,7 @@
           },
           "checkpoint_tick": 0,
           "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
-          "content_hash": "sha256:d08f17d13ec8579d4706375a88c92cf22122121ed304b2b011fdc0272e6c2db9",
+          "content_hash": "sha256:04c645d1f90487c7bb609521e9df0a2777bc6998b1beab77f5cca2a8cf77e086",
           "executed_steps": 20,
           "instance_hash": "sha256:ce7fd2f02a6c0ed69e5d285b02c2162144df3fa2ebb623529fd8ead7d0e77d1a",
           "instance_id": "instance:benchmark:042",
@@ -588,12 +602,16 @@
           "target_tick": 20,
           "work": {
             "checkpoint_record_reads": 0,
+            "index_lookups": 0,
+            "record_reads": 0,
             "tomagi_steps": 20
           }
         },
         "stop_after_first": true,
         "ticks_scanned": 1,
+        "tomagi_steps_scanned": 1,
         "work": {
+          "checkpoint_record_reads": 0,
           "index_lookups": 0,
           "predicate_evaluations": 2,
           "record_reads": 19696,
@@ -601,7 +619,7 @@
           "tomagi_steps": 21
         }
       },
-      "planned_certificate_hash": "sha256:0ada76c3a129d9a4d4584eb0420d3ce276502178eccaa4143590538913e00fc4",
+      "planned_certificate_hash": "sha256:cecde60cd15e94c260a3bba37f29c092f493e192984bbfd2ce86b31d759c53a3",
       "position": 2,
       "result": {
         "compatibility": [
@@ -614,7 +632,7 @@
         "confidence": {
           "kind": "not_declared"
         },
-        "content_hash": "sha256:9ce0a8482dfcf3075cb9c830822642aff20816ae1d46c2d5241fb3e7bc1a1470",
+        "content_hash": "sha256:d7f1518921b1b0b5a466cfc64d5b031b91cda0f831d6bff3a136131536c9a20b",
         "context": {
           "benchmark_instance_index": 42,
           "domain": "index-benchmark-10000",
@@ -685,9 +703,27 @@
           "after_tick": 20,
           "horizon": 16,
           "instance_id": "instance:benchmark:042",
+          "query_kind": "next_event",
           "relation_ids": [
-            "relation:benchmark:042:021"
-          ]
+            "relation:benchmark:042:021",
+            "relation:benchmark:042:022",
+            "relation:benchmark:042:023",
+            "relation:benchmark:042:024",
+            "relation:benchmark:042:025",
+            "relation:benchmark:042:026",
+            "relation:benchmark:042:027",
+            "relation:benchmark:042:028",
+            "relation:benchmark:042:029",
+            "relation:benchmark:042:030",
+            "relation:benchmark:042:031",
+            "relation:benchmark:042:032",
+            "relation:benchmark:042:033",
+            "relation:benchmark:042:034",
+            "relation:benchmark:042:035",
+            "relation:benchmark:042:036"
+          ],
+          "result_index": 0,
+          "support_id": null
         },
         "relation_hash": "sha256:faa5f1ebf94e106d593e77362b4f3f0b0b62876b66519f2288ca8a5df2336189",
         "relation_id": "relation:benchmark:042:021",
@@ -708,7 +744,7 @@
         "trigger": "enter_zero",
         "zero_test": "equal_zero"
       },
-      "result_hash": "sha256:9ce0a8482dfcf3075cb9c830822642aff20816ae1d46c2d5241fb3e7bc1a1470"
+      "result_hash": "sha256:d7f1518921b1b0b5a466cfc64d5b031b91cda0f831d6bff3a136131536c9a20b"
     },
     {
       "id": "definition-root",
@@ -799,11 +835,11 @@
     }
   ],
   "schema": "TOM-BATCH-QUERY-CERTIFICATE-0.2",
-  "semantic_reduction_hash": "sha256:cd4b4088b6dcc2327826475184548aeffa33214c92a90835c02fe800470ef765",
+  "semantic_reduction_hash": "sha256:d4e422169fab22bd4cd01de15bb5f4cd26a20ffd856649100adca88275409031",
   "semantic_result_hashes": [
     "sha256:9cd302ee9c2f6b380000288181403b7141ba9684ffb357c8c8245efcd2810f30",
-    "sha256:102faa3cb5becd73730fa45a4a09e5952d4209b329e8ff7ab175af8d2d3e3d7d",
-    "sha256:9ce0a8482dfcf3075cb9c830822642aff20816ae1d46c2d5241fb3e7bc1a1470",
+    "sha256:245c10503e9c53c88d15b76858f38c2df2d0dc69cce3088d64065eff3ee6659b",
+    "sha256:d7f1518921b1b0b5a466cfc64d5b031b91cda0f831d6bff3a136131536c9a20b",
     "sha256:3786711574b518f281739abf76cc1ce83a2e6d7d2d6a5008c89573e62b0bfb27"
   ],
   "version": "0.2.0",
@@ -811,8 +847,8 @@
     "checkpoint_record_reads": 0,
     "index_lookups": 0,
     "predicate_evaluations": 6,
-    "record_reads": 78797,
+    "record_reads": 39399,
     "relation_evaluations": 3,
-    "tomagi_steps": 1072
+    "tomagi_steps": 1052
   }
 }

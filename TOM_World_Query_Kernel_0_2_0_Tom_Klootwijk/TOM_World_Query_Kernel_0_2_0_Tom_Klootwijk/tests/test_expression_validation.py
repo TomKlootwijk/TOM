@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from tom_world.expression import I64_MAX, validate_expression
+from tom_world.expression import I64_MAX, evaluate_expression, validate_expression
 from tom_world.records import make_record
 
 
@@ -68,9 +68,7 @@ class StructuralExpressionValidationTests(unittest.TestCase):
             "two-selectors": {"op": "field", "name": "rho", "path": ["rho"]},
             "empty-name": {"op": "field", "name": ""},
             "path-not-array": {"op": "field", "path": "rho"},
-            "empty-path": {"op": "field", "path": []},
             "boolean-index": {"op": "field", "path": [True]},
-            "negative-index": {"op": "field", "path": [-1]},
         }
         for name, expression in invalid.items():
             with self.subTest(name=name), self.assertRaises(ValueError):
@@ -79,6 +77,8 @@ class StructuralExpressionValidationTests(unittest.TestCase):
         # Whether a declared field exists and what value it yields depends on
         # the query source and therefore remains a runtime check.
         validate_expression({"op": "field", "source": "context", "path": ["unknown", 0]})
+        validate_expression({"op": "field", "source": "context", "path": []})
+        validate_expression({"op": "field", "source": "context", "path": ["items", -1]})
 
     def test_statically_invalid_literal_parameters_are_rejected(self):
         invalid = {
@@ -99,8 +99,8 @@ class StructuralExpressionValidationTests(unittest.TestCase):
                 "args": [{"op": "field", "name": "rho"}, 2, 1],
             },
             "static-overflow": {"op": "add", "args": [I64_MAX, 1]},
-            "out-of-range-literal": {"op": "const", "value": I64_MAX + 1},
-            "floating-literal": {"op": "const", "value": 1.5},
+            "raw-floating-expression": 1.5,
+            "nonfinite-constant": {"op": "const", "value": float("inf")},
         }
         for name, expression in invalid.items():
             with self.subTest(name=name), self.assertRaises(ValueError):
@@ -118,6 +118,47 @@ class StructuralExpressionValidationTests(unittest.TestCase):
             "op": "all",
             "args": [{"op": "field", "source": "context", "name": "predicate"}],
         })
+
+    def test_static_if_validation_is_lazy_but_still_checks_branch_structure(self):
+        unreachable_failure = {
+            "op": "if",
+            "condition": True,
+            "then": 1,
+            "else": {"op": "floor_div", "args": [1, 0]},
+        }
+        validate_expression(unreachable_failure)
+        self.assertEqual(evaluate_expression(unreachable_failure, {}), 1)
+
+        unreachable_type_error = {
+            "op": "if",
+            "condition": False,
+            "then": {"op": "add", "args": [1, "not-an-integer"]},
+            "else": 2,
+        }
+        validate_expression(unreachable_type_error)
+        self.assertEqual(evaluate_expression(unreachable_type_error, {}), 2)
+
+        with self.assertRaisesRegex(ValueError, "statically zero"):
+            validate_expression({
+                "op": "if",
+                "condition": False,
+                "then": 1,
+                "else": {"op": "floor_div", "args": [1, 0]},
+            })
+        with self.assertRaises(ValueError):
+            validate_expression({
+                "op": "if",
+                "condition": True,
+                "then": 1,
+                "else": {"op": "floor_div", "args": [1]},
+            })
+        with self.assertRaisesRegex(ValueError, "statically zero"):
+            validate_expression({
+                "op": "if",
+                "condition": {"op": "field", "source": "context", "name": "choose"},
+                "then": 1,
+                "else": {"op": "floor_div", "args": [1, 0]},
+            })
 
 
 class StoredExpressionValidationTests(unittest.TestCase):

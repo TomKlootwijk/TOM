@@ -2,7 +2,7 @@
 
 Status: **pass**
 
-Checks: 20 passed; 0 failed. Python tests: 60.
+Checks: 20 passed; 0 failed. Python tests: 116.
 
 | Check | Status | Detail |
 |---|---|---|
@@ -23,7 +23,7 @@ Checks: 20 passed; 0 failed. Python tests: 60.
 | stored transaction/snapshot/index lineage | pass | Every commit preserves the exact transaction body and binds one immutable snapshot and index to its parent sequence. |
 | roadmap literal EMIT artifact | pass | The primary roadmap is byte-equal to its source after content-addressed definition compilation and equal Python/C TOMAGI execution. |
 | 0.2 release documentation EMIT artifact | pass | The 0.2 completion document is itself reconstructed from an executable literal TOMAGI program with equal Python/C full traces. |
-| conformance tests | pass | 60 tests passed, including the original TOMAGI suite and 0.2 index/plan/checkpoint/audit tests. |
+| conformance tests | pass | 116 tests passed, including the original TOMAGI suite and 0.2 index/plan/checkpoint/audit tests. |
 | static specifications, sources, and schemas | pass | Normative profiles, source PDFs, schemas, all benchmark records, immutable indexes, plans, batches, audit, and artifact sources passed static verification. |
 | clean generated-output-free rebuild | pass | A copy stripped of generated stores, programs, traces, and artifacts rebuilt the selected files and both world-store tree manifests byte-for-byte. |
 
@@ -39,4 +39,4 @@ Checks: 20 passed; 0 failed. Python tests: 60.
 
 This release executes Python and C99 and preserves the TOMAGI 1.0 ABI. GPU mappings are retained but no new physical GPU dispatch is claimed. Event queries remain exact over whole discrete transitions; they do not yet certify a relation crossing between samples or resolve simultaneous event sets. No autonomous learner, planner, grounded perception layer, or AGI is claimed.
 
-Validation report content hash: `sha256:1495aad85e8623fadc2932bc05bbf158369b81965767da9e2d16b0a04381ab9e`
+Validation report content hash: `sha256:615f5d12925150f13e0a12bd675c1750712c9a0ee27b7f7beda7cc6e246f9dc1`
