@@ -1,0 +1,1 @@
+{"content_hash":"sha256:ae351d2fb4ef7d8fe6e1f60149abf9b97eef50a8b706a463e0b40f8257e3cb13","id":"obs:dataset_contradictory_exact:019","provenance":{"dataset":"dataset:contradictory_exact","note":"affine observation 19","source":"literal TOM Learner 0.1 benchmark plan"},"schema":"TOM-EXACT-OBSERVATION-0.1","t":{"den":1,"num":19},"y":{"den":1,"num":55}}

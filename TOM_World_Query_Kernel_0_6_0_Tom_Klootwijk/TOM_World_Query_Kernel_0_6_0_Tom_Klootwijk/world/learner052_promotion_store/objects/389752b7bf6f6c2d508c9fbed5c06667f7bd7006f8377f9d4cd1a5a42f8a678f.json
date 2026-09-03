@@ -1,0 +1,1 @@
+{"content_hash":"sha256:389752b7bf6f6c2d508c9fbed5c06667f7bd7006f8377f9d4cd1a5a42f8a678f","id":"obs:dataset_underdetermined_constant_input:002","provenance":{"dataset":"dataset:underdetermined_constant_input","note":"constant-input observation 2","source":"literal TOM Learner 0.1 benchmark plan"},"schema":"TOM-EXACT-OBSERVATION-0.1","t":{"den":1,"num":0},"y":{"den":1,"num":5}}

@@ -1,0 +1,88 @@
+{
+  "$id": "https://tom.invalid/schema/tom-world-transaction-0.1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "base_commit": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        }
+      ]
+    },
+    "blobs": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "media_type": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "path",
+          "media_type",
+          "sha256"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "content_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "provenance": {
+      "type": "object"
+    },
+    "records": {
+      "items": {
+        "$ref": "https://tom.invalid/schema/tom-world-record-0.1.json"
+      },
+      "type": "array"
+    },
+    "schema": {
+      "const": "TOM-WORLD-TRANSACTION-0.1"
+    },
+    "seed_sha256": {
+      "const": "sha256:d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"
+    },
+    "sequence": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema",
+    "seed_sha256",
+    "base_commit",
+    "sequence",
+    "message",
+    "records",
+    "blobs",
+    "provenance",
+    "content_hash"
+  ],
+  "title": "TOM World atomic transaction 0.1",
+  "type": "object"
+}

@@ -1,0 +1,261 @@
+{
+  "authoritative_files": [
+    {
+      "bytes": 244,
+      "path": "TOM_seed_genome_2026-09-01.txt",
+      "sha256": "sha256:d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"
+    },
+    {
+      "bytes": 176,
+      "path": "examples/world03/affine_reference.tmg",
+      "sha256": "sha256:17db69d8bcfe33155ece65be95a474ad2e4a3d228600c32f49e85d46e40ad755"
+    },
+    {
+      "bytes": 13761,
+      "path": "examples/world03/interval_event_world.json",
+      "sha256": "sha256:5075c7acc50ed5b84979c42bab63d559c7816d596796eae36b0a65a06ee11626"
+    },
+    {
+      "bytes": 5400,
+      "path": "examples/world04r/piecewise_reference.json",
+      "sha256": "sha256:26dcdf392924d9b1e0d12a3b729074966823adedb6d44dc5ab0778b0d2f7dc32"
+    },
+    {
+      "bytes": 1338560,
+      "path": "examples/world04r/piecewise_world.json",
+      "sha256": "sha256:6a402f447bab608a5ca130bf84e64616f0c0601fd380aba11034ff33812bd9a4"
+    },
+    {
+      "bytes": 4451,
+      "path": "sources/CORRECTED_V0_3_BASELINE_PIN.json",
+      "sha256": "sha256:017eae843122b74f87185737f9279bdb8819dedae2309840f52f78e869db6c3a"
+    },
+    {
+      "bytes": 16309,
+      "path": "spec/TOM_WORLD_QUERY_KERNEL_0_3.md",
+      "sha256": "sha256:c0e831d7cca21c57f9bdbd600129d1b9e73378433e333e6d909349d95f106015"
+    },
+    {
+      "bytes": 15328,
+      "path": "spec/TOM_WORLD_QUERY_KERNEL_0_4_REBUILT.md",
+      "sha256": "sha256:4a913c74e33f2dec606bd2c3afbbec18a86f8ee5dd6185ca637942db671d291c"
+    },
+    {
+      "bytes": 11034,
+      "path": "spec/tom_world_piecewise_continuation_0_4_1.schema.json",
+      "sha256": "sha256:8525d094693dccc10b8d86003e437c5e7ae3d851c6d8d4157e38d25fd3f05a3b"
+    },
+    {
+      "bytes": 7525,
+      "path": "spec/tom_world_query_kernel_0_3.schema.json",
+      "sha256": "sha256:3604ee02dbe668b3cf9f3635f2dd3e6eb481e32298449545ad0e681050aebc9b"
+    },
+    {
+      "bytes": 19100,
+      "path": "src/c/tomagi.c",
+      "sha256": "sha256:f8c23f81308f3f684bd39fd89434086eda86117d3c3b8e57b427391518d7b8e9"
+    },
+    {
+      "bytes": 3720,
+      "path": "src/c/tomagi.h",
+      "sha256": "sha256:38489426f2a34ecf48040bf8c4e52f79ee61714f07d81885195e1476b27b2587"
+    },
+    {
+      "bytes": 3885,
+      "path": "src/c/tomagi_cli.c",
+      "sha256": "sha256:38cc611ca7671a92fde4e863c3c6e4dc625c022c6cb735d7c999ef72e25deff4"
+    },
+    {
+      "bytes": 700,
+      "path": "src/python/tom_world03/__init__.py",
+      "sha256": "sha256:1551492618a500f911c72a237e9078278724389a93a030ad30e7490fe3236950"
+    },
+    {
+      "bytes": 48,
+      "path": "src/python/tom_world03/__main__.py",
+      "sha256": "sha256:935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d"
+    },
+    {
+      "bytes": 4054,
+      "path": "src/python/tom_world03/baseline.py",
+      "sha256": "sha256:9e80d00ca7a6d8c84786a3e45a1c2906b8b6ea7f1289769bc56c42e0904684b0"
+    },
+    {
+      "bytes": 1093,
+      "path": "src/python/tom_world03/canonical.py",
+      "sha256": "sha256:024191768fbd7075afb73a52ae50e018ef14e8de59803c954c91bc11ca69ff6e"
+    },
+    {
+      "bytes": 4631,
+      "path": "src/python/tom_world03/cli.py",
+      "sha256": "sha256:7fe74da80ded050e7dcfe09adcbf4b2c43bf09ec4739af10a1e0173358d3b90a"
+    },
+    {
+      "bytes": 5132,
+      "path": "src/python/tom_world03/expression.py",
+      "sha256": "sha256:ebd90a7c3e1c6cb5285421d16359f623981ec128bb75bc6c3dd16511199b74b0"
+    },
+    {
+      "bytes": 4444,
+      "path": "src/python/tom_world03/interval.py",
+      "sha256": "sha256:ea7b3ff2127e8ee7a696eb45e84ae9efdbca7c10c532617c51888fb13cd39f6d"
+    },
+    {
+      "bytes": 828,
+      "path": "src/python/tom_world03/io.py",
+      "sha256": "sha256:6ce23b41a1177255b7f763f08043da2f4808c5482f23b43fd44e8058506f7e0d"
+    },
+    {
+      "bytes": 9943,
+      "path": "src/python/tom_world03/model.py",
+      "sha256": "sha256:133d026540a56e7a03ab91ab894bbd6c984012fb7ea92d0be8948571b0720e43"
+    },
+    {
+      "bytes": 4224,
+      "path": "src/python/tom_world03/rational.py",
+      "sha256": "sha256:91004ee7418a3ad33815039ffdd54d9032c2f9c6112e86b47ced5ef5c778b6c7"
+    },
+    {
+      "bytes": 11198,
+      "path": "src/python/tom_world03/solver.py",
+      "sha256": "sha256:90c2282030a03f625097730092f059797545f5eee6893890d52768e47eccc576"
+    },
+    {
+      "bytes": 4332,
+      "path": "src/python/tom_world03/transitions.py",
+      "sha256": "sha256:44bc89f0432a5ed309e8f36b7d8cc54961850ba1d1e9a4955a05f6382e9d0ec2"
+    },
+    {
+      "bytes": 240,
+      "path": "src/python/tom_world04r/__init__.py",
+      "sha256": "sha256:d913cba713ed39509113d30e0082d6903f99abfab1300af2f9558d9bcfac987d"
+    },
+    {
+      "bytes": 48,
+      "path": "src/python/tom_world04r/__main__.py",
+      "sha256": "sha256:935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d"
+    },
+    {
+      "bytes": 10885,
+      "path": "src/python/tom_world04r/baseline.py",
+      "sha256": "sha256:f66c07adaeb9270558e2b6f07d46f84b8db921af7d1131fa45223bb836fe68eb"
+    },
+    {
+      "bytes": 6663,
+      "path": "src/python/tom_world04r/cli.py",
+      "sha256": "sha256:d6478e200a91d486441658d798d76c62fde391213fa49d1a58c89634aaf2a578"
+    },
+    {
+      "bytes": 5702,
+      "path": "src/python/tom_world04r/engine.py",
+      "sha256": "sha256:c271c37b8d909712526c6e12dedbfba6eb574b7fe8ffa25121fca99c01d0d352"
+    },
+    {
+      "bytes": 8500,
+      "path": "src/python/tom_world04r/index.py",
+      "sha256": "sha256:4184d596ff4689fa65936b2385fd055c583311ccd3dae0447ef964d5b338ced4"
+    },
+    {
+      "bytes": 860,
+      "path": "src/python/tom_world04r/io.py",
+      "sha256": "sha256:d0619b4ba951dd334c5594a580ee30af64349bc1a4a000214213c04dc9ba5e76"
+    },
+    {
+      "bytes": 30771,
+      "path": "src/python/tom_world04r/journal.py",
+      "sha256": "sha256:0ece41355d7d85a347e6e260840fa84f332f02835df962ac61604e4ac79b89e5"
+    },
+    {
+      "bytes": 20964,
+      "path": "src/python/tom_world04r/model.py",
+      "sha256": "sha256:fffb6432f974d543bc137333c14721ee07c4af06edba14d114864d840dd9c223"
+    },
+    {
+      "bytes": 13387,
+      "path": "src/python/tom_world04r/solver.py",
+      "sha256": "sha256:4c763de3229ec63f4e77d519a54fb257b07739ac0c2c2eb9b382a6c24aa84e47"
+    },
+    {
+      "bytes": 13617,
+      "path": "src/python/tom_world04r/transition.py",
+      "sha256": "sha256:7d5857d14d023eaa7bf195d5bd801c86ccc2de8eaebd6e928018a946280b4c4a"
+    },
+    {
+      "bytes": 270,
+      "path": "src/python/tomagi/__init__.py",
+      "sha256": "sha256:79041891dcf3516337e8006561d6d23437ce301141220258812316fbcb73f2e5"
+    },
+    {
+      "bytes": 48,
+      "path": "src/python/tomagi/__main__.py",
+      "sha256": "sha256:935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d"
+    },
+    {
+      "bytes": 767,
+      "path": "src/python/tomagi/canonical.py",
+      "sha256": "sha256:e01d4b9f0ac1a90ebea76a5b28c63ea52e3e3db4a1c0117289c7930390a64b55"
+    },
+    {
+      "bytes": 2848,
+      "path": "src/python/tomagi/cli.py",
+      "sha256": "sha256:06decac895c9728b5daf2e8413db48bf4443e52c0c1b63f4e8315b46ab24600b"
+    },
+    {
+      "bytes": 26903,
+      "path": "src/python/tomagi/compiler.py",
+      "sha256": "sha256:8db4be848f222bb068e89022c6954007f1df759f2540e2b662a054078ca92f1d"
+    },
+    {
+      "bytes": 18015,
+      "path": "src/python/tomagi/core.py",
+      "sha256": "sha256:67a5e29398614728ffbc94a92b4df7ec82f95f519893f4de81908fe3eeb9d561"
+    },
+    {
+      "bytes": 2233,
+      "path": "src/python/tomagi/format.py",
+      "sha256": "sha256:ec86cc2f2c67be009bc47befe5ce4188856eb6b58434836a4183fdb41b5471b6"
+    },
+    {
+      "bytes": 2528,
+      "path": "src/python/tomagi/knowledge.py",
+      "sha256": "sha256:689f39ffe37804bac386d4a5125af5d7789109ac79adea812e1800d43cae6895"
+    },
+    {
+      "bytes": 3351,
+      "path": "src/python/tomagi/materialize.py",
+      "sha256": "sha256:30b616093fe3b191d3e222fc7c4b0ca8ae9d1b0797606e5dc8ed3a8b4da4f586"
+    },
+    {
+      "bytes": 15431,
+      "path": "tests/test_world03_interval_events.py",
+      "sha256": "sha256:42144c0407d01d47fe09c94a1f17ebd6f69a5636e90d4001de8b5c074d383506"
+    },
+    {
+      "bytes": 20859,
+      "path": "tests/test_world04r_corrective_rebuild.py",
+      "sha256": "sha256:e6e629c1623ae97b7a3c236401f06e195ff08a2327dc6f53b40960ec2148e17b"
+    }
+  ],
+  "canonical_seed_sha256": "sha256:d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+  "content_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+  "corrected_interval_sha256": "sha256:ea7b3ff2127e8ee7a696eb45e84ae9efdbca7c10c532617c51888fb13cd39f6d",
+  "corrected_v03_archive_sha256": "sha256:a7103ec92596fd54198e4a902f078712cf8eafcdf1e45320bbdc02dd53947278",
+  "excluded_as_authority_prefixes": [
+    "artifacts/",
+    "build/",
+    "checksums/",
+    "examples/world04r/continuation_store/",
+    "validation/"
+  ],
+  "handoff_rule": "Later releases must verify every authoritative file before reading any generated evidence from the inherited release.",
+  "purpose": "Pin only literal and implementation authorities required by later work; generated fixtures, journals, traces, validation outputs, and documentation artifacts are evidence, not source inputs.",
+  "release": "0.4.2-literal-handoff",
+  "schema": "TOM-LITERAL-HANDOFF-0.4.2",
+  "semantic_base": "TOM World & Query Kernel 0.4.1 corrective rebuild",
+  "semantic_change": false,
+  "source_archive": {
+    "bytes": 22932486,
+    "filename": "TOM_World_Query_Kernel_0_4_1_Rebuilt_Tom_Klootwijk.zip",
+    "sha256": "sha256:de8d47704f086f8f265b79aa4c373b5d84127ddbb3e8662c3c1cda57e8272517"
+  }
+}

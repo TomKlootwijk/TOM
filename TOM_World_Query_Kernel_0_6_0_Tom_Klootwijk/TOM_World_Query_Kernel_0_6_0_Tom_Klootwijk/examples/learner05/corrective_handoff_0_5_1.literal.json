@@ -1,0 +1,298 @@
+{
+  "$schema": "../../spec/tom_seeded_program.schema.json",
+  "budgets": {
+    "max_cells": 2155,
+    "max_definitions": 16,
+    "max_expression_depth": 16,
+    "max_expression_nodes": 4096,
+    "max_output_bytes": 8619,
+    "max_repeat": 1,
+    "max_sequence_items": 64,
+    "max_string_bytes": 4096
+  },
+  "compilation_profile": "TOM-SEEDED-COMPILATION-1.0",
+  "definitions": [
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:8e24b5e16d8c8c1c06f3a384da94568fd06e4597b8365659ed1e856fa897023c",
+      "dependencies": [],
+      "domain": "none",
+      "id": "tom:seed",
+      "kind": "canonical-seed",
+      "limits": {},
+      "operation": {
+        "op": "seed.bytes"
+      },
+      "order": 0,
+      "parameters": {},
+      "phase": "parse",
+      "provenance": {
+        "base_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "corrective_overlay": "sources/TOM_CORRECTIVE_HANDOFF_0_5_1.json",
+        "corrective_overlay_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "role": "0.5.1 corrective handoff document byte artifact",
+        "source": "docs/TOM_WQK_0_5_1_CORRECTIVE_HANDOFF.md"
+      },
+      "seed_tokens": [
+        "TOM1"
+      ]
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:a3e07245a7dfe65d1d3f0f99e4b44606be1bd465492c3492709d4e6aa8689777",
+      "dependencies": [
+        "tom:seed"
+      ],
+      "domain": "bytes",
+      "id": "tom:tokens",
+      "kind": "seed-parse",
+      "limits": {},
+      "operation": {
+        "op": "seed.tokens"
+      },
+      "order": 0,
+      "parameters": {},
+      "phase": "resolve",
+      "provenance": {
+        "base_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "corrective_overlay": "sources/TOM_CORRECTIVE_HANDOFF_0_5_1.json",
+        "corrective_overlay_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "role": "0.5.1 corrective handoff document byte artifact",
+        "source": "docs/TOM_WQK_0_5_1_CORRECTIVE_HANDOFF.md"
+      },
+      "seed_tokens": [
+        "TopologicalOpenModular"
+      ]
+    },
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:161a43ef9f9c1fcfcc102b6fd53f1168f14c6051df0e410b894eeca3f40cd5f5",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "handoff:bytes",
+      "kind": "literal-corrective-handoff-document",
+      "limits": {},
+      "operation": {
+        "op": "literal"
+      },
+      "order": 0,
+      "parameters": {
+        "result_type": "bytes",
+        "value": {
+          "data": "IyBUT00gV1FLIDAuNS4xIENvcnJlY3RpdmUgSGFuZG9mZgoKRGF0ZTogMjAyNi0wOS0wMiAgClN0YXR1czogY29ycmVjdGl2ZSBpbXBsZW1lbnRhdGlvbiBoYW5kb2ZmICAKQ2Fub25pY2FsIHNlZWQ6IGBUT01fc2VlZF9nZW5vbWVfMjAyNi0wOS0wMS50eHRgICAKU2VlZCBTSEEtMjU2OiBgZDE0MTdhMzEzNjc3MmMwY2YzZWRkY2Q0OTYyY2UwN2Q0MmNiZjg3NjE2ZjdiNWJhZTA5ZmM2NTJkOWI4MDdiNWAKCiMjIEV4ZWN1dGl2ZSBleHBsYW5hdGlvbgoKVGhlIDAuNS4wIGtlcm5lbCBwYXNzZWQgaXRzIGZ1bmN0aW9uYWwgbGVhcm5lciB0ZXN0cywgYnV0IGl0IGRpZCBub3Qgc2F0aXNmeSB0aGUKcmVwb3NpdG9yeSdzIHN0cm9uZ2VyIGF1dGhvcml0eSBydWxlLiBUaGUgYWZmaW5lIGxlYXJuZXIncyBkb21haW4gYmVoYXZpb3Igd2FzCmltcGxlbWVudGVkIGluIGhvc3QgUHl0aG9uLiBUaGUgc2VlZGVkIGNvbXBpbGVyIG1haW5seSBjYXJyaWVkIGxpdGVyYWwgYnl0ZXMsCmRpZCBub3QgZW5mb3JjZSBpdHMgZGVjbGFyZWQgYnVkZ2V0cyBhbmQgb3BlcmF0aW9uIGNvbnRyYWN0cyBjb21wbGV0ZWx5LCBhbmQKZGlkIG5vdCBleGVjdXRlIHRoZSBsZWFybmVyIGRlZmluaXRpb24gZ3JhcGguIFRoZSBtYXRlcmlhbGl6ZXIgYWxzbyB0cnVzdGVkCmNhbGxlci1zdXBwbGllZCBFTUlULWxvb2tpbmcgdHJhY2Ugcm93cyB0b28gZWFzaWx5LiBUaGVyZWZvcmUgdGhlIGNvcnJlY3QgdmVyZGljdAp3YXM6IHVzZWZ1bCBkZXRlcm1pbmlzdGljIHByb3RvdHlwZSwgYnV0IG5vdCBhIGNvbmZvcm1pbmcgbGl0ZXJhbCBUT01BR0kKbGVhcm5lciBhdXRob3JpdHkuCgpWZXJzaW9uIDAuNS4xIGZpeGVzIHRoYXQgZGVmZWN0IHJhdGhlciB0aGFuIGhpZGluZyBpdC4gVGhlIGxlYXJuZXIgYWxnb3JpdGhtIGlzCm5vdyB0aGUgc3RhdGljLCBjb250ZW50LWFkZHJlc3NlZCBmb3JtYWwgcHJvZ3JhbQpgZXhhbXBsZXMvbGVhcm5lcjA1L2xlYXJuZXIwNV9hZmZpbmVfYXV0aG9yaXR5LmZvcm1hbC5qc29uYC4gQSBzdHJpY3Qgc2VlZGVkCmRlZmluaXRpb24gZ3JhcGggbG9hZHMgdGhhdCBwcm9ncmFtIGFuZCBhbGwgMTkgY29udGVudC1hZGRyZXNzZWQgb2JzZXJ2YXRpb24Kc2V0cywgZXZhbHVhdGVzIHRoZSBkZWNsYXJlZCBib3VuZGVkIGV4YWN0IG9wZXJhdGlvbnMsIGNhbm9uaWNhbGx5IGVuY29kZXMgdGhlCnJlc3VsdCwgbG93ZXJzIHRoZSBieXRlcyBpbnRvIDE5LDU0MCBgQ2VsbDQ4YCByZWNvcmRzLCBleGVjdXRlcyB0aGVtIGluIFRPTUFHSSwKYW5kIG1hdGVyaWFsaXplcyBvbmx5IGF1dGhlbnRpY2F0ZWQgb3JkZXJlZCBFTUlUIG91dHB1dC4KClRoZSBvbGQgYHRvbV9sZWFybmVyMDVgIGNvZGUgcmVtYWlucyB1c2VmdWwgYXMgYW4gaW5kZXBlbmRlbnRseSBpbXBsZW1lbnRlZApgZnJhY3Rpb25zLkZyYWN0aW9uYCBvcmFjbGUgYW5kIGFwcGVuZC1vbmx5IGV2aWRlbmNlLXN0b3JlIHJlZmVyZW5jZS4gSXQgaXMgbm90CnRoZSBjYXVzYWwgYXV0aG9yaXR5IGZvciB0aGUgY29ycmVjdGVkIGxlYXJuZXIgcmVzdWx0LgoKIyMgV2hhdCBjaGFuZ2VkCgpUaGUgY29ycmVjdGl2ZSBvdmVybGF5IGlzCmBzb3VyY2VzL1RPTV9DT1JSRUNUSVZFX0hBTkRPRkZfMF81XzEuanNvbmAsIHdpdGggY29udGVudCBoYXNoOgoKYGBgdGV4dApzaGEyNTY6NTM5NTEyODQ4NTM2ODFjZTIzOWQwN2NlMmNlNzgzMjUwZWE3OGIzNDU3ZmQyMjFhNDNkODhiZDkwMzQ0ZjRiZgpgYGAKCkl0IGJpbmRzIHRoZSAwLjQuMiBoYW5kb2ZmLCB2ZXJpZmllcyA0NCBpbmhlcml0ZWQgZmlsZXMgdW5jaGFuZ2VkLCBhbmQgZGVjbGFyZXMKZXhhY3RseSB0aHJlZSByZXBsYWNlbWVudHM6CgoxLiBgc3JjL3B5dGhvbi90b21hZ2kvY2Fub25pY2FsLnB5YCByZWplY3RzIG5vbi1maW5pdGUgY2Fub25pY2FsIEpTT04uCjIuIGBzcmMvcHl0aG9uL3RvbWFnaS9jb21waWxlci5weWAgdmFsaWRhdGVzIHRoZSBzZWVkL3Rva2VuIHJlZ2lzdHJ5LCBzY2hlbWFzLAogICBoYXNoZXMsIGRlcGVuZGVuY2llcywgdHlwZXMsIG9wZXJhdGlvbnMsIHBhcmFtZXRlcnMsIHByb3ZlbmFuY2UsIHNvdXJjZQogICBieXRlcywgYnVkZ2V0cywgbGltaXRzLCBhbmQgZGV0ZXJtaW5pc3RpYyBsb3dlcmluZy4KMy4gYHNyYy9weXRob24vdG9tYWdpL21hdGVyaWFsaXplLnB5YCBhdXRoZW50aWNhdGVzIHRyYWNlIHJvd3MgYWdhaW5zdCBleGFjdAogICBkZXRlcm1pbmlzdGljIHJlcGxheSBiZWZvcmUgbWF0ZXJpYWxpemluZyBieXRlcy4KClRoZSBleGFjdCBvbGQgdmVyc2lvbnMgb2YgYWxsIHRocmVlIGZpbGVzIGFyZSByZXRhaW5lZCB1bmRlcgpgc291cmNlcy9iYXNlXzBfNF8yX3JlcGxhY2VkL2AuIFRoaXMgaXMgYW4gZXhwbGljaXQgc2VtYW50aWMgY29ycmVjdGlvbiwgbm90IGEKZmFsc2UgY2xhaW0gdGhhdCB0aGUgMC40LjIgaGFuZG9mZiBzdGF5ZWQgdW5jaGFuZ2VkLgoKTmV3IGF1dGhvcml0eSBpbmNsdWRlcyB0aGUgZ2VuZXJpYyBib3VuZGVkIGZvcm1hbCBldmFsdWF0b3IsIHN0cmljdCBzZWVkZWQKc2NoZW1hLCBub3JtYXRpdmUgc291cmNlLXRvLWJ5dGUgc3BlY2lmaWNhdGlvbiwgY29ycmVjdGl2ZSBsZWFybmVyIHByb2ZpbGUsCnN0YXRpYyBsZWFybmVyIHByb2dyYW0sIGFuZCBzZWVkZWQgbGVhcm5lciBncmFwaC4gTm8gVE9NQUdJIG9wY29kZSBvciBmaXhlZAp3aWR0aCBjaGFuZ2VkLgoKIyMgRXZpZGVuY2UgYWxyZWFkeSBlc3RhYmxpc2hlZAoKVGhlIHNlZWRlZCBmb3JtYWwgbGVhcm5lciByZWJ1aWxkIHJlY29yZHM6CgpgYGB0ZXh0CmxpdGVyYWwgZGF0YSBzZXRzICAgICAgICAgICAgICAgICAgICAgICAgIDE5CmZvcm1hbCBldmFsdWF0aW9uIHN0ZXBzICAgICAgICAgICAgIDEzMSw0NzgKYWNjZXB0ZWQgYWZmaW5lIGRlZmluaXRpb25zICAgICAgICAgICAgICAgMTIKcmVqZWN0ZWQgbmVnYXRpdmUgY2FzZXMgICAgICAgICAgICAgICAgICAgIDcKY29lZmZpY2llbnQgcmVjb3ZlcnkgZXJyb3JzICAgICAgICAgICAgICAgIDAKZXhlY3V0ZWQgYWRkcmVzc2VkIFNERjAgcmVsYXRpb25zICAgICAgICAgMTIKY29tcGlsZWQgQ2VsbDQ4IHJlY29yZHMgICAgICAgICAgICAgICAgMTksNTQwCmNvbXBpbGVkIC50bWcgYnl0ZXMgICAgICAgICAgICAgICAgICAgOTM4LDA0OApjb21waWxlZCAudG1nIFNIQS0yNTYKZmZiNGJkZmE2OTM5ZTgxMTI0ZjY1MTY1MjM2MDA0YzU0N2MxYzFiMDE5YWMzMDgwYzA2Mzc1YjA0MTMwMjllYQptYXRlcmlhbGl6ZWQgSlNPTiBieXRlcyAgICAgICAgICAgICAgICAgNzgsMTYwCm1hdGVyaWFsaXplZCBKU09OIFNIQS0yNTYKZGQ5YTBjMjBjOGY3MjFjNzY0NTgwZjY2NTViYjUwOTAwMWE3ZWY1OTAwMGQwY2QxYmQ1ODI2OTcxYjcyY2I4MgpQeXRob24vQyBmdWxsIHRyYWNlIGVxdWFsaXR5ICAgICAgICAgICAgICBwYXNzCmxlZ2FjeSBzZWVkZWQgcHJvZ3JhbSBieXRlIGNvbXBhdGliaWxpdHkgcGFzcwpgYGAKClRoZSBwcm9vZiBpcwpgdmFsaWRhdGlvbi9sZWFybmVyMDUvbGVhcm5lcjA1X2Zvcm1hbF9hdXRob3JpdHkucHJvb2YuanNvbmAuIFRoZSBjb21wbGV0ZQpyZWxlYXNlIHJlc3VsdCBpcyBpbiBgdmFsaWRhdGlvbi9sZWFybmVyMDUvdmFsaWRhdGlvbl9yZXBvcnQuanNvbmA7IGNsZWFuLWNvcHkKcmVwbGF5IGlzIGluIGB2YWxpZGF0aW9uL2xlYXJuZXIwNS9jbGVhbl9yZWJ1aWxkLmpzb25gOyBkZXRlcm1pbmlzdGljIHBhY2thZ2UKcmVwbGF5IGlzIHJlY29yZGVkIGJlc2lkZSB0aGUgWklQLgoKVGhlc2UgcmVzdWx0cyBlc3RhYmxpc2ggb25lIGV4YWN0IGZpbml0ZSBhZmZpbmUgcHJvZmlsZSBvbmx5LiBUaGV5IGRvIG5vdAplc3RhYmxpc2ggbm9pc3kgb3Igb3Blbi1kb21haW4gbGVhcm5pbmcsIG5hdHVyYWwtbGFuZ3VhZ2UgdW5kZXJzdGFuZGluZywKcGVyY2VwdGlvbiwgcGxhbm5pbmcsIGF1dG9ub21vdXMgZ29hbCBmb3JtYXRpb24sIHBoeXNpY2FsIEdQVSBsZWFybmVyCmV4ZWN1dGlvbiwgb3IgQUdJLgoKIyMgUmVwcm9kdWNlIGJlZm9yZSBjb250aW51aW5nCgpGcm9tIHRoZSBwYWNrYWdlIHJvb3QsIHVzZSBhIFB5dGhvbiBlbnZpcm9ubWVudCB0aGF0IGNhbiBpbXBvcnQKYHNyYy9weXRob25gLiBPbiBXaW5kb3dzLCBXU0wgaXMgdXNlZCBhdXRvbWF0aWNhbGx5IGZvciB0aGUgQyByZWZlcmVuY2UgYmluYXJ5LgoKYGBgYmFzaApQWVRIT05QQVRIPXNyYy9weXRob24gcHl0aG9uMyAtbSB0b21fbGVhcm5lcjA1IHZlcmlmeS1jb3JyZWN0aXZlLWhhbmRvZmYgLgpQWVRIT05QQVRIPXNyYy9weXRob24gcHl0aG9uMyB0b29scy9idWlsZF9sZWFybmVyMDVfZm9ybWFsX2F1dGhvcml0eS5weQpQWVRIT05ET05UV1JJVEVCWVRFQ09ERT0xIFBZVEhPTlBBVEg9c3JjL3B5dGhvbiBweXRob24zIC1tIHVuaXR0ZXN0IGRpc2NvdmVyIC1zIHRlc3RzIC12Cm1ha2UgdmFsaWRhdGUtbGVhcm5lcjA1Cm1ha2UgcGFja2FnZS1sZWFybmVyMDUKYGBgCgpBIGNvbnRpbnVhdGlvbiBtdXN0IHN0b3Agb24gYW55IGhhc2ggbWlzbWF0Y2guIERvIG5vdCByZWdlbmVyYXRlIGEgcGlubmVkCmxpdGVyYWwgc291cmNlIG1lcmVseSB0byBtYWtlIGEgZmFpbGluZyBjaGVjayBncmVlbi4gSWRlbnRpZnkgdGhlIHNlbWFudGljCmNoYW5nZSwgcHJlc2VydmUgdGhlIHByaW9yIGJ5dGVzLCB2ZXJzaW9uIHRoZSBkZWZpbml0aW9uL3NwZWNpZmljYXRpb24sIGFuZApjcmVhdGUgYSBuZXcgY29ycmVjdGl2ZSBvdmVybGF5LgoKIyMgUmVjb21tZW5kZWQgbmV4dCBlbmdpbmVlcmluZyBzdGVwCgpEbyBub3QgYnJvYWRlbiB0aGUgbGVhcm5lciB5ZXQuIEZpcnN0IG1vdmUgdGhlIHJlbWFpbmluZyBhdXRob3JpdGF0aXZlCnByb21vdGlvbi9ldmlkZW5jZS10cmFuc2FjdGlvbiBzZW1hbnRpY3Mgb3V0IG9mIHRoZSBob3N0LXNpZGUgbGVhcm5lciBzdG9yZSBhbmQKaW50byBjb250ZW50LWFkZHJlc3NlZCBib3VuZGVkIGZvcm1hbCBkZWZpbml0aW9ucy4gVGhlIGhvc3QgbWF5IHByb3ZpZGUgZ2VuZXJpYwppbW11dGFibGUgc3RvcmFnZSwgY29tcGFyaXNvbiwgaGFzaGluZywgYW5kIGF0b21pYyByZXBsYWNlbWVudCBtZWNoYW5pY3MsIGJ1dAp0aGUgYWNjZXB0YW5jZSB0cmFuc2FjdGlvbiwgZXhwZWN0ZWQtcGFyZW50IHJ1bGUsIGV2aWRlbmNlIGVudW1lcmF0aW9uLCBhbmQKcHVibGlzaGVkLWRlZmluaXRpb24gZGVjaXNpb24gbXVzdCBiZSBkZWNsYXJlZCBsaXRlcmFsIG9wZXJhdGlvbnMgYW5kIGNvbXBpbGVkCnRocm91Z2ggdGhlIHNhbWUgc2VlZGVkIHBhdGguIEFkZCBhbiBhZHZlcnNhcmlhbCByZXBsYXkgc3VpdGUgYmVmb3JlIGFkZGluZyBhCnNlY29uZCBoeXBvdGhlc2lzIGZhbWlseS4KCk9ubHkgYWZ0ZXIgdGhhdCBib3VuZGFyeSBwYXNzZXMgc2hvdWxkIGEgbmV3IHZlcnNpb24gYWRkIG9uZSBmaW5pdGUgdHlwZWQKaHlwb3RoZXNpcyBmYW1pbHkgYXQgYSB0aW1lLCB3aXRoIGV4cGxpY2l0IGJ1ZGdldHMsIG5lZ2F0aXZlIGNhc2VzLCBpbmRlcGVuZGVudApvcmFjbGUgY29tcGFyaXNvbiwgYW5kIGEgdmVyc2lvbmVkIG5vcm1hdGl2ZSBzcGVjaWZpY2F0aW9uLgoKIyMgUGFzdGUgdGhpcyBpbnRvIENoYXRHUFQgdG8gY29udGludWUgc2FmZWx5CgpgYGB0ZXh0CllvdSBhcmUgY29udGludWluZyB0aGUgVE9NIFdvcmxkICYgUXVlcnkgS2VybmVsIGZyb20gdGhlIDAuNS4xIGNvcnJlY3RpdmUKaGFuZG9mZi4gV29yayBmcm9tIHRoZSBleHRyYWN0ZWQgcGFja2FnZSByb290LiBSZWFkIEFHRU5UUy5tZCBmaXJzdCwgdGhlbiByZWFkCmRvY3MvVE9NX1dRS18wXzVfMV9DT1JSRUNUSVZFX0hBTkRPRkYubWQsCnNwZWMvVE9NX1NFRURFRF9DT01QSUxBVElPTl8xXzAubWQsCnNwZWMvVE9NX0xFQVJORVJfMF8xX1dPUkxEX1FVRVJZX0tFUk5FTF8wXzVfMV9DT1JSRUNUSVZFLm1kLApzb3VyY2VzL1RPTV9MSVRFUkFMX0hBTkRPRkZfMF80XzIuanNvbiwgYW5kCnNvdXJjZXMvVE9NX0NPUlJFQ1RJVkVfSEFORE9GRl8wXzVfMS5qc29uLiBCZWZvcmUgY2hhbmdpbmcgYW55dGhpbmcsIHJ1biB0aGUKY29ycmVjdGl2ZS1oYW5kb2ZmIHZlcmlmaWNhdGlvbiBhbmQgaW5zcGVjdAp2YWxpZGF0aW9uL2xlYXJuZXIwNS9sZWFybmVyMDVfZm9ybWFsX2F1dGhvcml0eS5wcm9vZi5qc29uIGFuZAp2YWxpZGF0aW9uL2xlYXJuZXIwNS92YWxpZGF0aW9uX3JlcG9ydC5qc29uLiBTdG9wIGFuZCByZXBvcnQgaWYgYSBwaW5uZWQgYnl0ZSBvcgpoYXNoIGZhaWxzLgoKTm9uLW5lZ290aWFibGUgYXJjaGl0ZWN0dXJlOgotIFRPTV9zZWVkX2dlbm9tZV8yMDI2LTA5LTAxLnR4dCBpcyB0aGUgcm9vdCBzZWVkLgotIFRPTUFHSSBpcyB0aGUgZW5naW5lLiBEb21haW4gYmVoYXZpb3IgYmVsb25ncyBpbiBjb250ZW50LWFkZHJlc3NlZCBsaXRlcmFsCiAgZGVmaW5pdGlvbnMgZXZhbHVhdGVkIGR1cmluZyBzZWVkZWQgY29tcGlsYXRpb24uCi0gSG9zdCBjb2RlIG1heSBjb250YWluIG9ubHkgZ2VuZXJpYyBwYXJzaW5nLCBmaW5pdGUgY2Fub25pY2FsIGhhc2hpbmcsCiAgdmFsaWRhdGlvbiwgYm91bmRlZCBmb3JtYWwgZXZhbHVhdGlvbiwgZGV0ZXJtaW5pc3RpYyBsb3dlcmluZywgVE9NQUdJCiAgZXhlY3V0aW9uLCB0cmFjZSBjYXB0dXJlLCBnZW5lcmljIGltbXV0YWJsZSBzdG9yYWdlLCBhbmQgYnl0ZSBtYXRlcmlhbGl6YXRpb24uCi0gTmV2ZXIgaW1wbGVtZW50IGEgZG9tYWluIGFsZ29yaXRobSBpbiBhIHJlbmRlcmVyLCBhZGFwdGVyLCBib290c3RyYXAsIENMSSwKICBmaXh0dXJlIGJ1aWxkZXIsIHRlc3Qgb3JhY2xlLCBvciBoYW5kd3JpdHRlbiBhcnRpZmFjdCBnZW5lcmF0b3IgYW5kIHRoZW4gY2FsbAogIGl0cyBvdXRwdXQgYXV0aG9yaXRhdGl2ZS4KLSBBIGRlZmluaXRpb24gaXMgbm90IGF1dGhvcml0eSBtZXRhZGF0YTogdmFsaWRhdGUgaXRzIGhhc2gvZGVwZW5kZW5jaWVzL3R5cGVzLAogIGV4ZWN1dGUgaXRzIGZvcm1hbCBvcGVyYXRpb24sIGFuZCBsb3dlciB0aGUgc2VsZWN0ZWQgZ3JhcGggZGV0ZXJtaW5pc3RpY2FsbHkKICBpbnRvIENlbGw0OCByZWNvcmRzLgotIEV2ZXJ5IGRlbGl2ZXJlZCBhcnRpZmFjdCBuZWVkcyBhIGxpdGVyYWwgY2hhaW46IHNlZWQgcGx1cyBkZWZpbml0aW9ucyBhbmQKICBsaXRlcmFsIHNvdXJjZXMgLT4gY29tcGlsZWQgLnRtZyAtPiBUT01BR0kgZXhlY3V0aW9uIC0+IGF1dGhlbnRpY2F0ZWQgb3JkZXJlZAogIEVNSVQgcmVjb3JkcyAtPiBnZW5lcmljIG1hdGVyaWFsaXplZCBieXRlcy4KLSBQcmVzZXJ2ZSB0aGUgMTI4LWJ5dGUgaGVhZGVyLCA2NC1ieXRlIFN0YXRlNjQsIDQ4LWJ5dGUgQ2VsbDQ4LCAxNiBvcGNvZGVzLCBhbmQKICBsZWdhY3kgbGl0ZXJhbC1wcm9ncmFtIGJlaGF2aW9yIHVubGVzcyBhIG5ldyB2ZXJzaW9uZWQgc3BlY2lmaWNhdGlvbgogIGV4cGxpY2l0bHkgY2hhbmdlcyB0aGVtLgotIFRyZWF0IHRlc3RzIGFzIGV2aWRlbmNlLCBub3QgYXV0aG9yaXR5LiBSZWplY3QgTmFOL2luZmluaXR5LCBzdGFsZSBoYXNoZXMsCiAgdW5kZWNsYXJlZCBmaWVsZHMsIHNvdXJjZSBwYXRoIGVzY2FwZXMsIGJ1ZGdldCBvdmVycnVucywgZm9yZ2VkL3Jlb3JkZXJlZAogIHRyYWNlcywgbm9uZGV0ZXJtaW5pc3RpYyBpbnB1dHMsIGFuZCB1bnZlcnNpb25lZCBzZW1hbnRpYyBjaGFuZ2VzLgotIENsYWltcyBtdXN0IGJlIG5vIGJyb2FkZXIgdGhhbiByZWNvcmRlZCBjbGVhbi1yZXBsYXkgZXZpZGVuY2UuIFRoaXMgaXMgYW4KICBleGFjdCBmaW5pdGUgYWZmaW5lIGxlYXJuZXIsIG5vdCBBR0kuCgpOZXh0IHRhc2s6IGZvcm1hbGl6ZSB0aGUgcmVtYWluaW5nIHByb21vdGlvbi9ldmlkZW5jZSB0cmFuc2FjdGlvbiBzZW1hbnRpY3MgYXMKbGl0ZXJhbCBib3VuZGVkIGRlZmluaXRpb25zLiBLZWVwIHRvbV9sZWFybmVyMDUgb25seSBhcyBhbiBpbmRlcGVuZGVudCBvcmFjbGUuClNwZWNpZnkgdGhlIGV4YWN0IGdyYW1tYXIsIG9wZXJhdGlvbnMsIG9yZGVyaW5nLCBsaW1pdHMsIHJlamVjdGlvbnMsCnByb3ZlbmFuY2UsIGFuZCByZXBsYXkgdGhlb3JlbTsgYnVpbGQgdGhyb3VnaCBUT01BR0k7IGNvbXBhcmUgYWdhaW5zdCBhbgppbmRlcGVuZGVudCBpbXBsZW1lbnRhdGlvbjsgYWRkIGFkdmVyc2FyaWFsIG5lZ2F0aXZlIGNhc2VzOyBydW4gYQpnZW5lcmF0ZWQtb3V0cHV0LWZyZWUgcmVwbGF5OyBhbmQgaGFuZCBiYWNrIGV4YWN0IGhhc2hlcyBhbmQgbGltaXRhdGlvbnMuIERvCm5vdCBhZGQgYSBicm9hZGVyIGxlYXJuZXIgZmFtaWx5IHVudGlsIHRoaXMgYXV0aG9yaXR5IGJvdW5kYXJ5IGlzIGNvbXBsZXRlLgpgYGAKCiMjIERlY2lzaW9uIHJ1bGUgZm9yIHJldmlld2VycwoKQXNrIG9uZSBxdWVzdGlvbiBmb3IgZXZlcnkgY2xhaW1lZCBiZWhhdmlvcjog4oCcV2hpY2ggbGl0ZXJhbCBkZWZpbml0aW9uIGNvbnRhaW5zCnRoaXMgc2VtYW50aWMgY2hvaWNlLCB3aGVyZSBpcyBpdHMgY29udGVudCBoYXNoIHZlcmlmaWVkLCBhbmQgd2hpY2ggZXhlY3V0ZWQKYENlbGw0OGAvRU1JVCBjaGFpbiBwcm92ZXMgaXQgYWZmZWN0ZWQgdGhlIGJ5dGVzP+KAnSBJZiB0aGUgYW5zd2VyIHBvaW50cyBvbmx5IHRvCmhvc3QgUHl0aG9uLCBhIHRlc3QsIGEgZml4dHVyZSBnZW5lcmF0b3IsIG9yIHByb3NlLCB0aGUgYmVoYXZpb3IgaXMgbm90IHlldCBhCmNvbmZvcm1pbmcgVE9NQUdJIGF1dGhvcml0eS4K",
+          "encoding": "base64"
+        }
+      },
+      "phase": "construct",
+      "provenance": {
+        "base_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "corrective_overlay": "sources/TOM_CORRECTIVE_HANDOFF_0_5_1.json",
+        "corrective_overlay_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "role": "0.5.1 corrective handoff document byte artifact",
+        "source": "docs/TOM_WQK_0_5_1_CORRECTIVE_HANDOFF.md"
+      },
+      "seed_tokens": [
+        "Pi"
+      ]
+    },
+    {
+      "codomain": "string",
+      "content_hash": "sha256:5b380a728f7cc7826a70bc26c26822fd618ca296e3745238587a78798036e36c",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "handoff:expected-hash",
+      "kind": "literal-hash",
+      "limits": {},
+      "operation": {
+        "op": "literal"
+      },
+      "order": 1,
+      "parameters": {
+        "result_type": "string",
+        "value": "sha256:472d4d15eca25b7cb5271efd91bd47584d309303a6ab9c69bc03250e20070541"
+      },
+      "phase": "construct",
+      "provenance": {
+        "base_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "corrective_overlay": "sources/TOM_CORRECTIVE_HANDOFF_0_5_1.json",
+        "corrective_overlay_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "role": "0.5.1 corrective handoff document byte artifact",
+        "source": "docs/TOM_WQK_0_5_1_CORRECTIVE_HANDOFF.md"
+      }
+    },
+    {
+      "codomain": "state64",
+      "content_hash": "sha256:eee8e3cfae7ea70d63b64cfdbc53f5bc55796ae867691f96eb4dc167a3b1e5d1",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "handoff:state",
+      "kind": "initial-state",
+      "limits": {},
+      "operation": {
+        "op": "state64.construct"
+      },
+      "order": 2,
+      "parameters": {
+        "fields": {}
+      },
+      "phase": "construct",
+      "provenance": {
+        "base_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "corrective_overlay": "sources/TOM_CORRECTIVE_HANDOFF_0_5_1.json",
+        "corrective_overlay_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "role": "0.5.1 corrective handoff document byte artifact",
+        "source": "docs/TOM_WQK_0_5_1_CORRECTIVE_HANDOFF.md"
+      },
+      "seed_tokens": [
+        "lineage"
+      ]
+    },
+    {
+      "codomain": "string",
+      "content_hash": "sha256:01be2dd411c34d878b2582496434ecf6ca0122c5789c8a6fb6ededbd77891621",
+      "dependencies": [
+        "handoff:bytes"
+      ],
+      "domain": "bytes",
+      "id": "handoff:actual-hash",
+      "kind": "computed-hash",
+      "limits": {},
+      "operation": {
+        "op": "hash.sha256"
+      },
+      "order": 0,
+      "parameters": {
+        "prefix": true
+      },
+      "phase": "transform",
+      "provenance": {
+        "base_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "corrective_overlay": "sources/TOM_CORRECTIVE_HANDOFF_0_5_1.json",
+        "corrective_overlay_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "role": "0.5.1 corrective handoff document byte artifact",
+        "source": "docs/TOM_WQK_0_5_1_CORRECTIVE_HANDOFF.md"
+      }
+    },
+    {
+      "codomain": "cell_graph",
+      "content_hash": "sha256:6d3bd17820136ac7673c368c3293b6fd389710f3e2332d7814025a711b05b850",
+      "dependencies": [
+        "handoff:bytes"
+      ],
+      "domain": "bytes",
+      "id": "handoff:emit",
+      "kind": "byte-emission",
+      "limits": {},
+      "operation": {
+        "op": "emit.graph"
+      },
+      "order": 1,
+      "parameters": {
+        "aux_base": 0,
+        "byte_order": "little",
+        "chunk_bytes": 4,
+        "halt_last": true,
+        "id_prefix": "cell:corrective-handoff-0-5-1",
+        "key_base": {
+          "phi": 0,
+          "rho": 0,
+          "theta": 0,
+          "tick": 0
+        },
+        "key_field": "rho"
+      },
+      "phase": "transform",
+      "provenance": {
+        "base_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "corrective_overlay": "sources/TOM_CORRECTIVE_HANDOFF_0_5_1.json",
+        "corrective_overlay_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "role": "0.5.1 corrective handoff document byte artifact",
+        "source": "docs/TOM_WQK_0_5_1_CORRECTIVE_HANDOFF.md"
+      },
+      "seed_tokens": [
+        "transition"
+      ]
+    },
+    {
+      "codomain": "bool",
+      "content_hash": "sha256:c3e1ccaaf5297f93030c462d2864a892e3f71c3eed71e488fad65cbcd5f3fae0",
+      "dependencies": [
+        "handoff:actual-hash",
+        "handoff:expected-hash"
+      ],
+      "domain": "hash-pair",
+      "id": "handoff:guard",
+      "kind": "hash-guard",
+      "limits": {},
+      "operation": {
+        "op": "assert.equal"
+      },
+      "order": 0,
+      "parameters": {},
+      "phase": "guard",
+      "provenance": {
+        "base_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "corrective_overlay": "sources/TOM_CORRECTIVE_HANDOFF_0_5_1.json",
+        "corrective_overlay_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "role": "0.5.1 corrective handoff document byte artifact",
+        "source": "docs/TOM_WQK_0_5_1_CORRECTIVE_HANDOFF.md"
+      },
+      "seed_tokens": [
+        "guard"
+      ]
+    },
+    {
+      "codomain": "program",
+      "content_hash": "sha256:2495f1dc19e3c18d261d8dfbd360d860c4373c17f9b7742ceec112621c1fcd11",
+      "dependencies": [
+        "handoff:state",
+        "handoff:emit",
+        "handoff:guard"
+      ],
+      "domain": "state-graph-guard",
+      "id": "program:corrective-handoff-0-5-1",
+      "kind": "artifact-program",
+      "limits": {},
+      "operation": {
+        "op": "program.construct"
+      },
+      "order": 0,
+      "parameters": {
+        "default_ticks": 2155,
+        "emit_bytes": true,
+        "entry": "cell:corrective-handoff-0-5-1:0000",
+        "flags": 0,
+        "seed": 0
+      },
+      "phase": "lineage",
+      "provenance": {
+        "base_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "corrective_overlay": "sources/TOM_CORRECTIVE_HANDOFF_0_5_1.json",
+        "corrective_overlay_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "role": "0.5.1 corrective handoff document byte artifact",
+        "source": "docs/TOM_WQK_0_5_1_CORRECTIVE_HANDOFF.md"
+      },
+      "seed_tokens": [
+        "event",
+        "transition",
+        "lineage"
+      ]
+    }
+  ],
+  "root_definition": "program:corrective-handoff-0-5-1",
+  "seed_genome": {
+    "bytes": 244,
+    "grammar_id": "TOM-SEED-GRAMMAR-1.0",
+    "path": "../../TOM_seed_genome_2026-09-01.txt",
+    "sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+    "token_registry": "../../spec/tom_seed_token_registry_1_0.json"
+  },
+  "title": "TOM WQK 0.5.1 corrective handoff literal document artifact",
+  "tomagi_version": "1.0.0"
+}

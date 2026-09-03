@@ -1,0 +1,362 @@
+{
+  "$schema": "../../spec/tomagi.schema.json",
+  "cells": [
+    {
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "aux": 0,
+      "flags": 0,
+      "id": "cell:00",
+      "key": {
+        "phi": 0,
+        "rho": 0,
+        "theta": 0,
+        "tick": 0
+      },
+      "next": [
+        "cell:01",
+        "cell:01"
+      ],
+      "op": "KIN2",
+      "payload": 0
+    },
+    {
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "aux": 1,
+      "flags": 0,
+      "id": "cell:01",
+      "key": {
+        "phi": 0,
+        "rho": 1,
+        "theta": 0,
+        "tick": 0
+      },
+      "next": [
+        "cell:02",
+        "cell:02"
+      ],
+      "op": "KIN2",
+      "payload": 0
+    },
+    {
+      "args": [
+        4,
+        0,
+        0,
+        0
+      ],
+      "aux": 2,
+      "flags": 4,
+      "id": "cell:02",
+      "key": {
+        "phi": 0,
+        "rho": 2,
+        "theta": 0,
+        "tick": 0
+      },
+      "next": [
+        "cell:03",
+        "cell:03"
+      ],
+      "op": "SET",
+      "payload": 0
+    },
+    {
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "aux": 3,
+      "flags": 0,
+      "id": "cell:03",
+      "key": {
+        "phi": 0,
+        "rho": 3,
+        "theta": 0,
+        "tick": 0
+      },
+      "next": [
+        "cell:04",
+        "cell:04"
+      ],
+      "op": "KIN2",
+      "payload": 0
+    },
+    {
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "aux": 4,
+      "flags": 0,
+      "id": "cell:04",
+      "key": {
+        "phi": 0,
+        "rho": 4,
+        "theta": 0,
+        "tick": 0
+      },
+      "next": [
+        "cell:05",
+        "cell:05"
+      ],
+      "op": "KIN2",
+      "payload": 0
+    },
+    {
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "aux": 5,
+      "flags": 0,
+      "id": "cell:05",
+      "key": {
+        "phi": 0,
+        "rho": 5,
+        "theta": 0,
+        "tick": 0
+      },
+      "next": [
+        "cell:06",
+        "cell:06"
+      ],
+      "op": "KIN2",
+      "payload": 0
+    },
+    {
+      "args": [
+        -6,
+        0,
+        0,
+        0
+      ],
+      "aux": 6,
+      "flags": 4,
+      "id": "cell:06",
+      "key": {
+        "phi": 0,
+        "rho": 6,
+        "theta": 0,
+        "tick": 0
+      },
+      "next": [
+        "cell:07",
+        "cell:07"
+      ],
+      "op": "SET",
+      "payload": 0
+    },
+    {
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "aux": 7,
+      "flags": 0,
+      "id": "cell:07",
+      "key": {
+        "phi": 0,
+        "rho": 7,
+        "theta": 0,
+        "tick": 0
+      },
+      "next": [
+        "cell:08",
+        "cell:08"
+      ],
+      "op": "KIN2",
+      "payload": 0
+    },
+    {
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "aux": 8,
+      "flags": 0,
+      "id": "cell:08",
+      "key": {
+        "phi": 0,
+        "rho": 8,
+        "theta": 0,
+        "tick": 0
+      },
+      "next": [
+        "cell:09",
+        "cell:09"
+      ],
+      "op": "KIN2",
+      "payload": 0
+    },
+    {
+      "args": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "aux": 9,
+      "flags": 4,
+      "id": "cell:09",
+      "key": {
+        "phi": 0,
+        "rho": 9,
+        "theta": 0,
+        "tick": 0
+      },
+      "next": [
+        "cell:10",
+        "cell:10"
+      ],
+      "op": "SET",
+      "payload": 0
+    },
+    {
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "aux": 10,
+      "flags": 0,
+      "id": "cell:10",
+      "key": {
+        "phi": 0,
+        "rho": 10,
+        "theta": 0,
+        "tick": 0
+      },
+      "next": [
+        "cell:11",
+        "cell:11"
+      ],
+      "op": "KIN2",
+      "payload": 0
+    },
+    {
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "aux": 11,
+      "flags": 0,
+      "id": "cell:11",
+      "key": {
+        "phi": 0,
+        "rho": 11,
+        "theta": 0,
+        "tick": 0
+      },
+      "next": [
+        "cell:12",
+        "cell:12"
+      ],
+      "op": "KIN2",
+      "payload": 0
+    },
+    {
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "aux": 12,
+      "flags": 4,
+      "id": "cell:12",
+      "key": {
+        "phi": 0,
+        "rho": 12,
+        "theta": 0,
+        "tick": 0
+      },
+      "next": [
+        "cell:13",
+        "cell:13"
+      ],
+      "op": "SET",
+      "payload": 0
+    },
+    {
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "aux": 13,
+      "flags": 0,
+      "id": "cell:13",
+      "key": {
+        "phi": 0,
+        "rho": 13,
+        "theta": 0,
+        "tick": 0
+      },
+      "next": [
+        "cell:14",
+        "cell:14"
+      ],
+      "op": "KIN2",
+      "payload": 0
+    },
+    {
+      "args": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "aux": 14,
+      "flags": 0,
+      "id": "cell:14",
+      "key": {
+        "phi": 0,
+        "rho": 14,
+        "theta": 0,
+        "tick": 0
+      },
+      "next": [
+        "cell:14",
+        "cell:14"
+      ],
+      "op": "HALT",
+      "payload": 0
+    }
+  ],
+  "default_ticks": 15,
+  "definitions": [],
+  "entry": "cell:00",
+  "initial_state": {
+    "rho": 0,
+    "tick": 0,
+    "vrho": 2,
+    "vtick": 1
+  },
+  "seed": 1025,
+  "title": "0.4.1 piecewise integer-anchor compatibility program; rho=2*x",
+  "tomagi_version": "1.0.0"
+}

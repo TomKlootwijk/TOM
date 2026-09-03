@@ -1,0 +1,282 @@
+{
+  "$schema": "../../spec/tom_seeded_program.schema.json",
+  "budgets": {
+    "max_cells": 1211,
+    "max_definitions": 16,
+    "max_expression_depth": 16,
+    "max_expression_nodes": 2048,
+    "max_output_bytes": 4844,
+    "max_repeat": 1,
+    "max_sequence_items": 64,
+    "max_string_bytes": 2048
+  },
+  "compilation_profile": "TOM-SEEDED-COMPILATION-1.0",
+  "definitions": [
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:60b97aaa98b6a5bb63f97e2b501d0ce66fae4748ad315e333401a5d11b9520b1",
+      "dependencies": [],
+      "domain": "none",
+      "id": "tom:seed",
+      "kind": "canonical-seed",
+      "limits": {},
+      "operation": {
+        "op": "seed.bytes"
+      },
+      "order": 0,
+      "parameters": {},
+      "phase": "parse",
+      "provenance": {
+        "date": "2026-09-01",
+        "literal_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "source": "TOM Learner 0.1 / World & Query Kernel 0.5 release documentation"
+      },
+      "seed_tokens": [
+        "TOM1"
+      ]
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:6e8369422216b2b9882903d881d1d94ed005c836321e7ac3bdf0a7aec6c62434",
+      "dependencies": [
+        "tom:seed"
+      ],
+      "domain": "bytes",
+      "id": "tom:tokens",
+      "kind": "seed-parse",
+      "limits": {},
+      "operation": {
+        "op": "seed.tokens"
+      },
+      "order": 0,
+      "parameters": {},
+      "phase": "resolve",
+      "provenance": {
+        "date": "2026-09-01",
+        "literal_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "source": "TOM Learner 0.1 / World & Query Kernel 0.5 release documentation"
+      },
+      "seed_tokens": [
+        "TopologicalOpenModular"
+      ]
+    },
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:e3b4520ebe40744858e8c73615d4dd80e8eb53f166e03e2a957dd517c78d5cf6",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "doc:bytes",
+      "kind": "literal-learner-release-document",
+      "limits": {},
+      "operation": {
+        "op": "literal"
+      },
+      "order": 0,
+      "parameters": {
+        "result_type": "bytes",
+        "value": {
+          "data": "IyBUT00gV29ybGQgJiBRdWVyeSBLZXJuZWwgMC41LjAKCiMjIFRPTSBMZWFybmVyIDAuMTogb2JzZXJ2YXRpb25zLCBoeXBvdGhlc2VzLCBldmlkZW5jZSwgYW5kIHByb21vdGlvbgoKVmVyc2lvbiAwLjUgc3RhcnRzIHRoZSBsZWFybmluZyBsYXllciB3aXRob3V0IGNoYW5naW5nIHRoZSBmcm96ZW4gVE9NQUdJIG1hY2hpbmUgb3IgdHJlYXRpbmcgYSBnZW5lcmF0ZWQgY2FuZGlkYXRlIGFzIGF1dG9tYXRpY2FsbHkgYXV0aG9yaXRhdGl2ZS4KClRoZSBpbXBsZW1lbnRlZCBjaGFpbiBpczoKCmBgYHRleHQKY2Fub25pY2FsIFRPTSBzZWVkCi0+IHZlcmlmaWVkIDAuNC4yIGxpdGVyYWwtb25seSBoYW5kb2ZmCi0+IGV4YWN0IHJhdGlvbmFsIG9ic2VydmF0aW9ucwotPiBkZXRlcm1pbmlzdGljIElELW9ubHkgdHJhaW4vdmFsaWRhdGlvbi9ob2xkb3V0IHNwbGl0Ci0+IHRyYWluLW9ubHkgYWZmaW5lIGNhbmRpZGF0ZSBpbmR1Y3Rpb24KLT4gdHJhaW4tb25seSBzZWxlY3Rpb24KLT4gdmFsaWRhdGlvbiBhbmQgaG9sZG91dCBnYXRlcwotPiBjb250cmFkaWN0aW9uIGFuZCBjb3VudGVyZXhhbXBsZSByZWNvcmRzCi0+IGxlYXJuaW5nIGNlcnRpZmljYXRlCi0+IHBhcmVudC1ib3VuZCBwcm9tb3Rpb24gdHJhbnNhY3Rpb24KLT4gYXBwZW5kLW9ubHkgbGVhcm5lci1vdmVybGF5IGNvbW1pdApgYGAKCiMjIENvcnJlY3RlZCBpbmhlcml0YW5jZQoKVGhlIHNvdXJjZSBsaW5lIGlzIHBpbm5lZCB0byB0aGUgMC40LjEgY29ycmVjdGl2ZSByZWJ1aWxkIGFuZCBjb3JyZWN0ZWQgVjAuMyBpbnRlcnZhbCBpbXBsZW1lbnRhdGlvbi4gQmVmb3JlIGxlYXJuZXIgY29uc3RydWN0aW9uLCA0NyBpbmhlcml0ZWQgYXV0aG9yaXR5IGZpbGVzIGFyZSBjaGVja2VkIGJ5IGV4YWN0IHBhdGgsIGxlbmd0aCwgYW5kIFNIQS0yNTYuIEdlbmVyYXRlZCBWMC40IGV2aWRlbmNlLCBqb3VybmFscywgdHJhY2VzLCBhbmQgYXJ0aWZhY3RzIGFyZSBleGNsdWRlZCBmcm9tIGF1dGhvcml0eS4KClRoZSBkaXJlY3RseSBzdXBwbGllZCAwLjQuMiBaSVAgd2FzIG5vdCBleHBvc2VkIHRvIHRoZSBpbXBsZW1lbnRhdGlvbiBydW50aW1lIGFuZCB0aGVyZWZvcmUgd2FzIG5vdCBzaWxlbnRseSB0cnVzdGVkIG9yIHVzZWQuIFRoZSBwYWNrYWdlIGNvbnRhaW5zIGFuIGluZGVwZW5kZW50bHkgcmVjb25zdHJ1Y3RlZCBsaXRlcmFsLW9ubHkgaGFuZG9mZiBmcm9tIHRoZSB2ZXJpZmllZCAwLjQuMSBzb3VyY2UgYXJjaGl2ZS4gVGhpcyBkaXN0aW5jdGlvbiBpcyByZWNvcmRlZCBzbyB0aGUgdHJ1c3QgY2hhaW4gZG9lcyBub3QgY29tcG91bmQgYW4gdW5hdmFpbGFibGUgYXJjaGl2ZS4KCiMjIExlYXJuaW5nIHByb2ZpbGUKClRoZSBmaXJzdCBoeXBvdGhlc2lzIGZhbWlseSBpcyBkZWxpYmVyYXRlbHkgc21hbGw6CgpgYGB0ZXh0CnkgPSBhKnQgKyBiCmBgYAoKQWxsIHZhbHVlcyBhcmUgcmVkdWNlZCBleGFjdCByYXRpb25hbHMuIENhbmRpZGF0ZXMgYXJlIGdlbmVyYXRlZCBmcm9tIGV2ZXJ5IGRpc3RpbmN0LWlucHV0IHVub3JkZXJlZCB0cmFpbmluZyBwYWlyLiBWYWxpZGF0aW9uIGFuZCBob2xkb3V0IHZhbHVlcyBjYW5ub3QgaW5mbHVlbmNlIGNvZWZmaWNpZW50cyBvciB0cmFpbmluZyByYW5rLgoKU3BsaXQgYXNzaWdubWVudCBoYXNoZXMgb25seToKCmBgYHRleHQKY2Fub25pY2FsIHNlZWQgaGFzaApvYnNlcnZhdGlvbi1zZXQgSUQKc3BsaXQtcG9saWN5IGhhc2ggYW5kIHNhbHQKb2JzZXJ2YXRpb24gSUQKYGBgCgpJdCBuZXZlciBoYXNoZXMgdGhlIHRhcmdldCB2YWx1ZS4gU2FtZS1JRCBtdXRhdGlvbnMgaW4gdmFsaWRhdGlvbiBhbmQgaG9sZG91dCBwcmVzZXJ2ZSBzcGxpdCBtZW1iZXJzaGlwLCBmaXQtaW5wdXQgaWRlbnRpdHksIGFuZCBzZWxlY3RlZCBjb2VmZmljaWVudHMgd2hpbGUgY2hhbmdpbmcgdGhlIGZpbmFsIGFjY2VwdGFuY2UgcmVzdWx0LgoKIyMgQmVuY2htYXJrIHJlc3VsdAoKVGhlIGNhbm9uaWNhbCBzdWl0ZSBjb250YWlucyAxOSBsaXRlcmFsIGRhdGEgc2V0czoKCnwgQ2xhc3MgfCBDb3VudCB8IFJlc3VsdCB8CnwtLS18LS0tOnwtLS06fAp8IEV4YWN0IGFmZmluZSwgaW50ZWdlci9yYXRpb25hbCBjb2VmZmljaWVudHMgfCAxMiB8IDEyIHJlY292ZXJlZCBleGFjdGx5IHwKfCBUcmFpbmluZyBvdXRsaWVyIHwgMSB8IHJlamVjdGVkIHwKfCBWYWxpZGF0aW9uIG91dGxpZXIgfCAxIHwgcmVqZWN0ZWQgfAp8IEhvbGRvdXQgb3V0bGllciB8IDEgfCByZWplY3RlZCB8CnwgUGllY2V3aXNlIGNoYW5nZSB8IDEgfCByZWplY3RlZCB8CnwgQ29udHJhZGljdG9yeSBleGFjdCBvYnNlcnZhdGlvbnMgfCAxIHwgcmVqZWN0ZWQgfAp8IENvbnN0YW50LWlucHV0IHVuZGVyZGV0ZXJtaW5hdGlvbiB8IDEgfCByZWplY3RlZCB8CnwgRXhjZXNzaXZlIGxpdGVyYWwgY29tcGxleGl0eSB8IDEgfCByZWplY3RlZCB8CgpSZWNvcmRlZCBhZ2dyZWdhdGU6CgpgYGB0ZXh0CmFjY2VwdGVkOiAgICAgICAgICAgICAgICAgICAgMTIKbmVnYXRpdmUgY2FzZXMgcmVqZWN0ZWQ6ICAgICAgNwpmYWxzZSBwcm9tb3Rpb25zOiAgICAgICAgICAgICAwCmNvZWZmaWNpZW50IHJlY292ZXJ5IGVycm9yczogIDAKaW5kZXBlbmRlbnQgYmFzZWxpbmUgbWlzbWF0Y2hlczogMApgYGAKClRoZSBpbmRlcGVuZGVudCBiYXNlbGluZSBpcyBhIHNlcGFyYXRlIHN0YW5kYXJkLWxpYnJhcnkgYGZyYWN0aW9ucy5GcmFjdGlvbmAgaW1wbGVtZW50YXRpb24gb2Ygc3BsaXQsIGZpdCwgcmFuaywgZ2F0ZXMsIGFuZCBjb250cmFkaWN0aW9ucy4KCiMjIEF1dGhvcml0YXRpdmUgcHJvbW90aW9uCgpBIGxlYXJuaW5nIGNlcnRpZmljYXRlIGlzIG9ubHkgYSBwcm9wb3NhbC4gQXV0aG9yaXR5IGNoYW5nZXMgb25seSB0aHJvdWdoIGFuIGFwcGVuZC1vbmx5IHByb21vdGlvbiBzdG9yZS4gRXZlcnkgdHJhbnNhY3Rpb24gZGVjbGFyZXMgdGhlIGV4cGVjdGVkIHBhcmVudCBjb21taXQgYW5kIHRoZSBjb21wbGV0ZSBvcmRlcmVkIGxpc3Qgb2YgbGl0ZXJhbCBhbmQgZGVyaXZlZCBldmlkZW5jZSBoYXNoZXMuIEEgc3RhbGUgcGFyZW50IHJlamVjdHMuIEFuIGFjY2VwdGVkIHNlc3Npb24gcHVibGlzaGVzIG9uZSBsZWFybmVkIGBTREYwQERlZmAgcmVsYXRpb247IGEgcmVqZWN0ZWQgc2Vzc2lvbiBwdWJsaXNoZXMgbm8gZGVmaW5pdGlvbiBidXQgcmV0YWlucyBpdHMgY2FuZGlkYXRlcywgcmVzaWR1YWxzLCBjb3VudGVyZXhhbXBsZXMsIGFuZCByZWplY3Rpb24gbGluZWFnZS4KClRoZSBjYW5vbmljYWwgYmVuY2htYXJrIHN0b3JlIHJlY29yZHM6CgpgYGB0ZXh0CjIwIGNvbW1pdHM6IDEgZ2VuZXNpcyArIDE5IGxlYXJuaW5nIHNlc3Npb25zCjEyIGFjY2VwdGVkIGRlZmluaXRpb25zCjcgcmVqZWN0ZWQgc2Vzc2lvbnMKNjU5IGltbXV0YWJsZSBldmlkZW5jZSBvYmplY3RzCnN0cmljdCBhdWRpdDogdmFsaWQKb3JwaGFuczogMApgYGAKCiMjIFZhbGlkYXRpb24KClZhbGlkYXRpb24gY292ZXJzOgoKLSBleGFjdCBjYW5vbmljYWwgc2VlZCBpZGVudGl0eTsKLSBhbGwgNDcgaGFuZG9mZiBmaWxlIHBpbnM7Ci0gaW5oZXJpdGVkIFYwLjQuMSBzZW1hbnRpYy92YWxpZGF0aW9uIGlkZW50aXRpZXM7Ci0gYWJzZW5jZSBvZiBgY29udGludWF0aW9uX3VudGlsYCBhbmQgdGhlIHN1cGVyc2VkZWQgbmFtZXNwYWNlOwotIHN0cmljdCBzY2hlbWEgYW5kIG5lc3RlZCBoYXNoIHZhbGlkYXRpb247Ci0gZGV0ZXJtaW5pc3RpYyBsYWJlbC1pbmRlcGVuZGVudCBzcGxpdHM7Ci0gdHJhaW4tb25seSBmaXQgYW5kIHNlbGVjdGlvbjsKLSBzYW1lLUlEIHZhbGlkYXRpb24vaG9sZG91dCBsZWFrYWdlIHByb2JlczsKLSBleGFjdCBwb3NpdGl2ZSByZWNvdmVyeSBhbmQgemVybyBmYWxzZSBwcm9tb3Rpb25zOwotIGluZGVwZW5kZW50IGJhc2VsaW5lIGFncmVlbWVudDsKLSBjb250cmFkaWN0aW9uLCBjb3VudGVyZXhhbXBsZSwgYW5kIHJlamVjdGlvbiByZXRlbnRpb247Ci0gc3RhbGUtcGFyZW50IHJlamVjdGlvbjsKLSBjb21wbGV0ZSBldmlkZW5jZSBlbnVtZXJhdGlvbiBpbiB0cmFuc2FjdGlvbnM7Ci0gc3RyaWN0IGFuZCBwZXJtaXNzaXZlIG9ycGhhbiBwb2xpY3k7Ci0gaW1tdXRhYmxlIGJ5dGUgY29ycnVwdGlvbiBkZXRlY3Rpb247Ci0gYXBwZW5kLW9ubHkgcmVjb25zdHJ1Y3Rpb247Ci0gYWxsIGluaGVyaXRlZCBUT01BR0kvd29ybGQgdGVzdHM7IGFuZAotIGNsZWFuIGdlbmVyYXRlZC1vdXRwdXQtZnJlZSByZXBsYXkuCgpUaGlzIHJlbGVhc2UgZG9jdW1lbnQgaXMgaXRzZWxmIHBhY2thZ2VkIGFzIGxpdGVyYWwgYnl0ZXMgaW4gYSBzZWVkZWQgVE9NQUdJIGRlZmluaXRpb24sIGNvbXBpbGVkIHRvIGBDZWxsNDhgIEVNSVQgcmVjb3JkcywgZXhlY3V0ZWQgYnkgUHl0aG9uIGFuZCBDLCBhbmQgZ2VuZXJpY2FsbHkgbWF0ZXJpYWxpemVkIGJ5dGUtaWRlbnRpY2FsbHkuCgojIyBDdXJyZW50IGJvdW5kYXJ5CgpUaGlzIGlzIG5vdCBBR0kuIEl0IGlzIHRoZSBmaXJzdCBldmlkZW5jZS1kaXNjaXBsaW5lZCBsZWFybmVyIHByb2ZpbGU6IG9uZSBleGFjdCBoeXBvdGhlc2lzIGZhbWlseSwgZXhwbGljaXQgaG9sZG91dCBpc29sYXRpb24sIGZhbHNpZmlhYmxlIHJlamVjdGlvbiwgYW5kIGFuIGF1dGhvcml0YXRpdmUgcHJvbW90aW9uIHRyYW5zYWN0aW9uLiBUaGUgbmV4dCBtaWxlc3RvbmUgaXMgYSBmaW5pdGUgdHlwZWQgaHlwb3RoZXNpcy1mYW1pbHkgcmVnaXN0cnkgd2l0aCBwb2x5bm9taWFsIGFuZCBwaWVjZXdpc2UgY2FuZGlkYXRlcywgdW5jZXJ0YWludHkgcmVjb3JkcywgYW5kIGNyb3NzLWRvbWFpbiBzZWxlY3Rpb24gdGVzdHPigJR3aXRob3V0IHdlYWtlbmluZyB0aGUgYXV0aG9yaXR5IGJvdW5kYXJ5Lgo=",
+          "encoding": "base64"
+        }
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-01",
+        "literal_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "source": "TOM Learner 0.1 / World & Query Kernel 0.5 release documentation"
+      },
+      "seed_tokens": [
+        "Pi"
+      ]
+    },
+    {
+      "codomain": "string",
+      "content_hash": "sha256:47b40423c0ca485c876563807d426b3ee4af5cb37481edbd5b5e2570e39de40d",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "doc:expected-hash",
+      "kind": "literal-hash",
+      "limits": {},
+      "operation": {
+        "op": "literal"
+      },
+      "order": 1,
+      "parameters": {
+        "result_type": "string",
+        "value": "sha256:6d9ceb3a9e32f81308acb3ea46ecf6d3d040519aacf1a4cae390292abca0bee3"
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-01",
+        "literal_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "source": "TOM Learner 0.1 / World & Query Kernel 0.5 release documentation"
+      }
+    },
+    {
+      "codomain": "state64",
+      "content_hash": "sha256:ad03a3ceb58376d0a5b0cc932987517f90badc433ac4812f422936c23f4f67c8",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "doc:state",
+      "kind": "initial-state",
+      "limits": {},
+      "operation": {
+        "op": "state64.construct"
+      },
+      "order": 2,
+      "parameters": {
+        "fields": {
+          "lineage": "0x4c303531"
+        }
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-01",
+        "literal_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "source": "TOM Learner 0.1 / World & Query Kernel 0.5 release documentation"
+      },
+      "seed_tokens": [
+        "lineage"
+      ]
+    },
+    {
+      "codomain": "string",
+      "content_hash": "sha256:c0c796f4a011c79227aca268718169a76f48bbfcc1c335786df7946fc4275012",
+      "dependencies": [
+        "doc:bytes"
+      ],
+      "domain": "bytes",
+      "id": "doc:actual-hash",
+      "kind": "computed-hash",
+      "limits": {},
+      "operation": {
+        "op": "hash.sha256"
+      },
+      "order": 0,
+      "parameters": {
+        "prefix": true
+      },
+      "phase": "transform",
+      "provenance": {
+        "date": "2026-09-01",
+        "literal_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "source": "TOM Learner 0.1 / World & Query Kernel 0.5 release documentation"
+      }
+    },
+    {
+      "codomain": "cell_graph",
+      "content_hash": "sha256:012e8f5ce0b24583cea6b7698e2a8ec40500fb96081491b8a857e8ce138df566",
+      "dependencies": [
+        "doc:bytes"
+      ],
+      "domain": "bytes",
+      "id": "doc:emit",
+      "kind": "byte-emission",
+      "limits": {},
+      "operation": {
+        "op": "emit.graph"
+      },
+      "order": 1,
+      "parameters": {
+        "aux_base": "0x4c303500",
+        "byte_order": "little",
+        "chunk_bytes": 4,
+        "halt_last": true,
+        "id_prefix": "cell:learner05-release",
+        "key_base": {
+          "phi": 0,
+          "rho": 420000,
+          "theta": 0,
+          "tick": 0
+        },
+        "key_field": "rho"
+      },
+      "phase": "transform",
+      "provenance": {
+        "date": "2026-09-01",
+        "literal_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "source": "TOM Learner 0.1 / World & Query Kernel 0.5 release documentation"
+      },
+      "seed_tokens": [
+        "transition"
+      ]
+    },
+    {
+      "codomain": "bool",
+      "content_hash": "sha256:b1b715de2e5f7d79df5853d04327c1f8aafc4d205a21f1a4d65af00c96b61627",
+      "dependencies": [
+        "doc:actual-hash",
+        "doc:expected-hash"
+      ],
+      "domain": "hash-pair",
+      "id": "doc:guard",
+      "kind": "hash-guard",
+      "limits": {},
+      "operation": {
+        "op": "assert.equal"
+      },
+      "order": 0,
+      "parameters": {},
+      "phase": "guard",
+      "provenance": {
+        "date": "2026-09-01",
+        "literal_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "source": "TOM Learner 0.1 / World & Query Kernel 0.5 release documentation"
+      },
+      "seed_tokens": [
+        "guard"
+      ]
+    },
+    {
+      "codomain": "program",
+      "content_hash": "sha256:e22d195e20be0bb4e97dc611418b672754547dc122545373480231539ea52b88",
+      "dependencies": [
+        "doc:state",
+        "doc:emit",
+        "doc:guard"
+      ],
+      "domain": "state-graph-guard",
+      "id": "program:learner05-release",
+      "kind": "artifact-program",
+      "limits": {},
+      "operation": {
+        "op": "program.construct"
+      },
+      "order": 0,
+      "parameters": {
+        "default_ticks": 1211,
+        "emit_bytes": true,
+        "entry": "cell:learner05-release:0000",
+        "flags": 0,
+        "seed": "0x4c303531"
+      },
+      "phase": "lineage",
+      "provenance": {
+        "date": "2026-09-01",
+        "literal_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+        "source": "TOM Learner 0.1 / World & Query Kernel 0.5 release documentation"
+      },
+      "seed_tokens": [
+        "event",
+        "transition",
+        "lineage"
+      ]
+    }
+  ],
+  "root_definition": "program:learner05-release",
+  "seed_genome": {
+    "bytes": 244,
+    "grammar_id": "TOM-SEED-GRAMMAR-1.0",
+    "path": "../../TOM_seed_genome_2026-09-01.txt",
+    "sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+    "token_registry": "../../spec/tom_seed_token_registry_1_0.json"
+  },
+  "title": "TOM Learner 0.1 / WQK 0.5 release document literal artifact",
+  "tomagi_version": "1.0.0"
+}

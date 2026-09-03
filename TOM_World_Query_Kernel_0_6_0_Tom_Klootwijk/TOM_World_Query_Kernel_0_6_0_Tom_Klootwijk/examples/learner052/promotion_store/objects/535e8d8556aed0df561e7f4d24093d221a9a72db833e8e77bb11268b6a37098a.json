@@ -1,0 +1,1 @@
+{"content_hash":"sha256:535e8d8556aed0df561e7f4d24093d221a9a72db833e8e77bb11268b6a37098a","minimum_counts":{"holdout":1,"train":2,"validation":1},"ratios":{"holdout":1,"train":3,"validation":1},"salt":"TOM-Learner-0.1-benchmark-split-v1","schema":"TOM-LEARNER-SPLIT-POLICY-0.1","strategy":"sha256-id-order-largest-remainder"}

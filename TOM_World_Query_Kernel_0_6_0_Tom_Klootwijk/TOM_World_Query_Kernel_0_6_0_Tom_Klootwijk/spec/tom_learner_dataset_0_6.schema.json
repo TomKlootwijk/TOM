@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/tom/tom-learner-dataset-0.6.schema.json",
+  "title": "TOM Learner 0.2 exact finite dataset",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "eligible_families", "partition_policy_hash", "assignment_basis", "partitions", "observations", "content_hash"],
+  "properties": {
+    "schema": {"const": "TOM-LEARNER-0.2-DATASET-1.0"},
+    "id": {"type": "string", "pattern": "^dataset:[A-Za-z0-9._:-]+$"},
+    "eligible_families": {"type": "array", "minItems": 1, "maxItems": 16, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "partition_policy_hash": {"$ref": "#/$defs/hash"},
+    "assignment_basis": {"$ref": "#/$defs/assignment"},
+    "partitions": {"$ref": "#/$defs/partitions"},
+    "observations": {"type": "array", "minItems": 1, "maxItems": 10000, "items": {"$ref": "#/$defs/observation"}},
+    "supersedes": {"$ref": "#/$defs/hash"},
+    "content_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "rational": {
+      "type": "object", "additionalProperties": false,
+      "required": ["num", "den"],
+      "properties": {"num": {"type": "integer"}, "den": {"type": "integer", "minimum": 1}}
+    },
+    "typedValue": {"oneOf": [{"$ref": "#/$defs/rational"}, {"type": "string"}]},
+    "observation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema", "id", "input", "target", "source", "content_hash"],
+      "properties": {
+        "schema": {"const": "TOM-LEARNER-0.2-OBSERVATION-1.0"},
+        "id": {"type": "string", "pattern": "^observation:[A-Za-z0-9._:-]+$"},
+        "input": {"$ref": "#/$defs/typedValue"},
+        "target": {"$ref": "#/$defs/typedValue"},
+        "source": {"type": "string", "minLength": 1},
+        "content_hash": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "idList": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^observation:"}},
+    "partitions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["train", "validation", "holdout"],
+      "properties": {
+        "train": {"$ref": "#/$defs/idList"},
+        "validation": {"$ref": "#/$defs/idList"},
+        "holdout": {"$ref": "#/$defs/idList"}
+      }
+    },
+    "assignment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema", "dataset_id", "partition_policy_hash", "partitions", "content_hash"],
+      "properties": {
+        "schema": {"const": "TOM-LEARNER-0.2-PARTITION-ASSIGNMENT-1.0"},
+        "dataset_id": {"type": "string", "pattern": "^dataset:"},
+        "partition_policy_hash": {"$ref": "#/$defs/hash"},
+        "partitions": {"$ref": "#/$defs/partitions"},
+        "content_hash": {"$ref": "#/$defs/hash"}
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "$id": "https://tom.invalid/schema/tom-literal-artifact-source-0.1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "content_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "definitions": {
+      "items": {
+        "$ref": "https://tom.invalid/schema/tom-world-record-0.1.json"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "max_output_bytes": {
+      "maximum": 1048576,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "media_type": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "root_definition": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema": {
+      "const": "TOM-LITERAL-ARTIFACT-SOURCE-0.1"
+    },
+    "seed_sha256": {
+      "const": "sha256:d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"
+    },
+    "version": {
+      "const": "0.1.0"
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "seed_sha256",
+    "artifact_id",
+    "media_type",
+    "root_definition",
+    "max_output_bytes",
+    "definitions",
+    "content_hash"
+  ],
+  "title": "TOM literal emitted-byte artifact source 0.1",
+  "type": "object"
+}

@@ -1,0 +1,62 @@
+\scriptsize
+\begin{longtable}{@{}L{0.18\textwidth}L{0.17\textwidth}L{0.20\textwidth}L{0.39\textwidth}@{}}
+\caption{TOMAGI 1.0 complete 43-operator catalog}\label{tab:operators}\\
+\toprule
+\textbf{ID} & \textbf{Operator} & \textbf{Signature} & \textbf{Literal definition} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{l}{\small\itshape TOMAGI 1.0 complete 43-operator catalog -- continued}\\
+\toprule
+\textbf{ID} & \textbf{Operator} & \textbf{Signature} & \textbf{Literal definition} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{\small continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+TOM.DEF & definition node & record -> address & A typed in-substrate definition d=(id,kind,A,B,parameters,dependencies,phase,provenance,hash). \\
+TOM.REF & reference resolution & definition graph -> ordered graph & Resolve every definition\_ref and dependency ID; order dependencies before dependents. \\
+TOM.SEQ & ordered composition & operators\textasciicircum{}n -> operator & Composition is serialized and non-commutative; execute the stored order without re-sorting. \\
+TOM.INDEX0 & zero-based position & offset -> ordinal & ordinal = offset + 1; the stored timeline coordinate remains the zero-based offset. \\
+TOM.LOGPOLAR & log-polar chart & (x,y,r0) -> (rho,theta) & rho=ln(r/r0), theta=atan2(y,x); runtime consumes quantized rho/theta already compiled. \\
+TOM.KEY.C & contiguous 64-bit key & rho20 x theta18 x X14 x phi12 -> K & K=(rho<<44)|(theta<<26)|(X<<12)|phi. \\
+TOM.KEY.M & Morton 64-bit key & rho20 x theta18 x X14 x phi12 -> KM & Interleave MSB round-robin: rho19,theta17,X13,phi11,... until all 64 bits are consumed. \\
+TOM.FETCH & LUT cell lookup & K -> Cell or undefined & Resolve a canonical key in the sorted cell table; compiled graph mode may use direct successor indices. \\
+TOM.SDF0 & literal zero field & defined key -> 0 & Z\_D(K)=0 for every K in the finite domain D of definable cells; Z\_D(K)=bottom otherwise. \\
+TOM.PARITY & one-bit reduction & u32 -> bit & P(w)=popcount(w) mod 2. \\
+TOM.JIT1 & one-bit jitter & seed x K x X -> \{-a,+a\} & j=P(mix32(seed xor K\_hi xor rotl(K\_lo,13) xor X xor aux)); sigma=2j-1; selected state field += sigma*a. \\
+TOM.DELTA1 & first discrete difference & q\_n,q\_(n-1) -> v\_n & Delta q\_n=q\_n-q\_(n-1). \\
+TOM.DELTA2 & second discrete difference & v\_n,v\_(n-1) -> a\_n & Delta\textasciicircum{}2 q\_n=v\_n-v\_(n-1); Delta\textasciicircum{}2 phi is the angular acceleration coordinate. \\
+TOM.KIN2 & second-order update & state x acceleration-cell -> state & v\_(n+1)=v\_n+a\_cell; q\_(n+1)=q\_n+v\_(n+1). \\
+TOM.PHI & lower-case phi hinge & phi x delta -> phi & phi is periodic in Z/(2\textasciicircum{}12 Z); capital Phi is reserved for the golden ratio and is not the runtime phase. \\
+TOM.TIME & timeline phase & X x delta -> X,winding & X is a 14-bit modular tick; wraps contribute to lineage while the tick remains periodic. \\
+TOM.CONE & analytic cone relation & packed chart x cone parameters -> signed relation & r=max(rho\_min-rho,rho-rho\_max,|cyclic(theta-theta0)|-alpha\_q); inside iff r<=0. \\
+TOM.SWEEP & swept cone family & cone x path -> relation & F\_sweep(x)=inf\_u d\_C(x-s(u)); a compiled profile may tabulate the path as KIN2 cells. \\
+TOM.CIRCLE & circle/radial shell & rho x center,width -> signed relation & A circle is a radial shell in the packed chart and an axial projection of a cone. \\
+TOM.SPHERE & spherical support & rho,phi x center,width -> signed relation & Packed shell residual is max(|rho-rho0|-dr, |cyclic(phi-phi0)|-dphi); Euclidean helper is ||x-c||-R. \\
+TOM.OVERLAP & lens intersection & A,B -> A intersect B & Shared domain is exact conjunction/intersection; it may be used as a join key or connector locus. \\
+TOM.KLEIN & reflective Klein wrap & state -> state & On an odd radial wrap: rho'=rho mod N\_rho, theta'=N\_theta/2-theta, phi'=-phi, orientation'=orientation xor 1; optional sheet flip. \\
+TOM.MOBIUS & half-turn bundle & state -> state & On an odd wrap: theta'=theta+N\_theta/2, phi'=-phi, orientation'=orientation xor 1. \\
+TOM.RADIX & radix branch & K x bit-index -> bit & Select one canonical key bit; repeated selections form a radix-trie path. \\
+TOM.HINGE & typed hinge & branch x state x map -> state & H=(pivot/state,map0,map1,invariant); runtime map0 is identity and map1 is the cell's declared delta plus optional orientation/sheet flip. \\
+TOM.LSYS & binary L-system step & branch x state -> state & Apply chirality-signed turn and dyadic velocity scaling, corresponding to F(T)->F(T/2)[+/-phi F(T/2)]. \\
+TOM.BRANCH & binary successor & bit x cell -> cell & i\_(n+1)=next\_i[bit]. \\
+TOM.TRANSITION & state patch & state x cell -> state & Execute exactly one opcode, normalize periodic fields, select successor, and update lineage. \\
+TOM.PROJECT & symbolic projection & state x tag -> tag & Emit a side-view pyramid, circle, sphere, action, class, or other downstream token without making projection the substrate. \\
+TOM.EMIT & deterministic output & state x payload -> state & Set the output token and emitted bit; optional halt is a program semantic, not a safety mode. \\
+TOM.LINEAGE & replay lineage & state x cell x key -> u32 & ell'=mix32(ell xor payload xor aux xor K\_hi xor rotl(K\_lo,7) xor branch xor cell\_index). \\
+TOM.TRACE & explanation trace & execution -> records & Return ordered cell IDs/opcodes, branches, keys, residuals, outputs and lineage. \\
+TOM.ACTIVE & active-bit projection & integer -> set(bit positions) & A(n)=\{k | bit\_k(n)=1\}; the original numeric value is retained. \\
+TOM.POPCOUNT & active-bit cardinality & bit set -> integer & Return the number of active positions in a finite binary word. \\
+TOM.EQ & typed equality predicate & A x A -> bit & Return 1 exactly when two values of the same declared type are equal; the result is a branch bit, not an identity rewrite. \\
+TOM.PASCAL2 & Pascal parity & n,k -> bit & C(n,k) mod 2 defines a deterministic triangular occupancy pattern. \\
+TOM.PULSE & pulse geometry & count -> point/segment/m-gon & m declared pulses map to one point, a segment, a triangle for m=3, or a regular m-gon. \\
+TOM.RULE & compiled rule & facts x predicates -> cell graph & Translate exact predicates into RADIX/CONE/SPHERE/HINGE branches and EMIT leaves. \\
+TOM.QUERY & deterministic inference & program x state x ticks -> output,trace & Run the finite operator graph for the requested number of ticks or until an EMIT/HALT cell. \\
+TOM.ABI.STATE64 & hot state record & 16 words -> state & 64-byte state: four coordinates, four velocities, orientation/sheet/branch/cell, lineage/output/residual/status. \\
+TOM.ABI.CELL48 & LUT cell record & 12 words -> instruction cell & 48-byte cell: key, opcode/flags, four signed args, two successors, payload, aux. \\
+TOM.BACKEND.CPU & portable CPU evaluator & TMG program -> state & Dependency-free Python oracle and C99 evaluator implement identical integer semantics. \\
+TOM.BACKEND.GPU & portable GPU step & state[] x cell[] -> state[] & One invocation executes one TOMAGI transition using only 32-bit integer storage and bit operations. \\
+\end{longtable}
+\normalsize

@@ -1,0 +1,309 @@
+{
+  "$schema": "../../spec/tom_seeded_program.schema.json",
+  "budgets": {
+    "max_cells": 2472,
+    "max_definitions": 16,
+    "max_expression_depth": 16,
+    "max_expression_nodes": 2048,
+    "max_output_bytes": 9887,
+    "max_repeat": 1,
+    "max_sequence_items": 64,
+    "max_string_bytes": 2048
+  },
+  "compilation_profile": "TOM-SEEDED-COMPILATION-1.0",
+  "definitions": [
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:aaffb35c18913d35fa964e8c092a0f0e1d8848514838a1912c5fff2496114e20",
+      "dependencies": [],
+      "domain": "none",
+      "id": "tom:seed",
+      "kind": "canonical-seed",
+      "limits": {},
+      "operation": {
+        "op": "seed.bytes"
+      },
+      "order": 0,
+      "parameters": {},
+      "phase": "parse",
+      "provenance": {
+        "date": "2026-09-03",
+        "family_registry_hash": "sha256:06952f2ff0d961ca6a92d20c00d3996916009e35e47d903659893a48630d65a4",
+        "learner_proof_hash": "sha256:06ec4c9e511f15d01bfc1cd7e1d44a50a04816b74af3ad8eb9c8bdf2e3135b42",
+        "promotion_proof_hash": "sha256:23c0b88d791102341b331099a2bb2264774554f2ad99e80eeb9ef138ed44c36f",
+        "repair_handoff_proof_hash": "sha256:88f1b383fbedfdc15e22001940d65cbc0b518ce3a9f8d9aa27447a9f44f44f3d",
+        "source": "TOM Learner 0.2 / WQK 0.6 release documentation"
+      },
+      "seed_tokens": [
+        "TOM1"
+      ]
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:65a61a84163dc88b75f72bb80b6a7050ede9fc9c5641ae316eaec3ec523b5630",
+      "dependencies": [
+        "tom:seed"
+      ],
+      "domain": "bytes",
+      "id": "tom:tokens",
+      "kind": "seed-parse",
+      "limits": {},
+      "operation": {
+        "op": "seed.tokens"
+      },
+      "order": 0,
+      "parameters": {},
+      "phase": "resolve",
+      "provenance": {
+        "date": "2026-09-03",
+        "family_registry_hash": "sha256:06952f2ff0d961ca6a92d20c00d3996916009e35e47d903659893a48630d65a4",
+        "learner_proof_hash": "sha256:06ec4c9e511f15d01bfc1cd7e1d44a50a04816b74af3ad8eb9c8bdf2e3135b42",
+        "promotion_proof_hash": "sha256:23c0b88d791102341b331099a2bb2264774554f2ad99e80eeb9ef138ed44c36f",
+        "repair_handoff_proof_hash": "sha256:88f1b383fbedfdc15e22001940d65cbc0b518ce3a9f8d9aa27447a9f44f44f3d",
+        "source": "TOM Learner 0.2 / WQK 0.6 release documentation"
+      },
+      "seed_tokens": [
+        "TopologicalOpenModular"
+      ]
+    },
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:225ed9e683b78b48107f6913447ce96aa92840dd0b8d33beef61537ee2dc688b",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "doc:bytes",
+      "kind": "literal-learner06-release-document",
+      "limits": {},
+      "operation": {
+        "op": "literal"
+      },
+      "order": 0,
+      "parameters": {
+        "result_type": "bytes",
+        "value": {
+          "data": "IyBUT00gTGVhcm5lciAwLjIgLyBXb3JsZCAmIFF1ZXJ5IEtlcm5lbCAwLjYKCiMjIEZpbml0ZSB0eXBlZCBoeXBvdGhlc2lzLWZhbWlseSBhdXRob3JpdHkKClJlbGVhc2U6ICoqMC42LjAqKiAgClZhbGlkYXRpb24gcmV2aXNpb246ICoqMjAyNi0wOS0wMyoqICAKQXV0aG9yaXR5IHJvb3Q6IGBUT01fc2VlZF9nZW5vbWVfMjAyNi0wOS0wMS50eHRgCgojIyBSZXN1bHQKCldRSyAwLjYgY29udGludWVzIGZyb20gdGhlIHJlcGFpcmVkIDAuNS4yIHRyYW5zYWN0aW9uLWF1dGhvcml0eSBib3VuZGFyeS4gSXQgZG9lcyBub3QgYnlwYXNzIHRoZSBDT0RFWCBrZXJuZWwgY29ycmVjdGlvbnMgYW5kIGl0IGRvZXMgbm90IG1vdmUgYSBzZW1hbnRpYyB3aW5uZXIgaW50byBob3N0IFB5dGhvbi4gVGhlIGZvcm1hbCBhdXRob3JpdHkgbm93IGV2YWx1YXRlcyBhIGZpbml0ZSByZWdpc3RyeSBjb250YWluaW5nIGZvdXIgdHlwZWQgaHlwb3RoZXNpcyBmYW1pbGllcywgcmVjb3JkcyBhbWJpZ3VpdHkgaW5zdGVhZCBvZiBzaWxlbnRseSBicmVha2luZyB0aWVzLCBjaGVja3Mgc3VwZXJzZXNzaW9uIGFnYWluc3QgcGlubmVkIHByaW9yIGRlZmluaXRpb25zLCBhbmQgcHVibGlzaGVzIGFjY2VwdGVkIG9yIHJlamVjdGVkIG91dGNvbWVzIHRocm91Z2ggdGhlIHJlcGFpcmVkIHBhcmVudC1ib3VuZCAwLjUuMiBwcm9tb3Rpb24gdHJhbnNhY3Rpb24uCgpUaGUgZXhhY3QgY2hhaW4gaXM6CgpgYGB0ZXh0CmNhbm9uaWNhbCAyNDQtYnl0ZSBUT00gc2VlZAotPiBDT0RFWC1yZXBhaXJlZCAwLjUuMiBrZXJuZWwgYm91bmRhcnkKLT4gY29udGVudC1hZGRyZXNzZWQgZmFtaWx5IHJlZ2lzdHJ5IGFuZCBleGFjdCBkYXRhIHNldHMKLT4gc3RhdGljIGJvdW5kZWQgZm9ybWFsIGxlYXJuZXIKLT4gaW5kZXBlbmRlbnQgZnJhY3Rpb25zLkZyYWN0aW9uIG9yYWNsZQotPiBhbWJpZ3VpdHkgLyBjb3VudGVyZXhhbXBsZSAvIGNvbnRyYWRpY3Rpb24gLyByZWdyZXNzaW9uIHJlY29yZHMKLT4gc3RhdGljIGZvcm1hbCBwcm9tb3Rpb24gY29udGludWF0aW9uCi0+IGRldGVybWluaXN0aWMgQ2VsbDQ4IGxvd2VyaW5nCi0+IGVxdWFsIFB5dGhvbi9DIFRPTUFHSSBleGVjdXRpb24KLT4gcmVwbGF5LWF1dGhlbnRpY2F0ZWQgRU1JVCBtYXRlcmlhbGl6YXRpb24KLT4gc2FtZS1ob3N0IGxvY2tlZCBpbW11dGFibGUgcHVibGljYXRpb24KLT4gcmVjb25zdHJ1Y3RlZCB0ZXJtaW5hbCBIRUFECmBgYAoKIyMgS2VybmVsIHJlcGFpcnMgcmV0YWluZWQKClRoZSByZWxlYXNlIHJlZ3Jlc3Npb24tdGVzdHMgdGhlIHNpeCBjb3JyZWN0aXZlIHJlcXVpcmVtZW50cyByZWNlaXZlZCB3aXRoIHRoZSAwLjUuMiByZXBhaXIgaGFuZG9mZjoKCjEuIEMgYXJpdGhtZXRpYyB1c2VzIGRlZmluZWQgd2lkZXIgaW50ZXJtZWRpYXRlcyBhbmQgZXhwbGljaXQgYHdyYXAzMmAgbG93ZXJpbmcuCjIuIFB5dGhvbiBhbmQgQyByZWplY3QgZXZlcnkgbm9uemVybyB2YWx1ZSBpbiB0aGUgc2l4IHJlc2VydmVkIFRPTUFHSSBoZWFkZXIgd29yZHMuCjMuIFB1YmxpY2F0aW9uIGxvY2tpbmcgc3BhbnMgZXhwZWN0ZWQtSEVBRCByZWFkLCBpbW11dGFibGUgdmVyaWZpY2F0aW9uLCBhbmQgYXRvbWljIHJlcGxhY2VtZW50Lgo0LiBSZWN1cnNpdmUgZm9ybWFsIHZhbHVlcyBhbmQgZm9sZCBhY2N1bXVsYXRvcnMgYXJlIGNoZWNrZWQgYmVmb3JlIHBhcmVudCBjb25zdW1wdGlvbi4KNS4gUGFja2FnaW5nIGV4Y2x1ZGVzIGluaGVyaXRlZCBpbnZlbnRvcnkgcHJvZHVjdHMgYW5kIHZvbGF0aWxlIHRyYW5zY3JpcHRzIGFuZCByZXF1aXJlcyByZXByb2R1Y2libGUgY2xlYW4gYnVpbGRzLgo2LiBUaGUgcHVibGljIGBhdWRpdC1zdG9yZWAgY29tbWFuZCB1c2VzIGBTT1VSQ0UgU1RPUkVgIGFyZ3VtZW50IG9yZGVyLgoKVGhlIHN0b3JlIGxvY2sgY29vcmRpbmF0ZXMgdGhyZWFkcyBhbmQgcHJvY2Vzc2VzIG9uIG9uZSBzdXBwb3J0ZWQgaG9zdC4gSXQgaXMgbm90IGEgZGlzdHJpYnV0ZWQgY29uc2Vuc3VzIHByb3RvY29sLgoKVGhlIHZhbGlkYXRpb24gcmV2aXNpb24gYWRkaXRpb25hbGx5IGNsb3NlcyByZWhhc2hlZCBmb3JtYWwtYXV0aG9yaXR5IGJ5cGFzc2VzLAplbmZvcmNlcyBkZWNsYXJlZCBwYXJ0aXRpb24gb3JkZXIgYW5kIGV4YWN0IHByb21vdGlvbi1jb250ZXh0IGJpbmRpbmdzLCBtYWtlcwpmb3JtYWwgSlNPTiBlcXVhbGl0eSB0eXBlLXN0cmljdCwgdmFsaWRhdGVzIGRpcmVjdCBhbmQgbG9hZGVkIHByb2dyYW1zIGFnYWluc3QKdGhlIHNhbWUgZml4ZWQtd2lkdGggY29udHJhY3RzLCBhbmQgYWxpZ25zIGV4dHJlbWUtdmFsdWUgR1BVIHNvdXJjZSBlcXVhdGlvbnMKd2l0aCB0aGUgQ1BVIGRlZmluaXRpb24uIENhbm9uaWNhbCBKU09OIGlzIG5vdyBzdHJpY3RseSBKU09OLW5hdGl2ZSwgYW5kIHN0cmluZwpsaW1pdHMgY292ZXIgcGFyYW1ldGVycywgcHJvdmVuYW5jZSwgYW5kIGdlbmVyYXRlZCBjZWxsIGlkZW50aWZpZXJzIHdoaWxlCmRlY29kZWQgYnl0ZSBsaXRlcmFscyByZW1haW4gZ292ZXJuZWQgYnkgdGhlIG91dHB1dC1ieXRlIGJ1ZGdldC4gRHVyYWJsZSBHUFUKZXZpZGVuY2UgaXMgbGltaXRlZCB0byBzb3VyY2UtbGV2ZWwgY29udHJhY3QgYXNzZXJ0aW9ucyBwbHVzIFB5dGhvbi9DCmV4dHJlbWUtdmVjdG9yIGNvbmZvcm1hbmNlOyBpdCBpcyBub3QgYSBjbGFpbSBvZiBwaHlzaWNhbCBHUFUgZGlzcGF0Y2guCgojIyBGb3VyIGZpbml0ZSBmYW1pbGllcwoKfCBGYW1pbHkgfCBUeXBlZCBzZWFyY2ggc3BhY2UgfCBDYW5kaWRhdGVzIHwKfC0tLXwtLS18LS0tOnwKfCBFeGFjdCBwb2x5bm9taWFsIHwgUmF0aW9uYWwgY29lZmZpY2llbnRzLCBkZWdyZWUgYXQgbW9zdCB0d28gfCAzNCB8CnwgUGllY2V3aXNlIGFmZmluZSB8IE9uZSBleGFjdCBicmVha3BvaW50LCB0d28gYWZmaW5lIGJyYW5jaGVzLCBsZWZ0LWluY2x1c2l2ZSBib3VuZGFyeSB8IDIxIHwKfCBUcmFuc2l0aW9uIHRhYmxlIHwgQ29tcGxldGUgYEEvQi9DYCB0byBgcmVkL2dyZWVuL2JsdWVgIHRhYmxlcyB8IDI3IHwKfCBFeHByZXNzaW9uIHRyZWUgfCBEZXB0aC10d28gYm91bmRlZCB0cmVlcyBvdmVyIGEgZGVjbGFyZWQgb3BlcmF0aW9uIHJlZ2lzdHJ5IHwgMzkgfAp8ICoqVG90YWwqKiB8ICB8ICoqMTIxKiogfAoKVGhlIHJlZ2lzdHJ5IGlzIGl0c2VsZiBjb250ZW50LWFkZHJlc3NlZDoKCmBgYHRleHQKc2hhMjU2OjA2OTUyZjJmZjBkOTYxY2E2YTkyZDIwYzAwZDM5OTY5MTYwMDllMzVlNDdkOTAzNjU5ODkzYTQ4NjMwZDY1YTQKYGBgCgpFdmVyeSBmYW1pbHkgZGVjbGFyZXMgYSBzZW1hbnRpYyB2ZXJzaW9uLCBkb21haW4gYW5kIGNvZG9tYWluLCBmaW5pdGUgY2FuZGlkYXRlCmxpc3QsIGNvbXBsZXhpdHkgZGF0YSwgYW5kIGEgbWF4aW11bS1jYW5kaWRhdGUgYnVkZ2V0LiBUaGUgZXhwcmVzc2lvbi10cmVlCmZhbWlseSBhZGRpdGlvbmFsbHkgZGVjbGFyZXMgaXRzIGNsb3NlZCBvcGVyYXRpb24gdm9jYWJ1bGFyeS4gU2VhcmNoCnRlcm1pbmF0aW9uIGlzIHJlY29yZGVkIHBlciBkYXRhIHNldC4KCiMjIEV2aWRlbmNlIGlzb2xhdGlvbiBhbmQgZGVjaXNpb24gc2VtYW50aWNzCgpFYWNoIGRhdGEgc2V0IGNvbnRhaW5zIGV4cGxpY2l0IHRyYWluLCB2YWxpZGF0aW9uLCBhbmQgaG9sZG91dCBwYXJ0aXRpb25zLiBDYW5kaWRhdGUgZXZhbHVhdGlvbiBhbmQgc3Vydml2b3Igc2VsZWN0aW9uIHVzZSBvbmx5IHRyYWluaW5nIG9ic2VydmF0aW9ucy4gVmFsaWRhdGlvbiBhbmQgaG9sZG91dCBldmlkZW5jZSBtYXkgcmVqZWN0IHRoZSB0cmFpbi1kZXJpdmVkIHByb3Bvc2FsIGJ1dCBtYXkgbm90IGdlbmVyYXRlIGNhbmRpZGF0ZXMsIHJlb3JkZXIgdGhlIHRyYWluIHN1cnZpdm9ycywgb3Igc2VsZWN0IGNvZWZmaWNpZW50cy4KClRoZSBkZWNpc2lvbiBwcm9maWxlIGlzOgoKYGBgdGV4dAp6ZXJvIHRyYWluIHN1cnZpdm9yICAgICAgIC0+IHJlamVjdDogbm8tZXhhY3QtdHJhaW4tY2FuZGlkYXRlCm9uZSB0cmFpbiBzdXJ2aXZvciAgICAgICAgLT4gdmFsaWRhdGlvbiBnYXRlIC0+IGhvbGRvdXQgYXVkaXQgLT4gcmVncmVzc2lvbiBnYXRlCm11bHRpcGxlIGRpc3RpbmN0IHN1cnZpdm9ycyAtPiByZWplY3Q6IGFtYmlndW91cy10cmFpbi1zdXJ2aXZvcnMKYGBgCgpBbiBhbWJpZ3VpdHkgcmVjb3JkIGNvbnRhaW5zIGV2ZXJ5IHN1cnZpdmluZyBjYW5kaWRhdGUgaGFzaCwgZmFtaWx5IGlkZW50aXR5LCBzdXJ2aXZvciBjb3VudCwgYW5kIHRoZSBleHBsaWNpdCByZXNvbHV0aW9uIGByZWplY3Qtd2l0aG91dC1oaWRkZW4tdGllLWJyZWFrYC4gTm8gaG9zdC1zaWRlIHN0YWJsZS1zb3J0IHdpbm5lciBpcyBwcm9tb3RlZC4KCiMjIFN1cGVyc2Vzc2lvbiBhbmQgcmVncmVzc2lvbiBpbXBhY3QKCkEgcHJvcG9zZWQgZGVmaW5pdGlvbiBtYXkgbmFtZSBvbmUgZXhpc3RpbmcgYXV0aG9yaXRhdGl2ZSBkZWZpbml0aW9uIHRvIHN1cGVyc2VkZS4gQmVmb3JlIGFjY2VwdGFuY2UsIHRoZSBmb3JtYWwgbGVhcm5lciBldmFsdWF0ZXMgdGhlIHByb3Bvc2VkIHJlcGxhY2VtZW50IGFnYWluc3QgZXZlcnkgcGlubmVkIHJlZ3Jlc3Npb24gY2FzZSBpbiB0aGUgcHJpb3IgYXV0aG9yaXR5IHNldC4gVGhlIHJlZ3Jlc3Npb24taW1wYWN0IGNlcnRpZmljYXRlIHJlY29yZHMgdGhlIHRlc3RlZCBkZWZpbml0aW9uIGhhc2hlcywgcmVwbGFjZW1lbnQgaWRlbnRpdHksIGV2ZXJ5IGNhc2UgcmVzdWx0LCBhbmQgdGhlIGFnZ3JlZ2F0ZSBkZWNpc2lvbi4KCkEgcHJvcG9zYWwgdGhhdCBjaGFuZ2VzIHBpbm5lZCBwcmlvciBiZWhhdmlvciBpcyByZWplY3RlZCBldmVuIHdoZW4gaXQgZXhhY3RseSBmaXRzIGl0cyBvd24gdHJhaW4sIHZhbGlkYXRpb24sIGFuZCBob2xkb3V0IG9ic2VydmF0aW9ucy4KCiMjIENhbm9uaWNhbCBiZW5jaG1hcmsKCmBgYHRleHQKZmFtaWxpZXM6ICAgICAgICAgIDQKY2FuZGlkYXRlczogICAgICAxMjEKZGF0YSBzZXRzOiAgICAgICAgMTYKYWNjZXB0ZWQ6ICAgICAgICAgIDkKcmVqZWN0ZWQ6ICAgICAgICAgIDcKYW1iaWd1aXRpZXM6ICAgICAgIDMKZmFsc2UgcHJvbW90aW9uczogIDAKYGBgCgpBY2NlcHRlZCBjYXNlcyBpbmNsdWRlIGV4YWN0IHF1YWRyYXRpYywgYWZmaW5lLXN1cGVyc2Vzc2lvbiwgY29uc3RhbnQgcG9seW5vbWlhbCwgdHdvIHBpZWNld2lzZS1hZmZpbmUgcmVsYXRpb25zLCB0d28gdHJhbnNpdGlvbiB0YWJsZXMsIGFic29sdXRlLXZhbHVlIGV4cHJlc3Npb24sIGFuZCBzcXVhcmUtcGx1cy1vbmUgZXhwcmVzc2lvbi4KClJlamVjdGVkIGNhc2VzIGNvdmVyIGEgdmFsaWRhdGlvbiBjb3VudGVyZXhhbXBsZSwgd2l0aGluLWZhbWlseSBwaWVjZXdpc2UgYW1iaWd1aXR5LCBzeW1ib2xpYyBjb250cmFkaWN0aW9uLCBleHByZXNzaW9uLXRyZWUgYW1iaWd1aXR5LCBjcm9zcy1mYW1pbHkgYW1iaWd1aXR5LCBmYWlsZWQgc3VwZXJzZXNzaW9uIHJlZ3Jlc3Npb24sIGFuZCBhIHBvbHlub21pYWwgb3V0c2lkZSB0aGUgZmluaXRlIHNlYXJjaCBzcGFjZS4KClRoZSBpbmRlcGVuZGVudCBgZnJhY3Rpb25zLkZyYWN0aW9uYCBvcmFjbGUgYWdyZWVzIHdpdGggYWxsIHNpeHRlZW4gZm9ybWFsIG91dGNvbWVzLgoKIyMgRm9ybWFsIGxlYXJuZXIgZXhlY3V0aW9uCgpgYGB0ZXh0CmZvcm1hbCBwcm9ncmFtIGNvbnRlbnQgaGFzaDoKc2hhMjU2OmEwN2QyN2MxZmU4OGI3NWI1NmYxOWQxZTYyM2ExNzBkYTZlZTMyNzFjMzYzODgzNmY3YmFkZjA3OWVjMTcwYzMKCmZvcm1hbCByZXN1bHQgY29udGVudCBoYXNoOgpzaGEyNTY6ZjA4M2I3OTNjZjNkMzgwNjFmOTAwOTM1YTEzZjlkNWQyOWM4YWVmY2M1MjQ1YjZjODlhMjEyNTI0NzUwNDFjZQoKY29tcGlsZWQgLnRtZzoKMzIsODgwIENlbGw0OCByZWNvcmRzCjEsNTc4LDM2OCBieXRlcwpzaGEyNTY6NWZlYWMxOTYwOWVkOTU3NzY4ODk5MGUxZTVhZGViN2NhYTgxYzA1ZDllMjZkYTU1OWVjOTNiZTQ1ODk5YzNjZgoKbWF0ZXJpYWxpemVkIHJlc3VsdDoKMTMxLDUxNyBieXRlcwpzaGEyNTY6NGU1OTY2NmE3Y2NkYzI1MDVkOTRmZTc2MGY1ZDMxN2Y1MzAyZjg3NjZhNmJkOGYxYjAyMjkxMjg5MGU1ODQ0YQpgYGAKClB5dGhvbiBhbmQgQyBwcm9kdWNlIGVxdWFsIGNvbXBsZXRlIDMyLDg4MC1zdGVwIHRyYWNlcywgZXF1YWwgRU1JVCBzZXF1ZW5jZXMsIGFuZCBlcXVhbCByZXN1bHQgYnl0ZXMuCgojIyBGb3JtYWwgcHJvbW90aW9uIGNvbnRpbnVhdGlvbgoKVGhlIHByb21vdGlvbiBwbGFuIGJlZ2lucyBhdCB0aGUgcmVwYWlyZWQgMC41LjIgdGVybWluYWwgaGVhZDoKCmBgYHRleHQKaW5pdGlhbCBIRUFEOgpzaGEyNTY6YTNiZDhlY2Q4NTc4YjI4MTU4Yjk2YTNkY2U4MTQ5MTBiZWIzZDYyNzA2ODE1OWRjNjY4YTY4MmM4NWI4NTQ0OApgYGAKCkl0IGNvbnRhaW5zIGZvcnR5LW9uZSBhZGRyZXNzZWQgYmFzZSByZWNvcmRzIGFuZCBzaXh0ZWVuIHB1YmxpY2F0aW9ucyBudW1iZXJlZCAyMCB0aHJvdWdoIDM1LiBFYWNoIHB1YmxpY2F0aW9uIGNhcnJpZXMgaXRzIGV4cGVjdGVkIGhlYWQsIHJlcGxhY2VtZW50IGNvbW1pdCwgY29tcGxldGUgcmVxdWlyZWQtZXZpZGVuY2Ugc2V0LCBpbW11dGFibGUgd3JpdGVzLCBkZWNpc2lvbiwgYWNjZXB0ZWQgZGVmaW5pdGlvbiBvciByZWplY3Rpb24gbGluZWFnZSwgYW5kIGNvbnRlbnQgaGFzaC4KCmBgYHRleHQKZm9ybWFsIHByb21vdGlvbiBwcm9ncmFtIGNvbnRlbnQgaGFzaDoKc2hhMjU2OjAxMzJjZDdhZWU5ZTE0M2QwYzU0NzllZGIzOTZhYTg1ZTIyZjdjMWNlZDM0NjU3MWE5NDZkYjUxMTcxZTc5ZDYKCnB1YmxpY2F0aW9uLXBsYW4gY29udGVudCBoYXNoOgpzaGEyNTY6MzM1YjMzNDk1OTFlNDg5YWY2YzY3YzE2YjU2MzU0Nzk5N2Y1ZTdjYjI5ZDRhMWU2ODU0NzZiMWNmZjY5NTEwYwoKY29tcGlsZWQgLnRtZzoKMTU3LDAxNCBDZWxsNDggcmVjb3Jkcwo3LDUzNiw4MDAgYnl0ZXMKc2hhMjU2OmZlMzJkNjBiNTRhOGZjMzhlMGJmMDdmM2FkNzMxMWFmMDFkNDg1Y2NmMzQyNDg4YTg4MGQ2OWJjNDU1YTBiNmIKCm1hdGVyaWFsaXplZCBwcm9tb3Rpb24gdmFsdWU6CjYyOCwwNTUgYnl0ZXMKc2hhMjU2OjllMWQ1NWExN2JmNDVkYjQ4Y2MyMjU4OGE0YTcxNjhhZTJkYzEwNzIwZjJlZGI1NTcxMzBjM2FkODAzMTg2NjMKCnRlcm1pbmFsIEhFQUQ6CnNoYTI1NjpmNTIxOTg1NDE1NDRlZmY5MGRmMjcyMzI3MjM2YWY3NWM0ZGQ3MjliNzdjZGY3NTYyOGIwYmFkMGJmMTc1MDJlCmBgYAoKVGhlIGdlbmVyaWMgaW1tdXRhYmxlIHN0b3JlIGNvbnRhaW5zIDE3NiBmaWxlcyBhbmQgNTk3LDUxNSBieXRlcyBhZnRlciBwdWJsaWNhdGlvbi4gSXRzIGRldGVybWluaXN0aWMgdHJlZSBoYXNoIGlzOgoKYGBgdGV4dApzaGEyNTY6ZDEyNWMyOGI3NTcwY2QyZWRhZTEwOTc0NzU1N2NkYzA3NTczZWMyOGFjMTQxZmU1MGY5MDU5MjUwZWFhNDc4NwpgYGAKCkF1ZGl0IGFuZCByZWNvbnN0cnVjdGlvbiByZXBvcnQgc2l4dGVlbiBjb21taXRzLCBuaW5lIGFjY2VwdGVkIGRlZmluaXRpb25zLCBzZXZlbiByZWplY3RlZCBzZXNzaW9ucywgbm8gbWlzc2luZyByZXF1aXJlZCByZWNvcmQsIGFuZCBubyB1bnBsYW5uZWQgcmVjb3JkLgoKIyMgVmFsaWRhdGlvbgoKQmVmb3JlIGNsZWFuLWJ1aWxkIGFuZCBmaW5hbC1wYWNrYWdlIHJlcGxheSwgdGhlIGNvcmUgdmFsaWRhdGlvbiByZWNvcmRzOgoKYGBgdGV4dApjb21wbGV0ZSB0ZXN0czogICAgICAgICAgIDI4MyBwYXNzZWQKY29yZSB2YWxpZGF0aW9uIGNoZWNrczogICAgMTggcGFzc2VkLCAwIGZhaWxlZApyZWplY3Rpb24gY2FzZXM6ICAgICAgICAgICAyMCBwYXNzZWQKVE9NQUdJIEFCSTogICAgICAgICAgICAgICAgMTI4LWJ5dGUgaGVhZGVyIC8gNjQtYnl0ZSBTdGF0ZTY0IC8gNDgtYnl0ZSBDZWxsNDggLyAxNiBvcGNvZGVzCmBgYAoKVGhlIHJlamVjdGlvbiBjYXBzdWxlIGNvdmVycyByZWdpc3RyeSBhbmQgZXhhY3QtYnVkZ2V0IG11dGF0aW9ucywgdW5kZWNsYXJlZApleHByZXNzaW9uIG9wZXJhdGlvbnMsIG1hbGZvcm1lZCBjYW5kaWRhdGUgYW5kIHN1cGVyc2Vzc2lvbiBpZGVudGl0aWVzLAp1bnJlc29sdmVkIHBhcnRpdGlvbnMsIGZhaWxlZCByZXBhaXIgcHJvb2YsIHN0YWxlIHByb21vdGlvbiBjb250ZXh0IGFuZApjb250aW51YXRpb24gYW5jZXN0cnksIG1pc3NpbmcgYmFzZSBldmlkZW5jZSwgbm9uY29udGlndW91cyBwdWJsaWNhdGlvbiBvcmRlciwKdW5hdmFpbGFibGUgZXZpZGVuY2UsIHN0YWxlIHNhbWUtaG9zdCBwdWJsaWNhdGlvbiwgZm9yZ2VkIHRyYWNlcywgbm9uemVybwpyZXNlcnZlZCBoZWFkZXJzLCBub24tZmluaXRlIGNhbm9uaWNhbCBKU09OLCBpbnRlcm1lZGlhdGUgZm9ybWFsLXZhbHVlCm92ZXJmbG93LCBhbWJpZ3VpdHkgcHJvbW90aW9uLCBhbmQgcmVncmVzc2lvbi1pbXBhY3QgcHJvbW90aW9uLgoKVGhlIGZpbmFsIHJlbGVhc2UgcmVjb3JkIGFkZGl0aW9uYWxseSByZXF1aXJlcyB0d28gZ2VuZXJhdGVkLW91dHB1dC1mcmVlIGJ1aWxkcywgZXF1YWwgZGVjbGFyZWQgYm91bmRhcmllcywgZXF1YWwgcHJvbW90aW9uLXN0b3JlIHRyZWVzLCBkZXRlcm1pbmlzdGljIHBhY2thZ2UgYnl0ZXMsIGludGVybmFsIG1hbmlmZXN0IGFuZCBjaGVja3N1bSB2ZXJpZmljYXRpb24sIGFuZCBhIGNsZWFuIHJlcGxheSBmcm9tIHRoZSBmaW5pc2hlZCBaSVAuCgojIyBDb21tYW5kcwoKYGBgYmFzaAptYWtlIGxlYXJuZXIwNgptYWtlIHRlc3QtbGVhcm5lcjA2Cm1ha2UgdmFsaWRhdGUtbGVhcm5lcjA2Cm1ha2UgcGFja2FnZS1sZWFybmVyMDYKYGBgCgpQdWJsaWMgQ0xJIGV4YW1wbGVzOgoKYGBgYmFzaApQWVRIT05QQVRIPXNyYy9weXRob24gcHl0aG9uMyAtbSB0b21fbGVhcm5lcjA2IG9yYWNsZSBcCiAgZXhhbXBsZXMvbGVhcm5lcjA2L2ZhbWlseV9yZWdpc3RyeS5qc29uIFwKICBleGFtcGxlcy9sZWFybmVyMDYvcHJpb3JfYXV0aG9yaXR5Lmpzb24gXAogIGV4YW1wbGVzL2xlYXJuZXIwNi9kYXRhc2V0cy8qLmpzb24KClBZVEhPTlBBVEg9c3JjL3B5dGhvbiBweXRob24zIC1tIHRvbV9sZWFybmVyMDYgdmFsaWRhdGUtcGxhbiBcCiAgdmFsaWRhdGlvbi9sZWFybmVyMDYvcHJvbW90aW9uX2F1dGhvcml0eS5kaXJlY3QuanNvbgoKUFlUSE9OUEFUSD1zcmMvcHl0aG9uIHB5dGhvbjMgLW0gdG9tX2xlYXJuZXIwNiBhdWRpdC1zdG9yZSBcCiAgdmFsaWRhdGlvbi9sZWFybmVyMDYvcHJvbW90aW9uX2F1dGhvcml0eS5kaXJlY3QuanNvbiBcCiAgZXhhbXBsZXMvbGVhcm5lcjA2L3Byb21vdGlvbl9zdG9yZQpgYGAKCiMjIEJvdW5kYXJ5IGFuZCBuZXh0IG1pbGVzdG9uZQoKVGhpcyByZWxlYXNlIGRlbW9uc3RyYXRlcyBleGFjdCBmaW5pdGUgc2VhcmNoIG92ZXIgZm91ciBsaXRlcmFsIGZhbWlsaWVzLiBJdCBkb2VzIG5vdCBjbGFpbSBub2lzeSBpbmZlcmVuY2UsIG9wZW4tZG9tYWluIGNvbmNlcHQgbGVhcm5pbmcsIG1lbW9yeSwgcGxhbm5pbmcsIHBlcmNlcHRpb24sIGF1dG9ub21vdXMgYWN0aW9uLCBwaHlzaWNhbCBHUFUgZXhlY3V0aW9uLCBnZW5lcmFsIGludGVsbGlnZW5jZSwgb3IgQUdJLgoKVGhlIG5leHQgcm9hZG1hcCBtaWxlc3RvbmUgaXMgKipUT00gTGVhcm5lciAwLjMgLyBXUUsgMC43Kio6IHR5cGVkIGludGVydmFsLXZhbHVlZCBvYnNlcnZhdGlvbnMsIGEgZmluaXRlIG5vaXNlLWZhbWlseSByZWdpc3RyeSwgZXhwbGljaXQgY2FsaWJyYXRpb24gYW5kIGNvdmVyYWdlIHJlY29yZHMsIGRpc3RyaWJ1dGlvbi1zaGlmdCBldmlkZW5jZSwgYW1iaWd1aXR5LXByZXNlcnZpbmcgcm9idXN0IHNjb3JpbmcsIGFuZCB1bmNoYW5nZWQgcGFyZW50LWJvdW5kIHByb21vdGlvbiBhdXRob3JpdHkuIENvbmZpZGVuY2UgbXVzdCByZW1haW4gdHlwZWQgZXZpZGVuY2UgYW5kIG1heSBub3QgYmVjb21lIGFuIGludmlzaWJsZSBUT01BR0kgY29udHJvbCBwYXRoLgo=",
+          "encoding": "base64"
+        }
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-03",
+        "family_registry_hash": "sha256:06952f2ff0d961ca6a92d20c00d3996916009e35e47d903659893a48630d65a4",
+        "learner_proof_hash": "sha256:06ec4c9e511f15d01bfc1cd7e1d44a50a04816b74af3ad8eb9c8bdf2e3135b42",
+        "promotion_proof_hash": "sha256:23c0b88d791102341b331099a2bb2264774554f2ad99e80eeb9ef138ed44c36f",
+        "repair_handoff_proof_hash": "sha256:88f1b383fbedfdc15e22001940d65cbc0b518ce3a9f8d9aa27447a9f44f44f3d",
+        "source": "TOM Learner 0.2 / WQK 0.6 release documentation"
+      },
+      "seed_tokens": [
+        "Pi"
+      ]
+    },
+    {
+      "codomain": "string",
+      "content_hash": "sha256:9f77e49611da264d314cff1a966df4e5b9a7d7bbaf530aa1b6a691cbbbd46913",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "doc:expected-hash",
+      "kind": "literal-hash",
+      "limits": {},
+      "operation": {
+        "op": "literal"
+      },
+      "order": 1,
+      "parameters": {
+        "result_type": "string",
+        "value": "sha256:7a0b7092efaae210fd1c7cfbd61ab1c50fbfd1bbeef4b2b14d332fcff6d2939c"
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-03",
+        "family_registry_hash": "sha256:06952f2ff0d961ca6a92d20c00d3996916009e35e47d903659893a48630d65a4",
+        "learner_proof_hash": "sha256:06ec4c9e511f15d01bfc1cd7e1d44a50a04816b74af3ad8eb9c8bdf2e3135b42",
+        "promotion_proof_hash": "sha256:23c0b88d791102341b331099a2bb2264774554f2ad99e80eeb9ef138ed44c36f",
+        "repair_handoff_proof_hash": "sha256:88f1b383fbedfdc15e22001940d65cbc0b518ce3a9f8d9aa27447a9f44f44f3d",
+        "source": "TOM Learner 0.2 / WQK 0.6 release documentation"
+      }
+    },
+    {
+      "codomain": "state64",
+      "content_hash": "sha256:1e2b1d354c0dd6c4c31a225a0ac61524c6d308be5e8f5ea2dc1c44a04b27ade6",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "doc:state",
+      "kind": "initial-state",
+      "limits": {},
+      "operation": {
+        "op": "state64.construct"
+      },
+      "order": 2,
+      "parameters": {
+        "fields": {
+          "lineage": "0x4c303630"
+        }
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-03",
+        "family_registry_hash": "sha256:06952f2ff0d961ca6a92d20c00d3996916009e35e47d903659893a48630d65a4",
+        "learner_proof_hash": "sha256:06ec4c9e511f15d01bfc1cd7e1d44a50a04816b74af3ad8eb9c8bdf2e3135b42",
+        "promotion_proof_hash": "sha256:23c0b88d791102341b331099a2bb2264774554f2ad99e80eeb9ef138ed44c36f",
+        "repair_handoff_proof_hash": "sha256:88f1b383fbedfdc15e22001940d65cbc0b518ce3a9f8d9aa27447a9f44f44f3d",
+        "source": "TOM Learner 0.2 / WQK 0.6 release documentation"
+      },
+      "seed_tokens": [
+        "lineage"
+      ]
+    },
+    {
+      "codomain": "string",
+      "content_hash": "sha256:2a3b305d16fea3ab98385d44c13c8ba1ee5c04d0ac9d2421dbcee5ccba0a30a5",
+      "dependencies": [
+        "doc:bytes"
+      ],
+      "domain": "bytes",
+      "id": "doc:actual-hash",
+      "kind": "computed-hash",
+      "limits": {},
+      "operation": {
+        "op": "hash.sha256"
+      },
+      "order": 0,
+      "parameters": {
+        "prefix": true
+      },
+      "phase": "transform",
+      "provenance": {
+        "date": "2026-09-03",
+        "family_registry_hash": "sha256:06952f2ff0d961ca6a92d20c00d3996916009e35e47d903659893a48630d65a4",
+        "learner_proof_hash": "sha256:06ec4c9e511f15d01bfc1cd7e1d44a50a04816b74af3ad8eb9c8bdf2e3135b42",
+        "promotion_proof_hash": "sha256:23c0b88d791102341b331099a2bb2264774554f2ad99e80eeb9ef138ed44c36f",
+        "repair_handoff_proof_hash": "sha256:88f1b383fbedfdc15e22001940d65cbc0b518ce3a9f8d9aa27447a9f44f44f3d",
+        "source": "TOM Learner 0.2 / WQK 0.6 release documentation"
+      }
+    },
+    {
+      "codomain": "cell_graph",
+      "content_hash": "sha256:0ba8a2fb2475cd5a2e614b6484d961667a0b5f875d6e05676fcf68e0b7e49645",
+      "dependencies": [
+        "doc:bytes"
+      ],
+      "domain": "bytes",
+      "id": "doc:emit",
+      "kind": "byte-emission",
+      "limits": {},
+      "operation": {
+        "op": "emit.graph"
+      },
+      "order": 1,
+      "parameters": {
+        "aux_base": "0x4c363000",
+        "byte_order": "little",
+        "chunk_bytes": 4,
+        "halt_last": true,
+        "id_prefix": "cell:learner06-release",
+        "key_base": {
+          "phi": 0,
+          "rho": 700000,
+          "theta": 0,
+          "tick": 0
+        },
+        "key_field": "rho"
+      },
+      "phase": "transform",
+      "provenance": {
+        "date": "2026-09-03",
+        "family_registry_hash": "sha256:06952f2ff0d961ca6a92d20c00d3996916009e35e47d903659893a48630d65a4",
+        "learner_proof_hash": "sha256:06ec4c9e511f15d01bfc1cd7e1d44a50a04816b74af3ad8eb9c8bdf2e3135b42",
+        "promotion_proof_hash": "sha256:23c0b88d791102341b331099a2bb2264774554f2ad99e80eeb9ef138ed44c36f",
+        "repair_handoff_proof_hash": "sha256:88f1b383fbedfdc15e22001940d65cbc0b518ce3a9f8d9aa27447a9f44f44f3d",
+        "source": "TOM Learner 0.2 / WQK 0.6 release documentation"
+      },
+      "seed_tokens": [
+        "transition"
+      ]
+    },
+    {
+      "codomain": "bool",
+      "content_hash": "sha256:acafa10ed65af441d900266354d4c9460494e3c8a6b28b91a36450d86bd6526f",
+      "dependencies": [
+        "doc:actual-hash",
+        "doc:expected-hash"
+      ],
+      "domain": "hash-pair",
+      "id": "doc:guard",
+      "kind": "hash-guard",
+      "limits": {},
+      "operation": {
+        "op": "assert.equal"
+      },
+      "order": 0,
+      "parameters": {},
+      "phase": "guard",
+      "provenance": {
+        "date": "2026-09-03",
+        "family_registry_hash": "sha256:06952f2ff0d961ca6a92d20c00d3996916009e35e47d903659893a48630d65a4",
+        "learner_proof_hash": "sha256:06ec4c9e511f15d01bfc1cd7e1d44a50a04816b74af3ad8eb9c8bdf2e3135b42",
+        "promotion_proof_hash": "sha256:23c0b88d791102341b331099a2bb2264774554f2ad99e80eeb9ef138ed44c36f",
+        "repair_handoff_proof_hash": "sha256:88f1b383fbedfdc15e22001940d65cbc0b518ce3a9f8d9aa27447a9f44f44f3d",
+        "source": "TOM Learner 0.2 / WQK 0.6 release documentation"
+      },
+      "seed_tokens": [
+        "guard"
+      ]
+    },
+    {
+      "codomain": "program",
+      "content_hash": "sha256:ce7bd879b998227268a66681aec2576ac11a755e29cccdb55762f0e649239080",
+      "dependencies": [
+        "doc:state",
+        "doc:emit",
+        "doc:guard"
+      ],
+      "domain": "state-graph-guard",
+      "id": "program:learner06-release",
+      "kind": "artifact-program",
+      "limits": {},
+      "operation": {
+        "op": "program.construct"
+      },
+      "order": 0,
+      "parameters": {
+        "default_ticks": 2472,
+        "emit_bytes": true,
+        "entry": "cell:learner06-release:0000",
+        "flags": 0,
+        "seed": "0x4c303630"
+      },
+      "phase": "lineage",
+      "provenance": {
+        "date": "2026-09-03",
+        "family_registry_hash": "sha256:06952f2ff0d961ca6a92d20c00d3996916009e35e47d903659893a48630d65a4",
+        "learner_proof_hash": "sha256:06ec4c9e511f15d01bfc1cd7e1d44a50a04816b74af3ad8eb9c8bdf2e3135b42",
+        "promotion_proof_hash": "sha256:23c0b88d791102341b331099a2bb2264774554f2ad99e80eeb9ef138ed44c36f",
+        "repair_handoff_proof_hash": "sha256:88f1b383fbedfdc15e22001940d65cbc0b518ce3a9f8d9aa27447a9f44f44f3d",
+        "source": "TOM Learner 0.2 / WQK 0.6 release documentation"
+      },
+      "seed_tokens": [
+        "event",
+        "transition",
+        "lineage"
+      ]
+    }
+  ],
+  "root_definition": "program:learner06-release",
+  "seed_genome": {
+    "bytes": 244,
+    "grammar_id": "TOM-SEED-GRAMMAR-1.0",
+    "path": "../../TOM_seed_genome_2026-09-01.txt",
+    "sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+    "token_registry": "../../spec/tom_seed_token_registry_1_0.json"
+  },
+  "title": "TOM Learner 0.2 / WQK 0.6 release-document artifact",
+  "tomagi_version": "1.0.0"
+}

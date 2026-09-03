@@ -1,0 +1,146 @@
+{
+  "schema": "TOMAGI-SYMBOL-TABLE-1.0",
+  "count": 28,
+  "symbols": [
+    {
+      "symbol": "D",
+      "meaning": "finite domain of definable LUT keys",
+      "type": "set of 64-bit keys"
+    },
+    {
+      "symbol": "d",
+      "meaning": "content-addressed definition node",
+      "type": "typed record"
+    },
+    {
+      "symbol": "q_n",
+      "meaning": "TOMAGI state at tick n",
+      "type": "State64"
+    },
+    {
+      "symbol": "rho",
+      "meaning": "log-radius coordinate",
+      "type": "20-bit periodic integer; decoded range profile [-20,0]"
+    },
+    {
+      "symbol": "theta",
+      "meaning": "polar angle",
+      "type": "18-bit periodic integer"
+    },
+    {
+      "symbol": "X",
+      "meaning": "zero-based modular timeline tick",
+      "type": "14-bit periodic integer"
+    },
+    {
+      "symbol": "phi",
+      "meaning": "lower-case phase/hoop/hinge coordinate",
+      "type": "12-bit periodic integer"
+    },
+    {
+      "symbol": "Phi",
+      "meaning": "capital golden ratio",
+      "type": "optional constant; never aliases runtime phi"
+    },
+    {
+      "symbol": "Delta q",
+      "meaning": "first discrete difference",
+      "type": "velocity"
+    },
+    {
+      "symbol": "Delta^2 q",
+      "meaning": "second discrete difference",
+      "type": "acceleration stored in a cell"
+    },
+    {
+      "symbol": "Delta^2 phi",
+      "meaning": "change-of-change of lower-case phi",
+      "type": "cell arg3 under KIN2"
+    },
+    {
+      "symbol": "K=(K_hi,K_lo)",
+      "meaning": "contiguous 64-bit log-polar key",
+      "type": "two u32 words"
+    },
+    {
+      "symbol": "LUT_Z",
+      "meaning": "finite sorted table of SDF0 cells",
+      "type": "Cell48[]"
+    },
+    {
+      "symbol": "Z_D",
+      "meaning": "literal SDF0 zero-field",
+      "type": "0 on D, bottom outside D"
+    },
+    {
+      "symbol": "P",
+      "meaning": "one-bit parity reduction",
+      "type": "popcount mod 2"
+    },
+    {
+      "symbol": "j",
+      "meaning": "deterministic parity/jitter bit",
+      "type": "0 or 1"
+    },
+    {
+      "symbol": "sigma",
+      "meaning": "signed jitter selector",
+      "type": "2j-1 in {-1,+1}"
+    },
+    {
+      "symbol": "T_c",
+      "meaning": "cone slant length",
+      "type": "real-valued compile-time geometry parameter"
+    },
+    {
+      "symbol": "alpha",
+      "meaning": "cone half-angle",
+      "type": "compile-time or quantized angular width"
+    },
+    {
+      "symbol": "C",
+      "meaning": "cone relation/support",
+      "type": "signed relation"
+    },
+    {
+      "symbol": "S",
+      "meaning": "sphere/shell relation/support",
+      "type": "signed relation"
+    },
+    {
+      "symbol": "W_K",
+      "meaning": "Klein or half-turn wrap map",
+      "type": "state transform"
+    },
+    {
+      "symbol": "b",
+      "meaning": "branch bit",
+      "type": "0 or 1"
+    },
+    {
+      "symbol": "i",
+      "meaning": "compiled cell index",
+      "type": "u32"
+    },
+    {
+      "symbol": "ell",
+      "meaning": "lineage checksum",
+      "type": "u32"
+    },
+    {
+      "symbol": "y",
+      "meaning": "output token",
+      "type": "u32"
+    },
+    {
+      "symbol": "Pi",
+      "meaning": "projection/tag operator",
+      "type": "symbolic downstream output"
+    },
+    {
+      "symbol": "bottom",
+      "meaning": "undefined/non-member",
+      "type": "not a numeric SDF value"
+    }
+  ]
+}

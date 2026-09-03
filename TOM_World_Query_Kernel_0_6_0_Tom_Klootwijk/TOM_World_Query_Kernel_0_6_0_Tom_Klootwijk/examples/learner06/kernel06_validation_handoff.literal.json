@@ -1,0 +1,282 @@
+{
+  "$schema": "../../spec/tom_seeded_program.schema.json",
+  "budgets": {
+    "max_cells": 1457,
+    "max_definitions": 16,
+    "max_expression_depth": 16,
+    "max_expression_nodes": 2048,
+    "max_output_bytes": 5827,
+    "max_repeat": 1,
+    "max_sequence_items": 64,
+    "max_string_bytes": 2048
+  },
+  "compilation_profile": "TOM-SEEDED-COMPILATION-1.0",
+  "definitions": [
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:a5d68b476fac20b7db9b7b83242c6ebc3e4f34f4abd962cb0c5a2024a4f99e20",
+      "dependencies": [],
+      "domain": "none",
+      "id": "tom:seed",
+      "kind": "canonical-seed",
+      "limits": {},
+      "operation": {
+        "op": "seed.bytes"
+      },
+      "order": 0,
+      "parameters": {},
+      "phase": "parse",
+      "provenance": {
+        "causal_role": "authored literal handoff bytes",
+        "date": "2026-09-03",
+        "source": "CODEX_KERNEL_0_6_VALIDATION_HANDOFF.md"
+      },
+      "seed_tokens": [
+        "TOM1"
+      ]
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:5f9ee652647c81d6ec582a6db0d54a17ba251702a9f2f53aa2150bcf3a79de69",
+      "dependencies": [
+        "tom:seed"
+      ],
+      "domain": "bytes",
+      "id": "tom:tokens",
+      "kind": "seed-parse",
+      "limits": {},
+      "operation": {
+        "op": "seed.tokens"
+      },
+      "order": 0,
+      "parameters": {},
+      "phase": "resolve",
+      "provenance": {
+        "causal_role": "authored literal handoff bytes",
+        "date": "2026-09-03",
+        "source": "CODEX_KERNEL_0_6_VALIDATION_HANDOFF.md"
+      },
+      "seed_tokens": [
+        "TopologicalOpenModular"
+      ]
+    },
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:38f54714f2cbe460bc7a0a58494e90b64ab06ae514b05c6403e812ea5de8141b",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "handoff:bytes",
+      "kind": "literal-validation-handoff",
+      "limits": {},
+      "operation": {
+        "op": "literal"
+      },
+      "order": 0,
+      "parameters": {
+        "result_type": "bytes",
+        "value": {
+          "data": "IyBDT0RFWCBXb3JsZCAmIFF1ZXJ5IEtlcm5lbCAwLjYgdmFsaWRhdGlvbiBoYW5kb2ZmCgpEYXRlOiAyMDI2LTA5LTAzICAKQXV0aG9yaXR5IHJvb3Q6IGBUT01fc2VlZF9nZW5vbWVfMjAyNi0wOS0wMS50eHRgICAKQ2Fub25pY2FsIHNlZWQgU0hBLTI1NjogYGQxNDE3YTMxMzY3NzJjMGNmM2VkZGNkNDk2MmNlMDdkNDJjYmY4NzYxNmY3YjViYWUwOWZjNjUyZDliODA3YjVgCgojIyBEaXNwb3NpdGlvbgoKVGhlIFdRSyAwLjYga2VybmVsIGhhcyBiZWVuIGFkdmVyc2FyaWFsbHkgYXVkaXRlZCwgcmVwYWlyZWQsIHJlYnVpbHQgZnJvbSBpdHMKbGl0ZXJhbCBUT01BR0kgc291cmNlcywgYW5kIHByZXBhcmVkIGZvciBkZXRlcm1pbmlzdGljIHJlcGxheS4gIFRoZSBmaW5hbApyZWxlYXNlIGNsYWltIGlzIGV4YWN0bHkgdGhlIG9uZSByZWNvcmRlZCBieQpgdmFsaWRhdGlvbi9sZWFybmVyMDYvdmFsaWRhdGlvbl9yZXBvcnQuanNvbmA7IHRoaXMgaGFuZG9mZiBkb2VzIG5vdCBicm9hZGVuIGl0LgoKIyMgUmVwYWlycyBtYWRlCgoxLiBUaGUgTGVhcm5lciAwLjIgZm9ybWFsIGF1dGhvcml0eSBub3cgdmFsaWRhdGVzIHRoZSBjb21wbGV0ZSBleGVjdXRhYmxlCiAgIHJlZ2lzdHJ5LCBmYW1pbHksIGNhbmRpZGF0ZSwgcmF0aW9uYWwsIG9ic2VydmF0aW9uLCBkYXRhLXNldCwgcGFydGl0aW9uLAogICBwcmlvci1hdXRob3JpdHksIGFuZCByZXBhaXItcHJvb2YgY29udHJhY3RzIGJlZm9yZSBldmFsdWF0aW5nIGFueSBkYXRhIHNldC4KICAgUmVoYXNoZWQgc2VtYW50aWMgbXV0YXRpb25zIG5vIGxvbmdlciBwYXNzIG1lcmVseSBiZWNhdXNlIHRoZWlyIG91dGVyIGhhc2gKICAgaXMgaW50ZXJuYWxseSBjb25zaXN0ZW50LgoyLiBQYXJ0aXRpb24gcmVzb2x1dGlvbiBmb2xsb3dzIGVhY2ggZGVjbGFyZWQgb3JkZXJlZCBJRCBsaXN0LiBNaXNzaW5nLAogICBkdXBsaWNhdGUsIG92ZXJsYXBwaW5nLCB1bmNvdmVyZWQsIG9yIG11bHRpcGx5IHJlc29sdmVkIElEcyBhcmUgcmVqZWN0ZWQuCiAgIE9ic2VydmF0aW9uLWFycmF5IG9yZGVyIGNhbiBubyBsb25nZXIgcmVwbGFjZSB0aGUgbGl0ZXJhbCBwYXJ0aXRpb24gb3JkZXIuCjMuIEV4cHJlc3Npb24gdHJlZXMgdXNlIGEgY2xvc2VkIG9wZXJhdGlvbiBncmFtbWFyLiBVbmtub3duIG9wZXJhdGlvbnMgY2Fubm90CiAgIGZhbGwgdGhyb3VnaCB0byBtdWx0aXBsaWNhdGlvbiwgYW5kIG5lc3RlZCBjYW5kaWRhdGUvZmFtaWx5L3JlZ2lzdHJ5IGhhc2hlcywKICAgZGVwdGgsIGNvbXBsZXhpdHksIGNhbm9uaWNhbCByYXRpb25hbHMsIGxpdGVyYWwgb3JkZXIsIGFuZCBleGFjdCBmaW5pdGUKICAgY2FuZGlkYXRlIGJ1ZGdldHMgYXJlIGNoZWNrZWQgYnkgdGhlIGZvcm1hbCBwcm9ncmFtLgo0LiBUaGUgZm9ybWFsIHByb2dyYW0gaXMgYSBzZXBhcmF0ZSBldmFsdWF0b3IgZGVwZW5kZW5jeSBhbmQgaXMgbm8gbG9uZ2VyCiAgIHNtdWdnbGVkIGludG8gaXRzIG93biBpbnB1dCBzZXF1ZW5jZS4gRGlyZWN0IHJlcGxheSByZXNvbHZlcyB0aGUgYWN0dWFsCiAgIGBzZXF1ZW5jZS5jb25zdHJ1Y3RgIGRlcGVuZGVuY3kgb3JkZXIsIG1hdGNoaW5nIHNlZWRlZCBjb21waWxhdGlvbi4KNS4gUHJvbW90aW9uIGlzIGJvdW5kIHRvIHRoZSBleGFjdCBsZWFybmVyIHByb2dyYW0sIGV4YWN0IG5hbWVkIGlucHV0LXNldCBoYXNoLAogICBleGFjdCBsZWFybmVyIHJlc3VsdCwgcmVwYWlyZWQgMC41LjIgcGFyZW50LCByZWdpc3RyeSwgcGFydGl0aW9uIHBvbGljeSwKICAgcmVwYWlyIHByb29mLCBkYXRhLXNldCBidW5kbGUsIGNvbnRleHQsIHJvdyBvcmRlciwgYW5kIHNvdXJjZSBkYXRhLXNldCBoYXNoZXMuCjYuIEZvcm1hbCBlcXVhbGl0eSBpcyB0eXBlLXN0cmljdCBmb3IgSlNPTiB2YWx1ZXMsIHdoaWxlIGV4YWN0IG51bWVyaWMgZXF1YWxpdHkKICAgcmVtYWlucyByYXRpb25hbC4gQm9vbGVhbnMgY2FuIG5vIGxvbmdlciBjb21wYXJlIGVxdWFsIHRvIGludGVnZXJzIHRocm91Z2gKICAgUHl0aG9uIGNvZXJjaW9uLgo3LiBEaXJlY3QgYFByb2dyYW1gIGNvbnN0cnVjdGlvbiBhbmQgcGVyc2lzdGVkIGAudG1nYCBsb2FkaW5nIG5vdyBhZ3JlZSBvbgogICBvcGNvZGUvc3VjY2Vzc29yIHZhbGlkaXR5IGFuZCBmaXhlZC13aWR0aCBpbnRlZ2VyIG5vcm1hbGl6YXRpb24uIFNlZWRlZAogICBzdGF0ZSwgbGVnYWN5IGNlbGwgYXJndW1lbnRzLCBhbmQgdGljayBjb3VudHMgYXJlIHJhbmdlLWNoZWNrZWQgYmVmb3JlIGEKICAgcHJvZ3JhbSBjYW4gcmVhY2ggYSBsYXRlIHNlcmlhbGl6YXRpb24gZmFpbHVyZS4KOC4gR1BVIG9wY29kZSBhcml0aG1ldGljIGFuZCBSQURJWC1kb21haW4gaGFuZGxpbmcgbm93IHVzZSB0aGUgc2FtZSBkZWNsYXJlZAogICBmaXhlZC13aWR0aCBlcXVhdGlvbnMgYXMgdGhlIENQVSBhdCBleHRyZW1lIHZhbHVlcy4gVGhlIGR1cmFibGUgcmVsZWFzZQogICBldmlkZW5jZSBpcyBzb3VyY2UtbGV2ZWwgY29udHJhY3QgYXNzZXJ0aW9ucyBwbHVzIFB5dGhvbi9DIGV4dHJlbWUtdmVjdG9yCiAgIGNvbmZvcm1hbmNlLCBub3QgcGh5c2ljYWwgR1BVIGRpc3BhdGNoLgo5LiBUZXN0LWxvZyBjYXB0dXJlIHN1cHByZXNzZXMgaW50ZXJwcmV0ZXIgd2FybmluZ3MgYXQgcHJvY2VzcyBzdGFydHVwIGFuZAogICBjYW5vbmljYWxpemVzIGxpbmUgZW5kaW5ncywgcmVtb3ZpbmcgUHl0aG9uLXZlcnNpb24tZGVwZW5kZW50IG9ycGhhbiB3YXJuaW5nCiAgIGNvbnRleHQgZnJvbSByZXByb2R1Y2libGUgdmFsaWRhdGlvbiBldmlkZW5jZS4KMTAuIENhbm9uaWNhbCBoYXNoaW5nIG5vdyBhY2NlcHRzIG9ubHkgSlNPTi1uYXRpdmUgYXJyYXlzIGFuZCBzdHJpbmcta2V5ZWQKICAgIG9iamVjdHMuIERlZmluaXRpb24gcGFyYW1ldGVycywgcHJvdmVuYW5jZSwgYW5kIGdlbmVyYXRlZCBjZWxsIGlkZW50aWZpZXJzCiAgICBvYmV5IHRoZWlyIGVmZmVjdGl2ZSBzdHJpbmcgbGltaXRzOyBlbmNvZGVkIGJ5dGUtbGl0ZXJhbCBjYXJyaWVycyBhcmUKICAgIGNvcnJlY3RseSBnb3Zlcm5lZCBieSB0aGUgZGVjb2RlZCBvdXRwdXQtYnl0ZSBsaW1pdCBpbnN0ZWFkLgoKIyMgUmVxdWlyZWQgZXZpZGVuY2UKClRoZSBoYW5kb2ZmIGlzIGNvbXBsZXRlIG9ubHkgd2hlbiBhbGwgb2YgdGhlc2UgYWRkcmVzc2VkIHJlY29yZHMgcmVwb3J0IHBhc3M6CgotIGB2YWxpZGF0aW9uL2xlYXJuZXIwNi9sZWFybmVyX2F1dGhvcml0eV9wcm9vZi5qc29uYAotIGB2YWxpZGF0aW9uL2xlYXJuZXIwNi9wcm9tb3Rpb25fYXV0aG9yaXR5X3Byb29mLmpzb25gCi0gYHZhbGlkYXRpb24vbGVhcm5lcjA2L3JlamVjdGlvbl9jYXBzdWxlLmpzb25gCi0gYHZhbGlkYXRpb24vbGVhcm5lcjA2L3ZhbGlkYXRpb25fcmVwb3J0Lmpzb25gCi0gYHZhbGlkYXRpb24vbGVhcm5lcjA2L2NsZWFuX3JlYnVpbGQuanNvbmAKLSBgdmFsaWRhdGlvbi9sZWFybmVyMDYvbGVhcm5lcjA2X3JlbGVhc2VfYXJ0aWZhY3QucHJvb2YuanNvbmAKLSBgdmFsaWRhdGlvbi9sZWFybmVyMDYva2VybmVsMDZfdmFsaWRhdGlvbl9oYW5kb2ZmLnByb29mLmpzb25gCi0gYGNoZWNrc3Vtcy9QQUNLQUdFX01BTklGRVNULmpzb25gCi0gYGNoZWNrc3Vtcy9TSEEyNTZTVU1TLnR4dGAKClRoZSBhdXRob3JpdGF0aXZlIGNvbW1hbmRzIGFyZToKCmBgYHRleHQKbWFrZSB2YWxpZGF0ZS1sZWFybmVyMDYKbWFrZSBwYWNrYWdlLWxlYXJuZXIwNgpgYGAKClRoZXkgbXVzdCBwcm92ZSB0aGUgZnVsbCBjb25mb3JtYW5jZSBzdWl0ZSwgUHl0aG9uL0MgZnVsbC10cmFjZSBhbmQgb3JkZXJlZC1FTUlUCmVxdWFsaXR5LCBkaXJlY3QvbWF0ZXJpYWxpemVkIGJ5dGUgZXF1YWxpdHksIGluZGVwZW5kZW50LW9yYWNsZSBhZ3JlZW1lbnQsCnBhcmVudC1ib3VuZCBpbW11dGFibGUtc3RvcmUgcmVjb25zdHJ1Y3Rpb24sIHR3byBnZW5lcmF0ZWQtb3V0cHV0LWZyZWUgZXF1YWwKYnVpbGRzLCBkZXRlcm1pbmlzdGljIFpJUCBieXRlcywgc2FmZSBhcmNoaXZlIGludmVudG9yeSwgYW5kIGZpbmFsIGFyY2hpdmUKcmVwbGF5LgoKIyMgTGl0ZXJhbCBhcnRpZmFjdCBjaGFpbgoKVGhpcyBkb2N1bWVudCBpcyBpdHNlbGYgZGVsaXZlcmVkIHRocm91Z2ggdGhlIHJlcXVpcmVkIGNhdXNhbCBjaGFpbjoKCmBgYHRleHQKVE9NX3NlZWRfZ2Vub21lXzIwMjYtMDktMDEudHh0CiAgKyBDT0RFWF9LRVJORUxfMF82X1ZBTElEQVRJT05fSEFORE9GRi5tZAogIC0+IGV4YW1wbGVzL2xlYXJuZXIwNi9rZXJuZWwwNl92YWxpZGF0aW9uX2hhbmRvZmYubGl0ZXJhbC5qc29uCiAgLT4gZXhhbXBsZXMvbGVhcm5lcjA2L2tlcm5lbDA2X3ZhbGlkYXRpb25faGFuZG9mZi50bWcKICAtPiBhdXRoZW50aWNhdGVkIFB5dGhvbi9DIEVNSVQgdHJhY2VzCiAgLT4gdmFsaWRhdGlvbi9sZWFybmVyMDYvQ09ERVhfS0VSTkVMXzBfNl9WQUxJREFUSU9OX0hBTkRPRkYubWF0ZXJpYWxpemVkLm1kCmBgYAoKVGhlIG1hdGVyaWFsaXplZCBieXRlcyBtdXN0IGVxdWFsIHRoaXMgYXV0aG9yZWQgc291cmNlIGJ5dGUgZm9yIGJ5dGUuIFRoZSBwcm9vZgpyZWNvcmQgbmFtZWQgYWJvdmUgcGlucyBldmVyeSBib3VuZGFyeS4KCiMjIFByZXNlcnZlZCBib3VuZGFyeSBhbmQgcmVzaWR1YWwgbGltaXRhdGlvbgoKVGhlIGJpbmFyeSBBQkkgcmVtYWlucyB0aGUgdmVyc2lvbi0xIDEyOC1ieXRlIGhlYWRlciwgNjQtYnl0ZSBgU3RhdGU2NGAsCjQ4LWJ5dGUgYENlbGw0OGAsIGFuZCBzaXh0ZWVuIG9wY29kZXMuIE5vIGNvbXBhdGliaWxpdHktYnJlYWtpbmcgYnVkZ2V0IGZpZWxkCndhcyBpbnNlcnRlZCBpbnRvIHRoYXQgZm9ybWF0LgoKQ29uc2VxdWVudGx5LCBhIGNhbGxlciB0aGF0IGRpcmVjdGx5IGV4ZWN1dGVzIGFuIGF1dGhlbnRpY2F0ZWQgbGVnYWN5IHByb2dyYW0Kd2hvc2UgZ3JhcGggaW50ZW50aW9uYWxseSBsb29wcyBvdmVyIG5vbi1oYWx0aW5nIGBFTUlUYCBjZWxscyBtYXkgbWF0ZXJpYWxpemUKbW9yZSByZXBlYXRlZCBieXRlcyB0aGFuIHRoZSBzb3VyY2UgY29tcGlsZXIncyBgbWF4X291dHB1dF9ieXRlc2AgYnVkZ2V0LiBUaGF0CnNvdXJjZSBidWRnZXQgaXMgbm90IHNlcmlhbGl6ZWQgaW4gdGhlIHZlcnNpb24tMSBgLnRtZ2AsIGFuZCBkZXJpdmluZyBhIGNlaWxpbmcKZnJvbSB1bmlxdWUgY2VsbCBwYXlsb2FkcyB3b3VsZCBpbmNvcnJlY3RseSByZWplY3QgbGVnaXRpbWF0ZSBsZWdhY3kgbG9vcHMuIEFsbApkZWxpdmVyZWQgYXJ0aWZhY3QgZ3JhcGhzIGhhbHQgb24gdGhlaXIgZmluYWwgRU1JVCBjZWxsIGFuZCBhcmUgYm91bmRlZC4gQSBoYXJkCnJ1bnRpbWUgbWF0ZXJpYWxpemF0aW9uIGNlaWxpbmcgcmVxdWlyZXMgYSB2ZXJzaW9uZWQgaGVhZGVyL3Byb2ZpbGUgZmllbGQgb3IgYW4KZXhwbGljaXQgY2FsbGVyLXN1cHBsaWVkIHBvbGljeTsgaXQgbXVzdCBub3QgYmUgcmV0cm9maXR0ZWQgYnkgY2hhbmdpbmcgdmVyc2lvbi0xCmV4ZWN1dGlvbiBzZW1hbnRpY3MuCgojIyBOZXh0IGFjdGlvbgoKQ29uc3VtZXJzIHNob3VsZCBiZWdpbiBmcm9tIGBUT01fQ09OVElOVUFUSU9OX0hBTkRPRkZfMF82Lmpzb25gLCB2ZXJpZnkgdGhlCmNhbm9uaWNhbCBzZWVkIGFuZCBldmVyeSByZWZlcmVuY2VkIGNvbnRlbnQgaGFzaCwgcmVwbGF5IHRoZSBwYWNrYWdlIHZhbGlkYXRpb24sCmFuZCByZXRhaW4gdGhlIHRlcm1pbmFsIHByb21vdGlvbiBoZWFkIGFzIHRoZSBvbmx5IHBlcm1pdHRlZCBwYXJlbnQgZm9yIHRoZSBuZXh0CnZlcnNpb25lZCBtaWxlc3RvbmUuIERvIG5vdCB0cmVhdCBnZW5lcmF0ZWQgTWFya2Rvd24sIGEgaG9zdC1zaWRlIG9yYWNsZSwgb3IgYW4KdW5wdWJsaXNoZWQgbGVhcm5lciBwcm9wb3NhbCBhcyBhdXRob3JpdHkuCg==",
+          "encoding": "base64"
+        }
+      },
+      "phase": "construct",
+      "provenance": {
+        "causal_role": "authored literal handoff bytes",
+        "date": "2026-09-03",
+        "source": "CODEX_KERNEL_0_6_VALIDATION_HANDOFF.md"
+      },
+      "seed_tokens": [
+        "Pi"
+      ]
+    },
+    {
+      "codomain": "string",
+      "content_hash": "sha256:71c35f8731a163093a347dfd5613412d567694887c340bdf59b7d6e988ec34e8",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "handoff:expected-hash",
+      "kind": "literal-hash",
+      "limits": {},
+      "operation": {
+        "op": "literal"
+      },
+      "order": 1,
+      "parameters": {
+        "result_type": "string",
+        "value": "sha256:0b85a60717bc3f0d7420422c1b91cc82bd341a87b3fa24b8a27dae0127e48e53"
+      },
+      "phase": "construct",
+      "provenance": {
+        "causal_role": "authored literal handoff bytes",
+        "date": "2026-09-03",
+        "source": "CODEX_KERNEL_0_6_VALIDATION_HANDOFF.md"
+      }
+    },
+    {
+      "codomain": "state64",
+      "content_hash": "sha256:1e1ac9676b1daa4f4751d2e4efb2944b69c5a82807256c1f8ad0268745675ccc",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "handoff:state",
+      "kind": "initial-state",
+      "limits": {},
+      "operation": {
+        "op": "state64.construct"
+      },
+      "order": 2,
+      "parameters": {
+        "fields": {
+          "lineage": "0x48303630"
+        }
+      },
+      "phase": "construct",
+      "provenance": {
+        "causal_role": "authored literal handoff bytes",
+        "date": "2026-09-03",
+        "source": "CODEX_KERNEL_0_6_VALIDATION_HANDOFF.md"
+      },
+      "seed_tokens": [
+        "lineage"
+      ]
+    },
+    {
+      "codomain": "string",
+      "content_hash": "sha256:1525973becaac5c845479104e4a72b913a110e955c7b399c8fe7112b47ec325b",
+      "dependencies": [
+        "handoff:bytes"
+      ],
+      "domain": "bytes",
+      "id": "handoff:actual-hash",
+      "kind": "computed-hash",
+      "limits": {},
+      "operation": {
+        "op": "hash.sha256"
+      },
+      "order": 0,
+      "parameters": {
+        "prefix": true
+      },
+      "phase": "transform",
+      "provenance": {
+        "causal_role": "authored literal handoff bytes",
+        "date": "2026-09-03",
+        "source": "CODEX_KERNEL_0_6_VALIDATION_HANDOFF.md"
+      }
+    },
+    {
+      "codomain": "cell_graph",
+      "content_hash": "sha256:e80dda3d8626644c0138b2b9695ed1334a54ad79b3f144a21b2b67796f2a0772",
+      "dependencies": [
+        "handoff:bytes"
+      ],
+      "domain": "bytes",
+      "id": "handoff:emit",
+      "kind": "byte-emission",
+      "limits": {},
+      "operation": {
+        "op": "emit.graph"
+      },
+      "order": 1,
+      "parameters": {
+        "aux_base": "0x48360000",
+        "byte_order": "little",
+        "chunk_bytes": 4,
+        "halt_last": true,
+        "id_prefix": "cell:kernel06-handoff",
+        "key_base": {
+          "phi": 0,
+          "rho": 800000,
+          "theta": 0,
+          "tick": 0
+        },
+        "key_field": "rho"
+      },
+      "phase": "transform",
+      "provenance": {
+        "causal_role": "authored literal handoff bytes",
+        "date": "2026-09-03",
+        "source": "CODEX_KERNEL_0_6_VALIDATION_HANDOFF.md"
+      },
+      "seed_tokens": [
+        "transition"
+      ]
+    },
+    {
+      "codomain": "bool",
+      "content_hash": "sha256:130f4b2f3c968d7f53f195fc05226345e4b8197936ddd182339ff682ab1c2b11",
+      "dependencies": [
+        "handoff:actual-hash",
+        "handoff:expected-hash"
+      ],
+      "domain": "hash-pair",
+      "id": "handoff:guard",
+      "kind": "hash-guard",
+      "limits": {},
+      "operation": {
+        "op": "assert.equal"
+      },
+      "order": 0,
+      "parameters": {},
+      "phase": "guard",
+      "provenance": {
+        "causal_role": "authored literal handoff bytes",
+        "date": "2026-09-03",
+        "source": "CODEX_KERNEL_0_6_VALIDATION_HANDOFF.md"
+      },
+      "seed_tokens": [
+        "guard"
+      ]
+    },
+    {
+      "codomain": "program",
+      "content_hash": "sha256:b6b6605a67f3c8c1dcd2996ae7a0336bfadc057d807c1c42473a25ee0f0749fa",
+      "dependencies": [
+        "handoff:state",
+        "handoff:emit",
+        "handoff:guard"
+      ],
+      "domain": "state-graph-guard",
+      "id": "program:kernel06-handoff",
+      "kind": "artifact-program",
+      "limits": {},
+      "operation": {
+        "op": "program.construct"
+      },
+      "order": 0,
+      "parameters": {
+        "default_ticks": 1457,
+        "emit_bytes": true,
+        "entry": "cell:kernel06-handoff:0000",
+        "flags": 0,
+        "seed": "0x48303630"
+      },
+      "phase": "lineage",
+      "provenance": {
+        "causal_role": "authored literal handoff bytes",
+        "date": "2026-09-03",
+        "source": "CODEX_KERNEL_0_6_VALIDATION_HANDOFF.md"
+      },
+      "seed_tokens": [
+        "event",
+        "transition",
+        "lineage"
+      ]
+    }
+  ],
+  "root_definition": "program:kernel06-handoff",
+  "seed_genome": {
+    "bytes": 244,
+    "grammar_id": "TOM-SEED-GRAMMAR-1.0",
+    "path": "../../TOM_seed_genome_2026-09-01.txt",
+    "sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+    "token_registry": "../../spec/tom_seed_token_registry_1_0.json"
+  },
+  "title": "CODEX WQK 0.6 validation handoff artifact",
+  "tomagi_version": "1.0.0"
+}

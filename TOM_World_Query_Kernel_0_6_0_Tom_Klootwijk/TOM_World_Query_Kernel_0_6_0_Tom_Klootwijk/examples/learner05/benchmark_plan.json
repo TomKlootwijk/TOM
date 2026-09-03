@@ -1,0 +1,385 @@
+{
+  "base_handoff_hash": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b",
+  "base_world_hash": "sha256:c25c99eeeb728f50b52a06e89b9f669470ccb294fd8f0cc6e4ccb87bde9ff2d9",
+  "canonical_seed_sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+  "cases": [
+    {
+      "a": 0,
+      "b": 0,
+      "count": 20,
+      "expected": {
+        "a": 0,
+        "accepted": true,
+        "b": 0
+      },
+      "id": "dataset:clean_zero",
+      "kind": "affine",
+      "mutation": null
+    },
+    {
+      "a": 1,
+      "b": 0,
+      "count": 20,
+      "expected": {
+        "a": 1,
+        "accepted": true,
+        "b": 0
+      },
+      "id": "dataset:clean_identity",
+      "kind": "affine",
+      "mutation": null
+    },
+    {
+      "a": -1,
+      "b": 3,
+      "count": 20,
+      "expected": {
+        "a": -1,
+        "accepted": true,
+        "b": 3
+      },
+      "id": "dataset:clean_negative",
+      "kind": "affine",
+      "mutation": null
+    },
+    {
+      "a": 2,
+      "b": 1,
+      "count": 20,
+      "expected": {
+        "a": 2,
+        "accepted": true,
+        "b": 1
+      },
+      "id": "dataset:clean_double",
+      "kind": "affine",
+      "mutation": null
+    },
+    {
+      "a": {
+        "den": 2,
+        "num": 1
+      },
+      "b": {
+        "den": 2,
+        "num": -3
+      },
+      "count": 20,
+      "expected": {
+        "a": {
+          "den": 2,
+          "num": 1
+        },
+        "accepted": true,
+        "b": {
+          "den": 2,
+          "num": -3
+        }
+      },
+      "id": "dataset:clean_half",
+      "kind": "affine",
+      "mutation": null
+    },
+    {
+      "a": {
+        "den": 2,
+        "num": -3
+      },
+      "b": {
+        "den": 3,
+        "num": 5
+      },
+      "count": 20,
+      "expected": {
+        "a": {
+          "den": 2,
+          "num": -3
+        },
+        "accepted": true,
+        "b": {
+          "den": 3,
+          "num": 5
+        }
+      },
+      "id": "dataset:clean_neg_three_halves",
+      "kind": "affine",
+      "mutation": null
+    },
+    {
+      "a": {
+        "den": 3,
+        "num": 7
+      },
+      "b": {
+        "den": 5,
+        "num": -11
+      },
+      "count": 20,
+      "expected": {
+        "a": {
+          "den": 3,
+          "num": 7
+        },
+        "accepted": true,
+        "b": {
+          "den": 5,
+          "num": -11
+        }
+      },
+      "id": "dataset:clean_seven_thirds",
+      "kind": "affine",
+      "mutation": null
+    },
+    {
+      "a": 5,
+      "b": -8,
+      "count": 20,
+      "expected": {
+        "a": 5,
+        "accepted": true,
+        "b": -8
+      },
+      "id": "dataset:clean_five",
+      "kind": "affine",
+      "mutation": null
+    },
+    {
+      "a": -4,
+      "b": {
+        "den": 7,
+        "num": 1
+      },
+      "count": 20,
+      "expected": {
+        "a": -4,
+        "accepted": true,
+        "b": {
+          "den": 7,
+          "num": 1
+        }
+      },
+      "id": "dataset:clean_negative_four",
+      "kind": "affine",
+      "mutation": null
+    },
+    {
+      "a": {
+        "den": 4,
+        "num": 9
+      },
+      "b": {
+        "den": 6,
+        "num": 13
+      },
+      "count": 20,
+      "expected": {
+        "a": {
+          "den": 4,
+          "num": 9
+        },
+        "accepted": true,
+        "b": {
+          "den": 6,
+          "num": 13
+        }
+      },
+      "id": "dataset:clean_nine_quarters",
+      "kind": "affine",
+      "mutation": null
+    },
+    {
+      "a": {
+        "den": 5,
+        "num": 2
+      },
+      "b": 7,
+      "count": 20,
+      "expected": {
+        "a": {
+          "den": 5,
+          "num": 2
+        },
+        "accepted": true,
+        "b": 7
+      },
+      "id": "dataset:clean_two_fifths",
+      "kind": "affine",
+      "mutation": null
+    },
+    {
+      "a": {
+        "den": 6,
+        "num": -7
+      },
+      "b": {
+        "den": 3,
+        "num": -2
+      },
+      "count": 20,
+      "expected": {
+        "a": {
+          "den": 6,
+          "num": -7
+        },
+        "accepted": true,
+        "b": {
+          "den": 3,
+          "num": -2
+        }
+      },
+      "id": "dataset:clean_negative_seven_sixths",
+      "kind": "affine",
+      "mutation": null
+    },
+    {
+      "a": 2,
+      "b": 1,
+      "count": 20,
+      "expected": {
+        "accepted": false,
+        "failure_class": "train-residual"
+      },
+      "id": "dataset:train_outlier",
+      "kind": "affine",
+      "mutation": {
+        "delta": 1,
+        "kind": "split-outlier",
+        "ordinal": 0,
+        "target_split": "train"
+      }
+    },
+    {
+      "a": 2,
+      "b": 1,
+      "count": 20,
+      "expected": {
+        "accepted": false,
+        "failure_class": "validation-residual"
+      },
+      "id": "dataset:validation_outlier",
+      "kind": "affine",
+      "mutation": {
+        "delta": 1,
+        "kind": "split-outlier",
+        "ordinal": 0,
+        "target_split": "validation"
+      }
+    },
+    {
+      "a": 2,
+      "b": 1,
+      "count": 20,
+      "expected": {
+        "accepted": false,
+        "failure_class": "holdout-residual"
+      },
+      "id": "dataset:holdout_outlier",
+      "kind": "affine",
+      "mutation": {
+        "delta": 1,
+        "kind": "split-outlier",
+        "ordinal": 0,
+        "target_split": "holdout"
+      }
+    },
+    {
+      "count": 20,
+      "expected": {
+        "accepted": false,
+        "failure_class": "no-exact-training-model"
+      },
+      "id": "dataset:piecewise_change",
+      "kind": "piecewise",
+      "left": {
+        "a": 1,
+        "b": 1
+      },
+      "mutation": null,
+      "right": {
+        "a": 2,
+        "b": 1
+      },
+      "switch_at": 10
+    },
+    {
+      "a": 3,
+      "b": -2,
+      "count": 20,
+      "expected": {
+        "accepted": false,
+        "failure_class": "contradiction"
+      },
+      "id": "dataset:contradictory_exact",
+      "kind": "affine",
+      "mutation": {
+        "delta": 1,
+        "kind": "duplicate-contradiction",
+        "source_ordinal": 0
+      }
+    },
+    {
+      "count": 8,
+      "expected": {
+        "accepted": false,
+        "failure_class": "no-distinct-training-input"
+      },
+      "id": "dataset:underdetermined_constant_input",
+      "kind": "constant-input",
+      "mutation": null,
+      "t": 0,
+      "y": 5
+    },
+    {
+      "a": {
+        "den": 1,
+        "num": 1208925819614629174706176
+      },
+      "b": 0,
+      "count": 20,
+      "expected": {
+        "accepted": false,
+        "failure_class": "complexity"
+      },
+      "id": "dataset:complexity_rejected",
+      "kind": "affine",
+      "mutation": null,
+      "policy_override": {
+        "max_model_complexity": 32
+      }
+    }
+  ],
+  "content_hash": "sha256:7160c5af97eee13d4f543b9b33719852babf803888e266355d534bfcdbfc2714",
+  "default_acceptance_policy": {
+    "max_model_complexity": 256,
+    "reject_contradictions": true,
+    "require_exact_holdout": true,
+    "require_exact_validation": true,
+    "require_unique_exact_train": true
+  },
+  "default_hypothesis_family": {
+    "candidate_source": "all-distinct-t-unordered-training-pairs",
+    "max_candidates": 1000,
+    "model": "y=a*t+b"
+  },
+  "default_split_policy": {
+    "minimum_counts": {
+      "holdout": 1,
+      "train": 2,
+      "validation": 1
+    },
+    "ratios": {
+      "holdout": 1,
+      "train": 3,
+      "validation": 1
+    },
+    "salt": "TOM-Learner-0.1-benchmark-split-v1",
+    "strategy": "sha256-id-order-largest-remainder"
+  },
+  "profile": "TOM-LEARNER-0.1",
+  "purpose": "Exact recovery, train/validation/holdout isolation, contradiction retention, underdetermination, complexity gating, and false-promotion measurement.",
+  "schema": "TOM-LEARNER-BENCHMARK-PLAN-0.1",
+  "time_grid": {
+    "start": 0,
+    "step": 1
+  }
+}

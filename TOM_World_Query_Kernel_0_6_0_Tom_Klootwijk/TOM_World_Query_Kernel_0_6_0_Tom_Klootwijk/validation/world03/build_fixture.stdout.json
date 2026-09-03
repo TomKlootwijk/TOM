@@ -1,0 +1,49 @@
+{
+  "certified_crossing": {
+    "exact_root": {
+      "den": 2,
+      "num": 5
+    },
+    "hash": "sha256:165524ee57389989cebf5fb80a745072790b6194f50e4a45a11f14dd42f0d176",
+    "status": "accepted-exact-root",
+    "unique": true
+  },
+  "conflict_rejection": true,
+  "content_hash": "sha256:2a06dc4967fec74d1160381dab9985fe7ea1e74408d4d74327b7efe262cbd6f6",
+  "next_event_set": {
+    "event_count": 3,
+    "event_order": [
+      "event:time-five-halves:set-output",
+      "event:triple-x:add-two",
+      "event:x-five:add-one"
+    ],
+    "event_time": {
+      "den": 2,
+      "num": 5
+    },
+    "hash": "sha256:b4c0df35417e6331aa8526b81fa0f0e05043aa065f9091212f47c0108a4b3b3b"
+  },
+  "python_c_tomagi_trace_equal": true,
+  "release": "0.3.0",
+  "schema": "TOM-WORLD-QUERY-KERNEL-0.3-FIXTURE-REPORT",
+  "simultaneous_transition": {
+    "counter": {
+      "den": 1,
+      "num": 3
+    },
+    "hash": "sha256:001906ca840abe9076ee0bde22caf826b3663681af879967de1c20a940b546ca",
+    "output": {
+      "den": 1,
+      "num": 25
+    }
+  },
+  "tomagi_integer_anchor_equal": true,
+  "trusted_baseline_equal": true,
+  "world": {
+    "bytes": 13761,
+    "content_hash": "sha256:14364a9736bf32217648dc294098cecb44510944f6e5ec02045193871576657e",
+    "path": "examples/world03/interval_event_world.json",
+    "relations": 7,
+    "sha256": "sha256:5075c7acc50ed5b84979c42bab63d559c7816d596796eae36b0a65a06ee11626"
+  }
+}

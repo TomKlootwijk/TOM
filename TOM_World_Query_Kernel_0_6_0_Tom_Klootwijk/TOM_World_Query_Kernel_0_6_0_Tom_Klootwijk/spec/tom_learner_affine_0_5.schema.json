@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/tom/tom-learner-affine-0.5.schema.json",
+  "title": "TOM Learner 0.1 exact affine observation set",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "profile", "id", "seed_sha256", "base_world_hash",
+    "base_handoff_hash", "domain", "observations", "split_policy",
+    "hypothesis_family", "acceptance_policy", "provenance", "content_hash"
+  ],
+  "properties": {
+    "schema": {"const": "TOM-AFFINE-OBSERVATION-SET-0.1"},
+    "profile": {"const": "TOM-LEARNER-0.1"},
+    "id": {"type": "string", "minLength": 1},
+    "seed_sha256": {"const": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"},
+    "base_world_hash": {"const": "sha256:c25c99eeeb728f50b52a06e89b9f669470ccb294fd8f0cc6e4ccb87bde9ff2d9"},
+    "base_handoff_hash": {"const": "sha256:3d2b46cfd33ba6e5cf0a13697fb59e374a64ad30450fdd3c256c98a04ebc474b"},
+    "domain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["input", "output", "numeric"],
+      "properties": {
+        "input": {"type": "string", "minLength": 1},
+        "output": {"type": "string", "minLength": 1},
+        "numeric": {"const": "exact-rational"}
+      }
+    },
+    "observations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/observation"}
+    },
+    "split_policy": {"$ref": "#/$defs/split_policy"},
+    "hypothesis_family": {"$ref": "#/$defs/hypothesis_family"},
+    "acceptance_policy": {"$ref": "#/$defs/acceptance_policy"},
+    "provenance": {"type": "object"},
+    "content_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "rational": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["num", "den"],
+      "properties": {
+        "num": {"type": "integer"},
+        "den": {"type": "integer", "minimum": 1}
+      }
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "id", "t", "y", "provenance", "content_hash"],
+      "properties": {
+        "schema": {"const": "TOM-EXACT-OBSERVATION-0.1"},
+        "id": {"type": "string", "minLength": 1},
+        "t": {"$ref": "#/$defs/rational"},
+        "y": {"$ref": "#/$defs/rational"},
+        "provenance": {"type": "object"},
+        "content_hash": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "split_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "strategy", "ratios", "minimum_counts", "salt", "content_hash"],
+      "properties": {
+        "schema": {"const": "TOM-LEARNER-SPLIT-POLICY-0.1"},
+        "strategy": {"const": "sha256-id-order-largest-remainder"},
+        "ratios": {"$ref": "#/$defs/three_counts_positive"},
+        "minimum_counts": {"$ref": "#/$defs/three_counts_nonnegative"},
+        "salt": {"type": "string", "minLength": 1},
+        "content_hash": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "three_counts_positive": {
+      "type": "object", "additionalProperties": false,
+      "required": ["train", "validation", "holdout"],
+      "properties": {
+        "train": {"type": "integer", "minimum": 1},
+        "validation": {"type": "integer", "minimum": 1},
+        "holdout": {"type": "integer", "minimum": 1}
+      }
+    },
+    "three_counts_nonnegative": {
+      "type": "object", "additionalProperties": false,
+      "required": ["train", "validation", "holdout"],
+      "properties": {
+        "train": {"type": "integer", "minimum": 2},
+        "validation": {"type": "integer", "minimum": 0},
+        "holdout": {"type": "integer", "minimum": 0}
+      }
+    },
+    "hypothesis_family": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema", "model", "candidate_source", "max_candidates", "content_hash"],
+      "properties": {
+        "schema": {"const": "TOM-AFFINE-HYPOTHESIS-FAMILY-0.1"},
+        "model": {"const": "y=a*t+b"},
+        "candidate_source": {"const": "all-distinct-t-unordered-training-pairs"},
+        "max_candidates": {"type": "integer", "minimum": 1},
+        "content_hash": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "acceptance_policy": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "schema", "require_unique_exact_train", "require_exact_validation",
+        "require_exact_holdout", "reject_contradictions", "max_model_complexity", "content_hash"
+      ],
+      "properties": {
+        "schema": {"const": "TOM-LEARNER-ACCEPTANCE-POLICY-0.1"},
+        "require_unique_exact_train": {"type": "boolean"},
+        "require_exact_validation": {"type": "boolean"},
+        "require_exact_holdout": {"type": "boolean"},
+        "reject_contradictions": {"type": "boolean"},
+        "max_model_complexity": {"type": "integer", "minimum": 1},
+        "content_hash": {"$ref": "#/$defs/hash"}
+      }
+    }
+  }
+}

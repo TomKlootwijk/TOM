@@ -1,0 +1,1 @@
+{"content_hash":"sha256:478e2fd45765c3de81d776eb577b0fc4cf22a9e114ee53891f0f2ffe0d05de61","id":"obs:dataset_holdout_outlier:008","provenance":{"dataset":"dataset:holdout_outlier","note":"affine observation 8","source":"literal TOM Learner 0.1 benchmark plan"},"schema":"TOM-EXACT-OBSERVATION-0.1","t":{"den":1,"num":8},"y":{"den":1,"num":17}}

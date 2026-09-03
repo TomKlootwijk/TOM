@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tom.invalid/schema/tom-world-indexes-0.2.json",
+  "title": "TOM immutable secondary index projection 0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version", "seed_sha256", "record_count", "records_map_hash", "indexes", "content_hash"],
+  "properties": {
+    "schema": {"const": "TOM-WORLD-INDEXES-0.2"},
+    "version": {"const": "0.2.0"},
+    "seed_sha256": {"const": "sha256:d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"},
+    "record_count": {"type": "integer", "minimum": 0},
+    "records_map_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "content_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "indexes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "by_type", "by_dependency", "relation_by_instance", "relation_by_support",
+        "relation_by_compatibility", "event_spec_by_relation", "by_generative_address",
+        "generative_address_values", "time_intervals", "by_topology_sheet",
+        "definition_by_hash", "by_content_hash", "checkpoint_by_instance"
+      ],
+      "properties": {
+        "by_type": {"$ref": "#/$defs/posting_map"},
+        "by_dependency": {"$ref": "#/$defs/posting_map"},
+        "relation_by_instance": {"$ref": "#/$defs/posting_map"},
+        "relation_by_support": {"$ref": "#/$defs/posting_map"},
+        "relation_by_compatibility": {"$ref": "#/$defs/posting_map"},
+        "event_spec_by_relation": {"$ref": "#/$defs/posting_map"},
+        "by_generative_address": {"$ref": "#/$defs/posting_map"},
+        "generative_address_values": {"type": "object"},
+        "time_intervals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["start", "end", "id", "record_type"],
+            "properties": {
+              "start": {"type": "integer", "minimum": 0},
+              "end": {"type": "integer", "minimum": 0},
+              "id": {"type": "string", "minLength": 1},
+              "record_type": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "by_topology_sheet": {"$ref": "#/$defs/posting_map"},
+        "definition_by_hash": {"$ref": "#/$defs/posting_map"},
+        "by_content_hash": {"$ref": "#/$defs/posting_map"},
+        "checkpoint_by_instance": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["tick", "id", "content_hash"],
+              "properties": {
+                "tick": {"type": "integer", "minimum": 0},
+                "id": {"type": "string", "minLength": 1},
+                "content_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "posting_map": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

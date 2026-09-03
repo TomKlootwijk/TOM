@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tom.invalid/schema/tom-batch-query-certificate-0.2.json",
+  "title": "TOM deterministic batch query certificate 0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version", "commit", "planner_mode", "request_count", "reduction_order", "request_ids", "semantic_reduction_hash", "semantic_result_hashes", "results", "work", "content_hash"],
+  "properties": {
+    "schema": {"const": "TOM-BATCH-QUERY-CERTIFICATE-0.2"},
+    "version": {"const": "0.2.0"},
+    "commit": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "planner_mode": {"enum": ["indexed", "exhaustive"]},
+    "request_count": {"type": "integer", "minimum": 0},
+    "reduction_order": {"const": "declared_array_order"},
+    "request_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "semantic_reduction_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "semantic_result_hashes": {"type": "array", "items": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}},
+    "results": {"type": "array", "items": {"type": "object"}},
+    "work": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+    "content_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  }
+}

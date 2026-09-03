@@ -1,0 +1,13 @@
+# TOM World Query Kernel 0.6 local caches and scratch outputs.
+/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/__pycache__/
+/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/*.py[cod]
+/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/.pytest_cache/
+/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/.mypy_cache/
+/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/.ruff_cache/
+/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/build/
+/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/dist/
+/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk/**/tmp/
+
+# Release archives are delivered separately, not stored in Git history.
+/TOM_World_Query_Kernel_0_6_0_Tom_Klootwijk.zip
+/TOM_WQK_0_6_FIXED.zip

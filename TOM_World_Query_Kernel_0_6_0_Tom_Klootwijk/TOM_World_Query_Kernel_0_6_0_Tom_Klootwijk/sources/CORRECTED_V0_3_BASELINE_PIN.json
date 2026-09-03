@@ -1,0 +1,125 @@
+{
+  "base_archive": {
+    "bytes": 22217713,
+    "filename": "TOM_World_Query_Kernel_0_3_0_Tom_Klootwijk.zip",
+    "inventory_root_sha256": "c906264198b69f664b3b362cddb780d7bef93eafd85cfe6b34c23301570f7ded",
+    "sha256": "a7103ec92596fd54198e4a902f078712cf8eafcdf1e45320bbdc02dd53947278",
+    "zip_crc": "pass",
+    "zip_entries": 10291
+  },
+  "corrected_interval_file": {
+    "path": "src/python/tom_world03/interval.py",
+    "rejected_untrusted_pre_correction_sha256": "d6bef5b9704a3e5444d86b76e73f6b90a51fdbbf624a6c4705ed0bc7cdef9d4b",
+    "sha256": "ea7b3ff2127e8ee7a696eb45e84ae9efdbca7c10c532617c51888fb13cd39f6d"
+  },
+  "critical_inherited_files": [
+    {
+      "bytes": 13761,
+      "path": "examples/world03/interval_event_world.json",
+      "sha256": "5075c7acc50ed5b84979c42bab63d559c7816d596796eae36b0a65a06ee11626"
+    },
+    {
+      "bytes": 16309,
+      "path": "spec/TOM_WORLD_QUERY_KERNEL_0_3.md",
+      "sha256": "c0e831d7cca21c57f9bdbd600129d1b9e73378433e333e6d909349d95f106015"
+    },
+    {
+      "bytes": 7525,
+      "path": "spec/tom_world_query_kernel_0_3.schema.json",
+      "sha256": "3604ee02dbe668b3cf9f3635f2dd3e6eb481e32298449545ad0e681050aebc9b"
+    },
+    {
+      "bytes": 700,
+      "path": "src/python/tom_world03/__init__.py",
+      "sha256": "1551492618a500f911c72a237e9078278724389a93a030ad30e7490fe3236950"
+    },
+    {
+      "bytes": 48,
+      "path": "src/python/tom_world03/__main__.py",
+      "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d"
+    },
+    {
+      "bytes": 4054,
+      "path": "src/python/tom_world03/baseline.py",
+      "sha256": "9e80d00ca7a6d8c84786a3e45a1c2906b8b6ea7f1289769bc56c42e0904684b0"
+    },
+    {
+      "bytes": 1093,
+      "path": "src/python/tom_world03/canonical.py",
+      "sha256": "024191768fbd7075afb73a52ae50e018ef14e8de59803c954c91bc11ca69ff6e"
+    },
+    {
+      "bytes": 4631,
+      "path": "src/python/tom_world03/cli.py",
+      "sha256": "7fe74da80ded050e7dcfe09adcbf4b2c43bf09ec4739af10a1e0173358d3b90a"
+    },
+    {
+      "bytes": 5132,
+      "path": "src/python/tom_world03/expression.py",
+      "sha256": "ebd90a7c3e1c6cb5285421d16359f623981ec128bb75bc6c3dd16511199b74b0"
+    },
+    {
+      "bytes": 4444,
+      "path": "src/python/tom_world03/interval.py",
+      "sha256": "ea7b3ff2127e8ee7a696eb45e84ae9efdbca7c10c532617c51888fb13cd39f6d"
+    },
+    {
+      "bytes": 828,
+      "path": "src/python/tom_world03/io.py",
+      "sha256": "6ce23b41a1177255b7f763f08043da2f4808c5482f23b43fd44e8058506f7e0d"
+    },
+    {
+      "bytes": 9943,
+      "path": "src/python/tom_world03/model.py",
+      "sha256": "133d026540a56e7a03ab91ab894bbd6c984012fb7ea92d0be8948571b0720e43"
+    },
+    {
+      "bytes": 4224,
+      "path": "src/python/tom_world03/rational.py",
+      "sha256": "91004ee7418a3ad33815039ffdd54d9032c2f9c6112e86b47ced5ef5c778b6c7"
+    },
+    {
+      "bytes": 11198,
+      "path": "src/python/tom_world03/solver.py",
+      "sha256": "90c2282030a03f625097730092f059797545f5eee6893890d52768e47eccc576"
+    },
+    {
+      "bytes": 4332,
+      "path": "src/python/tom_world03/transitions.py",
+      "sha256": "44bc89f0432a5ed309e8f36b7d8cc54961850ba1d1e9a4955a05f6382e9d0ec2"
+    },
+    {
+      "bytes": 15431,
+      "path": "tests/test_world03_interval_events.py",
+      "sha256": "42144c0407d01d47fe09c94a1f17ebd6f69a5636e90d4001de8b5c074d383506"
+    },
+    {
+      "bytes": 16168,
+      "path": "tools/build_world03_fixture.py",
+      "sha256": "c2936f13dd9bd07078f8b96218869d8923c04f26e6f5708a8939901b823b2377"
+    },
+    {
+      "bytes": 8862,
+      "path": "tools/build_world03_release_artifact.py",
+      "sha256": "ffd84437e42871feb8937a7ec0d096f922376a21355083889329050a1e5e6ad2"
+    },
+    {
+      "bytes": 14015,
+      "path": "tools/package_world03_release.py",
+      "sha256": "bd29fd29b49e158eabf0c4fd8e5b0e943d74556f74da4fb19cb8c56490373cbe"
+    },
+    {
+      "bytes": 19728,
+      "path": "tools/run_world03_validation.py",
+      "sha256": "b37c95b8bc73b4c300a8b28f04ae841d0e0e4754d07d0ff713f6ab36f801dc7c"
+    }
+  ],
+  "policy": {
+    "new_namespace": "tom_world04r",
+    "prior_v0_4_used_as_source": false,
+    "reason": "The previous 0.4 line inherited a non-byte-identical 0.3 interval implementation and is superseded.",
+    "version": "0.4.1"
+  },
+  "purpose": "Authoritative clean base for the rebuilt 0.4 line; no prior 0.4 bytes are accepted as upstream.",
+  "schema": "TOM-CORRECTED-V0.3-BASELINE-PIN-1.0"
+}

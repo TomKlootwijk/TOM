@@ -1,0 +1,1 @@
+{"content_hash":"sha256:9a0da37850db8ec7c114a16d9df8e220e6f4a134f1e31ee0f92aa4a928722400","id":"obs:dataset_clean_zero:001","provenance":{"dataset":"dataset:clean_zero","note":"affine observation 1","source":"literal TOM Learner 0.1 benchmark plan"},"schema":"TOM-EXACT-OBSERVATION-0.1","t":{"den":1,"num":1},"y":{"den":1,"num":0}}

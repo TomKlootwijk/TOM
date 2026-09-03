@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tom-world-query-kernel"
+version = "0.6.0"
+description = "Finite typed TOM learner families with ambiguity, regression impact, and repaired parent-bound promotion authority"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Tom Klootwijk", email = "requester-supplied attribution"}]
+dependencies = []
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: C",
+  "Operating System :: OS Independent"
+]
+
+[project.scripts]
+tomagi = "tomagi.cli:main"
+tom-world = "tom_world.cli:main"
+tom-world03 = "tom_world03.cli:main"
+tom-world04r = "tom_world04r.cli:main"
+tom-learner05 = "tom_learner05.cli:main"
+tom-learner052 = "tom_learner052.cli:main"
+tom-learner06 = "tom_learner06.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src/python"}
+
+[tool.setuptools.packages.find]
+where = ["src/python"]

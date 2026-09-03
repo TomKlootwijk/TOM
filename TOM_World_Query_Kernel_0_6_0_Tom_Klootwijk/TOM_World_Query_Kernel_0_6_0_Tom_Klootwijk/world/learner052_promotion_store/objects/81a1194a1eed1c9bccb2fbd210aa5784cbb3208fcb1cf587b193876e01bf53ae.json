@@ -1,0 +1,1 @@
+{"content_hash":"sha256:81a1194a1eed1c9bccb2fbd210aa5784cbb3208fcb1cf587b193876e01bf53ae","id":"obs:dataset_piecewise_change:019","provenance":{"dataset":"dataset:piecewise_change","note":"piecewise observation 19","source":"literal TOM Learner 0.1 benchmark plan"},"schema":"TOM-EXACT-OBSERVATION-0.1","t":{"den":1,"num":19},"y":{"den":1,"num":39}}

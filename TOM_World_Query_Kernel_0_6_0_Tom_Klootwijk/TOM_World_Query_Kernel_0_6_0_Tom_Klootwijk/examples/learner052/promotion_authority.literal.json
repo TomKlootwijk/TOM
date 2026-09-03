@@ -1,0 +1,1073 @@
+{
+  "$schema": "../../spec/tom_seeded_program.schema.json",
+  "budgets": {
+    "max_cells": 242749,
+    "max_definitions": 64,
+    "max_expression_depth": 256,
+    "max_expression_nodes": 3000000,
+    "max_output_bytes": 2000000,
+    "max_repeat": 1,
+    "max_sequence_items": 50000,
+    "max_string_bytes": 1000000
+  },
+  "compilation_profile": "TOM-SEEDED-COMPILATION-1.0",
+  "definitions": [
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:3fe862e60075e5d75b6aee675b22a2fd79db53d0126550909ac480169e296412",
+      "dependencies": [],
+      "domain": "none",
+      "id": "tom:seed",
+      "kind": "canonical-seed",
+      "limits": {},
+      "operation": {
+        "op": "seed.bytes"
+      },
+      "order": 0,
+      "parameters": {},
+      "phase": "parse",
+      "provenance": {
+        "date": "2026-09-02",
+        "source": "TOM WQK 0.5.2 transaction-authority literal graph"
+      },
+      "seed_tokens": [
+        "TOM1"
+      ]
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:4d1875edfaa1ccb7bb3c6649ac5c3c99426b341415c5187dca96ebcaea61f144",
+      "dependencies": [
+        "tom:seed"
+      ],
+      "domain": "bytes",
+      "id": "tom:tokens",
+      "kind": "seed-parse",
+      "limits": {},
+      "operation": {
+        "op": "seed.tokens"
+      },
+      "order": 1,
+      "parameters": {},
+      "phase": "parse",
+      "provenance": {
+        "date": "2026-09-02",
+        "source": "TOM WQK 0.5.2 transaction-authority literal graph"
+      },
+      "seed_tokens": [
+        "TopologicalOpenModular"
+      ]
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:31c4cc3371c88de3bd6412e08bd766413da1102cd10b3dec5d91ba07184daafa",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "formal:promotion-authority",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 0,
+      "parameters": {
+        "bytes": 49515,
+        "canonical_newline": true,
+        "path": "promotion_authority.formal.json",
+        "sha256": "sha256:e8ddb14f88b24d54a2d3da4e80d1d8e7c6e7853b4c8d32b734a15b5b1de9a3a9",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "authoritative parent-bound promotion/evidence transaction semantics",
+        "source": "promotion_authority.formal.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:b9328115f08eb374b626c6d17e9e8725bab34baece32a0b3d53b68b3b49009a2",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "formal:affine-authority",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 1,
+      "parameters": {
+        "bytes": 32538,
+        "canonical_newline": true,
+        "path": "authority_inputs/learner05_affine_authority.formal.json",
+        "sha256": "sha256:007a10013ca4d9aff4344736468ea6fab75efcfb03d6ca7a65ab7a3a4add194b",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "corrected authoritative affine learner semantics",
+        "source": "authority_inputs/learner05_affine_authority.formal.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:858bd2b036b84f2d39632c3495cefe4314e52f3e362f8219694c6a9b4593bb2d",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_clean_double",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 2,
+      "parameters": {
+        "bytes": 8405,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_clean_double.json",
+        "sha256": "sha256:0dc458c86db0fd79b7fd4422b55ea72404d2878627a038906b62b37ce87e7683",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_clean_double.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:d12047966ef7fb06c9c3717d418b828a82d256ccf0600ba3d028beb953121b00",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_clean_five",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 3,
+      "parameters": {
+        "bytes": 8324,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_clean_five.json",
+        "sha256": "sha256:e56a04650052f941b6d2073ab4d8ab55850daeed8b912cb646b3255a0250224e",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_clean_five.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:9f95508f7b9cffc58d3d6c8c0729d0d47f230f6bdbd46ae956aeef37837e7e3b",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_clean_half",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 4,
+      "parameters": {
+        "bytes": 8312,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_clean_half.json",
+        "sha256": "sha256:f9f10ade5030d47fadc78c3a06dc9b88a030acce650106dbfe2f85dbc4843a28",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_clean_half.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:aab45515486c0ec810f0bd96288b93e5e12f5ee14f2c01ebb290547ae168641e",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_clean_identity",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 5,
+      "parameters": {
+        "bytes": 8484,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_clean_identity.json",
+        "sha256": "sha256:92b27803597a803484deb3ef159111ed0d0a3e132ea5a6e1c85ebac0c088aa4d",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_clean_identity.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:07d8b97a0f26b775577069fb2c322b985f2e19069426d99b253f474a57c08b26",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_clean_neg_three_halves",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 6,
+      "parameters": {
+        "bytes": 8849,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_clean_neg_three_halves.json",
+        "sha256": "sha256:406110753e57cc77c366ce7fe858b0aa58339cd565587386e903b19c55fce327",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_clean_neg_three_halves.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:d978ca0f770536244ce058fdd840e9ea40e751b5c67d451c6c18151b39a0d23f",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_clean_negative",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 7,
+      "parameters": {
+        "bytes": 8497,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_clean_negative.json",
+        "sha256": "sha256:2844bd82642873764cc8ad4a870f0be14297bb813f4e84eb1d784b7717ea24cb",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_clean_negative.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:7e26f2b6ea6e8dc429b02b038f62ca18742bdbf2cfb24c98e14773b9971a0a10",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_clean_negative_four",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 8,
+      "parameters": {
+        "bytes": 8738,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_clean_negative_four.json",
+        "sha256": "sha256:dbda3d60544db8be2fb385bf1f14c6faf0c493c2af2c7ec1087bdda57955e837",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_clean_negative_four.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:6f3929d6b87fdc48d0b01554627562fc423b2ec723f58a05049dea198091732e",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_clean_negative_seven_sixths",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 9,
+      "parameters": {
+        "bytes": 9060,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_clean_negative_seven_sixths.json",
+        "sha256": "sha256:37ed30089735ab1ff354cc30a0a148969229df939fd00763d943661e3074281a",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_clean_negative_seven_sixths.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:8553347a50460706c56058fbc843a80028f5aedd8db1267e9504df1c17b4baa6",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_clean_nine_quarters",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 10,
+      "parameters": {
+        "bytes": 8728,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_clean_nine_quarters.json",
+        "sha256": "sha256:f7e1109daa3da1bd5d8e0467c7c4c17628b708fcba04c84c19d55d9139cbf980",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_clean_nine_quarters.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:6b49019925dfa2a46cc17ce1a317d0006504cd0b9d7eb9bc5600641260ce8252",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_clean_seven_thirds",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 11,
+      "parameters": {
+        "bytes": 8689,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_clean_seven_thirds.json",
+        "sha256": "sha256:ecddf69413a237d04de5b14ae58fb92a983a3107ae75428fb3a9922455dc9801",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_clean_seven_thirds.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:acbf88501aab8cbf70dec09fe5dbb98c9b392d52ea939fa24990035a3cc06ce4",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_clean_two_fifths",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 12,
+      "parameters": {
+        "bytes": 8576,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_clean_two_fifths.json",
+        "sha256": "sha256:baf1e28b25311642c338e382c7e0ff29d99f7eaf699f4638392007655a4a024e",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_clean_two_fifths.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:873881cf29edac573fbb39e297eec0bdb8acda5655cc16d07fe10f6dd35541d9",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_clean_zero",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 13,
+      "parameters": {
+        "bytes": 8306,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_clean_zero.json",
+        "sha256": "sha256:661c6c6c6e38cfb6c2361440cde1c8a341d5e1cefafc236e2ef6235b03e28cc1",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_clean_zero.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:20e61eb6cf1eaa97cfe67696c43a61674a1943bbf0c67758874241739a3ea8be",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_complexity_rejected",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 14,
+      "parameters": {
+        "bytes": 9150,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_complexity_rejected.json",
+        "sha256": "sha256:2d076d07858324f748da99bab2360698ea88a0fd9a5696cb8e2d4b10fdcfab66",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_complexity_rejected.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:09b14049703da9b99a797ab03d7209f176e2fd7386314a347bec50d441c8077e",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_contradictory_exact",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 15,
+      "parameters": {
+        "bytes": 9075,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_contradictory_exact.json",
+        "sha256": "sha256:2b24fc1c54c3164804b8cf52b1373705ffbfc6affb462fd849fa2e6ec6474946",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_contradictory_exact.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:d27d3f7d7a54228743345554cc69367664b0792baefb2d8ac0585b69862739dc",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_holdout_outlier",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 16,
+      "parameters": {
+        "bytes": 8614,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_holdout_outlier.json",
+        "sha256": "sha256:5175342340213140274ea6dfcdd2899130585a364bafde83d9ecc877de504716",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_holdout_outlier.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:93032fa229019444581c22db659dedea896f2c659067c9529ac1540e40b519a6",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_piecewise_change",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 17,
+      "parameters": {
+        "bytes": 8632,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_piecewise_change.json",
+        "sha256": "sha256:535dbd427961211ccfc113f2921b8d4482abfd21d04fbc7a0c4a5b9a878883ae",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_piecewise_change.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:05fa745e20528cd529244354ece3f4df71665effc6b5759702e73b738e519d21",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_train_outlier",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 18,
+      "parameters": {
+        "bytes": 8528,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_train_outlier.json",
+        "sha256": "sha256:6ec424ae15f6dcfe940e40c06fe24af8f16eae06b8f16a916910af037ac94059",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_train_outlier.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:71bf505f3b8f87e37b5862206cd0e9f508c2945f24d1b6ffa64d54c3546f9a3e",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_underdetermined_constant_input",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 19,
+      "parameters": {
+        "bytes": 4734,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_underdetermined_constant_input.json",
+        "sha256": "sha256:9d716ac7e5039e601e910705d2b22983be53c04a7edfbc3a452a4e864975c286",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_underdetermined_constant_input.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:2a5e0ed90d8a93caee94a7f12e781e853790e63d5532255babd751b3651c7579",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "dataset:dataset_validation_outlier",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 20,
+      "parameters": {
+        "bytes": 8743,
+        "canonical_newline": true,
+        "path": "authority_inputs/datasets/dataset_validation_outlier.json",
+        "sha256": "sha256:76b6cffa6e5cc3d02308e436b87782056be0f368e9587baf9e6f35fb75e2023d",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "literal content-addressed observation set",
+        "source": "authority_inputs/datasets/dataset_validation_outlier.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:86f0ad03152873680353d39e80b0cf3d738ba2c15074aa7950e190261344c53a",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "promotion:context",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 21,
+      "parameters": {
+        "bytes": 1954,
+        "canonical_newline": true,
+        "path": "promotion_context.json",
+        "sha256": "sha256:2533c31d49a0fd1753465621c9a45df31b777079398d4f853bd76607234b65f6",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "promotion profile, authority statement, and fixed source bindings",
+        "source": "promotion_context.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:6296d5cb6aa5519b15dde813606729815488809629e85d3071ad64a65abca4ac",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "correction:handoff",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 22,
+      "parameters": {
+        "bytes": 4477,
+        "canonical_newline": true,
+        "path": "authority_inputs/TOM_CORRECTIVE_HANDOFF_0_5_1.json",
+        "sha256": "sha256:eb8ec8bca28b8c78c115a2cc9352823d5e9e9e864d487b69207bf14bc36734b5",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "verified 0.5.1 corrective handoff",
+        "source": "authority_inputs/TOM_CORRECTIVE_HANDOFF_0_5_1.json"
+      }
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:8f03d97e63fea9870253834934169a4c836b0e97797b23c32e83ede15c913c3f",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "registry:tokens",
+      "kind": "literal-json-source",
+      "limits": {},
+      "operation": {
+        "op": "source.json"
+      },
+      "order": 23,
+      "parameters": {
+        "bytes": 676,
+        "canonical_newline": true,
+        "path": "authority_inputs/tom_seed_token_registry_1_0.json",
+        "sha256": "sha256:a1b3dbf5b77c2074be2c5b4cbbc4c7751a758c72ba88a22001188a2162617e4e",
+        "verify_content_hash": true
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "role": "canonical seed token registry",
+        "source": "authority_inputs/tom_seed_token_registry_1_0.json"
+      }
+    },
+    {
+      "codomain": "sequence",
+      "content_hash": "sha256:4173824db0f9fbe4a3a4e18a4fee4f4f4757f84f198829d9928a1edfa642430c",
+      "dependencies": [
+        "dataset:dataset_clean_double",
+        "dataset:dataset_clean_five",
+        "dataset:dataset_clean_half",
+        "dataset:dataset_clean_identity",
+        "dataset:dataset_clean_neg_three_halves",
+        "dataset:dataset_clean_negative",
+        "dataset:dataset_clean_negative_four",
+        "dataset:dataset_clean_negative_seven_sixths",
+        "dataset:dataset_clean_nine_quarters",
+        "dataset:dataset_clean_seven_thirds",
+        "dataset:dataset_clean_two_fifths",
+        "dataset:dataset_clean_zero",
+        "dataset:dataset_complexity_rejected",
+        "dataset:dataset_contradictory_exact",
+        "dataset:dataset_holdout_outlier",
+        "dataset:dataset_piecewise_change",
+        "dataset:dataset_train_outlier",
+        "dataset:dataset_underdetermined_constant_input",
+        "dataset:dataset_validation_outlier"
+      ],
+      "domain": "record-sequence",
+      "id": "datasets:ordered",
+      "kind": "record-sequence",
+      "limits": {},
+      "operation": {
+        "op": "sequence.construct"
+      },
+      "order": 24,
+      "parameters": {},
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "source": "TOM WQK 0.5.2 transaction-authority literal graph"
+      },
+      "seed_tokens": [
+        "Pi"
+      ]
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:9a7222ff825d2bdeaf3206bcd747185402b4b4150fe7a92c6642d22c6a91d8c6",
+      "dependencies": [
+        "formal:affine-authority",
+        "datasets:ordered"
+      ],
+      "domain": "formal-program-sequence",
+      "id": "learner:formal-result",
+      "kind": "formal-evaluation",
+      "limits": {},
+      "operation": {
+        "op": "formal.evaluate"
+      },
+      "order": 0,
+      "parameters": {
+        "input_name": "datasets"
+      },
+      "phase": "transform",
+      "provenance": {
+        "date": "2026-09-02",
+        "source": "TOM WQK 0.5.2 transaction-authority literal graph"
+      },
+      "seed_tokens": [
+        "guard",
+        "event"
+      ]
+    },
+    {
+      "codomain": "sequence",
+      "content_hash": "sha256:574e0c43d5fa57367aece778a960e2175717eb43c845fecaf7531cfbd1455bd4",
+      "dependencies": [
+        "formal:promotion-authority",
+        "formal:affine-authority",
+        "learner:formal-result",
+        "dataset:dataset_clean_double",
+        "dataset:dataset_clean_five",
+        "dataset:dataset_clean_half",
+        "dataset:dataset_clean_identity",
+        "dataset:dataset_clean_neg_three_halves",
+        "dataset:dataset_clean_negative",
+        "dataset:dataset_clean_negative_four",
+        "dataset:dataset_clean_negative_seven_sixths",
+        "dataset:dataset_clean_nine_quarters",
+        "dataset:dataset_clean_seven_thirds",
+        "dataset:dataset_clean_two_fifths",
+        "dataset:dataset_clean_zero",
+        "dataset:dataset_complexity_rejected",
+        "dataset:dataset_contradictory_exact",
+        "dataset:dataset_holdout_outlier",
+        "dataset:dataset_piecewise_change",
+        "dataset:dataset_train_outlier",
+        "dataset:dataset_underdetermined_constant_input",
+        "dataset:dataset_validation_outlier",
+        "promotion:context",
+        "correction:handoff",
+        "registry:tokens"
+      ],
+      "domain": "record-sequence",
+      "id": "promotion:inputs",
+      "kind": "record-sequence",
+      "limits": {},
+      "operation": {
+        "op": "sequence.construct"
+      },
+      "order": 1,
+      "parameters": {},
+      "phase": "transform",
+      "provenance": {
+        "date": "2026-09-02",
+        "source": "TOM WQK 0.5.2 transaction-authority literal graph"
+      },
+      "seed_tokens": [
+        "transition"
+      ]
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:0d1432459626e2314a4af1b7d52c26bca067b52bd05507ed223aeccefb10585f",
+      "dependencies": [
+        "formal:promotion-authority",
+        "promotion:inputs"
+      ],
+      "domain": "formal-program-sequence",
+      "id": "promotion:formal-result",
+      "kind": "formal-evaluation",
+      "limits": {},
+      "operation": {
+        "op": "formal.evaluate"
+      },
+      "order": 0,
+      "parameters": {
+        "input_name": "promotion_inputs"
+      },
+      "phase": "transition",
+      "provenance": {
+        "date": "2026-09-02",
+        "source": "TOM WQK 0.5.2 transaction-authority literal graph"
+      },
+      "seed_tokens": [
+        "transition",
+        "lineage"
+      ]
+    },
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:22aff8cd2a7f4ecac07555203a1304d98d2c0192158d1bb0b0dd270159f8f117",
+      "dependencies": [
+        "promotion:formal-result"
+      ],
+      "domain": "record",
+      "id": "promotion:bytes",
+      "kind": "canonical-encoding",
+      "limits": {},
+      "operation": {
+        "op": "canonical.encode"
+      },
+      "order": 0,
+      "parameters": {
+        "terminal_newline": true
+      },
+      "phase": "lineage",
+      "provenance": {
+        "date": "2026-09-02",
+        "source": "TOM WQK 0.5.2 transaction-authority literal graph"
+      },
+      "seed_tokens": [
+        "lineage"
+      ]
+    },
+    {
+      "codomain": "string",
+      "content_hash": "sha256:3d5875fb450a28f463850bed8442cc84f13b56648a8ee4d4fc98cc016eb26f06",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "promotion:expected-sha",
+      "kind": "literal-formal-output-hash",
+      "limits": {},
+      "operation": {
+        "op": "literal"
+      },
+      "order": 1,
+      "parameters": {
+        "result_type": "string",
+        "value": "sha256:2d6bc5b206545042e13faa5e9b4d9a0ec6b0ccf4929755c01025746b8ab4523c"
+      },
+      "phase": "lineage",
+      "provenance": {
+        "date": "2026-09-02",
+        "source": "TOM WQK 0.5.2 transaction-authority literal graph"
+      }
+    },
+    {
+      "codomain": "string",
+      "content_hash": "sha256:be7e8852c8b33c88d912c82e7304cca637b3998bbb1abb41032443a83ea940f9",
+      "dependencies": [
+        "promotion:bytes"
+      ],
+      "domain": "bytes",
+      "id": "promotion:actual-sha",
+      "kind": "computed-hash",
+      "limits": {},
+      "operation": {
+        "op": "hash.sha256"
+      },
+      "order": 2,
+      "parameters": {
+        "prefix": true
+      },
+      "phase": "lineage",
+      "provenance": {
+        "date": "2026-09-02",
+        "source": "TOM WQK 0.5.2 transaction-authority literal graph"
+      }
+    },
+    {
+      "codomain": "bool",
+      "content_hash": "sha256:d04f97697d9154f35e3cf6c8a1146e410e92faf51345f6a9c60a77a1beac6908",
+      "dependencies": [
+        "promotion:actual-sha",
+        "promotion:expected-sha"
+      ],
+      "domain": "hash-pair",
+      "id": "promotion:hash-guard",
+      "kind": "hash-guard",
+      "limits": {},
+      "operation": {
+        "op": "assert.equal"
+      },
+      "order": 3,
+      "parameters": {},
+      "phase": "lineage",
+      "provenance": {
+        "date": "2026-09-02",
+        "source": "TOM WQK 0.5.2 transaction-authority literal graph"
+      }
+    },
+    {
+      "codomain": "state64",
+      "content_hash": "sha256:2e1b2c6a5c7bda38da59188770842250d7a6a003c5770326af70d73d9782e2ea",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "promotion:state",
+      "kind": "initial-state",
+      "limits": {},
+      "operation": {
+        "op": "state64.construct"
+      },
+      "order": 25,
+      "parameters": {
+        "fields": {
+          "lineage": "0x4c303532"
+        }
+      },
+      "phase": "construct",
+      "provenance": {
+        "date": "2026-09-02",
+        "source": "TOM WQK 0.5.2 transaction-authority literal graph"
+      }
+    },
+    {
+      "codomain": "cell_graph",
+      "content_hash": "sha256:1f4e92b24da849e2e2b2a0525b18ceaa6c12e40703f31752834a659d54d008dc",
+      "dependencies": [
+        "promotion:bytes"
+      ],
+      "domain": "bytes",
+      "id": "promotion:emit",
+      "kind": "byte-emission",
+      "limits": {},
+      "operation": {
+        "op": "emit.graph"
+      },
+      "order": 4,
+      "parameters": {
+        "aux_base": "0x52000000",
+        "byte_order": "little",
+        "chunk_bytes": 4,
+        "halt_last": true,
+        "id_prefix": "cell:learner052-promotion",
+        "key_base": {
+          "phi": 0,
+          "rho": 700000,
+          "theta": 0,
+          "tick": 0
+        },
+        "key_field": "rho"
+      },
+      "phase": "lineage",
+      "provenance": {
+        "date": "2026-09-02",
+        "source": "TOM WQK 0.5.2 transaction-authority literal graph"
+      }
+    },
+    {
+      "codomain": "program",
+      "content_hash": "sha256:87b7c2475595891634cb44804671d98fb1284ea7a1bed05171572a25d0a826ae",
+      "dependencies": [
+        "promotion:state",
+        "promotion:emit",
+        "promotion:hash-guard"
+      ],
+      "domain": "state-graph-guard",
+      "id": "program:learner052-promotion",
+      "kind": "artifact-program",
+      "limits": {},
+      "operation": {
+        "op": "program.construct"
+      },
+      "order": 5,
+      "parameters": {
+        "default_ticks": 242749,
+        "emit_bytes": true,
+        "entry": "cell:learner052-promotion:000000",
+        "flags": 0,
+        "seed": "0x4c303532"
+      },
+      "phase": "lineage",
+      "provenance": {
+        "date": "2026-09-02",
+        "source": "TOM WQK 0.5.2 transaction-authority literal graph"
+      }
+    }
+  ],
+  "root_definition": "program:learner052-promotion",
+  "seed_genome": {
+    "bytes": 244,
+    "grammar_id": "TOM-SEED-GRAMMAR-1.0",
+    "path": "../../TOM_seed_genome_2026-09-01.txt",
+    "sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+    "token_registry": "../../spec/tom_seed_token_registry_1_0.json"
+  },
+  "title": "TOM Learner 0.1 promotion and evidence transaction authority 0.5.2",
+  "tomagi_version": "1.0.0"
+}

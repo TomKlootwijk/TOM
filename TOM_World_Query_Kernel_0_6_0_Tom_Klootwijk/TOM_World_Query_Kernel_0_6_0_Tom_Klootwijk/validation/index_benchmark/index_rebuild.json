@@ -1,0 +1,10 @@
+{
+  "byte_equal_to_declared_hash": true,
+  "commit": "sha256:fa344aa5eb61ac287105c24247d826d603b09de7b12a6966ee6c7812dac047ed",
+  "content_hash": "sha256:b5d1d049f32099d75692823d56ec6b248c67aff5bd2bbad33d9003f19c1aa4b6",
+  "indexes_hash": "sha256:0c5929eebede3b860bcad305c11692a101f4cbc472bbfaecbc6a181135d24d34",
+  "record_count": 10000,
+  "schema": "TOM-INDEX-REBUILD-CERTIFICATE-0.2",
+  "snapshot_hash": "sha256:3f2f3cc5751d8c4e68954026146c83973d3e7cf3ca1844e309144de43467a7ec",
+  "written": true
+}

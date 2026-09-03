@@ -1,0 +1,273 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/tom/tom-world-piecewise-continuation-0.4.1.schema.json",
+  "title": "TOM World & Query Kernel 0.4.1 Corrective Piecewise Continuation World",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "profile", "seed_sha256", "corrected_v03_baseline", "horizon",
+    "initial_segment", "supports", "compatibilities", "relations", "interval_index",
+    "solver", "persistence", "provenance", "content_hash"
+  ],
+  "properties": {
+    "schema": {"const": "TOM-WORLD-PIECEWISE-CONTINUATION-0.4.1"},
+    "profile": {"const": "TOM-WORLD-QUERY-KERNEL-0.4-REBUILT"},
+    "seed_sha256": {"const": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"},
+    "corrected_v03_baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["archive_sha256", "interval_py_sha256", "rejected_precorrection_interval_sha256"],
+      "properties": {
+        "archive_sha256": {"const": "a7103ec92596fd54198e4a902f078712cf8eafcdf1e45320bbdc02dd53947278"},
+        "interval_py_sha256": {"const": "ea7b3ff2127e8ee7a696eb45e84ae9efdbca7c10c532617c51888fb13cd39f6d"},
+        "rejected_precorrection_interval_sha256": {"const": "d6bef5b9704a3e5444d86b76e73f6b90a51fdbbf624a6c4705ed0bc7cdef9d4b"}
+      }
+    },
+    "horizon": {"$ref": "#/$defs/interval"},
+    "initial_segment": {"$ref": "#/$defs/openSegment"},
+    "supports": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": {"$ref": "#/$defs/support"}
+    },
+    "compatibilities": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": {"$ref": "#/$defs/compatibility"}
+    },
+    "relations": {
+      "type": "array", "minItems": 1, "maxItems": 262144,
+      "items": {"$ref": "#/$defs/relation"}
+    },
+    "interval_index": {"$ref": "#/$defs/index"},
+    "solver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "arithmetic", "event_time_policy", "fire_policy", "refine_steps",
+        "max_refine_steps", "max_event_sets", "profile_max_event_sets"
+      ],
+      "properties": {
+        "arithmetic": {"const": "corrected 0.3 exact reduced rationals and closed intervals"},
+        "event_time_policy": {"const": "isolated exact affine roots only"},
+        "fire_policy": {"const": "once"},
+        "refine_steps": {"type": "integer", "minimum": 0, "maximum": 128},
+        "max_refine_steps": {"const": 128},
+        "max_event_sets": {"type": "integer", "minimum": 0, "maximum": 1024},
+        "profile_max_event_sets": {"const": 1024}
+      }
+    },
+    "persistence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["journal", "mutable_paths", "finalization"],
+      "properties": {
+        "journal": {"const": "append-only content-addressed event continuation"},
+        "mutable_paths": {"const": ["HEAD"]},
+        "finalization": {"const": "explicit horizon seal after no later event"}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["base_archive_sha256", "prior_v0_4_used_as_source", "implementation_namespace"],
+      "properties": {
+        "base_archive_sha256": {"const": "a7103ec92596fd54198e4a902f078712cf8eafcdf1e45320bbdc02dd53947278"},
+        "prior_v0_4_used_as_source": {"const": false},
+        "implementation_namespace": {"const": "tom_world04r"}
+      }
+    },
+    "content_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "rational": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["num", "den"],
+      "properties": {
+        "num": {"type": "integer"},
+        "den": {"type": "integer", "minimum": 1}
+      }
+    },
+    "interval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lower", "upper"],
+      "properties": {
+        "lower": {"$ref": "#/$defs/rational"},
+        "upper": {"$ref": "#/$defs/rational"}
+      }
+    },
+    "qmap": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"$ref": "#/$defs/rational"},
+      "propertyNames": {"minLength": 1}
+    },
+    "openSegment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "kind", "sequence", "domain", "start_state", "rates",
+        "fired_relations", "parent_segment_hash", "source_event_set_hash",
+        "source_transition_hash", "provenance", "content_hash"
+      ],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"const": "piecewise-affine-open-segment"},
+        "sequence": {"const": 0},
+        "domain": {"$ref": "#/$defs/interval"},
+        "start_state": {"$ref": "#/$defs/qmap"},
+        "rates": {"$ref": "#/$defs/qmap"},
+        "fired_relations": {"const": []},
+        "parent_segment_hash": {"type": "null"},
+        "source_event_set_hash": {"type": "null"},
+        "source_transition_hash": {"type": "null"},
+        "provenance": {"type": "object"},
+        "content_hash": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "support": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "bounds", "meaning", "content_hash"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"const": "interval-support"},
+        "bounds": {
+          "type": "object", "minProperties": 1,
+          "additionalProperties": {"$ref": "#/$defs/interval"}
+        },
+        "meaning": {"type": "string", "minLength": 1},
+        "content_hash": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "equals", "meaning", "content_hash"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"const": "field-equality-compatibility"},
+        "equals": {"$ref": "#/$defs/qmap"},
+        "meaning": {"type": "string", "minLength": 1},
+        "content_hash": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "expression": {
+      "oneOf": [
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["op", "value"],
+          "properties": {"op": {"const": "const"}, "value": {"$ref": "#/$defs/rational"}}
+        },
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["op"],
+          "properties": {"op": {"const": "time"}}
+        },
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["op", "name"],
+          "properties": {"op": {"const": "field"}, "name": {"type": "string", "minLength": 1}}
+        },
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["op", "arg"],
+          "properties": {"op": {"const": "neg"}, "arg": {"$ref": "#/$defs/expression"}}
+        },
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["op", "args"],
+          "properties": {
+            "op": {"enum": ["add", "sub", "mul"]},
+            "args": {
+              "type": "array", "minItems": 2, "maxItems": 2,
+              "prefixItems": [{"$ref": "#/$defs/expression"}, {"$ref": "#/$defs/expression"}],
+              "items": false
+            }
+          }
+        }
+      ]
+    },
+    "transitionOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field", "mode", "value"],
+      "properties": {
+        "field": {"type": "string", "minLength": 1},
+        "mode": {"enum": ["set", "add", "xor"]},
+        "value": {"$ref": "#/$defs/rational"}
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "kind", "relation_interface", "domain", "codomain", "zero_locus",
+        "priority", "expression", "support_id", "compatibility_id", "active_time",
+        "event_id", "fire_policy", "transition", "rate_transition", "provenance", "content_hash"
+      ],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"const": "piecewise-continuation-relation"},
+        "relation_interface": {"const": "SDF0@Def"},
+        "domain": {"const": "piecewise-affine-open-segment"},
+        "codomain": {"const": "exact-rational-residual"},
+        "zero_locus": {"type": "string", "minLength": 1},
+        "priority": {"type": "integer"},
+        "expression": {"$ref": "#/$defs/expression"},
+        "support_id": {"type": "string", "minLength": 1},
+        "compatibility_id": {"type": "string", "minLength": 1},
+        "active_time": {"$ref": "#/$defs/interval"},
+        "event_id": {"type": "string", "minLength": 1},
+        "fire_policy": {"const": "once"},
+        "transition": {"type": "array", "items": {"$ref": "#/$defs/transitionOp"}},
+        "rate_transition": {"type": "array", "items": {"$ref": "#/$defs/transitionOp"}},
+        "provenance": {"type": "object"},
+        "content_hash": {"$ref": "#/$defs/hash"}
+      },
+      "not": {"required": ["continuation_until"]}
+    },
+    "indexEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lower", "upper", "relation_id", "relation_hash", "support_id", "compatibility_id", "fire_policy"],
+      "properties": {
+        "lower": {"$ref": "#/$defs/rational"},
+        "upper": {"$ref": "#/$defs/rational"},
+        "relation_id": {"type": "string", "minLength": 1},
+        "relation_hash": {"$ref": "#/$defs/hash"},
+        "support_id": {"type": "string", "minLength": 1},
+        "compatibility_id": {"type": "string", "minLength": 1},
+        "fire_policy": {"const": "once"}
+      }
+    },
+    "postings": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true
+      }
+    },
+    "index": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema", "version", "seed_sha256", "relation_count", "relation_set_hash",
+        "algorithm", "ordering", "entries", "by_support", "by_compatibility", "content_hash"
+      ],
+      "properties": {
+        "schema": {"const": "TOM-RELATION-INTERVAL-INDEX-0.4.1"},
+        "version": {"const": "0.4.1"},
+        "seed_sha256": {"const": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"},
+        "relation_count": {"type": "integer", "minimum": 1, "maximum": 262144},
+        "relation_set_hash": {"$ref": "#/$defs/hash"},
+        "algorithm": {"type": "string", "minLength": 1},
+        "ordering": {"const": ["active_lower", "active_upper", "relation_id", "relation_hash"]},
+        "entries": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/indexEntry"}},
+        "by_support": {"$ref": "#/$defs/postings"},
+        "by_compatibility": {"$ref": "#/$defs/postings"},
+        "content_hash": {"$ref": "#/$defs/hash"}
+      }
+    }
+  }
+}

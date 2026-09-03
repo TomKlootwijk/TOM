@@ -1,0 +1,1 @@
+{"content_hash":"sha256:0472999bd44e7d4caeaf0ec6d3b83d1c601f547e1dc156e43d61bdaaaece7bbc","id":"obs:dataset_train_outlier:004","provenance":{"dataset":"dataset:train_outlier","note":"affine observation 4","source":"literal TOM Learner 0.1 benchmark plan"},"schema":"TOM-EXACT-OBSERVATION-0.1","t":{"den":1,"num":4},"y":{"den":1,"num":9}}

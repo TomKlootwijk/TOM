@@ -1,0 +1,68 @@
+{
+  "$id": "https://tom.invalid/schema/tom-world-record-0.1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "content_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "dependencies": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "id": {
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+\\-]*$",
+      "type": "string"
+    },
+    "payload": {
+      "type": "object"
+    },
+    "provenance": {
+      "type": "object"
+    },
+    "record_type": {
+      "enum": [
+        "definition",
+        "instance",
+        "relation",
+        "support",
+        "compatibility",
+        "transition",
+        "event_spec",
+        "grammar",
+        "observation",
+        "hypothesis",
+        "goal",
+        "policy",
+        "event",
+        "lineage",
+        "checkpoint"
+      ]
+    },
+    "schema": {
+      "const": "TOM-WORLD-RECORD-0.1"
+    },
+    "version": {
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema",
+    "record_type",
+    "id",
+    "version",
+    "dependencies",
+    "payload",
+    "provenance",
+    "content_hash"
+  ],
+  "title": "TOM World & Query Kernel 0.2 content-addressed record (0.1-compatible envelope)",
+  "type": "object"
+}

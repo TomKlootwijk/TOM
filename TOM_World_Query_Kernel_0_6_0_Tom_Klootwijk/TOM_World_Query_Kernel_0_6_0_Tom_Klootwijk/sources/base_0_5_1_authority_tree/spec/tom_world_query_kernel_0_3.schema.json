@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/tom/tom-world-query-kernel-0.3.schema.json",
+  "title": "TOM World & Query Kernel 0.3 interval-event world",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "profile", "seed_sha256", "trajectory", "supports",
+    "compatibilities", "relations", "solver", "provenance", "content_hash"
+  ],
+  "properties": {
+    "schema": {"const": "TOM-WORLD-INTERVAL-EVENTS-0.3"},
+    "profile": {"const": "TOM-WORLD-QUERY-KERNEL-0.3"},
+    "seed_sha256": {
+      "const": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5"
+    },
+    "trajectory": {"$ref": "#/$defs/trajectory"},
+    "supports": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/support"}
+    },
+    "compatibilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/compatibility"}
+    },
+    "relations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/relation"}
+    },
+    "solver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "arithmetic", "continuity_operations", "refine_steps",
+        "max_refine_steps", "simultaneity", "event_order"
+      ],
+      "properties": {
+        "arithmetic": {"type": "string", "minLength": 1},
+        "continuity_operations": {
+          "type": "array",
+          "items": {"enum": ["const", "field", "time", "neg", "add", "sub", "mul"]},
+          "uniqueItems": true
+        },
+        "refine_steps": {"type": "integer", "minimum": 0, "maximum": 128},
+        "max_refine_steps": {"const": 128},
+        "simultaneity": {"type": "string", "minLength": 1},
+        "event_order": {
+          "const": ["root_time", "priority", "relation_id", "event_id", "relation_hash"]
+        }
+      }
+    },
+    "provenance": {"type": "object"},
+    "content_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "rational": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["num", "den"],
+      "properties": {
+        "num": {"type": "integer"},
+        "den": {"type": "integer", "minimum": 1}
+      }
+    },
+    "interval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lower", "upper"],
+      "properties": {
+        "lower": {"$ref": "#/$defs/rational"},
+        "upper": {"$ref": "#/$defs/rational"}
+      }
+    },
+    "field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["initial", "rate"],
+      "properties": {
+        "initial": {"$ref": "#/$defs/rational"},
+        "rate": {"$ref": "#/$defs/rational"}
+      }
+    },
+    "trajectory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "kind", "domain", "fields", "source_program", "interpolation",
+        "provenance", "content_hash"
+      ],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"const": "affine-rational-trajectory"},
+        "domain": {"$ref": "#/$defs/interval"},
+        "fields": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {"$ref": "#/$defs/field"}
+        },
+        "source_program": {"type": "string", "minLength": 1},
+        "interpolation": {"type": "string", "minLength": 1},
+        "provenance": {"type": "object"},
+        "content_hash": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "support": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "bounds", "meaning", "content_hash"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"const": "interval-support"},
+        "bounds": {
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/interval"}
+        },
+        "meaning": {"type": "string", "minLength": 1},
+        "content_hash": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "equals", "meaning", "content_hash"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"const": "field-equality-compatibility"},
+        "equals": {
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/rational"}
+        },
+        "meaning": {"type": "string", "minLength": 1},
+        "content_hash": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "expression": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["op", "value"],
+          "properties": {
+            "op": {"const": "const"},
+            "value": {"$ref": "#/$defs/rational"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["op", "name"],
+          "properties": {
+            "op": {"const": "field"},
+            "name": {"type": "string", "minLength": 1}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["op"],
+          "properties": {"op": {"const": "time"}}
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["op", "value"],
+          "properties": {
+            "op": {"const": "neg"},
+            "value": {"$ref": "#/$defs/expression"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["op", "args"],
+          "properties": {
+            "op": {"enum": ["add", "sub", "mul"]},
+            "args": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {"$ref": "#/$defs/expression"}
+            }
+          }
+        }
+      ]
+    },
+    "transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field", "mode", "value"],
+      "properties": {
+        "field": {"type": "string", "minLength": 1},
+        "mode": {"enum": ["set", "add", "xor"]},
+        "value": {"$ref": "#/$defs/rational"}
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "kind", "relation_interface", "domain", "codomain", "zero_locus",
+        "priority", "expression", "support_id", "compatibility_id", "active_time",
+        "event_id", "transition", "provenance", "content_hash"
+      ],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"const": "continuous-zero-relation"},
+        "relation_interface": {"const": "SDF0@Def"},
+        "domain": {"const": "affine-rational-trajectory"},
+        "codomain": {"const": "exact-rational-residual"},
+        "zero_locus": {"type": "string", "minLength": 1},
+        "priority": {"type": "integer"},
+        "expression": {"$ref": "#/$defs/expression"},
+        "support_id": {"type": "string", "minLength": 1},
+        "compatibility_id": {"type": "string", "minLength": 1},
+        "active_time": {"$ref": "#/$defs/interval"},
+        "event_id": {"type": "string", "minLength": 1},
+        "transition": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/transition"}
+        },
+        "provenance": {"type": "object"},
+        "content_hash": {"$ref": "#/$defs/hash"}
+      }
+    }
+  }
+}

@@ -1,0 +1,132 @@
+$ /usr/bin/python3 tools/build_world03_fixture.py
+{
+  "certified_crossing": {
+    "exact_root": {
+      "den": 2,
+      "num": 5
+    },
+    "hash": "sha256:165524ee57389989cebf5fb80a745072790b6194f50e4a45a11f14dd42f0d176",
+    "status": "accepted-exact-root",
+    "unique": true
+  },
+  "conflict_rejection": true,
+  "content_hash": "sha256:2a06dc4967fec74d1160381dab9985fe7ea1e74408d4d74327b7efe262cbd6f6",
+  "next_event_set": {
+    "event_count": 3,
+    "event_order": [
+      "event:time-five-halves:set-output",
+      "event:triple-x:add-two",
+      "event:x-five:add-one"
+    ],
+    "event_time": {
+      "den": 2,
+      "num": 5
+    },
+    "hash": "sha256:b4c0df35417e6331aa8526b81fa0f0e05043aa065f9091212f47c0108a4b3b3b"
+  },
+  "python_c_tomagi_trace_equal": true,
+  "release": "0.3.0",
+  "schema": "TOM-WORLD-QUERY-KERNEL-0.3-FIXTURE-REPORT",
+  "simultaneous_transition": {
+    "counter": {
+      "den": 1,
+      "num": 3
+    },
+    "hash": "sha256:001906ca840abe9076ee0bde22caf826b3663681af879967de1c20a940b546ca",
+    "output": {
+      "den": 1,
+      "num": 25
+    }
+  },
+  "tomagi_integer_anchor_equal": true,
+  "trusted_baseline_equal": true,
+  "world": {
+    "bytes": 13761,
+    "content_hash": "sha256:14364a9736bf32217648dc294098cecb44510944f6e5ec02045193871576657e",
+    "path": "examples/world03/interval_event_world.json",
+    "relations": 7,
+    "sha256": "sha256:5075c7acc50ed5b84979c42bab63d559c7816d596796eae36b0a65a06ee11626"
+  }
+}
+
+
+$ /usr/bin/python3 tools/build_world03_release_artifact.py
+{
+  "artifact": {
+    "bytes": 3461,
+    "matches_authored_document": true,
+    "path": "validation/world03/TOM_WORLD_QUERY_KERNEL_0_3_RELEASE.materialized.md",
+    "sha256": "sha256:3849188eddecbb9904a9059680bbf0752a0ee27805b551984cb8391e68e805a0"
+  },
+  "compile_sidecar": {
+    "bytes": 253862,
+    "path": "examples/world03/world03_release_artifact.tmg.compile.json",
+    "sha256": "sha256:4c707fecb0f5043ff9695c6da1295face6de099f331837e3b433b3d26952f219"
+  },
+  "execution": {
+    "emit_records": 866,
+    "python_c_emit_sequence_equal": true,
+    "python_c_full_trace_equal": true,
+    "steps": 866
+  },
+  "literal_source": {
+    "bytes": 11883,
+    "path": "examples/world03/world03_release_artifact.literal.json",
+    "sha256": "sha256:5714ad00e296e46b8a7113259382b55cb566843458ccf9eef91627a29b560e2c"
+  },
+  "program": {
+    "bytes": 41696,
+    "cells": 866,
+    "path": "examples/world03/world03_release_artifact.tmg",
+    "sha256": "sha256:8ccb42637c304c446949652dae58106e50ede227b92733e37b16fcac8c23f21b"
+  },
+  "schema": "TOM-WORLD-QUERY-KERNEL-0.3-RELEASE-ARTIFACT-PROOF",
+  "status": "pass"
+}
+
+
+$ /usr/bin/python3 -m unittest tests.test_world03_interval_events -v
+test_canonical_seed_is_still_exact (tests.test_world03_interval_events.BaselineAndIntegrationTests.test_canonical_seed_is_still_exact) ... ok
+test_cli_next_event_set (tests.test_world03_interval_events.BaselineAndIntegrationTests.test_cli_next_event_set) ... ok
+test_fixture_report_is_passing (tests.test_world03_interval_events.BaselineAndIntegrationTests.test_fixture_report_is_passing) ... ok
+test_independent_baseline_matches_solver (tests.test_world03_interval_events.BaselineAndIntegrationTests.test_independent_baseline_matches_solver) ... ok
+test_schema_when_jsonschema_is_available (tests.test_world03_interval_events.BaselineAndIntegrationTests.test_schema_when_jsonschema_is_available) ... ok
+test_tomagi_abi_unchanged (tests.test_world03_interval_events.BaselineAndIntegrationTests.test_tomagi_abi_unchanged) ... ok
+test_tomagi_integer_anchor_comparison (tests.test_world03_interval_events.BaselineAndIntegrationTests.test_tomagi_integer_anchor_comparison) ... ok
+test_world_hash_tamper_rejected (tests.test_world03_interval_events.BaselineAndIntegrationTests.test_world_hash_tamper_rejected) ... ok
+test_certificate_is_deterministic (tests.test_world03_interval_events.CrossingTests.test_certificate_is_deterministic) ... ok
+test_certified_exact_affine_crossing (tests.test_world03_interval_events.CrossingTests.test_certified_exact_affine_crossing) ... ok
+test_incompatible_is_rejected (tests.test_world03_interval_events.CrossingTests.test_incompatible_is_rejected) ... ok
+test_nonlinear_sign_change_and_exact_bisection (tests.test_world03_interval_events.CrossingTests.test_nonlinear_sign_change_and_exact_bisection) ... ok
+test_outside_active_time_is_rejected (tests.test_world03_interval_events.CrossingTests.test_outside_active_time_is_rejected) ... ok
+test_outside_support_is_rejected (tests.test_world03_interval_events.CrossingTests.test_outside_support_is_rejected) ... ok
+test_refinement_budget_rejected (tests.test_world03_interval_events.CrossingTests.test_refinement_budget_rejected) ... ok
+test_same_sign_has_no_certified_crossing (tests.test_world03_interval_events.CrossingTests.test_same_sign_has_no_certified_crossing) ... ok
+test_events_are_deduplicated_at_integer_boundaries (tests.test_world03_interval_events.EventSetTests.test_events_are_deduplicated_at_integer_boundaries) ... ok
+test_events_certificate_order (tests.test_world03_interval_events.EventSetTests.test_events_certificate_order) ... ok
+test_include_after_semantics (tests.test_world03_interval_events.EventSetTests.test_include_after_semantics) ... ok
+test_no_event_result (tests.test_world03_interval_events.EventSetTests.test_no_event_result) ... ok
+test_simultaneous_set_and_order (tests.test_world03_interval_events.EventSetTests.test_simultaneous_set_and_order) ... ok
+test_affine_coefficients (tests.test_world03_interval_events.ExpressionTests.test_affine_coefficients) ... ok
+test_affine_trajectory_state (tests.test_world03_interval_events.ExpressionTests.test_affine_trajectory_state) ... ok
+test_nonlinear_expression_is_not_affine (tests.test_world03_interval_events.ExpressionTests.test_nonlinear_expression_is_not_affine) ... ok
+test_point_and_dual_interval (tests.test_world03_interval_events.ExpressionTests.test_point_and_dual_interval) ... ok
+test_exact_arithmetic (tests.test_world03_interval_events.IntervalTests.test_exact_arithmetic) ... ok
+test_intersection_and_subset (tests.test_world03_interval_events.IntervalTests.test_intersection_and_subset) ... ok
+test_inverted_interval_rejected (tests.test_world03_interval_events.IntervalTests.test_inverted_interval_rejected) ... ok
+test_reciprocal_and_division (tests.test_world03_interval_events.IntervalTests.test_reciprocal_and_division) ... ok
+test_sign_classes (tests.test_world03_interval_events.IntervalTests.test_sign_classes) ... ok
+test_arithmetic (tests.test_world03_interval_events.RationalTests.test_arithmetic) ... ok
+test_floor_ceil_negative (tests.test_world03_interval_events.RationalTests.test_floor_ceil_negative) ... ok
+test_normalization (tests.test_world03_interval_events.RationalTests.test_normalization) ... ok
+test_text_and_record_roundtrip (tests.test_world03_interval_events.RationalTests.test_text_and_record_roundtrip) ... ok
+test_zero_denominator_rejected (tests.test_world03_interval_events.RationalTests.test_zero_denominator_rejected) ... ok
+test_equal_sets_and_adds_merge (tests.test_world03_interval_events.TransitionTests.test_equal_sets_and_adds_merge) ... ok
+test_mixed_mode_conflict (tests.test_world03_interval_events.TransitionTests.test_mixed_mode_conflict) ... ok
+test_simultaneous_transition_merge (tests.test_world03_interval_events.TransitionTests.test_simultaneous_transition_merge) ... ok
+test_unequal_set_conflict (tests.test_world03_interval_events.TransitionTests.test_unequal_set_conflict) ... ok
+
+----------------------------------------------------------------------
+Ran 39 tests in 0.368s
+
+OK

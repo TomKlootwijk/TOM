@@ -1,0 +1,154 @@
+--- C BUILD ---
+
+--- FIXTURE ---
+{
+  "base_archive_sha256": "a7103ec92596fd54198e4a902f078712cf8eafcdf1e45320bbdc02dd53947278",
+  "content_hash": "sha256:71c27e8d4e62be662ea4586957a717a847088467102eb9f701e48c3a95225690",
+  "corrected_interval_sha256": "ea7b3ff2127e8ee7a696eb45e84ae9efdbca7c10c532617c51888fb13cd39f6d",
+  "event_sets": 4,
+  "exhaustive_candidate_relations": 12046,
+  "final_state": {
+    "clock": {
+      "den": 1,
+      "num": 10
+    },
+    "counter": {
+      "den": 1,
+      "num": 34
+    },
+    "mode": {
+      "den": 1,
+      "num": 5
+    },
+    "output": {
+      "den": 1,
+      "num": 90
+    },
+    "x": {
+      "den": 1,
+      "num": 3
+    }
+  },
+  "independent_baseline_equal": true,
+  "indexed_candidate_relations": 796,
+  "indexed_exhaustive_equal": true,
+  "initial_event": {
+    "event_count": 2,
+    "relation_order": [
+      "relation:stage1:time-2",
+      "relation:stage1:x-2"
+    ],
+    "time": {
+      "den": 1,
+      "num": 2
+    }
+  },
+  "journal_commits": 6,
+  "journal_objects": 19,
+  "journal_reconstruction_equal": true,
+  "journal_transactions": 6,
+  "journal_valid": true,
+  "python_c_tomagi_trace_equal": true,
+  "release": "0.4.1",
+  "schema": "TOM-WORLD-QUERY-KERNEL-0.4.1-FIXTURE-REPORT",
+  "segments": 5,
+  "semantic_chain_sha256": "sha256:9fd4f3e1ae8550ae3ca99e27e7bf61b22a4935fe764fd443723abfdb3804f226",
+  "tomagi_anchors_valid": true,
+  "world": {
+    "bytes": 1338560,
+    "content_hash": "sha256:c25c99eeeb728f50b52a06e89b9f669470ccb294fd8f0cc6e4ccb87bde9ff2d9",
+    "path": "examples/world04r/piecewise_world.json",
+    "relations": 1208,
+    "sha256": "sha256:6a402f447bab608a5ca130bf84e64616f0c0601fd380aba11034ff33812bd9a4",
+    "source_kind": "frozen literal content-addressed world"
+  }
+}
+
+--- RELEASE ARTIFACT ---
+{
+  "artifact": {
+    "bytes": 3906,
+    "matches_authored_document": true,
+    "path": "validation/world04r/TOM_WORLD_QUERY_KERNEL_0_4_REBUILT_RELEASE.materialized.md",
+    "sha256": "sha256:a4c0b2bf2eec243e72b8185d804b402470d6107f6efc3f5bf9ed16527b41cc8c"
+  },
+  "compile_sidecar": {
+    "bytes": 287221,
+    "path": "examples/world04r/world04r_release_artifact.tmg.compile.json",
+    "sha256": "sha256:214cbc1be0b54680aac9a8eb8d9dece3c63c13e630e47dbba75d1c40809eea57"
+  },
+  "corrected_interval_sha256": "ea7b3ff2127e8ee7a696eb45e84ae9efdbca7c10c532617c51888fb13cd39f6d",
+  "corrected_v03_archive_sha256": "a7103ec92596fd54198e4a902f078712cf8eafcdf1e45320bbdc02dd53947278",
+  "execution": {
+    "emit_records": 977,
+    "python_c_emit_sequence_equal": true,
+    "python_c_full_trace_equal": true,
+    "steps": 977
+  },
+  "literal_source": {
+    "bytes": 13843,
+    "path": "examples/world04r/world04r_release_artifact.literal.json",
+    "sha256": "sha256:5938cdda31ea57af8fea3f4e3276443621c52a8d147043ba6064d0296cf2565d"
+  },
+  "prior_v0_4_used_as_source": false,
+  "program": {
+    "bytes": 47024,
+    "cells": 977,
+    "path": "examples/world04r/world04r_release_artifact.tmg",
+    "sha256": "sha256:161d155d3a9d6ebb24e33d90ebe56d514a5a1a9c292888d608724939f0e6400d"
+  },
+  "schema": "TOM-WORLD-QUERY-KERNEL-0.4.1-RELEASE-ARTIFACT-PROOF",
+  "status": "pass"
+}
+
+--- TESTS ---
+test_append_after_finalization_rejects (test_world04r_corrective_rebuild.JournalTests.test_append_after_finalization_rejects) ... ok
+test_journal_audit_is_complete (test_world04r_corrective_rebuild.JournalTests.test_journal_audit_is_complete) ... ok
+test_journal_reconstruction_matches_solver_semantics (test_world04r_corrective_rebuild.JournalTests.test_journal_reconstruction_matches_solver_semantics) ... ok
+test_missing_initial_segment_is_detected (test_world04r_corrective_rebuild.JournalTests.test_missing_initial_segment_is_detected) ... ok
+test_orphan_policy_is_explicit (test_world04r_corrective_rebuild.JournalTests.test_orphan_policy_is_explicit) ... ok
+test_world_object_corruption_is_detected (test_world04r_corrective_rebuild.JournalTests.test_world_object_corruption_is_detected) ... ok
+test_index_excludes_fired_relations (test_world04r_corrective_rebuild.ModelAndIndexTests.test_index_excludes_fired_relations) ... ok
+test_index_has_no_false_negatives_against_exhaustive_event_semantics (test_world04r_corrective_rebuild.ModelAndIndexTests.test_index_has_no_false_negatives_against_exhaustive_event_semantics) ... ok
+test_index_queries_multiple_exact_brackets (test_world04r_corrective_rebuild.ModelAndIndexTests.test_index_queries_multiple_exact_brackets) ... ok
+test_initial_segment_is_open_to_world_horizon (test_world04r_corrective_rebuild.ModelAndIndexTests.test_initial_segment_is_open_to_world_horizon) ... ok
+test_initial_segment_rejects_parent_hash (test_world04r_corrective_rebuild.ModelAndIndexTests.test_initial_segment_rejects_parent_hash) ... ok
+test_interval_index_rebuilds_byte_identically (test_world04r_corrective_rebuild.ModelAndIndexTests.test_interval_index_rebuilds_byte_identically) ... ok
+test_relation_continuation_until_rejected (test_world04r_corrective_rebuild.ModelAndIndexTests.test_relation_continuation_until_rejected) ... ok
+test_relations_declare_sdf0_interface (test_world04r_corrective_rebuild.ModelAndIndexTests.test_relations_declare_sdf0_interface) ... ok
+test_successor_segment_requires_full_causal_parent (test_world04r_corrective_rebuild.ModelAndIndexTests.test_successor_segment_requires_full_causal_parent) ... ok
+test_world_and_nested_hashes (test_world04r_corrective_rebuild.ModelAndIndexTests.test_world_and_nested_hashes) ... ok
+test_complete_event_times (test_world04r_corrective_rebuild.SolverContinuationTests.test_complete_event_times) ... ok
+test_complete_final_state (test_world04r_corrective_rebuild.SolverContinuationTests.test_complete_final_state) ... ok
+test_crossing_certificates_bind_corrected_v03 (test_world04r_corrective_rebuild.SolverContinuationTests.test_crossing_certificates_bind_corrected_v03) ... ok
+test_event_budget_rejects_incomplete_run (test_world04r_corrective_rebuild.SolverContinuationTests.test_event_budget_rejects_incomplete_run) ... ok
+test_first_boundary_is_discovered_at_two (test_world04r_corrective_rebuild.SolverContinuationTests.test_first_boundary_is_discovered_at_two) ... ok
+test_first_indexed_and_exhaustive_event_sets_are_semantically_equal (test_world04r_corrective_rebuild.SolverContinuationTests.test_first_indexed_and_exhaustive_event_sets_are_semantically_equal) ... ok
+test_identically_zero_relation_rejects_continuation (test_world04r_corrective_rebuild.SolverContinuationTests.test_identically_zero_relation_rejects_continuation) ... ok
+test_invalid_search_bounds_reject (test_world04r_corrective_rebuild.SolverContinuationTests.test_invalid_search_bounds_reject) ... ok
+test_no_relation_refires (test_world04r_corrective_rebuild.SolverContinuationTests.test_no_relation_refires) ... ok
+test_non_affine_relation_rejects_continuation (test_world04r_corrective_rebuild.SolverContinuationTests.test_non_affine_relation_rejects_continuation) ... ok
+test_realized_segment_boundaries_come_from_event_certificates (test_world04r_corrective_rebuild.SolverContinuationTests.test_realized_segment_boundaries_come_from_event_certificates) ... ok
+test_successor_domains_remain_open_to_horizon (test_world04r_corrective_rebuild.SolverContinuationTests.test_successor_domains_remain_open_to_horizon) ... ok
+test_cli_validate_and_run (test_world04r_corrective_rebuild.TomagiAndCliTests.test_cli_validate_and_run) ... ok
+test_reference_program_replays (test_world04r_corrective_rebuild.TomagiAndCliTests.test_reference_program_replays) ... ok
+test_tomagi_abi_unchanged (test_world04r_corrective_rebuild.TomagiAndCliTests.test_tomagi_abi_unchanged) ... ok
+test_tomagi_reference_anchors_and_python_c_trace (test_world04r_corrective_rebuild.TomagiAndCliTests.test_tomagi_reference_anchors_and_python_c_trace) ... ok
+test_atomic_transition_uses_common_prestate (test_world04r_corrective_rebuild.TransitionAndBaselineTests.test_atomic_transition_uses_common_prestate) ... ok
+test_baseline_has_no_kernel_imports (test_world04r_corrective_rebuild.TransitionAndBaselineTests.test_baseline_has_no_kernel_imports) ... ok
+test_conflicting_simultaneous_sets_reject (test_world04r_corrective_rebuild.TransitionAndBaselineTests.test_conflicting_simultaneous_sets_reject) ... ok
+test_independent_baseline_matches (test_world04r_corrective_rebuild.TransitionAndBaselineTests.test_independent_baseline_matches) ... ok
+test_tampered_event_certificate_rejects (test_world04r_corrective_rebuild.TransitionAndBaselineTests.test_tampered_event_certificate_rejects) ... ok
+test_continuation_until_absent_from_authoritative_world (test_world04r_corrective_rebuild.TrustResetTests.test_continuation_until_absent_from_authoritative_world) ... ok
+test_corrected_interval_file_is_exact (test_world04r_corrective_rebuild.TrustResetTests.test_corrected_interval_file_is_exact) ... ok
+test_corrected_sign_class_uses_full_rational_equality (test_world04r_corrective_rebuild.TrustResetTests.test_corrected_sign_class_uses_full_rational_equality) ... ok
+test_corrected_v03_archive_pin (test_world04r_corrective_rebuild.TrustResetTests.test_corrected_v03_archive_pin) ... ok
+test_every_pinned_inherited_file_matches (test_world04r_corrective_rebuild.TrustResetTests.test_every_pinned_inherited_file_matches) ... ok
+test_new_namespace_and_no_old_v04_module (test_world04r_corrective_rebuild.TrustResetTests.test_new_namespace_and_no_old_v04_module) ... ok
+test_schema_validates_world (test_world04r_corrective_rebuild.TrustResetTests.test_schema_validates_world) ... ok
+test_world_declares_trust_reset (test_world04r_corrective_rebuild.TrustResetTests.test_world_declares_trust_reset) ... ok
+
+----------------------------------------------------------------------
+Ran 45 tests in 4.627s
+
+OK

@@ -1,0 +1,573 @@
+{
+  "compatibilities": [
+    {
+      "content_hash": "sha256:0ec00a5631c9e076890b221e2a6cb3eb727a50547fd9de0753a09d43e4ab7473",
+      "equals": {
+        "mode": {
+          "den": 1,
+          "num": 1
+        }
+      },
+      "id": "compat:mode-1",
+      "kind": "field-equality-compatibility",
+      "meaning": "Accept the fixture's declared mode."
+    },
+    {
+      "content_hash": "sha256:ef028333845491bb43a047767d1a084df43f62ade1c33015545cd0fb38671f10",
+      "equals": {
+        "mode": {
+          "den": 1,
+          "num": 2
+        }
+      },
+      "id": "compat:mode-2",
+      "kind": "field-equality-compatibility",
+      "meaning": "Deliberately incompatible with the fixture trajectory."
+    }
+  ],
+  "content_hash": "sha256:14364a9736bf32217648dc294098cecb44510944f6e5ec02045193871576657e",
+  "profile": "TOM-WORLD-QUERY-KERNEL-0.3",
+  "provenance": {
+    "date": "2026-09-01",
+    "purpose": "0.3 certified interval crossing, simultaneous event-set, ordering, and baseline fixture"
+  },
+  "relations": [
+    {
+      "active_time": {
+        "lower": {
+          "den": 1,
+          "num": 0
+        },
+        "upper": {
+          "den": 1,
+          "num": 10
+        }
+      },
+      "codomain": "exact-rational-residual",
+      "compatibility_id": "compat:mode-1",
+      "content_hash": "sha256:3d4e8a9db6d1423c7c3e96c53f31d4ed0746d5911d129cfad8db4c1f0c8594d9",
+      "domain": "affine-rational-trajectory",
+      "event_id": "event:time-five-halves:set-output",
+      "expression": {
+        "args": [
+          {
+            "op": "time"
+          },
+          {
+            "op": "const",
+            "value": {
+              "den": 2,
+              "num": 5
+            }
+          }
+        ],
+        "op": "sub"
+      },
+      "id": "relation:time-equals-five-halves",
+      "kind": "continuous-zero-relation",
+      "priority": 10,
+      "provenance": {
+        "date": "2026-09-01",
+        "source": "TOM World & Query Kernel 0.3 deterministic interval fixture"
+      },
+      "relation_interface": "SDF0@Def",
+      "support_id": "support:main",
+      "transition": [
+        {
+          "field": "output",
+          "mode": "set",
+          "value": {
+            "den": 1,
+            "num": 25
+          }
+        }
+      ],
+      "zero_locus": "time = 5/2"
+    },
+    {
+      "active_time": {
+        "lower": {
+          "den": 1,
+          "num": 0
+        },
+        "upper": {
+          "den": 1,
+          "num": 10
+        }
+      },
+      "codomain": "exact-rational-residual",
+      "compatibility_id": "compat:mode-1",
+      "content_hash": "sha256:7f872b00aefedc67ca676f50b0c365094fd9afa5cb5f4adfff9f8d507e55ed79",
+      "domain": "affine-rational-trajectory",
+      "event_id": "event:triple-x:add-two",
+      "expression": {
+        "args": [
+          {
+            "args": [
+              {
+                "op": "const",
+                "value": {
+                  "den": 1,
+                  "num": 3
+                }
+              },
+              {
+                "name": "x",
+                "op": "field"
+              }
+            ],
+            "op": "mul"
+          },
+          {
+            "op": "const",
+            "value": {
+              "den": 1,
+              "num": 15
+            }
+          }
+        ],
+        "op": "sub"
+      },
+      "id": "relation:triple-x-equals-fifteen",
+      "kind": "continuous-zero-relation",
+      "priority": 10,
+      "provenance": {
+        "date": "2026-09-01",
+        "source": "TOM World & Query Kernel 0.3 deterministic interval fixture"
+      },
+      "relation_interface": "SDF0@Def",
+      "support_id": "support:main",
+      "transition": [
+        {
+          "field": "counter",
+          "mode": "add",
+          "value": {
+            "den": 1,
+            "num": 2
+          }
+        }
+      ],
+      "zero_locus": "3*x - 15 = 0, equivalent to x=5"
+    },
+    {
+      "active_time": {
+        "lower": {
+          "den": 1,
+          "num": 0
+        },
+        "upper": {
+          "den": 1,
+          "num": 10
+        }
+      },
+      "codomain": "exact-rational-residual",
+      "compatibility_id": "compat:mode-1",
+      "content_hash": "sha256:8d9b07ef93fa1658246e78eade28b24721d654c5a5a516a68662d8e807761b01",
+      "domain": "affine-rational-trajectory",
+      "event_id": "event:x-five:add-one",
+      "expression": {
+        "args": [
+          {
+            "name": "x",
+            "op": "field"
+          },
+          {
+            "op": "const",
+            "value": {
+              "den": 1,
+              "num": 5
+            }
+          }
+        ],
+        "op": "sub"
+      },
+      "id": "relation:x-equals-five",
+      "kind": "continuous-zero-relation",
+      "priority": 20,
+      "provenance": {
+        "date": "2026-09-01",
+        "source": "TOM World & Query Kernel 0.3 deterministic interval fixture"
+      },
+      "relation_interface": "SDF0@Def",
+      "support_id": "support:main",
+      "transition": [
+        {
+          "field": "counter",
+          "mode": "add",
+          "value": {
+            "den": 1,
+            "num": 1
+          }
+        }
+      ],
+      "zero_locus": "x - 5 = 0"
+    },
+    {
+      "active_time": {
+        "lower": {
+          "den": 1,
+          "num": 0
+        },
+        "upper": {
+          "den": 1,
+          "num": 10
+        }
+      },
+      "codomain": "exact-rational-residual",
+      "compatibility_id": "compat:mode-1",
+      "content_hash": "sha256:ea58b12a100a5753b6c584d28dc99f7bc014a7a55c76f8f5ca459839c3133cb9",
+      "domain": "affine-rational-trajectory",
+      "event_id": "event:x-ten:set-output",
+      "expression": {
+        "args": [
+          {
+            "name": "x",
+            "op": "field"
+          },
+          {
+            "op": "const",
+            "value": {
+              "den": 1,
+              "num": 10
+            }
+          }
+        ],
+        "op": "sub"
+      },
+      "id": "relation:x-equals-ten",
+      "kind": "continuous-zero-relation",
+      "priority": 5,
+      "provenance": {
+        "date": "2026-09-01",
+        "source": "TOM World & Query Kernel 0.3 deterministic interval fixture"
+      },
+      "relation_interface": "SDF0@Def",
+      "support_id": "support:main",
+      "transition": [
+        {
+          "field": "output",
+          "mode": "set",
+          "value": {
+            "den": 1,
+            "num": 50
+          }
+        }
+      ],
+      "zero_locus": "x - 10 = 0, a later event at t=5"
+    },
+    {
+      "active_time": {
+        "lower": {
+          "den": 1,
+          "num": 4
+        },
+        "upper": {
+          "den": 1,
+          "num": 10
+        }
+      },
+      "codomain": "exact-rational-residual",
+      "compatibility_id": "compat:mode-1",
+      "content_hash": "sha256:cd1eae1d447e02d8566098909655c1ba158b6e5026c8d939e46bb2d50ff1c744",
+      "domain": "affine-rational-trajectory",
+      "event_id": "event:inactive",
+      "expression": {
+        "args": [
+          {
+            "name": "x",
+            "op": "field"
+          },
+          {
+            "op": "const",
+            "value": {
+              "den": 1,
+              "num": 2
+            }
+          }
+        ],
+        "op": "sub"
+      },
+      "id": "relation:inactive-x-equals-two",
+      "kind": "continuous-zero-relation",
+      "priority": 0,
+      "provenance": {
+        "date": "2026-09-01",
+        "source": "TOM World & Query Kernel 0.3 deterministic interval fixture"
+      },
+      "relation_interface": "SDF0@Def",
+      "support_id": "support:main",
+      "transition": [
+        {
+          "field": "counter",
+          "mode": "add",
+          "value": {
+            "den": 1,
+            "num": 100
+          }
+        }
+      ],
+      "zero_locus": "Root t=1 lies outside declared active interval."
+    },
+    {
+      "active_time": {
+        "lower": {
+          "den": 1,
+          "num": 0
+        },
+        "upper": {
+          "den": 1,
+          "num": 10
+        }
+      },
+      "codomain": "exact-rational-residual",
+      "compatibility_id": "compat:mode-1",
+      "content_hash": "sha256:9379bb2528a5e27210a111f28abfcbed9a4f8f22c3a71537f5b9ea71cc1f1586",
+      "domain": "affine-rational-trajectory",
+      "event_id": "event:unsupported",
+      "expression": {
+        "args": [
+          {
+            "name": "x",
+            "op": "field"
+          },
+          {
+            "op": "const",
+            "value": {
+              "den": 1,
+              "num": 5
+            }
+          }
+        ],
+        "op": "sub"
+      },
+      "id": "relation:unsupported-x-equals-five",
+      "kind": "continuous-zero-relation",
+      "priority": 0,
+      "provenance": {
+        "date": "2026-09-01",
+        "source": "TOM World & Query Kernel 0.3 deterministic interval fixture"
+      },
+      "relation_interface": "SDF0@Def",
+      "support_id": "support:x-below-4",
+      "transition": [
+        {
+          "field": "counter",
+          "mode": "add",
+          "value": {
+            "den": 1,
+            "num": 100
+          }
+        }
+      ],
+      "zero_locus": "Root exists but lies outside support."
+    },
+    {
+      "active_time": {
+        "lower": {
+          "den": 1,
+          "num": 0
+        },
+        "upper": {
+          "den": 1,
+          "num": 10
+        }
+      },
+      "codomain": "exact-rational-residual",
+      "compatibility_id": "compat:mode-2",
+      "content_hash": "sha256:bcd5b3237ea4b73c1addae1cafc16bc137c10dc35af794ce2dcf71861d4b1abb",
+      "domain": "affine-rational-trajectory",
+      "event_id": "event:incompatible",
+      "expression": {
+        "args": [
+          {
+            "name": "x",
+            "op": "field"
+          },
+          {
+            "op": "const",
+            "value": {
+              "den": 1,
+              "num": 6
+            }
+          }
+        ],
+        "op": "sub"
+      },
+      "id": "relation:incompatible-x-equals-six",
+      "kind": "continuous-zero-relation",
+      "priority": 0,
+      "provenance": {
+        "date": "2026-09-01",
+        "source": "TOM World & Query Kernel 0.3 deterministic interval fixture"
+      },
+      "relation_interface": "SDF0@Def",
+      "support_id": "support:main",
+      "transition": [
+        {
+          "field": "counter",
+          "mode": "add",
+          "value": {
+            "den": 1,
+            "num": 100
+          }
+        }
+      ],
+      "zero_locus": "Root exists but compatibility predicate rejects it."
+    }
+  ],
+  "schema": "TOM-WORLD-INTERVAL-EVENTS-0.3",
+  "seed_sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+  "solver": {
+    "arithmetic": "exact canonical rational closed intervals",
+    "continuity_operations": [
+      "const",
+      "field",
+      "time",
+      "neg",
+      "add",
+      "sub",
+      "mul"
+    ],
+    "event_order": [
+      "root_time",
+      "priority",
+      "relation_id",
+      "event_id",
+      "relation_hash"
+    ],
+    "max_refine_steps": 128,
+    "refine_steps": 24,
+    "simultaneity": "equal exact canonical rational root time"
+  },
+  "supports": [
+    {
+      "bounds": {
+        "mode": {
+          "lower": {
+            "den": 1,
+            "num": 1
+          },
+          "upper": {
+            "den": 1,
+            "num": 1
+          }
+        },
+        "x": {
+          "lower": {
+            "den": 1,
+            "num": 0
+          },
+          "upper": {
+            "den": 1,
+            "num": 20
+          }
+        }
+      },
+      "content_hash": "sha256:85c4a31addf46fe93702805a0e681a923021631c31202e897f3db8f5e6259081",
+      "id": "support:main",
+      "kind": "interval-support",
+      "meaning": "Candidate root lies in the declared finite spatial/mode support."
+    },
+    {
+      "bounds": {
+        "mode": {
+          "lower": {
+            "den": 1,
+            "num": 1
+          },
+          "upper": {
+            "den": 1,
+            "num": 1
+          }
+        },
+        "x": {
+          "lower": {
+            "den": 1,
+            "num": 0
+          },
+          "upper": {
+            "den": 1,
+            "num": 4
+          }
+        }
+      },
+      "content_hash": "sha256:d6a790b2c204f1160c6e52cda3df0d57bb15c1450cfc2c0913dd816d4d650518",
+      "id": "support:x-below-4",
+      "kind": "interval-support",
+      "meaning": "Deliberately excludes x=5 for rejection evidence."
+    }
+  ],
+  "trajectory": {
+    "content_hash": "sha256:e6ff03d03b3e8e52da788b6049c858385a61bc98116204e71cccdc868d54c4ca",
+    "domain": {
+      "lower": {
+        "den": 1,
+        "num": 0
+      },
+      "upper": {
+        "den": 1,
+        "num": 10
+      }
+    },
+    "fields": {
+      "clock": {
+        "initial": {
+          "den": 1,
+          "num": 0
+        },
+        "rate": {
+          "den": 1,
+          "num": 1
+        }
+      },
+      "counter": {
+        "initial": {
+          "den": 1,
+          "num": 0
+        },
+        "rate": {
+          "den": 1,
+          "num": 0
+        }
+      },
+      "mode": {
+        "initial": {
+          "den": 1,
+          "num": 1
+        },
+        "rate": {
+          "den": 1,
+          "num": 0
+        }
+      },
+      "output": {
+        "initial": {
+          "den": 1,
+          "num": 0
+        },
+        "rate": {
+          "den": 1,
+          "num": 0
+        }
+      },
+      "x": {
+        "initial": {
+          "den": 1,
+          "num": 0
+        },
+        "rate": {
+          "den": 1,
+          "num": 2
+        }
+      }
+    },
+    "id": "trajectory:affine-reference",
+    "interpolation": "exact affine interpolation between integer TOMAGI anchors",
+    "kind": "affine-rational-trajectory",
+    "provenance": {
+      "date": "2026-09-01",
+      "source": "literal fixture definition"
+    },
+    "source_program": "examples/world03/affine_reference.tmg"
+  }
+}

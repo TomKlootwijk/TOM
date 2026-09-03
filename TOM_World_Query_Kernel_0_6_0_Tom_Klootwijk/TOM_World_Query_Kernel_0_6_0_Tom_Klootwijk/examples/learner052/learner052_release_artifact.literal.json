@@ -1,0 +1,291 @@
+{
+  "$schema": "../../spec/tom_seeded_program.schema.json",
+  "budgets": {
+    "max_cells": 558,
+    "max_definitions": 16,
+    "max_expression_depth": 16,
+    "max_expression_nodes": 2048,
+    "max_output_bytes": 2230,
+    "max_repeat": 1,
+    "max_sequence_items": 64,
+    "max_string_bytes": 2048
+  },
+  "compilation_profile": "TOM-SEEDED-COMPILATION-1.0",
+  "definitions": [
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:7c82894a5cff23b8a8e2a7ba8b29b0346741ccfae5dab1fe48a525eb73bd7c63",
+      "dependencies": [],
+      "domain": "none",
+      "id": "tom:seed",
+      "kind": "canonical-seed",
+      "limits": {},
+      "operation": {
+        "op": "seed.bytes"
+      },
+      "order": 0,
+      "parameters": {},
+      "phase": "parse",
+      "provenance": {
+        "corrective_handoff_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "date": "2026-09-02",
+        "promotion_program_hash": "sha256:f1030e332b5f7358c43603096a64ebca7f9268aaaf2fbbe16dbebc972daa8bdd",
+        "source": "TOM World & Query Kernel 0.5.2 release documentation"
+      },
+      "seed_tokens": [
+        "TOM1"
+      ]
+    },
+    {
+      "codomain": "record",
+      "content_hash": "sha256:6be4319b0b306660f5c438164ed20540d4fafe0dfed60842871d2f7d66a0976c",
+      "dependencies": [
+        "tom:seed"
+      ],
+      "domain": "bytes",
+      "id": "tom:tokens",
+      "kind": "seed-parse",
+      "limits": {},
+      "operation": {
+        "op": "seed.tokens"
+      },
+      "order": 0,
+      "parameters": {},
+      "phase": "resolve",
+      "provenance": {
+        "corrective_handoff_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "date": "2026-09-02",
+        "promotion_program_hash": "sha256:f1030e332b5f7358c43603096a64ebca7f9268aaaf2fbbe16dbebc972daa8bdd",
+        "source": "TOM World & Query Kernel 0.5.2 release documentation"
+      },
+      "seed_tokens": [
+        "TopologicalOpenModular"
+      ]
+    },
+    {
+      "codomain": "bytes",
+      "content_hash": "sha256:0594c66b1d40fe06a76b6d191b096c48b455cb1274d054b641e97c6e36bfefde",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "doc:bytes",
+      "kind": "literal-transaction-authority-release-document",
+      "limits": {},
+      "operation": {
+        "op": "literal"
+      },
+      "order": 0,
+      "parameters": {
+        "result_type": "bytes",
+        "value": {
+          "data": "IyBUT00gV29ybGQgJiBRdWVyeSBLZXJuZWwgMC41LjIKCiMjIEZvcm1hbCBQcm9tb3Rpb24gYW5kIEV2aWRlbmNlIFRyYW5zYWN0aW9uIEF1dGhvcml0eQoKVmVyc2lvbiAwLjUuMiBpcyBhIGNvcnJlY3RpdmUgcm9hZG1hcCBjaGVja3BvaW50LiBJdCBkZWxpYmVyYXRlbHkgZG9lcyBub3QKYnJvYWRlbiB0aGUgbGVhcm5lci4gSXQgY29tcGxldGVzIHRoZSBhdXRob3JpdHkgYm91bmRhcnkgaWRlbnRpZmllZCBieSB0aGUKQ09ERVggMC41LjEgaGFuZG9mZi4KClRoZSBjb3JyZWN0ZWQgY2hhaW4gaXMgbm93OgoKYGBgdGV4dApjYW5vbmljYWwgc2VlZAotPiBsaXRlcmFsIGV4YWN0IG9ic2VydmF0aW9ucwotPiBmb3JtYWwgYWZmaW5lIGxlYXJuZXIKLT4gZm9ybWFsIGFjY2VwdGFuY2UvcmVqZWN0aW9uIGFuZCBwcm9tb3Rpb24gYXV0aG9yaXR5Ci0+IGNvbXBsZXRlIGV2aWRlbmNlLWhhc2ggdHJhbnNhY3Rpb24KLT4gcGFyZW50LWJvdW5kIGltbXV0YWJsZSBwdWJsaWNhdGlvbiBwbGFuCi0+IGdlbmVyaWMgYWRkcmVzc2VkIHdyaXRlcwotPiBjb21wYXJlLWFuZC1zd2FwIEhFQUQKYGBgCgojIyBEZWxpdmVyZWQKCi0gdmVyaWZpZWQgaW5oZXJpdGFuY2UgZnJvbSB0aGUgMC41LjEgY29ycmVjdGl2ZSBhcmNoaXZlOwotIGEgc3RhdGljIGNvbnRlbnQtYWRkcmVzc2VkIHByb21vdGlvbiBmb3JtYWwgcHJvZ3JhbTsKLSBhIHNlZWRlZCBncmFwaCB0aGF0IHJlY29tcHV0ZXMgdGhlIGFmZmluZSBsZWFybmVyIGFuZCBwcm9tb3Rpb24gcmVzdWx0OwotIHR3ZW50eSBleHBsaWNpdCBwdWJsaWNhdGlvbnM6IG9uZSBnZW5lc2lzIGFuZCBuaW5ldGVlbiBsZWFybmVyIHNlc3Npb25zOwotIHR3ZWx2ZSBhdXRob3JpdGF0aXZlIHJlbGF0aW9uIHByb21vdGlvbnMgYW5kIHNldmVuIHJlamVjdGlvbiBsaW5lYWdlczsKLSBjb21wbGV0ZSBldmlkZW5jZSBsaXN0cyBpbiBldmVyeSBzZXNzaW9uIHRyYW5zYWN0aW9uOwotIGdlbmVyaWMgaW1tdXRhYmxlIHN0b3JlIG1lY2hhbmljcyB3aXRoIHN0YWxlLXBhcmVudCByZWplY3Rpb247Ci0gaW5kZXBlbmRlbnQgb3JhY2xlIGVxdWFsaXR5OwotIGVxdWFsIFB5dGhvbi9DIGNvbXBsZXRlIFRPTUFHSSB0cmFjZXM7Ci0gc3RyaWN0IHN0b3JlIGF1ZGl0IGFuZCBjb21taXQtY2hhaW4gcmVjb25zdHJ1Y3Rpb247Ci0gYSBuZXcgc2NoZW1hLCBDTEksIHRlc3RzLCBub3JtYXRpdmUgc3BlY2lmaWNhdGlvbiwgcm9hZG1hcCB1cGRhdGUsIGFuZCBjbGVhbgogIHJlcGxheSBldmlkZW5jZS4KCiMjIENhbm9uaWNhbCBpZGVudGl0aWVzCgpgYGB0ZXh0ClByb21vdGlvbiBmb3JtYWwgcHJvZ3JhbSBjb250ZW50IGhhc2g6CnNoYTI1NjpmMTAzMGUzMzJiNWY3MzU4YzQzNjAzMDk2YTY0ZWJjYTdmOTI2OGFhYWYyZmJiZTE2ZGJlYmM5NzJkYWE4YmRkCgpQdWJsaWNhdGlvbiBwbGFuIGNvbnRlbnQgaGFzaDoKc2hhMjU2OjA3YjE2MDc3NDVlMzdjMWYzYWM3ZDYxYTQ3ZGI5NmEzZDAxYzg4NDY4MjQzMmM5MWYxZDc3NTY4MDQ1MzM3ZTgKClRlcm1pbmFsIGhlYWQ6CnNoYTI1NjphM2JkOGVjZDg1NzhiMjgxNThiOTZhM2RjZTgxNDkxMGJlYjNkNjI3MDY4MTU5ZGM2NjhhNjgyYzg1Yjg1NDQ4CgpDb21waWxlZCBwcm9tb3Rpb24gcHJvZ3JhbToKMjQyLDc0OSBjZWxsczsgMTEsNjUyLDA4MCBieXRlcwpzaGEyNTY6ZjZlYWNjMWU5MGY2M2Q5MGIyNDg3ZDAyMzBmYzFhMTBlY2RmZTU3MTEyNGRiZDMxN2VmYzEyZjdkY2I5MzgyMQoKTWF0ZXJpYWxpemVkIHByb21vdGlvbiByZXN1bHQ6Cjk3MCw5OTMgYnl0ZXMKc2hhMjU2OjJkNmJjNWIyMDY1NDUwNDJlMTNmYWE1ZTliNGQ5YTBlYzZiMGNjZjQ5Mjk3NTVjMDEwMjU3NDZiOGFiNDUyM2MKYGBgCgojIyBDdXJyZW50IGJvdW5kYXJ5CgpUaGUgcmVsZWFzZSBkZW1vbnN0cmF0ZXMgZXhhY3QgZmluaXRlIGFmZmluZSBwcm9wb3NhbCBhbmQgcHJvbW90aW9uIGF1dGhvcml0eS4KSXQgZG9lcyBub3QgY2xhaW0gYnJvYWRlciBsZWFybmVyIGZhbWlsaWVzLCBub2lzeSBpbmR1Y3Rpb24sIG1lbW9yeSwgcGxhbm5pbmcsCnBlcmNlcHRpb24sIGF1dG9ub21vdXMgYWN0aW9uLCBnZW5lcmFsIGludGVsbGlnZW5jZSwgb3IgQUdJLgoKVGhlIG5leHQgcm9hZG1hcCBtaWxlc3RvbmUgcmVtYWlucyAqKlRPTSBMZWFybmVyIDAuMiAvIFdRSyAwLjYqKiwgbm93IGFsbG93ZWQKdG8gcHJvY2VlZCBvbiB0b3Agb2YgYSBjb21wbGV0ZWQgbGl0ZXJhbCBwcm9tb3Rpb24gYm91bmRhcnkuCg==",
+          "encoding": "base64"
+        }
+      },
+      "phase": "construct",
+      "provenance": {
+        "corrective_handoff_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "date": "2026-09-02",
+        "promotion_program_hash": "sha256:f1030e332b5f7358c43603096a64ebca7f9268aaaf2fbbe16dbebc972daa8bdd",
+        "source": "TOM World & Query Kernel 0.5.2 release documentation"
+      },
+      "seed_tokens": [
+        "Pi"
+      ]
+    },
+    {
+      "codomain": "string",
+      "content_hash": "sha256:61f70be288e7511e1b8cb220d6efc803e00727ec77f0934aabbe6aea1b128bba",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "doc:expected-hash",
+      "kind": "literal-hash",
+      "limits": {},
+      "operation": {
+        "op": "literal"
+      },
+      "order": 1,
+      "parameters": {
+        "result_type": "string",
+        "value": "sha256:2bad8f4432efb342a0dcc5c064b9cde123be67aae70301a871f1eee420886b9e"
+      },
+      "phase": "construct",
+      "provenance": {
+        "corrective_handoff_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "date": "2026-09-02",
+        "promotion_program_hash": "sha256:f1030e332b5f7358c43603096a64ebca7f9268aaaf2fbbe16dbebc972daa8bdd",
+        "source": "TOM World & Query Kernel 0.5.2 release documentation"
+      }
+    },
+    {
+      "codomain": "state64",
+      "content_hash": "sha256:9fb1d96e59ced3ab1b5442594ed24725b3dac8f729373d3b76f79b97c60f6091",
+      "dependencies": [
+        "tom:tokens"
+      ],
+      "domain": "seed-record",
+      "id": "doc:state",
+      "kind": "initial-state",
+      "limits": {},
+      "operation": {
+        "op": "state64.construct"
+      },
+      "order": 2,
+      "parameters": {
+        "fields": {
+          "lineage": "0x4c303532"
+        }
+      },
+      "phase": "construct",
+      "provenance": {
+        "corrective_handoff_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "date": "2026-09-02",
+        "promotion_program_hash": "sha256:f1030e332b5f7358c43603096a64ebca7f9268aaaf2fbbe16dbebc972daa8bdd",
+        "source": "TOM World & Query Kernel 0.5.2 release documentation"
+      },
+      "seed_tokens": [
+        "lineage"
+      ]
+    },
+    {
+      "codomain": "string",
+      "content_hash": "sha256:9290a33003d684e576ddedd6aca8558b2498d751a1a88518da78b6449a1afdfb",
+      "dependencies": [
+        "doc:bytes"
+      ],
+      "domain": "bytes",
+      "id": "doc:actual-hash",
+      "kind": "computed-hash",
+      "limits": {},
+      "operation": {
+        "op": "hash.sha256"
+      },
+      "order": 0,
+      "parameters": {
+        "prefix": true
+      },
+      "phase": "transform",
+      "provenance": {
+        "corrective_handoff_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "date": "2026-09-02",
+        "promotion_program_hash": "sha256:f1030e332b5f7358c43603096a64ebca7f9268aaaf2fbbe16dbebc972daa8bdd",
+        "source": "TOM World & Query Kernel 0.5.2 release documentation"
+      }
+    },
+    {
+      "codomain": "cell_graph",
+      "content_hash": "sha256:243b9856c8ff6792695d6e2a7a270773bcc28f88890e35198718b9f4bd7eec8d",
+      "dependencies": [
+        "doc:bytes"
+      ],
+      "domain": "bytes",
+      "id": "doc:emit",
+      "kind": "byte-emission",
+      "limits": {},
+      "operation": {
+        "op": "emit.graph"
+      },
+      "order": 1,
+      "parameters": {
+        "aux_base": "0x4c353200",
+        "byte_order": "little",
+        "chunk_bytes": 4,
+        "halt_last": true,
+        "id_prefix": "cell:learner052-release",
+        "key_base": {
+          "phi": 0,
+          "rho": 460000,
+          "theta": 0,
+          "tick": 0
+        },
+        "key_field": "rho"
+      },
+      "phase": "transform",
+      "provenance": {
+        "corrective_handoff_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "date": "2026-09-02",
+        "promotion_program_hash": "sha256:f1030e332b5f7358c43603096a64ebca7f9268aaaf2fbbe16dbebc972daa8bdd",
+        "source": "TOM World & Query Kernel 0.5.2 release documentation"
+      },
+      "seed_tokens": [
+        "transition"
+      ]
+    },
+    {
+      "codomain": "bool",
+      "content_hash": "sha256:39edb487c74b7679337be10ddf45c467bf4bda2f9f5e0bae3a5f6d2c4f83fca7",
+      "dependencies": [
+        "doc:actual-hash",
+        "doc:expected-hash"
+      ],
+      "domain": "hash-pair",
+      "id": "doc:guard",
+      "kind": "hash-guard",
+      "limits": {},
+      "operation": {
+        "op": "assert.equal"
+      },
+      "order": 0,
+      "parameters": {},
+      "phase": "guard",
+      "provenance": {
+        "corrective_handoff_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "date": "2026-09-02",
+        "promotion_program_hash": "sha256:f1030e332b5f7358c43603096a64ebca7f9268aaaf2fbbe16dbebc972daa8bdd",
+        "source": "TOM World & Query Kernel 0.5.2 release documentation"
+      },
+      "seed_tokens": [
+        "guard"
+      ]
+    },
+    {
+      "codomain": "program",
+      "content_hash": "sha256:7c586af54f2be957c34ccaa7bf6b9f7fdd3608d72c80ee2e452c44924da31931",
+      "dependencies": [
+        "doc:state",
+        "doc:emit",
+        "doc:guard"
+      ],
+      "domain": "state-graph-guard",
+      "id": "program:learner052-release",
+      "kind": "artifact-program",
+      "limits": {},
+      "operation": {
+        "op": "program.construct"
+      },
+      "order": 0,
+      "parameters": {
+        "default_ticks": 558,
+        "emit_bytes": true,
+        "entry": "cell:learner052-release:000",
+        "flags": 0,
+        "seed": "0x4c303532"
+      },
+      "phase": "lineage",
+      "provenance": {
+        "corrective_handoff_hash": "sha256:53951284853681ce239d07ce2ce783250ea78b3457fd221a43d88bd90344f4bf",
+        "date": "2026-09-02",
+        "promotion_program_hash": "sha256:f1030e332b5f7358c43603096a64ebca7f9268aaaf2fbbe16dbebc972daa8bdd",
+        "source": "TOM World & Query Kernel 0.5.2 release documentation"
+      },
+      "seed_tokens": [
+        "event",
+        "transition",
+        "lineage"
+      ]
+    }
+  ],
+  "root_definition": "program:learner052-release",
+  "seed_genome": {
+    "bytes": 244,
+    "grammar_id": "TOM-SEED-GRAMMAR-1.0",
+    "path": "../../TOM_seed_genome_2026-09-01.txt",
+    "sha256": "d1417a3136772c0cf3eddcd4962ce07d42cbf87616f7b5bae09fc652d9b807b5",
+    "token_registry": "../../spec/tom_seed_token_registry_1_0.json"
+  },
+  "title": "TOM WQK 0.5.2 transaction-authority release document artifact",
+  "tomagi_version": "1.0.0"
+}

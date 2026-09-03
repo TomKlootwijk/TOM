@@ -1,0 +1,70 @@
+{
+  "artifact": {
+    "bytes": 29075,
+    "path": "artifacts/TOM_AGI_ROADMAP_AND_STARTER.md",
+    "sha256": "sha256:2e34aee1cc39ccb4b3f83e85b356edf6a4fb40a7e543a77c5f8e1a6d0d172aa2",
+    "source_byte_equal": true
+  },
+  "chain": [
+    "TOM_seed_genome_2026-09-01.txt",
+    "examples/artifacts/roadmap_and_starter.source.json",
+    "examples/artifacts/roadmap_and_starter.tmg",
+    "ordered TOMAGI EMIT trace",
+    "artifacts/TOM_AGI_ROADMAP_AND_STARTER.md"
+  ],
+  "content_hash": "sha256:87e7c4c47ea1a4cfc361971173ee5366a50f8f42efe132c018b9fb872e8d3b0c",
+  "definition_source": {
+    "bytes": 41506,
+    "content_hash": "sha256:546e086bd28e13a1d1e7487cf75b6f88284e4018413414dd10e7b35d0998f02e",
+    "path": "examples/artifacts/roadmap_and_starter.source.json",
+    "sha256": "sha256:d0663d04f38b009c197bdfb973ce1301ce8202a825d9b716e27931dcbe05b14e"
+  },
+  "execution": {
+    "c_trace_sha256": "sha256:0849b6a03af253b33dc6fbc5b78b1dd693aead0d653140e21ac528124bbb5cbd",
+    "emit_records": 7269,
+    "emit_records_sha256": "sha256:3207ac97a37b78c468a13c4a4e9d4151ec8b6e33c12c248fa8d75697523e9a32",
+    "python_c_full_trace_equal": true,
+    "python_trace_sha256": "sha256:0849b6a03af253b33dc6fbc5b78b1dd693aead0d653140e21ac528124bbb5cbd",
+    "steps": 7269
+  },
+  "materializer": {
+    "domain_specific_format_logic": false,
+    "profile": "TOM-EMIT-BYTES-0.1",
+    "python_result": {
+      "artifact_bytes": 29075,
+      "artifact_sha256": "sha256:2e34aee1cc39ccb4b3f83e85b356edf6a4fb40a7e543a77c5f8e1a6d0d172aa2",
+      "emit_records": 7269,
+      "final_state": {
+        "branch": 0,
+        "cell": 7268,
+        "lineage": 38105799,
+        "orientation": 0,
+        "output": 667232,
+        "phi": 0,
+        "residual": 0,
+        "rho": 0,
+        "sheet": 0,
+        "status": 9,
+        "theta": 0,
+        "tick": 0,
+        "vphi": 0,
+        "vrho": 0,
+        "vtheta": 0,
+        "vtick": 0
+      }
+    }
+  },
+  "program": {
+    "bytes": 349040,
+    "cells": 7269,
+    "path": "examples/artifacts/roadmap_and_starter.tmg",
+    "sha256": "sha256:9d5a743cdfe921a021c101891808f3c0130b2e69ee1cc64e880e71ef8cad8f3f"
+  },
+  "schema": "TOM-ROADMAP-ARTIFACT-PROOF-0.1",
+  "source_document": {
+    "bytes": 29075,
+    "path": "docs/ROADMAP_AND_STARTER.md",
+    "sha256": "sha256:2e34aee1cc39ccb4b3f83e85b356edf6a4fb40a7e543a77c5f8e1a6d0d172aa2"
+  },
+  "status": "pass"
+}
